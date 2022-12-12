@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Progressive Form | Multi Steps Form</title>
+	
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="{{ asset('dist/css3/style2.css') }}"/>
+</head>
+<body>
+
+<div class="wrapper">
+	<div class="header">
+		<ul>
+			<li class="active form_1_progessbar">
+				<div>
+					<p>1</p>
+				</div>
+				
+				<label for="">Personal</label>
+			</li>
+			<li class="form_2_progessbar">
+				
+				<div data-title="Contact">
+					<p>2</p>
+				</div>
+				<label for="">Occupation</label>
+			</li>
+			<li class="form_3_progessbar">
+				<div>
+					<p>3</p>
+				</div>
+				<label for="">Family</label>
+			</li>
+			<li class="form_4_progessbar">
+				<div>
+					<p>4</p>
+				</div>
+				<label for="">Education</label>
+			</li>
+			<li class="form_5_progessbar">
+				<div>
+					<p>5</p>
+				</div>
+				<label for="">Community</label>
+			</li>
+			<li class="form_6_progessbar">
+				<div>
+					<p>6</p>
+				</div>
+				<label for="">Seminars</label>
+			</li>
+			<li class="form_7_progessbar">
+				<div>
+					<p>7</p>
+				</div>
+				<label for="">Requirements</label>
+			</li>
+			
+			
+		</ul>
+	</div>
+	<form action="">
+		<div class="form_wrap">
+			<div class="form_1 data_info">
+				<h2>Personal Information</h2>
+				<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
+					<div class="form_container">
+						<div class="input_wrap">
+							<label for="email">First Name</label>
+							<input type="text" name="firstname" class="input" id="firstname" required>
+							
+						</div>
+						<div class="input_wrap">
+							<label for="email">Last Name</label>
+							<input type="text" name="lastname" class="input" id="lastname">
+							
+						</div>
+						<div class="input_wrap">
+							<label for="email">Middle Name</label>
+							<input type="text" name="middlename" class="input" id="middlename">
+							
+						</div>
+						<div class="input_wrap">
+							<label for="password">Extension Name</label>
+							<input type="password" name="extensionname" class="input" id="extensionname">
+						</div>
+						<div class="input_wrap">
+							<label for="confirm_password">Gender</label>
+							<select class="select" id="addGender" name="gender" required>
+								<option selected="">Select Gender</option>
+								<option value="Male">Male</option>
+								<option value="Female">Female</option>  
+							</select>
+						</div>
+						<div class="input_wrap">
+							<label for="confirm_password">Blood Type</label>
+							<select class="select" id="addBlood" name="bloodtype" required>
+								<option selected="">Select Blood Type</option>
+								<option value="A">A</option>
+								<option value="B">B</option>  
+								<option value="AB">AB</option>
+								<option value="O">O</option>  
+							</select>
+						</div>
+						<div class="input_wrap">
+							<label for="confirm_password">Civil Status</label>
+							<select class="select" id="addCivil" name="civilstatus" required>
+								<option selected="">Select Civil Status</option>
+								<option value="Married">Maried</option>
+								<option value="Widowed">Widowed</option>  
+								<option value="Separated">Separated</option>
+								<option value="Divorced">Divorced</option>  
+								<option value="Single">Single</option>  
+							</select>
+						</div>
+						
+						<div class="input_wrap">Reason for being a solo parent
+							<label for="confirm_password"></label>
+							<select class="select" id="addReasonr" name="reason" required>
+								<option selected="">Select</option>
+								<option value="Male">Death of Spouse</option>
+								<option value="Female">Abandonment</option>  
+								<option value="Male">Detained</option>
+								
+							</select>
+						</div>
+						<div class="input_wrap">
+							<label for="confirm_password">Nationality</label>
+							<input type="password" name="nationality" class="input" id="nationality">
+						</div>
+						<div class="input_wrap">
+							<label for="confirm_password">Religion</label>
+							<input type="password" name="religion" class="input" id="religion">
+						</div>
+						<div class="input_wrap">
+							<label for="confirm_password">Date of Birth</label>
+							<input data-format="yyyy-MM-dd" class="input" type="datetime-local" id="birthdate" name="birthdate">
+						</div>
+						<div class="input_wrap">
+							<label for="confirm_password">Place of Birth</label>
+							<input type="password" name="birthplace" class="input" id="birthplace">
+						</div>
+						<div class="input_wrap">
+							<label for="confirm_password">Skill/Talent</label>
+							<input type="text" name="skill" class="input" id="skill">
+						</div>
+						<div class="input_wrap">
+							<label for="confirm_password">Hobbies</label>
+							<input type="text" name="hobbies" class="input" id="hobbies">
+						</div>
+					</div>
+
+					<div class="input_wrap">
+						<label for="user_name">Street</label>
+						<input type="text" name="street" class="input" id="street">
+					</div>
+					<div class="input_wrap">
+						<label for="first_name">Barangay</label>
+						{{-- <select class="select" id="addbarangay" name="barangay" required>
+							<option selected="">Select Barangay</option>
+							@foreach ($barangaylist as $item)
+							{{-- <option selected="">Select District Assigned</option>
+							
+								<option value="{{$item->id}}">{{$item->name}}</option>
+							@endforeach
+						<select> --}}
+					</div>
+					<div class="input_wrap">
+						<label for="last_name">City/Municipality</label>
+						<input type="text" name="city" class="input" id="city">
+					</div>
+					<div class="input_wrap">
+						<label for="last_name">Province</label>
+						<input type="text" name="province" class="input" id="province">
+					</div>
+					<div class="input_wrap">
+						<label for="last_name">Region</label>
+						<input type="text" name="region" class="input" id="region">
+					</div>
+					<div class="input_wrap">
+						<label for="company">Mobile Number</label>
+						<input type="text" name="mobilenumber" class="input" id="mobilenumber">
+					</div>
+
+					<div class="input_wrap">
+						<label for="experience">Landline Number</label>
+						<input type="text" name="landlinenumber" class="input" id="landlinenumber">
+					</div>
+					<div class="input_wrap">
+						<label for="designation">Email Address</label>
+						<input type="text" name="emailaddress" class="input" id="emailaddress">
+					</div>
+				
+			</div>
+
+			<div class="form_2 data_info" style="display: none;">
+				<h2>Occupation</h2>
+				<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
+				<div class="form_container">
+								
+					<div class="input_wrap">
+						<label for="first_name">Status of Employment</label>
+						<select class="select" id="addEmployment" name="employment" required>
+							<option selected="">Select Employment Status</option>
+							<option value="Employed">Employed</option>
+							<option value="Unemployed">Unemployed</option>  
+							<option value="Self_employed">Self-employed</option> 
+						</select>
+					
+					</div>
+					<div class="input_wrap">
+						<label class="special-label">Category of Employment:</label>
+						<select class="select" id="addCategory" name="category" required>
+							<option selected="">Select</option>
+							<option value="N/A">N/A</option>
+							<option value="Government">Government</option>  
+							<option value="Private">Private</option> 
+						</select>
+					</div>
+					<div class="input_wrap">
+						<label class="special-label">Type of Employment:</label>
+						<select class="select" id="addType" name="type" required>
+							<option selected="">Select Employment Type</option>
+							<option value="N/A">N/A</option>
+							<option value="Permanent/Regular">Permanent/Regular</option>  
+							<option value="Seasonal">Seasonal</option> 
+							<option value="Casual">Casual</option>  
+							<option value="Emergency">Emergency</option> 
+							
+						</select>
+					</div>
+					<div class="input_wrap">
+						<label class="special-label">Occupation</label>
+											
+						<label class="container1">Managers
+						<input type="radio" name="occupation" value="Managers" onclick="text(1)">
+						<span class="checkmark1"></span>
+						</label>
+						
+						<label class="container1">Professionals
+						<input type="radio" name="occupation" value="Professionals" onclick="text(1)">
+						<span class="checkmark1"></span>
+						</label>
+						
+						<label class="container1"> Technicians and Associate Professionals
+						<input type="radio" name="occupation" value="Technicians and Associate Professionals" onclick="text(1)"> 
+						<span class="checkmark1"></span>
+						</label>
+
+						<label class="container1">Clerical Support Workers
+						<input type="radio" name="occupation" value="Clerical Support Workers" onclick="text(1)">
+						<span class="checkmark1"></span>
+						</label>
+						
+						<label class="container1">Service and Sales Workers
+						<input type="radio" name="occupation"  value="Service and Sales Workers" onclick="text(1)">
+						<span class="checkmark1"></span>
+						</label>
+						
+						<label class="container1"> Skilled Agricultural, Forestry and Fishery Workers
+						<input type="radio" name="occupation"  value="Skilled Agricultural, Forestry and Fishery Workers" onclick="text(1)"> 
+						<span class="checkmark1"></span>
+						</label>
+
+						<label class="container1">Craft and Related Trade Workers
+						<input type="radio" name="occupation" value="Craft and Related Trade Workers"  onclick="text(1)">
+						<span class="checkmark1"></span>
+						</label>
+						
+						<label class="container1">Plant and MAchine Operators and Assemblers
+						<input type="radio" name="occupation" value="Plant and MAchine Operators and Assemblers" onclick="text(1)">
+						<span class="checkmark1"></span>
+						</label>
+						
+						<label class="container1"> Elementary Occupations
+						<input type="radio" name="occupation"  value="Elementary Occupations" onclick="text(1)"> 
+						<span class="checkmark1"></span>
+						</label>
+
+						<label class="container1"> Armed Forces Occupation
+						<input type="radio" name="occupation"  value="Armed Forces Occupation" onclick="text(1)"> 
+						<span class="checkmark1"></span>
+						</label>
+
+						<label class="container1"> Others, specify
+						<input type="radio" name="occupation"  value="thers, specify" onclick="text(0)"> 
+						<span class="checkmark1"></span>
+						</label>
+
+						<div id="divothers">
+							<label for="">Specify</label>
+							<input type="text" name="others" class="input" id="others">
+						 </div>
+
+					</div>
+					<div class="input_wrap">
+						<label for="">Salary</label>
+						<input type="text" name="salary" class="input" id="salary">
+					</div> 
+				</div>
+			
+			</div>
+
+			<div class="form_3 data_info" style="display: none;">
+				<h2>Family Composition</h2>
+				<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
+				{{-- <div id="show_item">
+
+					{{-- <div class="form_container">
+						<div class="input_wrap">
+							<label for="company">Full Name </label>
+							<input type="text" name="product_name[]" class="input" id="designation">
+						</div>
+						<div class="input_wrap">
+							<label for="company">Relationship </label>
+							<input type="text" name="product_price[]" class="input" id="designation">
+						</div>
+						<div class="input_wrap">
+							<label for="company">Age</label>
+							<input type="text" name="product_quantity[]" class="input" id="designation">
+						</div>
+						<div class="input_wrap">
+							<button class="btn btn-success add_item_btn">Add</button>
+						</div>
+				</div> --}}
+					
+				{{-- </div>	 --}}
+				<div class="form_container">
+					<div style="overflow-x:auto;">
+						<table class="table table-bordered" id="table_field">
+							<tr>
+								<th>Name</th>
+								<th>Sex</th>
+								<th>Relationship</th>
+								<th>Age</th>
+								<th>Date of Birth</th>
+								
+								<th>Action</th>
+
+							</tr>
+								
+							<tr>
+								
+								<td><input type="text" name="familyfullname"></td>
+								<td><input size="5" type="text" name="familysex"></td>
+								<td><input size="10" type="text" name="familyrelationship"></td>
+								<td><input size="2" type="text" name="familyage"></td>
+								<td><input data-format="yyyy-MM-dd" class="input" type="date" id="familybirthdate" name="familybirthdate"></td>
+								
+								<td><input type="button" class="btn btn-warning" name="add" id="add" value="add"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				
+			</div>
+			<div class="form_4 data_info" style="display: none;">
+				<h2>Educational Attainment</h2>
+				<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
+					<div class="form_container">
+
+						<div class="input_wrap">
+							<label for="confirm_password">Educational Attainment</label>
+							<select class="select" id="addGender" name="education" required>
+								<option selected="">Select</option>
+								<option value="None">None</option>
+								<option value="Kindergarten">Kindergarten</option>  
+								<option value="Elementary">Elementary</option>
+								<option value="Junior High School">Junior High School</option>  
+								<option value="Senior High School">Senior High School</option>  
+								<option value="College">College</option>
+								<option value="Vocational">Vocational</option>  
+								<option value="Post Graduate">Post Graduate</option>
+							
+							</select>
+						</div>
+					
+						{{-- <div class="input_wrap">
+							<label for="company">Name of School </label>
+							<input type="text" name="Current Company" class="input" id="company">
+							</div>
+							<div class="input_wrap">
+								<label for="experience">Year Graduated</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+							</div>
+							<div class="input_wrap">
+								<label for="designation">Achievement/Award Received</label>
+								<input type="text" name="Designation" class="input" id="designation">
+							</div>
+							
+							<label for="company">High School</label>
+							<div class="input_wrap">
+								<label for="company">Name of School </label>
+								<input type="text" name="Current Company" class="input" id="company">
+							</div>
+							<div class="input_wrap">
+								<label for="experience">Year Graduated</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+							</div>
+							<div class="input_wrap">
+								<label for="designation">Achievement/Award Received</label>
+								<input type="text" name="Designation" class="input" id="designation">
+							</div>
+							<label for="company">Senior High School</label>
+							<div class="input_wrap">
+								<label for="company">Name of School </label>
+								<input type="text" name="Current Company" class="input" id="company">
+							</div>
+							<div class="input_wrap">
+								<label for="company">Courses</label>
+								<input type="text" name="Current Company" class="input" id="company">
+							</div>
+							<div class="input_wrap">
+								<label for="experience">Year Graduated</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+							</div>
+							<div class="input_wrap">
+								<label for="designation">Achievement/Award Received</label>
+								<input type="text" name="Designation" class="input" id="designation">
+							</div>
+
+							<label for="company">Vocational</label>
+							<div class="input_wrap">
+								<label for="company">Name of School </label>
+								<input type="text" name="Current Company" class="input" id="company">
+							</div>
+							<div class="input_wrap">
+								<label for="company">Courses</label>
+								<input type="text" name="Current Company" class="input" id="company">
+							</div>
+							<div class="input_wrap">
+								<label for="experience">Year Graduated</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+							</div>
+							<div class="input_wrap">
+								<label for="designation">Achievement/Award Received</label>
+								<input type="text" name="Designation" class="input" id="designation">
+							</div>
+
+							<label for="company">College</label>
+							<div class="input_wrap">
+								<label for="company">Name of School </label>
+								<input type="text" name="Current Company" class="input" id="company">
+							</div>
+							<div class="input_wrap">
+								<label for="company">Courses</label>
+								<input type="text" name="Current Company" class="input" id="company">
+							</div>
+							<div class="input_wrap">
+								<label for="experience">Year Graduated</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+							</div>
+							<div class="input_wrap">
+								<label for="designation">Achievement/Award Received</label>
+								<input type="text" name="Designation" class="input" id="designation">
+						</div> --}}
+						<div id="education">
+							<div class="input_wrap" >
+								<label for="experience">Type</label>
+								<input type="text" name="type" class="input" id="type">
+								<label for="experience">Name of School</label>
+								<input type="text" name="schoolname" class="input" id="schoolname">
+								<label for="experience">Course</label>
+								<input type="text" name="course" class="input" id="course">
+								<label for="experience">Year Graduated</label>
+								<input type="text" name="yeargraduated" class="input" id="yeargraduated">
+								<label for="experience">Achievement/Award Received</label>
+								<input type="text" name="achievementaward" class="input" id="achievementaward
+								">
+								<input type="button" class="btn btn-warning" name="addeducation" id="addeducation" value="add">
+							</div>
+						</div>
+
+
+						<div class="input_wrap">
+							<label for="experience">Skills/Talent</label>
+							<input type="text" name="skills" class="input" id="skills">
+						</div>
+						<div class="input_wrap">
+							<label for="designation">Hobbies</label>
+							<input type="text" name="hobbies" class="input" id="hobbies">
+						</div>
+					</div>
+				
+			</div>
+
+			<div class="form_5 data_info" style="display: none;">
+				<h2>Community Involvement </h2>
+				<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
+					<div class="form_container">
+						<div style="overflow-x:auto;">
+							<table class="table table-bordered" id="table_community">
+								<tr>
+									<th>Name</th>
+									<th>Position</th>
+									<th>Inclusive Date</th>
+									<th>Action</th>
+									
+								</tr>
+									
+								<tr>
+									
+									<td><input type="text" name="fullname"></td>
+									
+									<td><input size="10" type="text" name="relationship"></td>
+									
+									<td><input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="birthdaytime"></td>
+									
+									<td><input type="button" class="btn btn-warning" name="addcommunity" id="addcommunity" value="add"></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				
+			</div>
+			
+			<div class="form_6 data_info" style="display: none;">
+				<h2>Seminars</h2>
+				<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
+					<div class="form_container">
+						<div style="overflow-x:auto;">
+							<table class="table table-bordered" id="table_seminar">
+								<tr>
+									<th>Name</th>
+									<th>Position</th>
+									<th>Inclusive Date</th>
+									<th>Action</th>
+									
+								</tr>
+									
+								<tr>
+									
+									<td><input type="text" name="fullname"></td>
+									
+									<td><input size="10" type="text" name="relationship"></td>
+									
+									<td><input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="birthdaytime"></td>
+									
+									<td><input type="button" class="btn btn-warning" name="addseminar" id="addseminar" value="add"></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				
+			</div>
+
+			<div class="form_7 data_info" style="display: none;">
+				<h2>Upload Requirements</h2>
+				<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
+					<div class="form_container">
+						<div class="input_wrap">
+							<label for="phone">Valid ID</label>
+							<input type="file" id="Image" class="select" name="Image" value="{{ old('c') }}">
+						</div>
+						<div class="input_wrap">
+							<label for="email">Barangay certificate of residency</label>
+							<input type="file" id="Image" class="select" name="Image" value="{{ old('c') }}">
+						</div>
+						<div class="input_wrap">
+							<label for="email">Birth Certificate</label>
+							<input type="file" id="Image" class="select" name="Image" value="{{ old('c') }}">
+						</div>
+						<div class="input_wrap">
+							<label for="email">Latest 1x1 picture with white background</label>
+							<input type="file" id="Image" class="select" name="Image" value="{{ old('c') }}">
+						</div>
+					</div>
+				
+			</div>
+		</div>
+
+		<div class="btns_wrap">
+			<div class="common_btns form_1_btns">
+				<button type="button" class="btn_next">Next <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_2_btns" style="display: none;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+				<button type="button" class="btn_next">Next <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_3_btns" style="display: none;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+				<button type="button" class="btn_next">Next <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_4_btns" style="display: none;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+				<button type="button" class="btn_next">Next <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_5_btns" style="display: none;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+				<button type="button" class="btn_next">Next <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_6_btns" style="display: none;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+				<button type="button" class="btn_next">Next <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+			</div>
+			<div class="common_btns form_7_btns" style="display: none;">
+				<button type="button" class="btn_back"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+				<button type="button" class="btn_done">Done</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+<div class="modal_wrapper">
+	<div class="shadow"></div>
+	<div class="success_wrap">
+		<span class="modal_icon"><ion-icon name="checkmark-sharp"></ion-icon></span>
+		<p>You have successfully completed the process.</p>
+	</div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<script src="http://parsleyjs.org/dist/parsley.js"defer></script>
+<script src="{{ asset('dist/js3/mainpwd.js') }}"></script>
+{{-- <script>
+	$(document).ready(function()
+	{
+		$(".add_item_btn").click(function(e)
+		{
+			e.preventDefault();
+			$("#show_item").prepend(`<div class="form_container">
+							<div class="input_wrap">
+								<label for="company">SSS No </label>
+								<input type="text" name="product_name[]" class="input" id="designation">
+							</div>
+							<div class="input_wrap">
+								<label for="company">SSS No </label>
+								<input type="text" name="product_price[]" class="input" id="designation">
+							</div>
+							<div class="input_wrap">
+								<label for="company">SSS No </label>
+								<input type="text" name="product_quantity[]" class="input" id="designation">
+							</div>
+							<div class="input_wrap">
+								<button class="btn btn-danger remove_item_btn">Remove</button>
+							</div>
+					</div>`)
+		});
+
+	});
+</script> --}}
+<script>
+	function text(x)
+	{
+		if (x==0)
+		{
+			 document.getElementById("divothers").style.display="block";
+		}
+		else document.getElementById('divothers').style.display="none";
+		return;
+	}
+</script>
+<script>
+	$(document).ready(function ()
+	{
+		document.getElementById('divothers').style.display="none";
+		
+			var html =`<tr>
+									
+									<td><input type="text" name="fullname"></td>
+									<td><input size="5" type="text" name="sex"></td>
+									<td><input size="10" type="text" name="relationship"></td>
+									<td><input size="2" type="text" name="age"></td>
+									<td><input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="birthdaytime"></td>
+									
+									<td><input type="button" class="btn btn-danger" name="remove" id="remove" value="remove"></td>
+								</tr>`;
+			var x = 1;
+
+			var htmlcommunity =`<tr>
+									
+									<td><input type="text" name="fullname"></td>
+									
+									<td><input size="10" type="text" name="relationship"></td>
+									
+									<td><input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="birthdaytime"></td>
+									
+									<td><input type="button" class="btn btn-danger" name="remove" id="remove" value="remove"></td>
+								</tr>`;
+			var x = 1;
+
+			var htmlseminar =`<tr>
+									
+									<td><input type="text" name="fullname"></td>
+									
+									<td><input size="10" type="text" name="relationship"></td>
+									
+									<td><input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="birthdaytime"></td>
+									
+									<td><input type="button" class="btn btn-danger" name="remove" id="remove" value="remove"></td>
+								</tr>`;
+			var x = 1;
+			var htmleducation =`<div class="input_wrap" >
+								<label for="experience">Type</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+								<label for="experience">Name of School</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+								<label for="experience">Course</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+								<label for="experience">Year Graduated</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+								<label for="experience">Achievement/Award Received</label>
+								<input type="text" name="Total Experience" class="input" id="experience">
+								<input type="button" class="btn btn-danger" name="remove" id="remove" value="remove">
+							</div>`;
+			var x = 1;
+
+			$("#add").click(function()
+			{
+				$('#table_field').append(html);
+			});
+
+			$("#table_field").on('click','#remove',function()
+			{
+				$(this).closest('tr').remove();
+			});
+
+			$("#addcommunity").click(function()
+			{
+				$('#table_community').append(htmlcommunity);
+			});
+
+			$("#table_community").on('click','#remove',function()
+			{
+				$(this).closest('tr').remove();
+			});
+
+			$("#addseminar").click(function()
+			{
+				$('#table_seminar').append(htmlcommunity);
+			});
+
+			$("#table_seminar").on('click','#remove',function()
+			{
+				$(this).closest('tr').remove();
+			});
+			$("#addeducation").click(function()
+			{
+				$('#education').append(htmleducation);
+			});
+
+			$("#education").on('click','#remove',function()
+			{
+				$(this).parent().remove();
+			});
+
+			
+
+	});		
+</script>
+</body>
+</html>
