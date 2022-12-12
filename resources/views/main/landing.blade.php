@@ -5,9 +5,6 @@
     <meta charset="utf-8" />
     <title>City Government of Zamboanga</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        sample {}
-    </style>
     
     <link rel="shortcut icon" href="{{ asset('dist/images2/favicon.ico') }}">
 
