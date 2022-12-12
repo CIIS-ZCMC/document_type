@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="{{ asset('dist/css3/style.css') }}"/>
 </head>
 <body>
-	
+	<style>
+		body {}
+	</style>
 	<div class="page-content">
 		<div class="form-v1-content">
 			<div class="wizard-form ">
