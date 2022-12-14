@@ -24,6 +24,8 @@ License: You must have a valid license purchased only from themeforest(the above
     <link rel="stylesheet" href="{{ mix('dist/css/app.css') }}" />
     <link rel="stylesheet" href=" https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
    
+        <!-- zc seal -->
+        <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
     <!-- END: CSS Assets-->
 
 
