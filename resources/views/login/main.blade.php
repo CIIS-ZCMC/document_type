@@ -19,7 +19,7 @@
                     </span>
                 </a>
                 <div class="my-auto">
-                    <img alt="Icewall Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="{{ asset('dist/images/login-bg.svg') }}">
+                    <img alt="Zamboanga City Seal" class="-intro-x w-1/2 -mt-16" src="{{ asset('dist/images/login-bg.svg') }}">
                     <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">Social Welfare Registration<br> And Benefits System</div>
                     <div class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-slate-400">Computer Services Division</div>
                 </div>
