@@ -3616,7 +3616,8 @@ select {
 }
 .bg-primary {
   --tw-bg-opacity: 1;
-  background-color: rgb(var(--color-primary) / var(--tw-bg-opacity));
+  background: #1e3a8a;
+  /* background-color: rgb(var(--color-primary) / var(--tw-bg-opacity)); */
 }
 .bg-slate-100 {
   --tw-bg-opacity: 1;
@@ -9625,7 +9626,8 @@ body.tabulator-print-fullscreen-hide > *:not(.tabulator-print-fullscreen) {
  */
 html {
   --tw-bg-opacity: 1;
-  background-color: rgb(var(--color-primary) / var(--tw-bg-opacity));
+  background: #1e3a8a;
+  /* background-color: rgb(var(--color-primary) / var(--tw-bg-opacity)); */
 }
 html.dark {
   --tw-bg-opacity: 1;
