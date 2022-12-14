@@ -99,12 +99,12 @@
         confirmButtonText: 'Yes, logout it!'
         }).then((result) => {
         if (result.isConfirmed) {
-            Swal.fire(
+            //Swal.fire(
             // 'Logout!',
             // 'Account logged out.',
             // 'success',
             location.href="{{ route('logout') }}"
-            )
+            //)
         }
         })
     }
