@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
 <form class='card mt-5' action="{{ route('login.check') }}" method="post" id="loginForm">
     @csrf
     <div class="container sm:px-10">
