@@ -516,6 +516,7 @@
                                                 <div class="bottom">
 
                                                     <input type="text" name="idcard" id="idcard" hidden>
+                                                    <input type="text" name="cardtype" id="cardtype" hidden>
                                                     <input type="text" name="sendemail" id="sendemail" hidden>
                                                   
                                                     <p id="fullname"></p>
@@ -766,14 +767,27 @@
                 
                
            
+              
+           
             document.getElementById('fullname').innerHTML
                 =  data[6] + " " +  data[7] + " " +  data[8];
                 document.getElementById('address').innerHTML
                 =  data[10] +  " " +  data[2] + " " +  data[11];
                 document.getElementById('phone').innerHTML
                 =  data[30];
+
+                document.getElementById('idcard').value
+                =  data[33];
+
+                document.getElementById('cardtype').value
+                =  data[34];
+
+                document.getElementById('sendemail').value
+                =  data[31];
+             
             $('#qrcode').attr("src","/images/qrcode/"+data[29]);
             $('#photo').attr("src","/images/picture/"+data[5]);
+            $('#formid').attr('action','/email/completeid/' + data[33]);
            
         })
 
