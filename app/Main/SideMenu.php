@@ -14,7 +14,7 @@ class SideMenu
     {
         return [
             'dashboard' => [
-                'icon' => 'home',
+                'icon' => 'layout-dashboard',
                 'title' => 'Dashboard',
                 'route_name' => 'dashboard-overview-1',
                 'params' => [
@@ -25,11 +25,11 @@ class SideMenu
             ],
             
             'Applicants' => [
-                'icon' => 'inbox',
+                'icon' => 'users',
                 'title' => 'Applicants',
                 'sub_menu' => [
                     'Citizen' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'Citizen',
                         'sub_menu' => [
                             'Evaluation' => [
@@ -60,11 +60,11 @@ class SideMenu
                         ]
                     ],
                     'Senior' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'Senior',
                         'sub_menu' => [
                             'Evaluation' => [
-                                'icon' => '',
+                                'icon' => 'user',
                                 'route_name' => 'seniorevaluation',
                                 'params' => [
                                     'layout' => 'side-menu'
@@ -91,7 +91,7 @@ class SideMenu
                         ]
                     ],
                     'Solo Parent' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'Solo Parent',
                         'sub_menu' => [
                             'Evaluation' => [
@@ -122,7 +122,7 @@ class SideMenu
                         ]
                     ],
                     'PWD' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'PWD',
                         'sub_menu' => [
                             'Evaluation' => [
@@ -154,7 +154,7 @@ class SideMenu
                     ],
 
                     'Declined' => [
-                        'icon' => '',
+                        'icon' => 'shield-close',
                         'title' => 'Declined',
                         'sub_menu' => [
                             'Citizen' => [
@@ -199,11 +199,11 @@ class SideMenu
             ],
 
             'Members' => [
-                'icon' => 'inbox',
+                'icon' => 'users',
                 'title' => 'Members',
                 'sub_menu' => [
                     'Citizen' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'Citizen',
                         'sub_menu' => [
                             'Card' => [
@@ -219,7 +219,7 @@ class SideMenu
                         ]
                     ],
                     'Senior' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'Senior',
                         'sub_menu' => [
                             'Card' => [
@@ -235,7 +235,7 @@ class SideMenu
                         ]
                     ],
                     'Solo Parent' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'Solo Parent',
                         'sub_menu' => [
                             'Card' => [
@@ -251,7 +251,7 @@ class SideMenu
                         ]
                     ],
                     'PWD' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'PWD',
                         'sub_menu' => [
                             'Card' => [
@@ -272,11 +272,11 @@ class SideMenu
             ],
 
             'Benefits' => [
-                'icon' => 'inbox',
+                'icon' => 'cross',
                 'title' => 'Benefits',
                 'sub_menu' => [
                     'Citizen' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'Citizen',
                         'sub_menu' => [
                             'Evaluation' => [
@@ -307,7 +307,7 @@ class SideMenu
                         ]
                     ],
                     'Senior' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'Senior',
                         'sub_menu' => [
                             'Evaluation' => [
@@ -338,7 +338,7 @@ class SideMenu
                         ]
                     ],
                     'Solo Parent' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'Solo Parent',
                         'sub_menu' => [
                             'Evaluation' => [
@@ -369,7 +369,7 @@ class SideMenu
                         ]
                     ],
                     'PWD' => [
-                        'icon' => '',
+                        'icon' => 'user',
                         'title' => 'PWD',
                         'sub_menu' => [
                             'Evaluation' => [
@@ -401,7 +401,7 @@ class SideMenu
                     ],
 
                     'Declined' => [
-                        'icon' => '',
+                        'icon' => 'shield-close',
                         'title' => 'Declined',
                         'sub_menu' => [
                             'Citizen' => [
@@ -448,7 +448,7 @@ class SideMenu
             
             
             'accounts' => [
-                'icon' => 'home',
+                'icon' => 'user',
                 
                 'route_name' => 'account',
                 'params' => [
@@ -478,11 +478,11 @@ class SideMenu
             
             'devider',
             'components' => [
-                'icon' => 'inbox',
+                'icon' => 'settings',
                 'title' => 'Settings',
                 'sub_menu' => [
                     'Field Office' => [
-                        'icon' => '',
+                        'icon' => 'printer',
                         'route_name' => 'fieldoffice',
                         'params' => [
                             'layout' => 'side-menu'
@@ -490,7 +490,7 @@ class SideMenu
                         'title' => 'Field Office'
                     ],
                     'School' => [
-                        'icon' => '',
+                        'icon' => 'graduation-cap',
                         'route_name' => 'fieldoffice',
                         'params' => [
                             'layout' => 'side-menu'
@@ -498,7 +498,7 @@ class SideMenu
                         'title' => 'School'
                     ],
                     'Card Requirements' => [
-                        'icon' => '',
+                        'icon' => 'credit-card',
                         'route_name' => 'fieldoffice',
                         'params' => [
                             'layout' => 'side-menu'
@@ -506,7 +506,7 @@ class SideMenu
                         'title' => 'Card Requirements'
                     ],
                     'Identification Card' => [
-                        'icon' => '',
+                        'icon' => 'credit-card',
                         'route_name' => 'fieldoffice',
                         'params' => [
                             'layout' => 'side-menu'
@@ -514,7 +514,7 @@ class SideMenu
                         'title' => 'Identification Card'
                     ],
                     'Civil Status' => [
-                        'icon' => '',
+                        'icon' => 'battery',
                         'route_name' => 'fieldoffice',
                         'params' => [
                             'layout' => 'side-menu'
@@ -522,7 +522,7 @@ class SideMenu
                         'title' => 'Civil Status'
                     ],
                     'Vulnerable Sector' => [
-                        'icon' => '',
+                        'icon' => 'folder-open',
                         'route_name' => 'fieldoffice',
                         'params' => [
                             'layout' => 'side-menu'
@@ -530,7 +530,7 @@ class SideMenu
                         'title' => 'Vulnerable Sector'
                     ],
                     'Office' => [
-                        'icon' => '',
+                        'icon' => 'folder-open',
                         'route_name' => 'fieldoffice',
                         'params' => [
                             'layout' => 'side-menu'
@@ -538,7 +538,7 @@ class SideMenu
                         'title' => 'Office'
                     ],
                     'Source of Income' => [
-                        'icon' => '',
+                        'icon' => 'coins',
                         'route_name' => 'fieldoffice',
                         'params' => [
                             'layout' => 'side-menu'
