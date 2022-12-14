@@ -10,7 +10,7 @@
         <!-- BEGIN: Side Menu -->
         <nav class="side-nav">
             <a href="" class="intro-x flex items-center pl-5 pt-4 mt-3">
-                <img alt="Midone - HTML Admin Template" class="w-6" src="{{ asset('dist/images/box.png') }}">
+                <img alt="Midone - HTML Admin Template" class="w-8" src="{{ asset('dist/images/Seal.png') }}">
                 <span class="hidden xl:block text-white text-lg ml-3">
                     Zamboanga Card
                 </span>
