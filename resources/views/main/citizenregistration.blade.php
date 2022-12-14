@@ -98,7 +98,7 @@
 								<div class="input_wrap">
 									<label for="confirm_password">Blood Type</label>
 									<select class="select" id="addBloodtype" name="bloodtype" required>
-										<option selected >Select Blood Type</option>
+										<option selected  value="N/A">Select Blood Type</option>
 										<option value="A">A</option>
 										<option value="B">B</option>  
 										<option value="AB">AB</option>
@@ -335,7 +335,7 @@
 								</div>
 								<div class="input_wrap">
 									<label for="experience">Landline Number</label>
-									<input type="text" name="landlinenumber" class="input" id="landline" required>
+									<input type="text" name="landlinenumber" class="input" id="landline">
 									<div class="error"></div>
 								</div>
 								<div class="input_wrap">

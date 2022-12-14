@@ -181,25 +181,29 @@ form_2_next_btn.addEventListener("click", function(){
 		inputControl.classList.remove('error');
 	};
 
-	if(Employment.value === '0') {
+	var getSelectedValue = document.querySelector( 'input[name="occupation"]:checked');   
+
+	if(Employment.value === '0' || Category.value === '0' || Type.value === '0' || getSelectedValue == null) {
 	
 		setError(Employment, 'Employment Status cannot be blank');
-		
-	}
-	if(Category.value === '0') {
-	
 		setError(Category, 'Employment Category cannot be blank');
-		
-	}
-	if(Type.value === '0') {
-	
 		setError(Type, 'Employment Type cannot be blank');
+		document.getElementById('bank').innerHTML = 'Ocuupation cannot be blank';
+	}
+	// if(Category.value === '0') {
+	
+	// 	setError(Category, 'Employment Category cannot be blank');
 		
-	}
-	var getSelectedValue = document.querySelector( 'input[name="occupation"]:checked');   
-	if(getSelectedValue == null) {   
-			document.getElementById('bank').innerHTML = 'Ocuupation cannot be blank';
-	}
+	// }
+	// if(Type.value === '0') {
+	
+	// 	setError(Type, 'Employment Type cannot be blank');
+		
+	// }
+	// var getSelectedValue = document.querySelector( 'input[name="occupation"]:checked');   
+	// if(getSelectedValue == null) {   
+	// 		document.getElementById('bank').innerHTML = 'Ocuupation cannot be blank';
+	// }
 	else {
 			setSuccess(Employment);
 			setSuccess(Category);
@@ -328,26 +332,28 @@ btn_done.addEventListener("click", function(){
 		inputControl.classList.add('success');
 		inputControl.classList.remove('error');
 	};
-	if(imagebirthValue === '') {
+	if(imagebirthValue === '' || imagebarangayValue === '' || imagepictureValue === '' || imageidValue === '') {
 	
 		setError(imagebirth, 'Birth Certificate cannot be blank');
-		
-	}
-	if(imagebarangayValue === '') {
-	
 		setError(imagebarangay, 'Barangay Certificate cannot be blank');
-		
-	}
-	if(imagepictureValue === '') {
-	
 		setError(imagepicture, 'Picture cannot be blank');
-		
-	}
-	if(imageidValue === '') {
-	
 		setError(imageid, 'Picture cannot be blank');
-		
 	}
+	// if(imagebarangayValue === '') {
+	
+	// 	setError(imagebarangay, 'Barangay Certificate cannot be blank');
+		
+	// }
+	// if(imagepictureValue === '') {
+	
+	// 	setError(imagepicture, 'Picture cannot be blank');
+		
+	// }
+	// if(imageidValue === '') {
+	
+	// 	setError(imageid, 'Picture cannot be blank');
+		
+	// }
 	else {
 		setSuccess(imagebirth);
 		setSuccess(imagebarangay);

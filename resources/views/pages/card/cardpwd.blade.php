@@ -116,9 +116,10 @@
                                 <tr class="intro-x">
                                     <td id="clientid">{{$index + 1}}</td>
                                     <td>{{ $client->last_name}}, {{ $client->first_name}} {{ $client->middle_name}} {{ $client->extension_name}}</td>
-                                    <td>{{$client->barangays->name}}
-                                    <td> @foreach($client->client_applications as  $clientapp)
-                                        {{$clientapp->application_reference_number}}
+                                    <td>{{$client->barangays->name}}</td>
+                                    <td>
+                                        @foreach($client->client_cards as  $client_card)
+                                        {{$client_card->card_number}}
                                       @endforeach</td>
                                       <td> @foreach($client->client_applications as  $clientapp)
                                         {{$clientapp->application_date}}

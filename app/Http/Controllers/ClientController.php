@@ -1308,7 +1308,7 @@ class ClientController extends Controller
         $clientid =  $request->input('clientid');
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
-        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'RSPID-'.$yearOnly,$yearOnly);
+        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SPID-'.$yearOnly,$yearOnly);
             $applicationsave = new ClientApplication();
         
             $applicationsave->application_date= now()->toDateString('Y-m-d');;
@@ -1609,10 +1609,7 @@ class ClientController extends Controller
        
         
         $applicationlogsave = new ClientApplicationLog();
-        $logo='/images/barangay/1senior.jpg';
-        $path='images/qrcode/';
-        $filename=time().$clientid.".png";
-       
+      
         $applicationlogsave->process_name = 'Verification-Approved';
         $applicationlogsave->date= now()->toDateString('Y-m-d');
         $applicationlogsave->client_id = $clientid;
@@ -1623,6 +1620,11 @@ class ClientController extends Controller
         $yearOnly=substr($application_date,0,4);
         $generator = Helper::IDGenerator(new ClientCard,'card_number',9,'RCID-'.$yearOnly,$yearOnly);
       
+
+        $logo='/images/barangay/1senior.jpg';
+        $path='images/qrcode/';
+        $filename=time().$clientid.".png";
+       
         $clientcardsave = new ClientCard();
      
         $clientcardsave->card_status = 'Active'; 
@@ -2064,10 +2066,18 @@ class ClientController extends Controller
         $yearOnly=substr($application_date,0,4);
         $generator = Helper::IDGenerator(new ClientCard,'card_number',9,'RSID-'.$yearOnly,$yearOnly);
       
+        $logo='/images/barangay/1senior.jpg';
+        $path='images/qrcode/';
+        $filename=time().$clientid.".png";
+       
         $clientcardsave = new ClientCard();
      
-        $clientcardsave->card_status = 'Active';
+        $clientcardsave->card_status = 'Active'; 
         $clientcardsave->card_type = 'Senior';
+        $clientcardsave->GUID = $filename;
+        $id = Str::uuid();
+        $hash = Hash::make(time());
+        $clientcardsave->token = $id;
         $clientcardsave->card_number = $generator;
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
@@ -2075,7 +2085,24 @@ class ClientController extends Controller
      
         $clientcardsave->save();
 
+        QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
+
+
+     
+        $clientcardsave->save();
+
         ClientApplication::where('id',$applicationid)->where('application_type','=','Senior')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
+
+
+        $clientdetails=Client::where('id',$clientid)->first();
+
+        
+        $details = [
+            'title' => 'Mail from City Social Welfare and Development',
+            'body' => 'You are scheduled on'
+
+        ];
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
 
 
        
@@ -3435,10 +3462,18 @@ class ClientController extends Controller
         $yearOnly=substr($application_date,0,4);
         $generator = Helper::IDGenerator(new ClientCard,'card_number',9,'PSID-'.$yearOnly,$yearOnly);
        
+        $logo='/images/barangay/1senior.jpg';
+        $path='images/qrcode/';
+        $filename=time().$clientid.".png";
+       
         $clientcardsave = new ClientCard();
      
-        $clientcardsave->card_status = 'Active';
+        $clientcardsave->card_status = 'Active'; 
         $clientcardsave->card_type = 'PWD';
+        $clientcardsave->GUID = $filename;
+        $id = Str::uuid();
+        $hash = Hash::make(time());
+        $clientcardsave->token = $id;
         $clientcardsave->card_number = $generator;
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
@@ -3446,7 +3481,25 @@ class ClientController extends Controller
      
         $clientcardsave->save();
 
+        QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
+
+
+     
+        $clientcardsave->save();
+
+
         ClientApplication::where('id',$applicationid)->where('application_type','=','PWD')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
+
+
+        $clientdetails=Client::where('id',$clientid)->first();
+
+        
+        $details = [
+            'title' => 'Mail from City Social Welfare and Development',
+            'body' => 'You are scheduled on'
+
+        ];
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
 
 
        
@@ -4306,13 +4359,20 @@ class ClientController extends Controller
 
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
-        $generator = Helper::IDGenerator(new ClientCard,'card_number',9,'SPSID-'.$yearOnly,$yearOnly);
+        $generator = Helper::IDGenerator(new ClientCard,'card_number',9,'PID-'.$yearOnly,$yearOnly);
     
-
+        $logo='/images/barangay/1senior.jpg';
+        $path='images/qrcode/';
+        $filename=time().$clientid.".png";
+       
         $clientcardsave = new ClientCard();
      
-        $clientcardsave->card_status = 'Active';
-        $clientcardsave->card_type = 'Solo Parent';
+        $clientcardsave->card_status = 'Active'; 
+        $clientcardsave->card_type = 'PWD';
+        $clientcardsave->GUID = $filename;
+        $id = Str::uuid();
+        $hash = Hash::make(time());
+        $clientcardsave->token = $id;
         $clientcardsave->card_number = $generator;
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
@@ -4320,8 +4380,24 @@ class ClientController extends Controller
      
         $clientcardsave->save();
 
+        QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
+
+
+     
+        $clientcardsave->save();
+
         ClientApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
 
+
+        $clientdetails=Client::where('id',$clientid)->first();
+
+        
+        $details = [
+            'title' => 'Mail from City Social Welfare and Development',
+            'body' => 'You are scheduled on'
+
+        ];
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
 
        
         session_start();

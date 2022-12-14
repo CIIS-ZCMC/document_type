@@ -92,26 +92,29 @@ form_1_next_btn.addEventListener("click", function(){
 		inputControl.classList.add('success');
 		inputControl.classList.remove('error');
 	};
-	if(imagedisabilityValue === '') {
+	if(imagedisabilityValue === '' || imagebarangayValue === '' || imagepictureValue === '' || imageidValue === '') {
 	
 		setError(imagedisability, 'Birth Certificate cannot be blank');
-		
-	}
-	if(imagebarangayValue === '') {
-	
 		setError(imagebarangay, 'Barangay Certificate cannot be blank');
-		
-	}
-	if(imagepictureValue === '') {
-	
 		setError(imagepicture, 'Picture cannot be blank');
-		
-	}
-	if(imageidValue === '') {
-	
 		setError(imageid, 'Picture cannot be blank');
 		
 	}
+	// if(imagebarangayValue === '') {
+	
+	// 	setError(imagebarangay, 'Barangay Certificate cannot be blank');
+		
+	// }
+	// if(imagepictureValue === '') {
+	
+	// 	setError(imagepicture, 'Picture cannot be blank');
+		
+	// }
+	// if(imageidValue === '') {
+	
+	// 	setError(imageid, 'Picture cannot be blank');
+		
+	// }
 	else {
 		setSuccess(imageid);
 		setSuccess(imagebarangay);
@@ -172,14 +175,16 @@ form_2_next_btn.addEventListener("click", function(){
 	var getSelectedValue = document.querySelector( 'input[name="type[]"]:checked');   
 	var getacquiredValue = document.querySelector( 'input[name="acquired[]"]:checked');   
 	var getinbornValue = document.querySelector( 'input[name="inborn[]"]:checked');   
-	if(getSelectedValue == null) {   
+	if(getSelectedValue == null || getacquiredValue == null && getinbornValue == null) {   
 			document.getElementById('type1').innerHTML = 'Disability Type cannot be blank';
-	}
-	if(getacquiredValue == null && getinbornValue == null) {   
-
-		document.getElementById('acquired1').innerHTML = 'Disability Type cannot be blank';
+			document.getElementById('acquired1').innerHTML = 'Disability Type cannot be blank';
 		document.getElementById('inborn1').innerHTML = 'Disability Type cannot be blank';
 	}
+	// if(getacquiredValue == null && getinbornValue == null) {   
+
+	// 	document.getElementById('acquired1').innerHTML = 'Disability Type cannot be blank';
+	// 	document.getElementById('inborn1').innerHTML = 'Disability Type cannot be blank';
+	// }
 	
 	
 	else { 

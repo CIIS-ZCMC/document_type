@@ -107,84 +107,98 @@ form_1_next_btn.addEventListener("click", function(){
 	};
 
 	
-	if(firstnameValue === '') {
+	if(firstnameValue === '' || lastnameValue === '' || birthdateValue === '' || birthplaceValue === '' 
+	|| streetValue === '' || cityValue === '' || provinceValue === '' || regionValue === '' || mobilenumberValue === '' 
+	|| emailaddressValue === '' || civilstatus.value === '0' || gender.value==="0" || education.value==="0" || barangay.value === '0' ) {
 	
 		setError(firstname, 'First Name cannot be blank');
-		
-	}
-	if(lastnameValue === '') {
-	
 		setError(lastname, 'Last Name cannot be blank');
-		
-	}
-	if(middlenameValue === '') {
-	
-		setError(middlename, 'Middle Name cannot be blank');
-		
-	}
-	
-	if(birthdateValue === '') {
-	
 		setError(birthdate, 'Date of Birth cannot be blank');
-		
-	}
-	if(birthplaceValue === '') {
-	
 		setError(birthplace, 'Place of Birth cannot be blank');
-		
-	}
-	if(streetValue === '') {
-	
 		setError(street, 'Street cannot be blank');
-		
-	}
-	
-	if(cityValue === '') {
-	
 		setError(city,'City cannot be blank');
-		
-	}
-	if(provinceValue === '') {
-	
 		setError(province, 'Province cannot be blank');
-		
-	}
-	if(regionValue === '') {
-	
 		setError(region, 'Region cannot be blank');
-		
-	}
-	if(mobilenumberValue === '') {
-	
 		setError(mobilenumber, 'Mobile number cannot be blank');
-		
-	}
-	if(emailaddressValue === '') {
-	
 		setError(emailaddress, 'Email address cannot be blank');
-		
-	}
-	if(civilstatus.value === '0') {
-	
 		setError(civilstatus, 'Civil Status cannot be blank');
-		
-	}
-
-	if(gender.value==="0") {
-	
-		setError(gender, 'Sex cannot be blank');
-		
-	}
-	if(education.value==="0") {
-	
+		setError(gender, 'Sex cannot be blank'); 
 		setError(education, 'Educational attainment cannot be blank');
-		
-	}
-	if(barangay.value === '0') {
-	
 		setError(barangay, 'Barangay cannot be blank');
-		
 	}
+	// if(lastnameValue === '') {
+	
+	// 	setError(lastname, 'Last Name cannot be blank');
+		
+	// }
+	// if(middlenameValue === '') {
+	
+	// 	setError(middlename, 'Middle Name cannot be blank');
+		
+	// }
+	
+	// if(birthdateValue === '') {
+	
+	// 	setError(birthdate, 'Date of Birth cannot be blank');
+		
+	// }
+	// if(birthplaceValue === '') {
+	
+	// 	setError(birthplace, 'Place of Birth cannot be blank');
+		
+	// }
+	// if(streetValue === '') {
+	
+	// 	setError(street, 'Street cannot be blank');
+		
+	// }
+	
+	// if(cityValue === '') {
+	
+	// 	setError(city,'City cannot be blank');
+		
+	// }
+	// if(provinceValue === '') {
+	
+	// 	setError(province, 'Province cannot be blank');
+		
+	// }
+	// if(regionValue === '') {
+	
+	// 	setError(region, 'Region cannot be blank');
+		
+	// }
+	// if(mobilenumberValue === '') {
+	
+	// 	setError(mobilenumber, 'Mobile number cannot be blank');
+		
+	// }
+	// if(emailaddressValue === '') {
+	
+	// 	setError(emailaddress, 'Email address cannot be blank');
+		
+	// }
+	// if(civilstatus.value === '0') {
+	
+	// 	setError(civilstatus, 'Civil Status cannot be blank');
+		
+	// }
+
+	// if(gender.value==="0") {
+	
+	// 	setError(gender, 'Sex cannot be blank');
+		
+	// }
+	// if(education.value==="0") {
+	
+	// 	setError(education, 'Educational attainment cannot be blank');
+		
+	// }
+	// if(barangay.value === '0') {
+	
+	// 	setError(barangay, 'Barangay cannot be blank');
+		
+	// }
 	else {
 		setSuccess(firstname);
 		setSuccess(lastname);
@@ -238,26 +252,28 @@ form_2_next_btn.addEventListener("click", function(){
 		inputControl.classList.add('success');
 		inputControl.classList.remove('error');
 	};
-
-	if(Employment.value === '0') {
+	var getSelectedValue = document.querySelector( 'input[name="occupation"]:checked');   
+	if(Employment.value === '0' || Category.value === '0' || Type.value === '0' || getSelectedValue == null) {
 	
 		setError(Employment, 'Employment Status cannot be blank');
-		
-	}
-	if(Category.value === '0') {
-	
 		setError(Category, 'Employment Category cannot be blank');
-		
-	}
-	if(Type.value === '0') {
-	
 		setError(Type, 'Employment Type cannot be blank');
+		document.getElementById('bank').innerHTML = 'Ocuupation cannot be blank';
+	}
+	// if(Category.value === '0') {
+	
+	// 	setError(Category, 'Employment Category cannot be blank');
 		
-	}
-	var getSelectedValue = document.querySelector( 'input[name="occupation"]:checked');   
-	if(getSelectedValue == null) {   
-			document.getElementById('bank').innerHTML = 'Ocuupation cannot be blank';
-	}
+	// }
+	// if(Type.value === '0') {
+	
+	// 	setError(Type, 'Employment Type cannot be blank');
+		
+	// }
+	// var getSelectedValue = document.querySelector( 'input[name="occupation"]:checked');   
+	// if(getSelectedValue == null) {   
+	// 		document.getElementById('bank').innerHTML = 'Ocuupation cannot be blank';
+	// }
 	else {
 			setSuccess(Employment);
 			setSuccess(Category);
@@ -424,26 +440,28 @@ btn_done.addEventListener("click", function(){
 		inputControl.classList.add('success');
 		inputControl.classList.remove('error');
 	};
-	if(imagedisabilityValue === '') {
+	// if(imagedisabilityValue === '') {
 	
-		setError(imagedisability, 'Birth Certificate cannot be blank');
+	// 	setError(imagedisability, 'Birth Certificate cannot be blank');
 		
-	}
-	if(imagebarangayValue === '') {
+	// }
+	if(imagebarangayValue === '' || imagepictureValue === '' || imageidValue === '' || imagedisabilityValue === '') {
 	
 		setError(imagebarangay, 'Barangay Certificate cannot be blank');
-		
-	}
-	if(imagepictureValue === '') {
-	
 		setError(imagepicture, 'Picture cannot be blank');
-		
-	}
-	if(imageidValue === '') {
-	
 		setError(imageid, 'Picture cannot be blank');
-		
+		setError(imagedisability, 'Certificate of Disability cannot be blank');
 	}
+	// if(imagepictureValue === '') {
+	
+	// 	setError(imagepicture, 'Picture cannot be blank');
+		
+	// }
+	// if(imageidValue === '') {
+	
+	// 	setError(imageid, 'Picture cannot be blank');
+		
+	// }
 	else {
 		setSuccess(imageid);
 		setSuccess(imagebarangay);

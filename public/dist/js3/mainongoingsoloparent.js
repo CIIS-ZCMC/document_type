@@ -92,26 +92,29 @@ form_1_next_btn.addEventListener("click", function(){
 		inputControl.classList.add('success');
 		inputControl.classList.remove('error');
 	};
-	if(imagebirthValue === '') {
+	if(imagebirthValue === '' || imagebarangayValue === '' || imagepictureValue === '' || imageidValue === '' ) {
 	
 		setError(imagebirth, 'Birth Certificate cannot be blank');
-		
-	}
-	if(imagebarangayValue === '') {
-	
 		setError(imagebarangay, 'Barangay Certificate cannot be blank');
-		
-	}
-	if(imagepictureValue === '') {
-	
 		setError(imagepicture, 'Picture cannot be blank');
-		
-	}
-	if(imageidValue === '') {
-	
 		setError(imageid, 'Picture cannot be blank');
 		
 	}
+	// if(imagebarangayValue === '') {
+	
+	// 	setError(imagebarangay, 'Barangay Certificate cannot be blank');
+		
+	// }
+	// if(imagepictureValue === '') {
+	
+	// 	setError(imagepicture, 'Picture cannot be blank');
+		
+	// }
+	// if(imageidValue === '') {
+	
+	// 	setError(imageid, 'Picture cannot be blank');
+		
+	// }
 	else {
 		setSuccess(imagebirth);
 		setSuccess(imagebarangay);

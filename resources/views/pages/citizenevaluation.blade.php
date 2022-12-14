@@ -514,8 +514,8 @@
                     <script>
                     swal({
                             
-                            title: "VERIFIED",
-                            text: "Successfully verified!",
+                            title: "EVALUATED",
+                            text: "Successfully evaluated!",
                             icon: "success",
                             button: "ok",
                         })
@@ -533,7 +533,7 @@
                     swal({
                         
                             title: "Fail",
-                            text: "Successfully saved!",
+                            text: "Fail to Evaluate!",
                             icon: "error",
                             button: "ok",
                         })

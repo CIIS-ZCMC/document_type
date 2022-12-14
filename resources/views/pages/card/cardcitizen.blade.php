@@ -84,9 +84,11 @@
                                     <td id="clientid">{{$index + 1}}</td>
                                     <td>{{ $client->last_name}}, {{ $client->first_name}} {{ $client->middle_name}} {{ $client->extension_name}}</td>
                                     <td>{{$client->barangays->name}}
-                                    <td> @foreach($client->client_applications as  $clientapp)
-                                        {{$clientapp->application_reference_number}}
-                                      @endforeach</td>
+                                    <td> 
+                                       @foreach($client->client_cards as  $client_card)
+                                        {{$client_card->card_number}}
+                                      @endforeach
+                                     </td>
                                       <td> @foreach($client->client_applications as  $clientapp)
                                         {{$clientapp->application_date}}
                                       @endforeach</td>    
@@ -617,82 +619,7 @@
 		}
    
 ?>
-<script>
-    
-
-function doCapture() {
-    window.scrollTo(0, 0);
-   
-    event.preventDefault();
- 
-    html2canvas(document.getElementById("capture")).then(function (canvas) {
-        var name = $("#idcard").val();
-   
-         var dataString = 'name='+ name;
-        
-        // Create an AJAX object
-        var ajax = new XMLHttpRequest();
- 
-        // Setting method, server file name, and asynchronous
-        ajax.open("POST", "save-capture.php", true);
- 
-        // Setting headers for POST method
-        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
- 
-        // Sending image data to server
-        // ajax.send("image=" + canvas.toDataURL("image/png", 0.9));
-    
-
-      
-  
-        // Receiving response from server
-        // This function will be called multiple times
-        ajax.onreadystatechange = function () {
- 
-            // Check when the requested is completed
-            if (this.readyState == 4 && this.status == 200) {
- 
-                // Displaying response from server
-                console.log(this.responseText);
-            }
-        };
-
-
-      
-        
-    var name = $("#idcard").val();
-     
-    var sendemail = $("#sendemail").val();
-    var count_id = "count";
-    var dataString = 'name='+ name;
-    var dataString1 = 'count_id='+ count_id;
-
-    $.ajax({
-            type: "POST",
-            url: "save-capture.php",
-            data:{registration: "success", sendemail: sendemail, name: name, image:canvas.toDataURL("image/png", 0.9)},
-            success : handleData
-            
-
-
-
-        });
-
-        
-    });
- 
-
-   
-}
-
-function handleData(data) {
-    $("#secondbutton").click();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                   }
-  
- </script>
-
-
- 
+visu
 
 
 <script type="text/javascript">

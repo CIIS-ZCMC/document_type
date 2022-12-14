@@ -219,32 +219,35 @@ form_2_next_btn.addEventListener("click", function(){
 	};
 
 	
-	if(streetValue === '' || cityValue === '') {
+	if(streetValue === '' || cityValue === '' || provinceValue === '' || regionValue === '' || barangay.value === '0') {
 	
 		setError(street, 'Street cannot be blank');
-		
-	}
-	
-	if(cityValue === '') {
-	
 		setError(city,'City cannot be blank');
-		
-	}
-	if(provinceValue === '') {
-	
 		setError(province, 'Province cannot be blank');
-		
-	}
-	if(regionValue === '') {
-	
 		setError(region, 'Region cannot be blank');
-		
-	}
-	if(barangay.value === '0') {
-	
 		setError(barangay, 'Barangay cannot be blank');
-		
 	}
+	
+	// if(cityValue === '') {
+	
+	// 	setError(city,'City cannot be blank');
+		
+	// }
+	// if(provinceValue === '') {
+	
+	// 	setError(province, 'Province cannot be blank');
+		
+	// }
+	// if(regionValue === '') {
+	
+	// 	setError(region, 'Region cannot be blank');
+		
+	// }
+	// if(barangay.value === '0') {
+	
+	// 	setError(barangay, 'Barangay cannot be blank');
+		
+	// }
 
 	else {
 		setSuccess(street);
@@ -283,26 +286,29 @@ form_3_next_btn.addEventListener("click", function(){
 		inputControl.classList.add('success');
 		inputControl.classList.remove('error');
 	};
-
-	if(Employment.value === '0') {
+	var getSelectedValue = document.querySelector( 'input[name="occupation"]:checked');   
+	if(Employment.value === '0' || Category.value === '0' || Type.value === '0' || getSelectedValue == null) {
 	
 		setError(Employment, 'Employment Status cannot be blank');
-		
-	}
-	if(Category.value === '0') {
-	
 		setError(Category, 'Employment Category cannot be blank');
-		
-	}
-	if(Type.value === '0') {
-	
 		setError(Type, 'Employment Type cannot be blank');
+		document.getElementById('bank').innerHTML = 'Ocuupation cannot be blank';
 		
 	}
-	var getSelectedValue = document.querySelector( 'input[name="occupation"]:checked');   
-		if(getSelectedValue == null) {   
-			document.getElementById('bank').innerHTML = 'Ocuupation cannot be blank';
-		}
+	// if(Category.value === '0') {
+	
+	// 	setError(Category, 'Employment Category cannot be blank');
+		
+	// }
+	// if(Type.value === '0') {
+	
+	// 	setError(Type, 'Employment Type cannot be blank');
+		
+	// }
+	// var getSelectedValue = document.querySelector( 'input[name="occupation"]:checked');   
+	// 	if(getSelectedValue == null) {   
+	// 		document.getElementById('bank').innerHTML = 'Ocuupation cannot be blank';
+	// 	}
 	
 	else {
 		setSuccess(Employment);
@@ -359,16 +365,17 @@ form_4_next_btn.addEventListener("click", function(){
 		inputControl.classList.add('success');
 		inputControl.classList.remove('error');
 	};
-	if(mobilenumberValue === '') {
+	if(mobilenumberValue === '' || emailaddressValue === '') {
 	
 		setError(mobilenumber, 'Mobile number cannot be blank');
-		
-	}
-	if(emailaddressValue === '') {
-	
 		setError(emailaddress, 'Email address cannot be blank');
 		
 	}
+	// if(emailaddressValue === '') {
+	
+	// 	setError(emailaddress, 'Email address cannot be blank');
+		
+	// }
 	else {
 		setSuccess(mobilenumber);
 		setSuccess(emailaddress);
@@ -415,21 +422,23 @@ btn_done.addEventListener("click", function(){
 		inputControl.classList.add('success');
 		inputControl.classList.remove('error');
 	};
-	if(imagebirthValue === '') {
+	if(imagebirthValue === '' || imagebarangayValue === '' ||  imagepictureValue === '') {
 	
 		setError(imagebirth, 'Birth Certificate cannot be blank');
-		
-	}
-	if(imagebarangayValue === '') {
-	
 		setError(imagebarangay, 'Barangay Certificate cannot be blank');
-		
-	}
-	if(imagepictureValue === '') {
-	
 		setError(imagepicture, 'Picture cannot be blank');
 		
 	}
+	// if(imagebarangayValue === '') {
+	
+	// 	setError(imagebarangay, 'Barangay Certificate cannot be blank');
+		
+	// }
+	// if(imagepictureValue === '') {
+	
+	// 	setError(imagepicture, 'Picture cannot be blank');
+		
+	// }
 	else {
 		setSuccess(imagebirth);
 		setSuccess(imagebarangay);
