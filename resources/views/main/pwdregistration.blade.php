@@ -4,6 +4,10 @@
 	<title>Progressive Form | Multi Steps Form</title>
 	<link rel="stylesheet" href="{{ asset('dist/css3/style2.css') }}"/>
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+        <!-- zc seal -->
+        <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
+
 </head>
 <body>
 	<section>

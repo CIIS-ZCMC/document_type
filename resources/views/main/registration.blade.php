@@ -10,6 +10,10 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('dist/fonts3/material-design-iconic-font/css/material-design-iconic-font.min.css') }}">
 	<!-- Main Style Css -->
     <link rel="stylesheet" href="{{ asset('dist/css3/style.css') }}"/>
+
+
+        <!-- zc seal -->
+        <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
 </head>
 <body>
 	<style>

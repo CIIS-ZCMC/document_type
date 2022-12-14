@@ -27,6 +27,8 @@
         <!-- colors -->
         <link href="{{ asset('dist/css2/colors/default.css') }}" rel="stylesheet" type="text/css" id="color-opt" />
 
+        <!-- zc seal -->
+        <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
     </head>
 
     <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="-1">
