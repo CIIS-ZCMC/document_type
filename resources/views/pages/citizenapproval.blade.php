@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-    <title>CRUD Data List - Midone - Tailwind HTML Admin Template</title>
+    <title>Citizen Approval | Social Welfare Registration and Benefits System</title>
 @endsection
 
 @section('subcontent')

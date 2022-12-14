@@ -36,22 +36,22 @@
                 </li>
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>
-                    <a href="" class="dropdown-item hover:bg-white/5">
+                    <a href="{{url('/user-profile')}}" class="dropdown-item hover:bg-white/5">
                         <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile
                     </a>
                 </li>
                 <li>
-                    <a href="" class="dropdown-item hover:bg-white/5">
+                    <a href="{{url('/add_account/')}}" class="dropdown-item hover:bg-white/5">
                         <i data-lucide="edit" class="w-4 h-4 mr-2"></i> Add Account
                     </a>
                 </li>
                 <li>
-                    <a href="" class="dropdown-item hover:bg-white/5">
+                    <a href="{{url('/reset_password/')}}" class="dropdown-item hover:bg-white/5">
                         <i data-lucide="lock" class="w-4 h-4 mr-2"></i> Reset Password
                     </a>
                 </li>
                 <li>
-                    <a href="" class="dropdown-item hover:bg-white/5">
+                    <a href="{{url('/help/')}}" class="dropdown-item hover:bg-white/5">
                         <i data-lucide="help-circle" class="w-4 h-4 mr-2"></i> Help
                     </a>
                 </li>

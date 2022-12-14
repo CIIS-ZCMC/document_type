@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 <link rel="stylesheet" href="{{ asset('dist/css/card.css') }}"/>
 @section('subhead')
-    <title>CRUD Data List - Midone - Tailwind HTML Admin Template</title>
+    <title>Citizen Verification | Social Welfare Registration and Benefits System</title>
 @endsection
 
 @section('subcontent')

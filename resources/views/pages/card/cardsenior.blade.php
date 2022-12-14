@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 <link rel="stylesheet" href=" https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 @section('subhead')
-    <title>CRUD Data List - Midone - Tailwind HTML Admin Template</title>
+    <title>Senior Card | Social Welfare Registration and Benefits System</title>
 @endsection
 
 @section('subcontent')

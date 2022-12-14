@@ -971,7 +971,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <!-- end container -->
