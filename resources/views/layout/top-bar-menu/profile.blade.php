@@ -14,7 +14,7 @@ box icon
 @endsection
 
 @section('subcontent')
-    <div style="display: flex; justify-content: center; background: orange; padding: 20px 10px">
+    <div style="display: flex; justify-content: center; background: #fff; padding: 20px 10px">
         <img alt="Midone - HTML Admin Template" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}" style="width: 200px; height: 200px; border-radius: 50%">
     </div>
 
