@@ -83,8 +83,8 @@
         </nav>
         <!-- END NAVBAR -->
 
-        <!-- home section -->
-        <section class="home-4 bg-soft-primary" id="home" style="background: url('https://freedesignfile.com/upload/2017/02/White-abstract-background-with-wave-vector-illustration-01.jpg'); background-size: cover; width: 100%; height: 100vh">
+         <!-- home section -->
+         <section class="home-4 bg-soft-primary" id="_home" style="background: url('https://freedesignfile.com/upload/2017/02/White-abstract-background-with-wave-vector-illustration-01.jpg'); background-size: cover; width: 100%; height: 100vh">
             <!-- start container -->
                 <div class="container">
                     <div class="home-content">
@@ -142,15 +142,17 @@
             </div> -->
 
             
-            <!-- Modal form -->
+            <!-- Modal form for Register -->
             <div class="modal fade" id="form" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
-                        <div class="modal-header">
+                    <div class="modal-content py-md-5 px-md-3 p-sm-3 p-4">
+                        <div class="modal-header d-flex justify-content-center" >
+                                <h5>  Please Select Category To <span class="text-info">REGISTER</span>  
+                                </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                                <p class="r3 px-md-5 px-sm-1">Please select</p>
+                               {{--<p class="r3 px-md-5 px-sm-1">Please select</p> --}}
                             <form action="/registration">
                                 @csrf
                                 <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Citizen</button> </div>
@@ -163,12 +165,15 @@
                 </div>
             </div>
 
-            <!-- Modal Benefit -->
+            <!-- Modal From for Benefit -->
             <div class="modal fade" id="formbenefit"data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document">           
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+                        <div class="modal-header mb-4 d-flex justify-content-center">
+                            <h5> Please Select Category For <span class="text-info"> BENEFITS </span> </h5>
+                        </div>
                         <button type="button" class="btn-close" style="color: black;" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <p class="r3 px-md-5 px-sm-1">Please Select</p>
+                        {{--<p class="r3 px-md-5 px-sm-1">Please Select</p>--}}
                         <div class="text-center mb-3"><a href="#seniorbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">Senior</a></div>
                         <div class="text-center mb-3"><a href="#soloparentbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">Solo Parent</a></div>
                         <div class="text-center mb-3"><a href="#pwdbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">PWD</a></div>
@@ -176,12 +181,15 @@
                 </div>
             </div>
 
-            <!-- Modal Track -->
+            <!-- Modal Form For Track -->
             <div class="modal fade" id="formtrack" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+
+                        <div class="modal-header mb-4 d-flex justify-content-center">
+                            <h5> Please Select Category To <span class="text-info"> TRACK </span>  </h5>
+                        </div>
                         <button type="button" class="btn-close" style="color: black;" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <p class="r3 px-md-5 px-sm-1">Please Select </p>
                         <form action="/trackcardform">
                             @csrf
                             <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Card</button> </div>
@@ -194,12 +202,16 @@
                 </div>
             </div>
 
-            <div class="modal fade" id="senior" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal fade text-center" id="senior" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered text-center" role="document">
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+
+                        <div class="modal-header mb-4 d-flex justify-content-center">
+                            <h5 class="text-center"> Please Select Category </h5>
+                        </div>
+
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        
-                        <p class="r3 px-md-5 px-sm-1">Please Select </p>
+          
                         <form action="/registeredsenior">
                             @csrf
                             <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Registered</button> </div>
@@ -210,7 +222,7 @@
                         </form>
                         <form action="/ongoingsenior">
                             @csrf
-                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">On Going</button> </div>
+                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Ongoing</button> </div>
                         </form>
                     </div>
                 </div>
@@ -219,9 +231,14 @@
             <div class="modal fade" id="soloparent" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+                   
+                        <div class="modal-header mb-3 d-flex justify-content-center">
+                            <h5 class="text-center"> Receive push notifications to be updated to latest news. </h5>
+                        </div>
+
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         
-                        <p class="r3 px-.md-5 px-sm-1">Recieve push notifications to be updated to latest news.</p>
+                        {{--<p class="r3 px-.md-5 px-sm-1">Recieve push notifications to be updated to latest news.</p>--}}
                         <form action="/registeredsoloparent">
                             @csrf
                             <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Registered</button> </div>
@@ -232,7 +249,7 @@
                         </form>
                         <form action="/ongoingsoloparent">
                             @csrf
-                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">On Going</button> </div>
+                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Ongoing</button> </div>
                         </form>
                     </div>
                 </div>
@@ -243,7 +260,10 @@
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         
-                        <p class="r3 px-md-5 px-sm-1">Recieve push notifications to be updated to latest news.</p>
+                        <div class="modal-header mb-3 d-flex justify-content-center">
+                            <h5 class="text-center"> Receive push notifications to be updated to latest news. </h5>
+                        </div>
+                        {{--<p class="r3 px-md-5 px-sm-1">Recieve push notifications to be updated to latest news.</p>--}}
                         <form action="/registeredpwd">
                             @csrf
                             <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Registered</button> </div>
@@ -254,7 +274,7 @@
                         </form>
                         <form action="/ongoingpwd">
                             @csrf
-                        <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">On Going</button> </div>
+                        <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Ongoing</button> </div>
                         </form>
                     </div>
                 </div>
@@ -264,9 +284,14 @@
             <div class="modal fade" id="seniorbenefit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+
+                        <div class="modal-header mb-4 d-flex justify-content-center">
+                            <h5 class="text-center"> Please Select Category </h5>
+                        </div>
+
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         
-                        <p class="r3 px-md-5 px-sm-1">Please Select </p>
+                 
                         <form action="/searchseniorcashincentivesform">
                             @csrf
                             <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Cash Incentives</button> </div>
@@ -293,8 +318,11 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        
-                        <p class="r3 px-.md-5 px-sm-1">Please Select </p>
+
+                        <div class="modal-header mb-4 d-flex justify-content-center">
+                            <h5 class="text-center"> Please Select Category </h5>
+                        </div>
+                 
                         <form action="/registeredsoloparent">
                             @csrf
                             <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Registered</button> </div>
@@ -314,7 +342,12 @@
             <div class="modal fade" id="pwdbenefit" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
-                        <p class="r3 px-md-5 px-sm-1">Recieve push notifications to be updated to latest news.</p>
+                        {{--<p class="r3 px-md-5 px-sm-1">Recieve push notifications to be updated to latest news.</p>--}}
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        
+                        <div class="modal-header mb-4 d-flex justify-content-center">
+                            <h5 class="text-center"> Recieve push notifications to be updated to latest news. </h5>
+                        </div>
                         <form action="/searchpwdcashincentivesform">
                             @csrf
                             <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Cash Incentives</button> </div>
