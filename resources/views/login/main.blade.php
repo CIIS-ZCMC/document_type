@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 
 @section('head')
-    <title>Login</title>
+    <title>Login | Social Welfare Registration and Benefits System</title>
 @endsection
 
 @section('content')
