@@ -39,7 +39,7 @@
                 }
             }
         </style>
-        <!-- START  NAVBAR -->"
+        <!-- START  NAVBAR -->
         <nav class="navbar navbar-expand-lg fixed-top navbar-custom" id="navbar">
             <div class="container-fluid">
                 <!-- LOGO -->
