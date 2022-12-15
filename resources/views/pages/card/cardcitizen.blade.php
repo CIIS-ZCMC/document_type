@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('dist/css/card.css') }}"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @section('subhead')
-    <title>CRUD Data List - Midone - Tailwind HTML Admin Template</title>
+    <title>Card Citizen | Social Welfare Registration and Benefits System</title>
 @endsection
 
 @section('subcontent')
@@ -624,8 +624,6 @@
 		}
    
 ?>
-<script>
-    
 
     function doCapture() {
         window.scrollTo(0, 0);

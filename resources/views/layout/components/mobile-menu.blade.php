@@ -2,13 +2,14 @@
 <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
         <a href="" class="flex mr-auto">
-            <img alt="Midone - HTML Admin Template" class="w-6" src="{{ asset('dist/images/logo.svg') }}">
+            <img alt="Zamboanga City SHWRABS" class="w-6 mr-2" src="{{ asset('dist/images/Seal.png') }}">
+            Zamboanga Card
         </a>
         <a href="javascript:;" id="mobile-menu-toggler">
             <i data-lucide="bar-chart-2" class="w-8 h-8 text-white transform -rotate-90"></i>
         </a>
     </div>
-    <ul class="border-t border-white/[0.08] py-5 hidden">
+    <ul class="border-t border-white/[0.08] py-5 hidden"   style="color: black; background: #1e3a8a">
         @foreach ($side_menu as $menuKey => $menu)
             @if ($menu == 'devider')
                 <li class="menu__devider my-6"></li>
@@ -31,7 +32,7 @@
                                 <li>
                                     <a href="{{ isset($subMenu['route_name']) ? route($subMenu['route_name'], $subMenu['params']) : 'javascript:;' }}" class="{{ $second_level_active_index == $subMenuKey ? 'menu menu--active' : 'menu' }}">
                                         <div class="menu__icon">
-                                            <i data-lucide="activity"></i>
+                                        <i data-lucide="{{ $subMenu['icon'] }}"></i>
                                         </div>
                                         <div class="menu__title">
                                             {{ $subMenu['title'] }}
@@ -46,7 +47,7 @@
                                                 <li>
                                                     <a href="{{ isset($lastSubMenu['route_name']) ? route($lastSubMenu['route_name'], $lastSubMenu['params']) : 'javascript:;' }}" class="{{ $third_level_active_index == $lastSubMenuKey ? 'menu menu--active' : 'menu' }}">
                                                         <div class="menu__icon">
-                                                            <i data-lucide="zap"></i>
+                                                            <i data-lucide="mouse-pointer-click"></i>
                                                         </div>
                                                         <div class="menu__title">{{ $lastSubMenu['title'] }}</div>
                                                     </a>

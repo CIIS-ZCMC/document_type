@@ -4012,7 +4012,7 @@ select {
 }
 .text-white {
   --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity)); 
 }
 .text-pending {
   --tw-text-opacity: 1;
@@ -9689,7 +9689,8 @@ html body {
 @media (max-width: calc(1280px - 1px)) {
 .login {
     --tw-bg-opacity: 1;
-    background-color: rgb(var(--color-primary) / var(--tw-bg-opacity));
+    background: #1e3a8a;
+    /* background-color: rgb(var(--color-primary) / var(--tw-bg-opacity)); */
   }
 .dark .login {
     --tw-bg-opacity: 1;
@@ -15275,6 +15276,8 @@ html body {
 .mobile-menu .mobile-menu-bar {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+    background: #1e3a8a;
+    color:white;
   }
   }
 .mobile-menu ul.menu__sub-open {

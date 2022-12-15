@@ -67,7 +67,6 @@ Route::post('/save-capture.php', function()
 
 
 
-
 Route::get('/registeredsenior', [PageController::class, 'registeredsenior']); //login route
 Route::get('/registeredsoloparent', [PageController::class, 'registeredsoloparent']); //login route
 Route::get('/registeredpwd', [PageController::class, 'registeredpwd']); //login route
@@ -146,6 +145,9 @@ Route::controller(AuthController::class)->middleware('loggedin')->group(function
 Route::middleware('isLogged')->group(function() {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::controller(PageController::class)->group(function() {
+        // top-bar-menu
+        Route::get('/user-profile', 'profile')->name('profile');
+
         Route::get('/', 'dashboardOverview1')->name('dashboard-overview-1');
         Route::get('account-page', 'account')->name('account');
         // Route::get('/', 'dashboardOverview3')->name('dashboard-overview-3');

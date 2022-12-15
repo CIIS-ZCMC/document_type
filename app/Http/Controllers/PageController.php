@@ -65,6 +65,13 @@ class PageController extends Controller
             // 'layout' => 'side-menu'
         ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));;
     }
+
+    // top-bar-menu
+    public function profile() {
+        return view('layout/top-bar-menu/profile',[]);
+    }
+
+
     public function main()
     {
         return view('main/landing', [
