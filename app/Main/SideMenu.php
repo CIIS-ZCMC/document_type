@@ -199,7 +199,7 @@ class SideMenu
             ],
 
             'Members' => [
-                'icon' => 'users',
+                'icon' => 'contact',
                 'title' => 'Members',
                 'sub_menu' => [
                     'Citizen' => [
