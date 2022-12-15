@@ -17,7 +17,4 @@ box icon
     <div style="display: flex; justify-content: center; background: #fff; padding: 20px 10px">
         <img alt="Profile Image" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}" style="width: 200px; height: 200px; border-radius: 50%">
     </div>
-    <div style="display: flex; justify-content: space-around; background: #eaeaea; padding: 20px 10px;">
-        <h2>John Doe</h2>
-    </div>
 @endsection
