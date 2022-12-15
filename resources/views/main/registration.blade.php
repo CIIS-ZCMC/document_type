@@ -12,13 +12,10 @@
     <link rel="stylesheet" href="{{ asset('dist/css3/style.css') }}"/>
 
 
-        <!-- zc seal -->
-        <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
+    <!-- zc seal -->
+    <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
 </head>
 <body>
-	<style>
-		body {}
-	</style>
 	<div class="page-content">
 		<div class="form-v1-content">
 			<div class="wizard-form ">
