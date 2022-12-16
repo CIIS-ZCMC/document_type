@@ -625,6 +625,8 @@
    
 ?>
 
+<script>
+
     function doCapture() {
         window.scrollTo(0, 0);
        

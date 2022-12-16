@@ -29,7 +29,7 @@ if(!empty($image))
     $data = base64_decode($img);  
     $name=$_POST['name'];
     $cardtype=$_POST['cardtype'];
-    $file .= UPLOAD_DIR . $cardtype.$name. '.png';  
+    $file .= UPLOAD_DIR . $cardtype .$name. '.png';  
    
 
     if(file_exists(public_path('/'.$file))){
