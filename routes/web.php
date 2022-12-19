@@ -276,7 +276,7 @@ Route::middleware('isLogged')->group(function() {
     Route::post('/generateqrcode', [ClientCardController::class, 'generateqrcode']);
 
     Route::post('/evaluateseniorcitizen/{clientid}/{applicationid}', [ClientController::class, 'evaluatesenior']);
-    Route::post('/approveseniorcitizen/{clientid}/{applicationid}', [ClientController::class, 'apprFovesenior']);
+    Route::post('/approveseniorcitizen/{clientid}/{applicationid}', [ClientController::class, 'approvesenior']);
     Route::post('/verifyseniorcitizen/{clientid}/{applicationid}', [ClientController::class, 'verifysenior']);
 
     Route::post('/email/completeid/{cardid}', [ClientController::class, 'emailid']);

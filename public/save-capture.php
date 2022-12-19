@@ -32,13 +32,13 @@ if(!empty($image))
     $file .= UPLOAD_DIR . $cardtype .$name. '.png';  
    
 
-    if(file_exists(public_path('/'.$file))){
+    // if(file_exists(public_path($file))){
        
-      }else{
+    //   }else{
         file_put_contents($file, $data);  
 
       
-      }
+      // }
 
     $link = mysqli_connect("localhost", "root", "","inventorydb");
     if($link === false){

@@ -6,15 +6,12 @@
 	
 	<link rel="stylesheet" href=" https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-
-        <!-- zc seal -->
-        <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
 </head>
 <body>
 	<section>
 		<div class="wrapper">
 			
-			<form class="form" id="form" enctype="multipart/form-data" method="post" action="/createregistered" >
+			<form class="form" id="form" enctype="multipart/form-data" method="post" action="/createongoingsenior" >
 				@csrf
 				<div class="form_wrap">
 					<div class="form_1 data_info">
@@ -99,7 +96,7 @@
 
 				<div class="btns_wrap">
 					<div class="common_btns form_1_btns">
-						<button type="submit"  class="btn_next">Register  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+						<button type="submit"  class="btn_next">Done  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
 					</div>
 					
 				</div>
@@ -126,7 +123,7 @@
 	
 	</script>
   <?php
-  session_start();
+ 		 session_start();
 		if (isset($_SESSION['success']) == 'success') 
 		{
 			?>
@@ -152,7 +149,7 @@
 				swal({
 					
 						title: "Fail",
-						text: "Successfully saved!",
+						text: "Record not found!",
 						icon: "error",
 						button: "ok",
 					})
@@ -161,6 +158,24 @@
 				</script>
 			<?php
 			unset($_SESSION['fail']);
+		}
+
+		if (isset($_SESSION['Error']) == 'Error') 
+		{
+			?>
+			<script>
+				swal({
+					
+						title: "Registered",
+						text: "You are already a registered citizen!",
+						icon: "error",
+						button: "ok",
+					})
+				
+				
+				</script>
+			<?php
+			unset($_SESSION['Error']);
 		}
    
 ?>
