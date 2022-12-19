@@ -4359,7 +4359,7 @@ class ClientController extends Controller
 
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
-        $generator = Helper::IDGenerator(new ClientCard,'card_number',9,'PID-'.$yearOnly,$yearOnly);
+        $generator = Helper::IDGenerator(new ClientCard,'card_number',9,'SPID-'.$yearOnly,$yearOnly);
     
         $logo='/images/barangay/1senior.jpg';
         $path='images/qrcode/';
@@ -4368,7 +4368,7 @@ class ClientController extends Controller
         $clientcardsave = new ClientCard();
      
         $clientcardsave->card_status = 'Active'; 
-        $clientcardsave->card_type = 'PWD';
+        $clientcardsave->card_type = 'SOLO PARENT';
         $clientcardsave->GUID = $filename;
         $id = Str::uuid();
         $hash = Hash::make(time());

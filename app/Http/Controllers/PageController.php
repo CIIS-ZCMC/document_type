@@ -1773,6 +1773,9 @@ class PageController extends Controller
    
              public function cardsoloparent()
              {
+
+           
+
          
                 $clients= Client::with("occupations","barangays","family_compositions","education","community_involvements","seminar_trainings")->whereHas("client_cards", function($subQuery) {
                     $subQuery->where("client_cards.card_status", "=", 'Active')->where("client_cards.card_type", "=", 'SOLO PARENT'); 

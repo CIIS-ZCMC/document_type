@@ -88,9 +88,13 @@
 
                     
                        
+                        <th id="filename" class="whitespace-nowrap">appid</th>
+                        <th id="filename" class="whitespace-nowrap">appid</th>
                        
                        
-                       
+                        <th id="filename" class="whitespace-nowrap">appid</th>
+                        <th id="filename" class="whitespace-nowrap">appid</th>
+                     
                        
                        
                        
@@ -169,7 +173,23 @@
                                         <td id="filename">{{$client->contact_number}}
                                             <td id="filename">{{$client->email_address}}
                                             <td id="filename">{{$client->landline_number}}
-                                                       
+                                        
+
+                                                <td id="filename"> @foreach($client->client_cards as  $clientapp)
+                                                    {{$clientapp->id}}
+                                                  @endforeach</td>
+                                                  <td id="filename"> @foreach($client->client_cards as  $clientapp)
+                                                    {{$clientapp->card_type}}
+                                                  @endforeach</td>
+
+                                                  <td  id="filename"> @foreach($client->client_applications as  $clientapp)
+                                                    {{$clientapp->id}}
+                                                  @endforeach</td>
+                                                  <td id="filename"> @foreach($client->client_cards as  $clientapp)
+                                                    {{$clientapp->GUID}}
+                                                  @endforeach</td>
+
+
                                                      
                                    
                                 
@@ -619,69 +639,79 @@
             <div class="modal-content2">
                 <div class="modal-header">Identification Card</h2>
                 </div>
-                <form action="/generateqrcode" method="POST" method="POST" enctype="multipart/form-data" id="editform1" >
-                    @csrf
-                <div class="container1">
-                                <div class="padding">
-                                    <div class="font">
-                                        <div class="top">
-                                            <img id="photo" src="download.png">
-                                        </div>
-                                        <div class="bottom">
-                                            <p id="fullname"></p>
-                                            <p class="desi"></p>
-                                            <div class="barcode">
-                                                <img id="qrcode">
-                                            </div>
-                                            <br>
-                                            <p id="phone" class="no">+91 8980849796</p>
-                                            <p id="address" class="no">part-1,89 harinadad d...sdv..sdf..sfd..sd.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- <div class="back">
-                                    <h1 class="Details">information</h1>
-                                    <hr class="hr">
-                                    <div class="details-info">
-                                        <p><b>Email : </b></p>
-                                        <p>Planicsdevloper@gmail.com</p>
-                                        <p><b>Mobile No: </b></p>
-                                        <p>8460304196</p>
-                                        <p><b>Office Address:</b></p>
-                                        <p>part-1,89 harinadad d...sdv..sdf..sfd..sd.road,india</p>
-                                        </div>
-                                        <div class="logo">
-                                            <img src="barcode.PNG">
-                                        </div>
-                    
-                                        
-                                        <hr>
-                                    </div>
-                                </div> --}}
-                         
+
+             
                    
+              <form action="/email/completeid" method="POST" id="formid" name="formid">
+                 @csrf
+                        <div class="container1" >
+                                        <div class="padding" id="capture">
+                                            <div class="font" >
+                                                <div class="top">
+                                                    <img id="photo">
+                                                </div>
+                                                <div class="bottom">
 
-                  
-    
-                    
-                      
-
-                        
-                        
-                        <!-- END: Post Info -->
-                        <div class="modal-footer text-right">
-                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Back</button>
-                            <button href="javascript:;" class="btn btn-outline-primary w-32 mr-1 edit" data-tw-toggle="modal" data-tw-target="#qrcode">View</button>
+                                                    <input type="text" name="idcard" id="idcard" hidden>
+                                                    <input type="text" name="cardtype" id="cardtype" hidden>
+                                                    <input type="text" name="sendemail" id="sendemail" hidden>
+                                                  
+                                                    <p id="fullname"></p>
+                                                    <p class="desi"></p>
+                                                    <div class="barcode">
+                                                        <img id="qrcode">
+                                                    </div>
+                                                    <br>
+                                                    <p id="phone" class="no">+91 8980849796</p>
+                                                    <p id="address" class="no">part-1,89 harinadad d...sdv..sdf..sfd..sd.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="back">
+                                            <h1 class="Details">information</h1>
+                                            <hr class="hr">
+                                            <div class="details-info">
+                                                <p><b>Email : </b></p>
+                                                <p>Planicsdevloper@gmail.com</p>
+                                                <p><b>Mobile No: </b></p>
+                                                <p>8460304196</p>
+                                                <p><b>Office Address:</b></p>
+                                                <p>part-1,89 harinadad d...sdv..sdf..sfd..sd.road,india</p>
+                                                </div>
+                                                <div class="logo">
+                                                    <img src="barcode.PNG">
+                                                </div>
+                            
+                                                
+                                                <hr>
+                                            </div>
+                                        </div> --}}
+                                
                         </div>
 
+                        
+            
+                            
+                            
+
+                                
+                                
+                                <!-- END: Post Info -->
+                                <div class="modal-footer text-right">
+                                    <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Back</button>
+                               
+                                    <button onclick="doCapture();">Capture</button>
+                                    <button class="submit" type="submit" value="Submit" id="secondbutton" hidden>Capture</button>
+                                </div>
+            </form>
 
 
                        
                    
                      </div>
-                </form>
+              
         </div>
-    </div>
+      </div>
 
    
     
@@ -699,6 +729,7 @@
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+<script src="{{ asset('dist/js/html2canvas.js') }}"></script>
 
 
 <?php
@@ -740,6 +771,80 @@
 		}
    
 ?>
+
+<script>
+
+    function doCapture() {
+        window.scrollTo(0, 0);
+       
+        event.preventDefault();
+     
+        html2canvas(document.getElementById("capture")).then(function (canvas) {
+            var name = $("#idcard").val();
+       
+             var dataString = 'name='+ name;
+            
+            // Create an AJAX object
+            var ajax = new XMLHttpRequest();
+     
+            // Setting method, server file name, and asynchronous
+            ajax.open("POST", "save-capture.php", true);
+     
+            // Setting headers for POST method
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+     
+            // Sending image data to server
+            // ajax.send("image=" + canvas.toDataURL("image/png", 0.9));
+        
+    
+          
+      
+            // Receiving response from server
+            // This function will be called multiple times
+            ajax.onreadystatechange = function () {
+     
+                // Check when the requested is completed
+                if (this.readyState == 4 && this.status == 200) {
+     
+                    // Displaying response from server
+                    console.log(this.responseText);
+                }
+            };
+    
+    
+          
+            
+        var name = $("#idcard").val();
+        var cardtype = $("#cardtype").val();
+        var sendemail = $("#sendemail").val();
+        var count_id = "count";
+        var dataString = 'name='+ name;
+        var dataString1 = 'count_id='+ count_id;
+    
+        $.ajax({
+                type: "POST",
+                url: "save-capture.php",
+                data:{registration: "success", sendemail: sendemail, cardtype: cardtype, name: name, image:canvas.toDataURL("image/png", 0.9)},
+                success : handleData
+                
+    
+    
+    
+            });
+    
+            
+        });
+     
+    
+       
+    }
+    
+    function handleData(data) {
+        $("#secondbutton").click();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                       }
+      
+     </script>
+
 <script type="text/javascript">
     $(document).ready(function()
     {
@@ -1034,14 +1139,27 @@
                 
                
            
+              
+           
             document.getElementById('fullname').innerHTML
                 =  data[6] + " " +  data[7] + " " +  data[8];
                 document.getElementById('address').innerHTML
                 =  data[10] +  " " +  data[2] + " " +  data[11];
                 document.getElementById('phone').innerHTML
                 =  data[30];
-            $('#qrcode').attr("src","/images/qrcode/"+data[29]);
+
+                document.getElementById('idcard').value
+                =  data[51];
+
+                document.getElementById('cardtype').value
+                =  data[52];
+
+                document.getElementById('sendemail').value
+                =  data[49];
+             
+            $('#qrcode').attr("src","/images/qrcode/"+data[54]);
             $('#photo').attr("src","/images/picture/"+data[5]);
+            $('#formid').attr('action','/email/completeid/' + data[51]);
            
         })
 
