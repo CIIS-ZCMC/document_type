@@ -2406,7 +2406,7 @@ class ClientController extends Controller
 
                 $application_date= now()->toDateString('Ymd');
                 $yearOnly=substr($application_date,0,4);
-                $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'CID-'.$yearOnly,$yearOnly);
+                $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SID-'.$yearOnly,$yearOnly);
                         $clientsave = new Client();
                     
                         $clientsave->first_name = $request->input('firstname');
@@ -3835,7 +3835,7 @@ class ClientController extends Controller
 
             $application_date1= now()->toDateString('Ymd');
             $yearOnly1=substr($application_date1,0,4);
-            $generator1 = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'PID-'.$yearOnly1,$yearOnly1);
+            $generator1 = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SPI-'.$yearOnly1,$yearOnly1);
 
             $applicationsave = new ClientApplication();
                             

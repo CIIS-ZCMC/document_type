@@ -594,231 +594,239 @@ class PageController extends Controller
     public function searchongoingsenior(Request $request)
     {
         $barangaylist = Barangay::select('id', 'name')->get();
-    //    $client=Client::with("client_applications")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas('client_applications', function($q) use ($request) {
-    //         $q->where('application_type', '=', 'Senior')
-    //         ->where('application_reference_number', '=', $request->input('number'));})
-       
-    //     ->first();
+        
+            $client= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
+                    $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+                })->with(["client_applications" => function($subQuery) use ($request){
+                    $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+                }])->first();
 
 
-
-        $client= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
-            $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-        })->with(["client_applications" => function($subQuery) use ($request){
-            $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-        }])->first();
-
-
-      if($client == null)
-        {
-            $clientregistered= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
-                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-            })->with(["client_applications" => function($subQuery) use ($request){
-                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-            }])->first();
-
-            if($clientregistered == null)
+            if($client == null)
             {
+            
 
-                session_start();
-                $_SESSION['fail'] ="fail";
-
-                return redirect()->back()->with('fail');  
-                exit;
-            }
-            else
-            {
-                session_start();
-                $_SESSION['Error'] ="Error";
-
-                return redirect()->back()->with('Error');  
-                exit;
-
-            }
-
-           
-        }
-
-        else{
             
                 
-      
-         
 
+                        session_start();
+                        $_SESSION['fail'] ="fail";
 
-            return view('main/ongoingclient/ongoingseniorpage', [
-                // Specify the base layout.
-                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                // The default value is 'side-menu'
+                        return redirect()->back()->with('fail');  
+                        exit;
+            }
+
+                    
+                    
+
+            else{
+            
+
+             
+
+                $clientid=$client->id;
+
+                $clientsenior= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($clientid)  {
+                    $subQuery->where("client_applications.application_type", "=", 'Senior')->where("client_id", $clientid); 
+                })->with(["client_applications" => function($subQuery) use ($clientid){
+                    $subQuery->where("client_applications.application_type", "=", 'Senior') ->where("client_id", "=" ,$clientid); 
+                }])->first();
+        
+
+                if($clientsenior == null)
+                {
+                    return view('main/ongoingclient/ongoingseniorpage', [
+                        // Specify the base layout.
+                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                        // The default value is 'side-menu'
+            
+                        // 'layout' => 'side-menu'
+                        ])->with(compact('client','barangaylist'));
+               
     
-                // 'layout' => 'side-menu'
-                ])->with(compact('client','barangaylist'));
+                }
+                else
+                {
+                    session_start();
+                    $_SESSION['Error'] ="Error";
+    
+                    return redirect()->back()->with('Error');  
+                    exit;
 
+          
+    
+                }
+             
             }
          
+      }
+    
+     
+
+     
+
+
+    
 
         
         
-    }
+    
 
     public function searchongoingpwd(Request $request)
     {
-       
         $barangaylist = Barangay::select('id', 'name')->get();
+        
         $client= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
-            $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-        })->with(["client_applications" => function($subQuery) use ($request){
-            $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-        }])->first();
-      if($client == null)
-        {
-            $clientregistered= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
-                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
             })->with(["client_applications" => function($subQuery) use ($request){
-                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
             }])->first();
 
-            if($clientregistered == null)
-            {
 
-                session_start();
-                $_SESSION['fail'] ="fail";
+        if($client == null)
+        {
+        
 
-                return redirect()->back()->with('fail');  
-                exit;
-            }
-            else
-            {
-                session_start();
-                $_SESSION['Error'] ="Error";
+        
+            
 
-                return redirect()->back()->with('Error');  
-                exit;
+                    session_start();
+                    $_SESSION['fail'] ="fail";
 
-            }
+                    return redirect()->back()->with('fail');  
+                    exit;
         }
 
-        else{
-
-                   
-        $clientapplication=ClientApplication::where('client_id',$client->id)->where('application_type','=','PWD')->first();
-          
-        if($clientapplication == null)
-        {
-         
-            return view('main/ongoingclient/ongoingpwd', [
-                // Specify the base layout.
-                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                // The default value is 'side-menu'
-    
-                // 'layout' => 'side-menu'
-                ])->with(compact('client','barangaylist'));
-            }
-            else
-            {
-
-                session_start();
-                $_SESSION['fail'] ="fail";
-               
-             
                 
-                return redirect()->back()->with('fail');  
-                exit;
-
-            }
-
-        
-        
-        }
-    }
-
-    public function searchongoingsoloparent(Request $request)
-    {
-      
-        $barangaylist = Barangay::select('id', 'name')->get();
-        $client= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
-            $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-        })->with(["client_applications" => function($subQuery) use ($request){
-            $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-        }])->first();
-      if($client == null)
-        {
-            $clientregistered= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
-                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-            })->with(["client_applications" => function($subQuery) use ($request){
-                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-            }])->first();
-
-            if($clientregistered == null)
-            {
-
-             $clientregistered= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
-                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-            })->with(["client_applications" => function($subQuery) use ($request){
-                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
-            }])->first();
-
-            if($clientregistered == null)
-            {
-
-                session_start();
-                $_SESSION['fail'] ="fail";
-
-                return redirect()->back()->with('fail');  
-                exit;
-            }
-            else
-            {
-                session_start();
-                $_SESSION['Error'] ="Error";
-
-                return redirect()->back()->with('Error');  
-                exit;
-
-            }
-            }
-            else
-            {
-                session_start();
-                $_SESSION['Error'] ="Error";
-
-                return redirect()->back()->with('Error');  
-                exit;
-
-            }
-        }
+                
 
         else{
+        
 
+         
 
-           
-             
-            $clientapplication=ClientApplication::where('client_id',$client->id)->where('application_type','=','Solo Parent')->first();
+            $clientid=$client->id;
 
-            if($clientapplication == null)
+            $clientsenior= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($clientid)  {
+                $subQuery->where("client_applications.application_type", "=", 'PWD')->where("client_id", $clientid); 
+            })->with(["client_applications" => function($subQuery) use ($clientid){
+                $subQuery->where("client_applications.application_type", "=", 'PWD') ->where("client_id", "=" ,$clientid); 
+            }])->first();
+    
+
+            if($clientsenior == null)
             {
-             
-                return view('main/ongoingclient/ongoingsoloparent', [
+                return view('main/ongoingclient/ongoingpwdpage', [
                     // Specify the base layout.
                     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                     // The default value is 'side-menu'
         
                     // 'layout' => 'side-menu'
                     ])->with(compact('client','barangaylist'));
-                }
-                else
-                {
-    
-                    session_start();
-                    $_SESSION['fail'] ="fail";
-                   
-                 
-                    
-                    return redirect()->back()->with('fail');  
-                    exit;
-    
-                }
+           
+
+            }
+            else
+            {
+                session_start();
+                $_SESSION['Error'] ="Error";
+
+                return redirect()->back()->with('Error');  
+                exit;
+
+      
+
+            }
+         
         }
+     
+    }
+
+    public function searchongoingsoloparent(Request $request)
+    {
+        $barangaylist = Barangay::select('id', 'name')->get();
+        
+        $client= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
+                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+            })->with(["client_applications" => function($subQuery) use ($request){
+                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Ongoing')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+            }])->first();
+
+
+        if($client == null)
+        {
+        
+
+            $clientregistered= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
+                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+            })->with(["client_applications" => function($subQuery) use ($request){
+                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+            }])->first();
+            
+
+
+            if($clientregistered==null)
+            {
+                session_start();
+                $_SESSION['fail'] ="fail";
+
+                return redirect()->back()->with('fail');  
+                exit;
+
+            }
+            else
+            {
+               
+        
+                session_start();
+                $_SESSION['error'] ="error";
+
+                return redirect()->back()->with('error');  
+                exit;
+
+            }
+                   
+        }
+
+                
+                
+
+        else{
+        
+
+         
+
+            $clientid=$client->id;
+
+            $clientsenior= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($clientid)  {
+                $subQuery->where("client_applications.application_type", "=", 'Solo Parent')->where("client_id", $clientid); 
+            })->with(["client_applications" => function($subQuery) use ($clientid){
+                $subQuery->where("client_applications.application_type", "=", 'Solo Parent') ->where("client_id", "=" ,$clientid); 
+            }])->first();
+    
+
+            if($clientsenior == null)
+            {
+                return view('main/ongoingclient/ongoingsoloparentpage', [
+                    
+                    ])->with(compact('client','barangaylist'));
+           
+
+            }
+            else
+            {
+                session_start();
+                $_SESSION['Error'] ="Error";
+
+                return redirect()->back()->with('Error');  
+                exit;
+
+      
+
+            }
+         
+        }
+     
     }
     
     /**

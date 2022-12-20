@@ -24,7 +24,7 @@
 							<div class="form_container">
 								<div class="input_wrap">
 									<label for="email">Full Name</label>
-									<input type="text" name="fullname" class="input" value="{{$client->first_name}} {{$client->middle_name}} {{$client->last_name}} {{$client->extension_name}}" id="fullname" style="text-transform: capitalize;" required>
+									<input type="text" name="fullname" class="input" value="{{$client->first_name}} {{$client->middle_name}} {{$client->last_name}} {{$client->extension_name}}" id="fullname" style="text-transform: capitalize;" disabled>
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -32,7 +32,7 @@
 								
 								<div class="input_wrap">
 									<label for="email">Reference Number</label>
-									<input type="text"  name="number" value="@foreach($client->client_applications as  $clientcard){{$clientcard->application_reference_number}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" required>
+									<input type="text"  name="number" value="@foreach($client->client_applications as  $clientcard){{$clientcard->application_reference_number}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;"  readonly="readonly">
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -40,7 +40,7 @@
 
 								<div class="input_wrap">
 									<label for="email">Application Type</label>
-									<input type="text"  name="type" value="@foreach($client->client_applications as  $clientcard){{$clientcard->application_type}}@endforeach" class="input" id="name"  style="text-transform: capitalize;" required>
+									<input type="text"  name="type" value="@foreach($client->client_applications as  $clientcard){{$clientcard->application_type}}@endforeach" class="input" id="type"  style="text-transform: capitalize;" readonly="readonly">
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -48,21 +48,21 @@
 
                                 <div class="input_wrap">
 									<label for="email">Status</label>
-									<input type="text"  name="idnumber" value="@foreach($client->client_applications as  $clientcard){{$clientcard->application_status}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" required>
+									<input type="text"  name="idnumber" value="@foreach($client->client_applications as  $clientcard){{$clientcard->application_status}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" disabled>
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
 								</div>
                                 <div class="input_wrap">
-									<input type="hidden"  name="cardid" value="@foreach($client->client_cards as  $clientcard){{$clientcard->id}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" required>
-									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" value="{{$client->first_name}}" required>
+									<input type="hidden"  name="cardid" value="@foreach($client->client_cards as  $clientcard){{$clientcard->id}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" >
+									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" value="{{$client->first_name}}" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
 								</div>
 								<div class="input_wrap">
 								
-									<input type="hidden" name="lastname" class="input" id="lastname" style="text-transform: capitalize;" value="{{$client->last_name}}" required>
+									<input type="hidden" name="lastname" class="input" id="lastname" style="text-transform: capitalize;" value="{{$client->last_name}}" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -109,7 +109,7 @@
                                     
                         @else
                             <div class="common_btns form_1_btns">
-                                <button type="submit"  class="">Back  <span class="icon"></span></button>
+                                <button type="button"  class=""  onclick="history.go(-2)">Back  <span class="icon"></span></button>
                             </div>
                             
                         @endif

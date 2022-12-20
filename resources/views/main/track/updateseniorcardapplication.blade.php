@@ -63,7 +63,9 @@
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									<input type="hidden"  name="clientid" class="input" id="clientid" id="email" value="{{$client->id}}" style="text-transform: capitalize;" required>
-									<input type="hidden"  name="appid" class="input" id="appid" id="email" value="@foreach ($client1->client_applications as $app){{$app->id}}@endforeach" style="text-transform: capitalize;" required>
+									<input type="hidden"  name="appid" class="input" id="appid" id="email" value="@foreach ($client->client_applications as $app){{$app->id}}@endforeach" style="text-transform: capitalize;" required>
+
+									<div class="error"></div>
 								</div>
 								
 								<div class="input_wrap">
@@ -71,7 +73,7 @@
 									<input type="text"  name="lastname" class="input" id="lastname" id="email" value="{{$client->last_name}}"  style="text-transform: capitalize" required>
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
-									
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="email">Middle Name</label>
@@ -92,6 +94,7 @@
 										<option value="Female" <?php if($client->sex == "Female") echo 'selected="selected"'; ?> >Female</option>
 										 
 									</select>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_password">Blood Type</label>
@@ -113,6 +116,7 @@
 										<option value="Divorced" <?php if($client->civil_status == "Divorced") echo 'selected="selected"'; ?> >Divorced</option>
 										<option value="Single" <?php if($client->civil_status == "Single") echo 'selected="selected"'; ?> >Single</option>
 									</select>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_password">Educational Attainment</label>
@@ -128,6 +132,7 @@
 										<option value="Post Graduate" <?php if($client->educational_attainment == "Post Graduate") echo 'selected="selected"'; ?> >Post Graduate</option>
 									
 									</select>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_password">Nationality</label>
@@ -148,10 +153,12 @@
 								<div class="input_wrap">
 									<label for="confirm_password">Date of Birth</label>
 									<input data-format="MM/DD/YYYY" class="input" type="date" id="birthdate" value="{{$client->birth_date}}" name="birthdate">
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_password">Place of Birth</label>
 									<input type="text" name="birthplace" class="input" id="birthplace" value="{{$client->birth_place}}">
+									<div class="error"></div>
 								</div>
 							</div>
 						
@@ -163,6 +170,7 @@
 								<div class="input_wrap">
 									<label for="user_name">Street</label>
 									<input type="text" name="street" class="input" id="street" value="{{$client->street}}">
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="first_name">Barangay</label>
@@ -175,18 +183,22 @@
 											<option value="{{$item->id}}"<?php if($client->barangays->name == $item->name ) echo 'selected="selected"'; ?> >{{$item->name}}</option>
 										@endforeach
 									<select>
+										<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="">City/Municipality</label>
 									<input type="text" name="city" class="input"  value="{{$client->municipality}}" id="city">
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="">Province</label>
 									<input type="text" name="province" class="input" value="{{$client->province}}" id="province">
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="">Region</label>
 									<input type="text" name="region" class="input" value="{{$client->region}}" id="region">
+									<div class="error"></div>
 								</div>
 							</div>
 						
@@ -203,6 +215,7 @@
 										<option value="Unemployed" <?php if($client->occupations->employment_status == "Unemployed") echo 'selected="selected"'; ?> >Unemployed</option>
 										<option value="Self Employed" <?php if($client->occupations->employment_status == "Self Employed") echo 'selected="selected"'; ?> >Self Employed</option>
 									</select>
+									<div class="error"></div>
 								
 								</div>
 								<div class="input_wrap">
@@ -213,6 +226,7 @@
 										<option value="Government"<?php if($client->occupations->employment_category == "Government") echo 'selected="selected"'; ?> >Government</option>
 										<option value="Private"<?php if($client->occupations->employment_category == "Private") echo 'selected="selected"'; ?> >Private</option>
 									</select>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label class="special-label">Type of Employment:</label>
@@ -225,6 +239,7 @@
 										<option value="Emergency"<?php if($client->occupations->employment_type == "Emergency") echo 'selected="selected"'; ?> >Emergency</option>
 										
 									</select>
+									<div class="error"></div>
 								</div>
 
 									
@@ -287,6 +302,8 @@
 									<span class="checkmark1"></span>
 									</label>
 
+									<div class="error" id="bank"></div>
+
 									<div id="divothers">
 										<label for="">Specify</label>
 										<input type="text" name="othersoccupation" class="input" id="others" value="{{$client->occupations->others}}">
@@ -307,14 +324,17 @@
 								<div class="input_wrap">
 									<label for="company">Mobile Number</label>
 									<input type="text" name="mobilenumber" class="input" id="mobile" value="{{$client->contact_number}}">
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="experience">Landline Number</label>
 									<input type="text" name="landlinenumber" class="input" id="landline" value="{{$client->landline_number}}">
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="designation">Email Address</label>
 									<input type="text" name="emailaddress" class="input" id="email" value="{{$client->email_address}}">
+									<div class="error"></div>
 								</div>
 							</div>
 						
@@ -391,6 +411,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 	<script src="http://parsleyjs.org/dist/parsley.js"defer></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="{{ asset('dist/js3/main.js') }}"></script>
 	
 	<script>
 	

@@ -77,10 +77,12 @@
 									<input type="text" name="firstname" class="input" id="firstname" value="{{$client->first_name}}" required >
 									<input type="hidden"  name="clientid" class="input" id="clientid" id="email" value="{{$client->id}}" style="text-transform: capitalize;" required>
 									<input type="hidden"  name="appid" class="input" id="appid" id="email" value="@foreach ($client1->client_applications as $app){{$app->id}}@endforeach" style="text-transform: capitalize;" required>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="email">Last Name</label>
 									<input type="text" name="lastname" class="input" id="lastname" value="{{$client->last_name}}">
+									<div class="error"></div>
 									
 								</div>
 								<div class="input_wrap">
@@ -98,6 +100,7 @@
 										<option value="Male" <?php if($client->sex == "Male") echo 'selected="selected"'; ?> >Male</option>
 										<option value="Female" <?php if($client->sex == "Female") echo 'selected="selected"'; ?> >Female</option>
 									</select>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_text">Blood Type</label>
@@ -117,6 +120,7 @@
 										<option value="Divorced" <?php if($client->civil_status == "Divorced") echo 'selected="selected"'; ?> >Divorced</option>
 										<option value="Single" <?php if($client->civil_status == "Single") echo 'selected="selected"'; ?> >Single</option>
 									</select>
+									<div class="error"></div>
 								</div>
 								
 								<div class="input_wrap">Reason for being a solo parent
@@ -131,6 +135,7 @@
 									
 										
 									</select>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_text">Educational Attainment</label>
@@ -145,6 +150,7 @@
 										<option value="Post Graduate" <?php if($client->educational_attainment == "Post Graduate") echo 'selected="selected"'; ?> >Post Graduate</option>
 									
 									</select>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_text">Nationality</label>
@@ -157,10 +163,12 @@
 								<div class="input_wrap">
 									<label for="confirm_text">Date of Birth</label>
 									<input data-format="MM/DD/YYYY" class="input" type="date" id="birthdate" name="birthdate" value="{{$client->birth_date}}">
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_text">Place of Birth</label>
 									<input type="text" name="birthplace" class="input" id="birthplace" value="{{$client->birth_place}}">
+									<div class="error"></div>
 								</div>
 							
 							</div>
@@ -168,6 +176,7 @@
 							<div class="input_wrap">
 								<label for="user_name">Street</label>
 								<input type="text" name="street" class="input" id="street" value="{{$client->street}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="first_name">Barangay</label>
@@ -178,31 +187,38 @@
 									<option value="{{$item->id}}"<?php if($client->barangays->name == $item->name ) echo 'selected="selected"'; ?> >{{$item->name}}</option>
 									@endforeach
 								<select>
+									<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="last_name">City/Municipality</label>
 								<input type="text" name="city" class="input" id="city" value="{{$client->municipality}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="last_name">Province</label>
 								<input type="text" name="province" class="input" id="province" value="{{$client->province}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="last_name">Region</label>
 								<input type="text" name="region" class="input" id="region" value="{{$client->region}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="company">Mobile Number</label>
 								<input type="text" name="mobilenumber" class="input" id="mobilenumber"  value="{{$client->contact_number}}">
+								<div class="error"></div>
 							</div>
 		
 							<div class="input_wrap">
 								<label for="experience">Landline Number</label>
 								<input type="text" name="landlinenumber" class="input" id="landlinenumber" value="{{$client->landline_number}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="designation">Email Address</label>
 								<input type="text" name="emailaddress" class="input" id="emailaddress" value="{{$client->email_address}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="confirm_text">Skill/Talent</label>
@@ -226,7 +242,7 @@
 									<option value="Unemployed" <?php if($client->occupations->employment_status == "Unemployed") echo 'selected="selected"'; ?> >Unemployed</option>
 									<option value="Self Employed" <?php if($client->occupations->employment_status == "Self Employed") echo 'selected="selected"'; ?> >Self Employed</option>
 								</select>
-							
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label class="special-label">Category of Employment:</label>
@@ -235,6 +251,7 @@
 									<option value="Government"<?php if($client->occupations->employment_category == "Government") echo 'selected="selected"'; ?> >Government</option>
 									<option value="Private"<?php if($client->occupations->employment_category == "Private") echo 'selected="selected"'; ?> >Private</option>
 								</select>
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label class="special-label">Type of Employment:</label>
@@ -246,6 +263,7 @@
 									<option value="Emergency"<?php if($client->occupations->employment_type == "Emergency") echo 'selected="selected"'; ?> >Emergency</option>
 									
 								</select>
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label class="special-label">Occupation</label>
@@ -304,6 +322,8 @@
 								<input type="radio" name="occupation"  value="Others, specify" onclick="text(0)" <?php echo ($client->occupations->occupation == "Others, specify" ? 'checked="checked"': '');?>> 
 								<span class="checkmark1"></span>
 								</label>
+
+								<div class="error" id="bank"></div>
 
 								<div id="divothers">
 									<label for="">Specify</label>
