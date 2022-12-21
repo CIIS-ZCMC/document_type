@@ -642,10 +642,7 @@ class PageController extends Controller
         else{
             
                 
-        $clientapplication=ClientApplication::where('client_id',$client->id)->where('application_type','=','Senior')->first();
-
-        if($clientapplication == null)
-        {
+      
          
 
 
@@ -658,21 +655,10 @@ class PageController extends Controller
                 ])->with(compact('client','barangaylist'));
 
             }
-            else
-            {
-
-                session_start();
-                $_SESSION['fail'] ="fail";
-               
-             
-                
-                return redirect()->back()->with('fail');  
-                exit;
-
-            }
+         
 
         
-        }
+        
     }
 
     public function searchongoingpwd(Request $request)
