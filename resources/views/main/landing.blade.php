@@ -57,9 +57,9 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav ms-auto" id="navbar-navlist">
                         <li class="nav-item">
-                            <a class="nav-link" href="#home">Home</a>
+                            <a class="nav-link" href="#_home">Home</a>
                         </li>
-                        <li class="nav-item">
+                        {{--<li class="nav-item">
                             <a class="nav-link" href="#service">Senior</a>
                         </li>
                         <li class="nav-item">
@@ -67,15 +67,25 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#pricing">Solo Parent</a>
+                        </li>--}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#_services">Services</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#_beneficiaries">Beneficiaries</a>
+                        </li>
+                      
+                        {{--<li class="nav-item">
                             <a class="nav-link" href="#app">Infographics</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#team">Team</a>
+                        </li>--}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#_contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#contact">Contact</a>
+                            <a class="nav-link" href="{{ url('') }}">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -359,11 +369,11 @@
         <!-- end home section -->
 
         <!-- service section -->
-        <section class="section service bg-light" id="service">
+        <section class="section service bg-light" id="_services">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <div class="title text-center mb-5">
+                        <div class="title text-center mb-3">
                             <h6 class="mb-0 fw-bold text-primary">What We Do?</h6>
                             <h2 class="f-40">How can we help you!</h2>
                             <div class="border-phone">
@@ -377,7 +387,7 @@
                 <div class="row justify-content-between">
                     <div class="col-lg-4">
                         <div class="service-box text-center shadow">
-                            <div class="service-icon p-3">
+                            <div class="service-icon p-4">
                                <div>
                                     <img src="{{ asset('dist/images2/service/service3.svg') }}" style="width: 120px; height:120px;" alt="">
                                </div>
@@ -395,7 +405,7 @@
 
                     <div class="col-lg-4 pt-4 pt-lg-0">
                         <div class="service-box text-center shadow">
-                            <div class="service-icon p-3">
+                            <div class="service-icon p-4">
                                 <div>
                                     <img src="{{ asset('dist/images2/service/service2.svg') }}" style="width: 120px; height:120px;" alt="">
                                </div>
@@ -413,7 +423,7 @@
 
                     <div class="col-lg-4 pt-4 pt-lg-0">
                         <div class="service-box text-center shadow">
-                            <div class="service-icon p-3">
+                            <div class="service-icon p-4">
                                 <div>
                                     <img src="{{ asset('dist/images2/service/service1.svg') }}" style="width: 120px; height:120px;" alt="">
                                </div>
@@ -434,11 +444,11 @@
         <!-- end section -->
 
            <!-- benficiaries section -->
-           <section class="section service bg-light" id="service">
+           <section class="section service bg-light" id="_beneficiaries">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <div class="title text-center mb-5">
+                        <div class="title text-center mb-3">
                             <h2 class="f-40">Who are Qualified as Beneficiaries?</h2>
                             <div class="border-phone">
                                 <p class="text-muted">The system has the following people:
@@ -528,7 +538,7 @@
         <!-- end section -->
 
         <!-- contact section -->
-        <section class="section contact overflow-hidden" id="contact">
+        <section class="section contact overflow-hidden" id="_contact">
             <!-- start container -->
             <div class="container">
                 <div class="row justify-content-center">
@@ -536,8 +546,7 @@
                         <div class="title text-center mb-5">
                             <h6 class="mb-0 fw-bold text-primary">Contact Us</h6>
                             <h2 class="f-40">Get In Touch!</h2>
-                            <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor eos <br>
-                                inventore omnis aliquid rerum alias molestias.</p>
+                            <p class="text-muted">For concerns and issues regarding the process  you may contact us via email, sms or call. </p>
 
                         </div>
                     </div>
@@ -548,7 +557,7 @@
                         <div class="contact-box">
                             <div class="mb-4">
                                 <h4 class=" fw-semibold mb-1">Need Support !</h4>
-                                <p class="text-muted">Contact us for a quote , help to join the them.</p>
+                                <p class="text-muted">Contact us for a quote ,for the better improvement.</p>
                             </div>
 
                             <div class="custom-form mt-4 ">
@@ -622,7 +631,9 @@
                     <div class="col-md-4">
                         <div class="d-flex align-items-center">
                             <div class="flex-shrink-0">
-                                <i class="mdi mdi-google-maps f-50 text-primary"></i>
+                                <span class="material-symbols-outlined">
+                                    location_on
+                                    </span>
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1">Location</h5>
@@ -634,7 +645,9 @@
                     <div class="col-md-4">
                         <div class="d-flex align-items-center mt-4 mt-lg-0">
                             <div class="flex-shrink-0">
-                                <i class="mdi mdi-email f-50 text-primary"></i>
+                                <span class="material-symbols-outlined">
+                                    mail
+                                </span>
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1">Email</h5>
@@ -644,12 +657,14 @@
                     </div>
                     <div class="col-md-4">
                         <div class="d-flex align-items-center mt-4 mt-lg-0">
-                            <div class="flex-shrink-0">
-                                <i class="mdi mdi-phone f-50 text-primary"></i>
+                            <div class="flex-shrink-0">                             
+                                <span class="material-symbols-outlined">
+                                    call
+                                </span>
                             </div>
                             <div class="flex-grow-1 ms-3">
                                 <h5 class="mb-1">Phone</h5>
-                                <p class="f-14 mb-0 text-muted">09876543211</p>
+                                <p class="f-14 mb-0 text-muted">098765432112</p>
                             </div>
                         </div>
                     </div>

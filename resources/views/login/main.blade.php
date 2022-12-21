@@ -2,20 +2,25 @@
 
 @section('head')
     <title>Login | Social Welfare Registration and Benefits System</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 @endsection
 
 @section('content')
+
 
 <form class='card mt-5' action="{{ route('login.check') }}" method="post" id="loginForm">
     @csrf
     <div class="container sm:px-10">
         <div class="block xl:grid grid-cols-2 gap-4">
             <!-- BEGIN: Login Info -->
-            <div class="hidden xl:flex flex-col min-h-screen d-flex justify-content-center">
-                <a href="" class="-intro-x flex items-center pt-5">
-                    <img alt="image" class="w-8" src="{{ asset('dist/images/login-bg3.svg') }}">
-                    <span class="text-white text-lg ml-3">
-                     SWRABS
+            <div class="hidden xl:flex flex-col min-h-screen d-flex justify-content-center text-white ">
+                <a href="{{ url('/main') }}" class="-intro-x flex items-center pt-5">
+                    {{--<img alt="image" class="w-8" src="{{ asset('dist/images/login-bg3.svg') }}">
+                    <span class="text-white text-lg ml-3">--}}
+                        <span class="material-symbols-outlined">
+                            arrow_back
+                        </span>
+                        <h1> H O M E P A G E</h1>
                     </span>
                 </a>
                 <div class="my-auto">
