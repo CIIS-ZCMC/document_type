@@ -199,7 +199,7 @@ class SideMenu
             ],
 
             'Members' => [
-                'icon' => 'users',
+                'icon' => 'contact',
                 'title' => 'Members',
                 'sub_menu' => [
                     'Citizen' => [
@@ -497,54 +497,54 @@ class SideMenu
                         ],
                         'title' => 'School'
                     ],
-                    'Card Requirements' => [
-                        'icon' => 'credit-card',
-                        'route_name' => 'fieldoffice',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Card Requirements'
-                    ],
-                    'Identification Card' => [
-                        'icon' => 'credit-card',
-                        'route_name' => 'fieldoffice',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Identification Card'
-                    ],
-                    'Civil Status' => [
-                        'icon' => 'battery',
-                        'route_name' => 'fieldoffice',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Civil Status'
-                    ],
-                    'Vulnerable Sector' => [
-                        'icon' => 'folder-open',
-                        'route_name' => 'fieldoffice',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Vulnerable Sector'
-                    ],
-                    'Office' => [
-                        'icon' => 'folder-open',
-                        'route_name' => 'fieldoffice',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Office'
-                    ],
-                    'Source of Income' => [
-                        'icon' => 'coins',
-                        'route_name' => 'fieldoffice',
-                        'params' => [
-                            'layout' => 'side-menu'
-                        ],
-                        'title' => 'Source of Income'
-                    ],
+                    // 'Card Requirements' => [
+                    //     'icon' => 'credit-card',
+                    //     'route_name' => 'fieldoffice',
+                    //     'params' => [
+                    //         'layout' => 'side-menu'
+                    //     ],
+                    //     'title' => 'Card Requirements'
+                    // ],
+                    // 'Identification Card' => [
+                    //     'icon' => 'credit-card',
+                    //     'route_name' => 'fieldoffice',
+                    //     'params' => [
+                    //         'layout' => 'side-menu'
+                    //     ],
+                    //     'title' => 'Identification Card'
+                    // ],
+                    // 'Civil Status' => [
+                    //     'icon' => 'battery',
+                    //     'route_name' => 'fieldoffice',
+                    //     'params' => [
+                    //         'layout' => 'side-menu'
+                    //     ],
+                    //     'title' => 'Civil Status'
+                    // ],
+                    // 'Vulnerable Sector' => [
+                    //     'icon' => 'folder-open',
+                    //     'route_name' => 'fieldoffice',
+                    //     'params' => [
+                    //         'layout' => 'side-menu'
+                    //     ],
+                    //     'title' => 'Vulnerable Sector'
+                    // ],
+                    // 'Office' => [
+                    //     'icon' => 'folder-open',
+                    //     'route_name' => 'fieldoffice',
+                    //     'params' => [
+                    //         'layout' => 'side-menu'
+                    //     ],
+                    //     'title' => 'Office'
+                    // ],
+                    // 'Source of Income' => [
+                    //     'icon' => 'coins',
+                    //     'route_name' => 'fieldoffice',
+                    //     'params' => [
+                    //         'layout' => 'side-menu'
+                    //     ],
+                    //     'title' => 'Source of Income'
+                    // ],
                 ]
             ],
             

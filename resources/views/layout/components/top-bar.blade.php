@@ -40,7 +40,7 @@
                         <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile
                     </a>
                 </li>
-                <li>
+                {{--<li>
                     <a href="{{url('/add_account/')}}" class="dropdown-item hover:bg-white/5">
                         <i data-lucide="edit" class="w-4 h-4 mr-2"></i> Add Account
                     </a>
@@ -54,7 +54,7 @@
                     <a href="{{url('/help/')}}" class="dropdown-item hover:bg-white/5">
                         <i data-lucide="help-circle" class="w-4 h-4 mr-2"></i> Help
                     </a>
-                </li>
+                </li>--}}
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>
                     <a style="cursor:pointer;" onclick="logout_func()" class="dropdown-item hover:bg-white/5">
