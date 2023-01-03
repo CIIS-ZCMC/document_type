@@ -681,44 +681,46 @@
 	
 <script src="{{ asset('dist/js3/mainpwd.js') }}"></script>
 <?php
-  session_start();
-		if (isset($_SESSION['success']) == 'success') 
-		{
-			?>
-				<script>
-				swal({
-						
-						title: "REGISTERED",
-						text: "Successfully registered!",
-						icon: "success",
-						button: "ok",
-					})
-					
-				
-				</script>
-			<?php
-			unset($_SESSION['success']);
-		}
-				
-		if (isset($_SESSION['fail']) == 'fail') 
-		{
-			?>
-			<script>
-				swal({
-					
-						title: "Fail",
-						text: "Fail to register!",
-						icon: "error",
-						button: "ok",
-					})
-				
-				
-				</script>
-			<?php
-			unset($_SESSION['fail']);
-		}
-   
+session_start();
+	  if (isset($_SESSION['success']) == 'success') 
+	  {
+		  ?>
+			  <script>
+			  swal({
+					  
+					  title: "REGISTERED",
+					  text: "Successfully registered!",
+					  icon: "success",
+					  button: "ok",
+				  })
+				  
+			  
+			  </script>
+		  <?php
+		  unset($_SESSION['success']);
+	  }
+			  
+	  if (isset($_SESSION['fail']) == 'fail') 
+	  {
+		  ?>
+		  <script>
+			  swal({
+				  
+					  title: "Fail",
+					  text: "Fail to register!",
+					  icon: "error",
+					  button: "ok",
+				  })
+			  
+			  
+			  </script>
+		  <?php
+		  unset($_SESSION['fail']);
+	  }
+ 
 ?>
+
+
 <script>
 
 	

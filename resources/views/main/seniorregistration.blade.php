@@ -435,6 +435,8 @@
    
 ?>
  
+
+ 
 <script src="{{ asset('dist/js3/main.js') }}"></script>
 
 

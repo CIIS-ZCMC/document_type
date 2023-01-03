@@ -521,7 +521,7 @@ class ClientController extends Controller
         $clientid =  $request->input('clientid');
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
-        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'OPID-'.$yearOnly,$yearOnly);
+        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'PID-'.$yearOnly,$yearOnly);
 
             $applicationsave = new ClientApplication();
         
@@ -747,7 +747,7 @@ class ClientController extends Controller
         $clientid =  $request->input('clientid');
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
-        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'OSPID-'.$yearOnly,$yearOnly);
+        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SID-'.$yearOnly,$yearOnly);
             $applicationsave = new ClientApplication();
         
             $applicationsave->application_date= now()->toDateString('Y-m-d');;
@@ -958,7 +958,7 @@ class ClientController extends Controller
         $clientid =  $request->input('clientid');
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
-        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'RSID-'.$yearOnly,$yearOnly);
+        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SID-'.$yearOnly,$yearOnly);
         
             $applicationsave = new ClientApplication();
         
@@ -1082,7 +1082,7 @@ class ClientController extends Controller
         $clientid =  $request->input('clientid');
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
-        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'RPID-'.$yearOnly,$yearOnly);
+        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'PID-'.$yearOnly,$yearOnly);
             $applicationsave = new ClientApplication();
         
             $applicationsave->application_date= now()->toDateString('Y-m-d');;
@@ -1308,7 +1308,7 @@ class ClientController extends Controller
         $clientid =  $request->input('clientid');
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
-        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SPID-'.$yearOnly,$yearOnly);
+        $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'PID-'.$yearOnly,$yearOnly);
             $applicationsave = new ClientApplication();
         
             $applicationsave->application_date= now()->toDateString('Y-m-d');;
@@ -2545,6 +2545,8 @@ class ClientController extends Controller
                         Mail::to($clientdetails->email_address)->send(new ReferenceMail($details, $clientapplication, $clientdetails)); 
 
 
+
+                        
                             session_start();
                             $_SESSION['success'] ="success";
                         

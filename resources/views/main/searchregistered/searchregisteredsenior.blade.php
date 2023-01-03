@@ -128,7 +128,7 @@
    
 ?>
  
-<script src="{{ asset('dist/js3/main.js') }}"></script>
+{{-- <script src="{{ asset('dist/js3/main.js') }}"></script> --}}
 
 
 	

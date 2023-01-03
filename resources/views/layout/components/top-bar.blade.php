@@ -31,8 +31,8 @@
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">
                 <li class="p-2">
-                    <div class="font-medium">Ricah Mae Maque</div>
-                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">Developer</div>
+                    {{-- <div class="font-medium"> {{$user->username}}</div> --}}
+                    {{-- <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500"> {{ $LoggedUserInfo['name'] }}</div> --}}
                 </li>
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>
