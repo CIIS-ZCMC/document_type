@@ -29,6 +29,8 @@
 
         <!-- zc seal -->
         <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
+
+    
     </head>
 
     <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="-1">
@@ -85,7 +87,9 @@
                             <a class="nav-link" href="#_contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('') }}">Login</a>
+                            <a class="nav-link" href="{{ url('') }}">
+                                <span id="btn-span" style="background: white; padding: 5px 20px; color: #1e3a8a; border-radius: 5px">Login</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
