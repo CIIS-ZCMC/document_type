@@ -101,21 +101,25 @@
 									<label for="confirm_password">Blood Type</label>
 									<select class="select" id="" name="bloodtype" >
 										<option  selected>Select Blood Type</option>
-										<option value="Male">A</option>
-										<option value="Female">B</option>  
-										<option value="Male">AB</option>
-										<option value="Female">O</option>  
+										<option value="A+">A+</option>
+										<option value="A-">A-</option>
+										<option value="B+">B+</option>  
+										<option value="B-">B-</option>  
+										<option value="AB+">AB+</option>
+										<option value="AB-">AB-</option>
+										<option value="O+">O+</option>  
+										<option value="O-">O-</option>  
 									</select>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_password">Civil Status</label>
 									<select class="select" id="addCivilStatus" name="civilstatus" >
 										<option value="0" selected>Select Civil Status</option>
-										<option value="Male">Maried</option>
-										<option value="Female">Widowed</option>  
+										<option value="Married">Married</option>
+										<option value="Widowed">Widowed</option>  
 										<option value="Separated">Separated</option>
-										<option value="Female">Divorced</option>  
-										<option value="Female">Single</option>  
+										<option value="Divorced">Divorced</option>  
+										<option value="Single">Single</option>  
 									</select>
 									<div class="error"></div>
 								</div>
@@ -230,9 +234,9 @@
 								<label for="first_name">Status of Employment</label>
 								<select class="select" id="addEmployment" name="employmentstatus" >
 									<option value="0" selected>Select Employment Status</option>
-									<option value="Male">Employed</option>
-									<option value="Female">Unemployed</option>  
-									<option value="Female">Self-employed</option> 
+									<option value="Employed">Employed</option>
+									<option value="Unemployed">Unemployed</option>  
+									<option value="Self-employed">Self-employed</option> 
 								</select>
 								<div class="error"></div>
 							
@@ -241,9 +245,9 @@
 								<label class="special-label">Category of Employment:</label>
 								<select class="select" id="addCategory" name="employmentcategory" >
 									<option value="0" selected>Select Employment Type</option>
-									<option value="Male">N/A</option>
-									<option value="Female">Government</option>  
-									<option value="Female">Private</option> 
+									<option value="N/A">N/A</option>
+									<option value="Government">Government</option>  
+									<option value="Private">Private</option> 
 									
 								</select>
 								<div class="error"></div>
@@ -252,11 +256,11 @@
 								<label class="special-label">Type of Employment:</label>
 								<select class="select" id="addType" name="employmenttype" >
 									<option value="0" selected>Select Employment Type</option>
-									<option value="Male">N/A</option>
-									<option value="Female">Permanent/Regular</option>  
-									<option value="Female">Seasonal</option> 
-									<option value="Female">Casual</option>  
-									<option value="Female">Emergency</option> 
+									<option value="N/A">N/A</option>
+									<option value="Permanent/Regular">Permanent/Regular</option>  
+									<option value="Seasonal">Seasonal</option> 
+									<option value="Casual">Casual</option>  
+									<option value="Emergency">Emergency</option> 
 									
 								</select>
 								<div class="error"></div>
