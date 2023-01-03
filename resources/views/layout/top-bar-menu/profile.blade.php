@@ -24,7 +24,7 @@ box icon
             <img alt="Profile" src="{{ asset('dist/images2/cityhallzc.jpg') }}" style="width: 400%;height:300px;filter: blur(5px);
             -webkit-filter: blur(5px);position:relative;">
         </div>
-        <div style="position:relative;width:50%;border:solid white 5px;background:grey;width:100%;padding:50px; margin-top:32px;border-radius:10px;">
+        <div style="position:relative;width:50%;border:solid white 5px;width:100%;padding:50px; margin-top:32px;border-radius:10px;">
             <div class="mb-3">     
                 <label for="exampleInputEmail1" class="form-label">Name</label>
                 <input type="email"  class="form-control" value="{{ $LoggedUserInfo['name'] }}" readonly>
