@@ -611,37 +611,6 @@
                     </div>
 
 
-                    <div class="intro-y box mt-5">
-                        <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                            <h2 class="font-medium text-base mr-auto">
-                                Select Verification Schedule
-                            </h2>
-                        </div>
-                        <div class="p-5">
-                            <div class="grid grid-cols-12 gap-x-5">
-                                <div class="col-span-12 xl:col-span-6">
-                                    <div >
-                                        <label for="update-profile-form-6" class="form-label">Date:</label>
-                                        <input id="schedule" type="date" class="form-control" name="schedule" >
-                                    </div>
-                                    <div >
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-span-12 xl:col-span-6">
-                                    <div class="mt-3 xl:mt-0">
-                                        <label for="religion" class="form-label">Number of Clients Scheduled</label>
-                                        <input id="ricah" type="text" class="form-control"  value="" disabled>
-                                    </div>
-                                   
-                                    
-                                </div>
-                            </div>
-                           
-                        </div>
-                    </div>
-
-                  
                
                     
 
@@ -704,6 +673,36 @@
                         <!-- END: Multiple Item -->
                         
 
+                        <div class="intro-y box mt-5">
+                            <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <h2 class="font-medium text-base mr-auto">
+                                    Select Verification Schedule
+                                </h2>
+                            </div>
+                            <div class="p-5">
+                                <div class="grid grid-cols-12 gap-x-5">
+                                    <div class="col-span-12 xl:col-span-6">
+                                        <div >
+                                            <label for="update-profile-form-6" class="form-label">Date:</label>
+                                            <input id="schedule" type="date" class="form-control" name="schedule" >
+                                        </div>
+                                        <div >
+                                            
+                                        </div>
+                                    </div>
+                                    {{-- <div class="col-span-12 xl:col-span-6">
+                                        <div class="mt-3 xl:mt-0">
+                                            <label for="religion" class="form-label">Number of Clients Scheduled</label>
+                                            <input id="ricah" type="text" class="form-control"  value="" disabled>
+                                        </div>
+                                       
+                                        
+                                    </div> --}}
+                                </div>
+                               
+                            </div>
+                        </div>
+    
                         
                       
 
@@ -792,7 +791,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <?php
-    
+    session_start();
             if (isset($_SESSION['success']) == 'success') 
             {
                 ?>
@@ -832,6 +831,24 @@
     ?>
     
     <script type="text/javascript">
+
+    
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("schedule").setAttribute("min", today);
+
         $(document).ready(function()
         {
     

@@ -334,7 +334,7 @@
 							<div class="form_container">
 								<div class="input_wrap">
 									<label for="company">Mobile Number</label>
-									<input type="text" name="mobilenumber" class="input" id="mobilenumber" required>
+									<input type="text" name="mobilenumber" class="input" id="mobilenumber" maxlength="11" required>
 									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
@@ -472,6 +472,22 @@
 					
 
 		// 	});	
+
+		var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("birthdate").setAttribute("max", today);
 
 		function text(x)
 			{

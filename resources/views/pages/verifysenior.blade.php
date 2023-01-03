@@ -531,6 +531,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     
     <?php
+    session_start();
     
             if (isset($_SESSION['success']) == 'success') 
             {

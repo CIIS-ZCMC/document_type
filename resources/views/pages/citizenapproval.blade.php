@@ -440,14 +440,14 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="col-span-12 xl:col-span-6">
+                                    {{-- <div class="col-span-12 xl:col-span-6">
                                         <div class="mt-3 xl:mt-0">
                                             <label for="religion" class="form-label">Number of Clients Scheduled</label>
                                             <input id="ricah" type="text" class="form-control"  value="" disabled>
                                         </div>
                                        
                                         
-                                    </div>
+                                    </div> --}}
                                 </div>
                                
                             </div>
@@ -581,6 +581,23 @@
 ?>
     <script type="text/javascript">
     
+
+    var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("schedule").setAttribute("min", today);
+
         $(document).ready(function()
         {
             $("#datatable").DataTable({

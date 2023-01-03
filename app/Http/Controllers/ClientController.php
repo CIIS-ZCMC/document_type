@@ -211,15 +211,15 @@ class ClientController extends Controller
                 $_SESSION['success'] ="success";
                
              
-                return view('main/landing', [
-                    // Specify the base layout.
-                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                    // The default value is 'side-menu'
+                // return view('main/landing', [
+                //     // Specify the base layout.
+                //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                //     // The default value is 'side-menu'
         
-                    // 'layout' => 'side-menu'
-                ])->with('success');
+                //     // 'layout' => 'side-menu'
+                // ])->with('success');
              
-                
+                return redirect('main');
                 exit;
 
                
@@ -2045,6 +2045,7 @@ class ClientController extends Controller
         $_SESSION['success'] ="success";
       
      
+        
         return redirect()->back()->with('success');  
         exit;
     }
