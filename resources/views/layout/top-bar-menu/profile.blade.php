@@ -15,33 +15,26 @@ box icon
 
 @section('subcontent')
 <form action="">
-    <div class="container shadow d-flex justofy-content-center">
-        <div class="col-4" >
-            <img alt="Profile" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}" style="width: 200px; height: 200px; margin:50px;border-radius: 50%;">
+    <div>
+        <img alt="Profile" src="{{ asset('dist/images2/cityhallzc.jpg') }}" style="width: 400%;height:300px;filter: blur(5px);
+        -webkit-filter: blur(5px);">
+    </div>
+    <div class="mb-5">
+        <img alt="Profile" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}" style="width: 200px; height: 200px; border-radius: 50%;z-index:2;position:absolute;top:250px;left:100px;border:solid white 5px;margin:20px;">        
+    </div>   
+    <div style="position:absolute;left:24%; border:blue;">
+        <div class="mb-3">     
+            <label for="exampleInputEmail1" class="form-label">Name</label>
+            <input type="email"  class="form-control w-50" value="{{ $LoggedUserInfo['name'] }}" readonly>
         </div>
-      <div class="row g-3">
-          
-            <div class="col-4">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Name</label>
-                    <input type="email" class="form-control w-100" >
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control"  >
-                    
-                    <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Contact</label>
-                    <input type="email" class="form-control" >
-                    </div>
-            </div>
-        </div>
-                {{--<button type="submit" class="btn btn-primary">Submit</button>--}}
-           
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" class="form-control w-50" value="{{ $LoggedUserInfo['email'] }}" readonly>
         </div>
     </div>
+   
 </form>
-
 
 
 @endsection
