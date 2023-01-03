@@ -8,9 +8,9 @@
 	<link rel="stylesheet" href=" https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <!-- zc seal -->
-        <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
-
+    <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
 </head>
 <body>
 	<section>
@@ -381,10 +381,16 @@
 
 				<div class="btns_wrap">
 					<div class="common_btns form_1_btns">
+						<a href="/main" style="text-decoration: none;">
+							
+							<button type="button" onclick="unsave()" class="btn_back" style="margin-right: 5px;"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+						
+						</a>
 						<button type="button" value="Submit" class="btn_next">Next  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
 					</div>
 					<div class="common_btns form_2_btns" style="display: none;">
 						<button type="button" class="btn_back"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+						
 						<button type="button" class="btn_next">Next <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
 					</div>
 					<div class="common_btns form_3_btns" style="display: none;">
@@ -412,7 +418,13 @@
 			<p>You have successfully completed the process.</p>
 		</div>
 	</div> --}}
+	<script>
+			window.onbeforeunload = function() {
+				//Whatever
+				return "WARNING! You have unsaved changes that may be lost!";
+			}
 	
+	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>

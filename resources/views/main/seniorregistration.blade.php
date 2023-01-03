@@ -362,6 +362,11 @@
 
 				<div class="btns_wrap">
 					<div class="common_btns form_1_btns">
+						<a href="/main" style="text-decoration: none;">
+							
+							<button type="button" onclick="unsave()" class="btn_back" style="margin-right: 5px;"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+						
+						</a>
 						<button type="button"  class="btn_next">Next  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
 					</div>
 					<div class="common_btns form_2_btns" style="display: none;">
@@ -387,6 +392,13 @@
 
 
 
+	<script>
+			window.onbeforeunload = function() {
+				//Whatever
+				return "WARNING! You have unsaved changes that may be lost!";
+			}
+	
+	</script>
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
