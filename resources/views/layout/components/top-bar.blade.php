@@ -2,10 +2,10 @@
 <div class="top-bar -mx-4 px-4 md:mx-0 md:px-0">
     <!-- BEGIN: Breadcrumb -->
     <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Inventory</a></li>
+        {{--<ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">SWRABS</a></li>
             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-        </ol>
+        </ol>--}}
     </nav>
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Search -->
