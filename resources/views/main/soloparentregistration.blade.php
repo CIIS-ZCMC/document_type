@@ -395,7 +395,7 @@
 											}
 									 </style>
 									<div class="add_rel">
-										<button type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily">Add</button>
+										<button type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily">ADD</button>
 									</div>
 								</div>
 							</div>
@@ -423,7 +423,7 @@
 										<td><input size="2" type="text" name="familyage"></td>
 										<td><input data-format="yyyy-MM-dd" class="input" type="date" id="familybirthdate" name="familybirthdate"></td>
 										
-										<td><input type="button" class="btn btn-warning" name="add" id="add" value="add"></td>
+										<td><input type="button" class="btn btn-warning" name="add" id="add" value="ADD"></td>
 									</tr>
 								</table>
 							</div>
@@ -550,7 +550,7 @@
 
 									 </style>
 										<div class="add_ed">
-											<input type="button" class="btn btn-warning add_item_btn" name="addeducation" id="addeducation" value="add" style="text-transform: capitalize;">
+											<input type="button" class="btn btn-warning add_item_btn" name="addeducation" id="addeducation" value="ADD" style="text-transform: capitalize;">
 										</div>
 									</div>
 						 		</div>
@@ -594,7 +594,7 @@
 											}
 									 </style>
 									 <div class="add_com">
-									<input type="button" class="btn btn-warning add_item_btn" name="addcommunity" id="addcommunity" value="add">
+									<input type="button" class="btn btn-warning add_item_btn" name="addcommunity" id="addcommunity" value="ADD">
 										</div>
 							</div>
 						</div>
@@ -618,7 +618,7 @@
 											
 											<td><input data-format="yyyy-MM-dd" class="input" type="date" id="commmunitydate" name="commmunitydate[]"></td>
 											
-											<td><input type="button" class="btn btn-warning" name="addcommunity" id="addcommunity" value="add"></td>
+											<td><input type="button" class="btn btn-warning" name="addcommunity" id="addcommunity" value="ADD"></td>
 										</tr>
 									</table>
 								</div>
@@ -663,7 +663,7 @@
 									 </style>
 									 <div class="add_sem">
 
-									 	<input type="button" class="btn btn-warning add_item_btn" name="addseminar" id="addseminar" value="add">
+									 	<input type="button" class="btn btn-warning add_item_btn" name="addseminar" id="addseminar" value="ADD">
 							
 									 </div>
 									</div>
@@ -687,7 +687,7 @@
 											
 											<td><input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="seminardate[]"></td>
 											
-											<td><input type="button" class="btn btn-warning" name="addseminar" id="addseminar" value="add"></td>
+											<td><input type="button" class="btn btn-warning" name="addseminar" id="addseminar" value="ADD"></td>
 										</tr>
 									</table>
 								</div>
@@ -855,12 +855,12 @@
 										padding: 7px 10px; 
 										color: white;
 										width: 100px;
-										margin: 20px 0;
+										margin: 20px 78%;
 										
 									}
 
 								</style>
-								<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+								<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="REMOVE">
 							
 							</div>`;
 			var x = 1;
@@ -881,11 +881,11 @@
 										padding: 7px 10px; 
 										color: white;
 										width: 100px;
-										margin: 20px 0;
+										margin: 20px 78%;
 									}
 
 								</style>
-								<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+								<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="REMOVE">
 							</div>`;
 			var x = 1;
 
@@ -912,10 +912,10 @@
 													padding: 7px 10px; 
 													color: white;
 													width: 100px;
-													margin: 20px 0;
+													margin: 20px 78%;
 												}
 										</style>
-										<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+										<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="REMOVE">
 									</div>`;
 			var x = 1;
 
@@ -951,11 +951,11 @@
 												padding: 7px 10px; 
 												color: white;
 												width: 100px;
-												margin: 20px 0;
+												margin: 20px 78%;
 											}
 
 									 </style>
-									<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="Remove">
+									<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="REMOVE">
 									
 								</div>`;
 			var x = 1;

@@ -7,7 +7,13 @@
 
         <!-- zc seal -->
         <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
-
+	<style>
+		#btn-right {
+			display: flex;
+			justify-content: flex-end;
+			align-items:center;
+		}
+	</style>
 </head>
 <body>
 	<section>
@@ -219,7 +225,7 @@
 							</div>
 							<div class="input_wrap">
 								<label for="designation">Email Address</label>
-								<input type="text" name="emailaddress" class="input"  style="text-transform: capitalize;" id="emailaddress">
+								<input type="text" name="emailaddress" class="input"  id="emailaddress">
 								<div class="error"></div>
 							</div>
 						
@@ -417,7 +423,28 @@
 											<label for="confirm_password">Date of Birth</label>
 											<input data-format="MM/DD/YYYY" class="input" type="date" id="familybirthdate[]" name="familybirthdate[]">
 										</div>
-										<input type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily" value="add">
+										
+										<style>
+												.add_rel {
+												display: flex;
+												justify-content: flex-end;
+												align-items: center;
+												width: 80%;
+												margin: auto;
+												}
+												#addfamily {
+													background: #0083ce;
+													border: none;
+													cursor: pointer;
+													padding: 7px 10px; 
+													color: white;
+													width: 100px;
+													margin: 20px 0;
+												}
+										</style>
+										<div class="add_rel">
+											<input type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily" value="add">
+										</div>
 									</div>
 								</div>
 								{{-- <label for="company">Fathers Name </label>
@@ -805,7 +832,23 @@
 											<label for="confirm_password">Date of Birth</label>
 											<input data-format="MM/DD/YYYY" class="input" type="date" id="familybirthdate[]" name="familybirthdate[]">
 										</div>
-										<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+										
+										
+										<style>
+												#remove {
+													background: #e80027;
+													border: none;
+													cursor: pointer;
+													padding: 7px 10px; 
+													color: white;
+													width: 100px;
+													margin: 20px 78%;
+													
+												}
+
+											</style>
+											<input type="button" name="remove" id="remove" value="REMOVE">
+										
 									</div>`;
 				var x = 1;
 	
