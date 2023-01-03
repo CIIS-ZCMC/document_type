@@ -695,7 +695,7 @@
         <!-- end footer -->
 
         <!--Bootstrap Js-->
-        <script src="{{ asset('dist/js2/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('dist/js2/bootstrap.bundle.min.js') }}"></script> 
 
         <!-- Slider Js -->
         <script src="{{ asset('dist/js2/tiny-slider.js') }}"></script>

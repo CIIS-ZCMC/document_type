@@ -99,10 +99,14 @@
 									<label for="confirm_text">Blood Type</label>
 									<select class="select" id="addBlood" name="bloodtype" required>
 										<option  selected>Select Blood Type</option>
-										<option value="A">A</option>
-										<option value="B">B</option>  
-										<option value="AB">AB</option>
-										<option value="O">O</option>  
+										<option value="A+">A+</option>
+										<option value="A-">A-</option>
+										<option value="B+">B+</option>  
+										<option value="B-">B-</option>  
+										<option value="AB+">AB+</option>
+										<option value="AB-">AB-</option>
+										<option value="O+">O+</option>  
+										<option value="O-">O-</option>  
 									</select>
 									<div class="error"></div>
 								</div>
@@ -177,7 +181,7 @@
 
 							<div class="input_wrap">
 								<label for="user_name">Street</label>
-								<input type="text" name="street" class="input" id="street">
+								<input type="text" name="street" class="input" id="street" style="text-transform: capitalize;">
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
@@ -193,12 +197,12 @@
 							</div>
 							<div class="input_wrap">
 								<label for="last_name">City/Municipality</label>
-								<input type="text" name="city" class="input" id="city">
+								<input type="text" name="city" class="input" id="city" style="text-transform: capitalize;">
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="last_name">Province</label>
-								<input type="text" name="province" class="input" id="province">
+								<input type="text" name="province" class="input" id="province" style="text-transform: capitalize;">
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
@@ -361,7 +365,7 @@
 									<div class="input_wrap">
 										<label for="confirm_text">Sex</label>
 										<select class="select" id="addGender" name="familygender[]" >
-											<option selected="">Select Gender</option>
+											<option value="" selected="">Select Gender</option>
 											<option value="Male">Male</option>
 											<option value="Female">Female</option>  
 										</select>
@@ -370,7 +374,29 @@
 										<label for="confirm_text">Date of Birth</label>
 										<input data-format="MM/DD/YYYY" class="input" type="date" id="familybirthdate[]" name="familybirthdate[]">
 									</div>
-									<input type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily" value="add">
+									 <!---->
+									 <style>
+										    
+											.add_rel {
+											display: flex;
+											justify-content: flex-end;
+											align-items: center;
+											width: 80%;
+											margin: auto;
+											}
+											#addfamily {
+												background: #0083ce;
+												border: none;
+												cursor: pointer;
+												padding: 7px 10px; 
+												color: white;
+												width: 100px;
+												margin: 20px 0;
+											}
+									 </style>
+									<div class="add_rel">
+										<button type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily">ADD</button>
+									</div>
 								</div>
 							</div>
 							
@@ -397,7 +423,7 @@
 										<td><input size="2" type="text" name="familyage"></td>
 										<td><input data-format="yyyy-MM-dd" class="input" type="date" id="familybirthdate" name="familybirthdate"></td>
 										
-										<td><input type="button" class="btn btn-warning" name="add" id="add" value="add"></td>
+										<td><input type="button" class="btn btn-warning" name="add" id="add" value="ADD"></td>
 									</tr>
 								</table>
 							</div>
@@ -500,9 +526,34 @@
 										<label for="experience">Achievement/Award Received</label>
 										<input type="text" name="achievementaward[]" class="input" id="achievementaward
 										" style="text-transform: capitalize;">
-										<input type="button" class="btn btn-warning add_item_btn" name="addeducation" id="addeducation" value="add" style="text-transform: capitalize;">
+										
+										<style>
+										    
+											.add_ed {
+											display: flex;
+											justify-content: flex-end;
+											align-items: center;
+											width: 80%;
+											margin: auto;
+											}
+											#addeducation {
+												background: #0083ce;
+												border: none;
+												cursor: pointer;
+												padding: 7px 10px; 
+												color: white;
+												width: 100px;
+												margin: 20px 0;
+											}
+
+									 
+
+									 </style>
+										<div class="add_ed">
+											<input type="button" class="btn btn-warning add_item_btn" name="addeducation" id="addeducation" value="ADD" style="text-transform: capitalize;">
+										</div>
 									</div>
-								</div>
+						 		</div>
 		
 		
 								
@@ -522,7 +573,29 @@
 								<input type="text" name="position[]" class="input" id="schoolname" style="text-transform: capitalize;" required>
 								<label for="experience">Inclusive Date</label>
 								<input data-format="yyyy-MM-dd" class="input" type="date" id="commmunitydate" name="commmunitydate[]">
-								<input type="button" class="btn btn-warning add_item_btn" name="addcommunity" id="addcommunity" value="add">
+								
+								
+								<style>
+											.add_com {
+											display: flex;
+											justify-content: flex-end;
+											align-items: center;
+											width: 80%;
+											margin: auto;
+											}
+											#addcommunity {
+												background: #0083ce;
+												border: none;
+												cursor: pointer;
+												padding: 7px 10px; 
+												color: white;
+												width: 100px;
+												margin: 20px 0;
+											}
+									 </style>
+									 <div class="add_com">
+									<input type="button" class="btn btn-warning add_item_btn" name="addcommunity" id="addcommunity" value="ADD">
+										</div>
 							</div>
 						</div>
 
@@ -545,7 +618,7 @@
 											
 											<td><input data-format="yyyy-MM-dd" class="input" type="date" id="commmunitydate" name="commmunitydate[]"></td>
 											
-											<td><input type="button" class="btn btn-warning" name="addcommunity" id="addcommunity" value="add"></td>
+											<td><input type="button" class="btn btn-warning" name="addcommunity" id="addcommunity" value="ADD"></td>
 										</tr>
 									</table>
 								</div>
@@ -564,8 +637,36 @@
 								<input type="text" name="seminarposition[]" class="input" id="schoolname" style="text-transform: capitalize;" required >
 								<label for="experience">Inclusive Date</label>
 								<input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="seminardate[]">
-								<input type="button" class="btn btn-warning add_item_btn" name="addseminar" id="addseminar" value="add">
-							</div>
+								
+								
+								<style>
+										    
+											.add_sem {
+											display: flex;
+											justify-content: flex-end;
+											align-items: center;
+											width: 80%;
+											margin: auto;
+											}
+											#addseminar {
+												background: #0083ce;
+												border: none;
+												cursor: pointer;
+												padding: 7px 10px; 
+												color: white;
+												width: 100px;
+												margin: 20px 0;
+											}
+
+									 
+
+									 </style>
+									 <div class="add_sem">
+
+									 	<input type="button" class="btn btn-warning add_item_btn" name="addseminar" id="addseminar" value="ADD">
+							
+									 </div>
+									</div>
 						</div>
 							{{-- <div class="form_container">
 								<div style="overflow-x:auto;">
@@ -586,7 +687,7 @@
 											
 											<td><input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="seminardate[]"></td>
 											
-											<td><input type="button" class="btn btn-warning" name="addseminar" id="addseminar" value="add"></td>
+											<td><input type="button" class="btn btn-warning" name="addseminar" id="addseminar" value="ADD"></td>
 										</tr>
 									</table>
 								</div>
@@ -747,7 +848,22 @@ session_start();
 								<input type="text" name="position[]" class="input" id="schoolname" required>
 								<label for="experience">Inclusive Date</label>
 								<input data-format="yyyy-MM-dd" class="input" type="date" id="commmunitydate" name="commmunitydate[]">
-								<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+								
+								<style>
+									#remove {
+										background: #e80027;
+										border: none;
+										cursor: pointer;
+										padding: 7px 10px; 
+										color: white;
+										width: 100px;
+										margin: 20px 78%;
+										
+									}
+
+								</style>
+								<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="REMOVE">
+							
 							</div>`;
 			var x = 1;
 
@@ -758,13 +874,26 @@ session_start();
 								<input type="text" name="seminarposition[]" class="input" id="schoolname" required>
 								<label for="experience">Inclusive Date</label>
 								<input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="seminardate[]">
-								<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+								
+								<style>
+									#remove {
+										background: #e80027;
+										border: none;
+										cursor: pointer;
+										padding: 7px 10px; 
+										color: white;
+										width: 100px;
+										margin: 20px 78%;
+									}
+
+								</style>
+								<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="REMOVE">
 							</div>`;
 			var x = 1;
 
 		
 			var x = 1;
-			var htmleducation =`<<div class="input_wrap" >
+			var htmleducation =`<div class="input_wrap" >
 										<label for="experience">Type</label>
 										<input type="text" name="type[]" class="input" id="type">
 										<label for="experience">Name of School</label>
@@ -776,7 +905,19 @@ session_start();
 										<label for="experience">Achievement/Award Received</label>
 										<input type="text" name="achievementaward[]" class="input" id="achievementaward
 										">
-										<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+										
+										<style>
+												#remove {
+													background: #e80027;
+													border: none;
+													cursor: pointer;
+													padding: 7px 10px; 
+													color: white;
+													width: 100px;
+													margin: 20px 78%;
+												}
+										</style>
+										<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="REMOVE">
 									</div>`;
 			var x = 1;
 
@@ -803,7 +944,21 @@ session_start();
 										<label for="confirm_text">Date of Birth</label>
 										<input data-format=""MM/DD/YYYY" class="input" type="date" id="familybirthdate[]" name="familybirthdate[]">
 									</div>
-									<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+									
+									<style>
+											#remove {
+												background: #e80027;
+												border: none;
+												cursor: pointer;
+												padding: 7px 10px; 
+												color: white;
+												width: 100px;
+												margin: 20px 78%;
+											}
+
+									 </style>
+									<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="REMOVE">
+									
 								</div>`;
 			var x = 1;
 

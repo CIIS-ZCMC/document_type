@@ -93,11 +93,15 @@
 								<div class="input_wrap">
 									<label for="confirm_password">Blood Type</label>
 									<select class="select" id="addBloodtype" name="bloodtype" required>
-										<option selected="">Select Blood Type</option>
-										<option value="A">A</option>
-										<option value="B">B</option>  
-										<option value="AB">AB</option>
-										<option value="O">O</option>  
+										<option value="N/A" selected="">Select Blood Type</option>
+										<option value="A+">A+</option>
+										<option value="A-">A-</option>
+										<option value="B+">B+</option>  
+										<option value="B-">B-</option>  
+										<option value="AB+">AB+</option>
+										<option value="AB-">AB-</option>
+										<option value="O+">O+</option>  
+										<option value="O-">O-</option> 
 									</select>
 									<div class="error"></div>
 								</div>
