@@ -34,6 +34,7 @@
                 <li class="p-2">
                     {{-- <div class="font-medium"> {{$user->username}}</div> --}}
                     <div class="font-medium" style="text-transform: uppercase;"> {{ $LoggedUserInfo['name'] }}</div>
+                    <div class="font-small" style="color: #ccc; font-size: 12px"> {{ $LoggedUserInfo['role'] }}</div>
                 </li>
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>
