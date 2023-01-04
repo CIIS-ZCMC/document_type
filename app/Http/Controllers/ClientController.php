@@ -33,9 +33,9 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
-
+use Session;
 use Illuminate\Support\Str;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class ClientController extends Controller
@@ -207,19 +207,21 @@ class ClientController extends Controller
 
 
 
-                session_start();
-                $_SESSION['success'] ="success";
-               
+  
+        session_start();
+        $_SESSION['success'] ="success";
+       
              
-                // return view('main/landing', [
+             
+                // return redirect('main', [
                 //     // Specify the base layout.
                 //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                 //     // The default value is 'side-menu'
         
                 //     // 'layout' => 'side-menu'
                 // ])->with('success');
-             
-                return redirect('main');
+                // Alert::success('Congrats', 'You\'ve Successfully Registered');
+                return back()->with('success');
                 exit;
 
                
@@ -324,13 +326,7 @@ class ClientController extends Controller
                         $_SESSION['fail'] ="fail";
                        
                      
-                        return view('main/landing', [
-                            // Specify the base layout.
-                            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                            // The default value is 'side-menu'
-                
-                            // 'layout' => 'side-menu'
-                        ])->with('fail');
+                        return back()->with('fail');
                      
                         
                         exit;
@@ -373,7 +369,7 @@ class ClientController extends Controller
         {
             $application_date= now()->toDateString('Ymd');
             $yearOnly=substr($application_date,0,4);
-            $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'OSID-'.$yearOnly,$yearOnly);
+            $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SID-'.$yearOnly,$yearOnly);
                         $applicationsave = new ClientApplication();
                     
                         $applicationsave->application_date= now()->toDateString('Y-m-d');;
