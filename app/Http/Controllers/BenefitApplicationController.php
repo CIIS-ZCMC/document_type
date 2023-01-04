@@ -891,79 +891,72 @@ class BenefitApplicationController extends Controller
            
 
           
-          
-          
+      
          
         if($request->input('type') == 'Citizen' )
         {
-            $client1= Client::with("occupations","barangays","client_applications")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
+            $client= Client::with("occupations","barangays","client_applications","client_application_requirements")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
                 $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
             })->with(["client_applications" => function($subQuery) use ($request){
                 $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
             }])
             ->first();
 
-            foreach ($client1->client_applications as $app) {
-               
-            }
+            // $app=$client1->client_application_id;
               
-            $clients = $client1->whereHas("client_application_requirements", function($subQuery) use ($app)  {
-                $subQuery->where("client_application_requirements.client_application_id", "=", $app->id); 
-            })->with(["client_application_requirements" => function($subQuery) use ($app){
-                $subQuery->where("client_application_requirements.client_application_id", "=", $app->id); 
-            }])->first();;
+            // $clients = $client1->whereHas("client_application_requirements", function($subQuery) use ($app)  {
+            //     $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
+            // })->with(["client_application_requirements" => function($subQuery) use ($app){
+            //     $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
+            // }])->first();;
 
           
 
               
             return view('main/track/updatecitizencardapplication', [
              
-                ])->with(compact('client','barangaylist','client1'));
+                ])->with(compact('barangaylist','client'));
         }
         elseif($request->input('type') == 'Senior')
 
         
         {
-                    $client1= Client::with("occupations","barangays","client_applications")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
+                    $client= Client::with("occupations","barangays","client_applications","client_application_requirements")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
                         $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
                     })->with(["client_applications" => function($subQuery) use ($request){
                         $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
                     }])->first();
 
-                    foreach ($client1->client_applications as $app) {
-                    
-                    }
+                    // $app=$client1->client_application_id;
                   
-                    $client = $client1->whereHas("client_application_requirements", function($subQuery) use ($app)  {
-                        $subQuery->where("client_application_requirements.client_application_id", "=", $app->id); 
-                    })->with(["client_application_requirements" => function($subQuery) use ($app){
-                        $subQuery->where("client_application_requirements.client_application_id", "=", $app->id); 
-                    }])->first();;
+                    // $client = $client1->whereHas("client_application_requirements", function($subQuery) use ($app)  {
+                    //     $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
+                    // })->with(["client_application_requirements" => function($subQuery) use ($app){
+                    //     $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
+                    // }])->first();;
                    
                     return view('main/track/updateseniorcardapplication', [
                     
-                        ])->with(compact('client1','barangaylist','client'));
+                        ])->with(compact('client','barangaylist'));
         }
         elseif($request->input('type') == 'PWD')
 
 
         {
             
-            $client1= Client::with("occupations","barangays","identification_cards","physicians","disability_types","disability_causes","organizations","family_compositions","client_applications")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
+            $client= Client::with("occupations","barangays","identification_cards","physicians","disability_types","disability_causes","organizations","family_compositions","client_applications","client_application_requirements")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
                 $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
             })->with(["client_applications" => function($subQuery) use ($request){
                 $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
             }])->first();
 
-            foreach ($client1->client_applications as $app) {
-                
-            }
+        //    $app=$client1->client_application_id;
             
-            $client = $client1->whereHas("client_application_requirements", function($subQuery) use ($app)  {
-                $subQuery->where("client_application_requirements.client_application_id", "=", $app->id); 
-            })->with(["client_application_requirements" => function($subQuery) use ($app){
-                $subQuery->where("client_application_requirements.client_application_id", "=", $app->id); 
-            }])->first();
+        //     $client = $client1->whereHas("client_application_requirements", function($subQuery) use ($app)  {
+        //         $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
+        //     })->with(["client_application_requirements" => function($subQuery) use ($app){
+        //         $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
+        //     }])->first();
             
             return view('main/track/updatepwdcardapplication', [
              
@@ -971,25 +964,23 @@ class BenefitApplicationController extends Controller
         }
         else
         {
-            $client1= Client::with("occupations","barangays","family_compositions","education","community_involvements","seminar_trainings","client_applications")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
+            $client= Client::with("occupations","barangays","family_compositions","education","community_involvements","seminar_trainings","client_applications","client_application_requirements")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
                 $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
             })->with(["client_applications" => function($subQuery) use ($request){
                 $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
             }])->first();
 
-            foreach ($client1->client_applications as $app) {
-                
-            }
+            // $app=$client1->client_application_id;
             
-            $client = $client1->whereHas("client_application_requirements", function($subQuery) use ($app)  {
-                $subQuery->where("client_application_requirements.client_application_id", "=", $app->id); 
-            })->with(["client_application_requirements" => function($subQuery) use ($app){
-                $subQuery->where("client_application_requirements.client_application_id", "=", $app->id); 
-            }])->first();;
+            // $client = $client1->whereHas("client_application_requirements", function($subQuery) use ($app)  {
+            //     $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
+            // })->with(["client_application_requirements" => function($subQuery) use ($app){
+            //     $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
+            // }])->first();;
             
             return view('main/track/updatesoloparentcardapplication', [
              
-                ])->with(compact('client','barangaylist','client1'));
+                ])->with(compact('barangaylist','client'));
 
         }
 
@@ -1193,9 +1184,23 @@ class BenefitApplicationController extends Controller
 
 
               
+            session_start();
+            $_SESSION['success'] ="success";
+           
+         
             return view('main/landing', [
+                // Specify the base layout.
+                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                // The default value is 'side-menu'
+    
+                // 'layout' => 'side-menu'
+            ])->with('success');
+         
+            
+            exit;
+            // return view('main/landing', [
              
-                ])->with(compact('barangaylist'));
+            //     ])->with(compact('barangaylist'));
    
     }
 
@@ -1297,11 +1302,25 @@ class BenefitApplicationController extends Controller
 
 
 
+            session_start();
+            $_SESSION['success'] ="success";
+           
+         
+            return view('main/landing', [
+                // Specify the base layout.
+                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                // The default value is 'side-menu'
+    
+                // 'layout' => 'side-menu'
+            ])->with('success');
+         
+            
+            exit;
 
               
-            return view('main/landing', [
+            // return view('main/landing', [
              
-                ])->with(compact('barangaylist'));
+            //     ])->with(compact('barangaylist'));
    
     }
 
@@ -1475,10 +1494,24 @@ class BenefitApplicationController extends Controller
 
 
 
-              
+            session_start();
+            $_SESSION['success'] ="success";
+           
+         
             return view('main/landing', [
+                // Specify the base layout.
+                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                // The default value is 'side-menu'
+    
+                // 'layout' => 'side-menu'
+            ])->with('success');
+         
+            
+            exit;
+              
+            // return view('main/landing', [
              
-                ])->with(compact('barangaylist'));
+            //     ])->with(compact('barangaylist'));
    
     }
 
@@ -1677,11 +1710,25 @@ class BenefitApplicationController extends Controller
 
 
 
+            session_start();
+            $_SESSION['success'] ="success";
+           
+         
+            return view('main/landing', [
+                // Specify the base layout.
+                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                // The default value is 'side-menu'
+    
+                // 'layout' => 'side-menu'
+            ])->with('success');
+         
+            
+            exit;
 
               
-            return view('main/landing', [
+            // return view('main/landing', [
              
-                ])->with(compact('barangaylist'));
+            //     ])->with(compact('barangaylist'));
    
     }
 

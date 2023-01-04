@@ -74,11 +74,12 @@
 									<input type="text" name="firstname" class="input" id="firstname" value="{{$client->first_name}}">
 									<input type="hidden"  name="clientid" class="input" id="clientid" id="email" value="{{$client->id}}" style="text-transform: capitalize;" required>
 									<input type="hidden"  name="appid" class="input" id="appid" id="email" value="@foreach ($client1->client_applications as $app){{$app->id}}@endforeach" style="text-transform: capitalize;" required>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="email">Last Name</label>
 									<input type="text" name="lastname" class="input" id="lastname" value="{{$client->last_name}}">
-									
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="email">Middle Name</label>
@@ -95,6 +96,7 @@
 										<option value="Male" <?php if($client->sex == "Male") echo 'selected="selected"'; ?> >Male</option>
 										<option value="Female" <?php if($client->sex == "Female") echo 'selected="selected"'; ?> >Female</option>
 									</select>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_password">Blood Type</label>
@@ -104,6 +106,7 @@
 										<option value="AB"<?php if($client->blood_type == "AB") echo 'selected="selected"'; ?> >AB</option>
 										<option value="O"<?php if($client->blood_type == "O") echo 'selected="selected"'; ?> >O</option>
 									</select>
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_password">Civil Status</label>
@@ -114,6 +117,7 @@
 										<option value="Divorced" <?php if($client->civil_status == "Divorced") echo 'selected="selected"'; ?> >Divorced</option>
 										<option value="Single" <?php if($client->civil_status == "Single") echo 'selected="selected"'; ?> >Single</option>
 									</select>
+									<div class="error"></div>
 								</div>
 
 								<div class="input_wrap">
@@ -128,6 +132,7 @@
 										<option value="Vocational" <?php if($client->educational_attainment == "Vocational") echo 'selected="selected"'; ?> >Vocational</option>
 										<option value="Post Graduate" <?php if($client->educational_attainment == "Post Graduate") echo 'selected="selected"'; ?> >Post Graduate</option>
 									</select>
+									<div class="error"></div>
 								</div>
 
 								
@@ -143,16 +148,19 @@
 								<div class="input_wrap">
 									<label for="">Date of Birth</label>
 									<input data-format="MM/DD/YYYY" class="input" type="date" id="birthdate" name="birthdate" value="{{$client->birth_date}}">
+									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
 									<label for="">Place of Birth</label>
 									<input type="text" name="birthplace" class="input" id="" value="{{$client->birth_place}}">
+									<div class="error"></div>
 								</div>
 							</div>
 
 							<div class="input_wrap">
 								<label for="user_name">Street</label>
 								<input type="text" name="street" class="input" id="user_name" value="{{$client->street}}" name="birthdate">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="first_name">Barangay</label>
@@ -164,31 +172,38 @@
 									<option value="{{$item->id}}"<?php if($client->barangays->name == $item->name ) echo 'selected="selected"'; ?> >{{$item->name}}</option>
 									@endforeach
 								<select>
+									<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="last_name">City/Municipality</label>
 								<input type="text" name="city" class="input" id="last_name" value="{{$client->municipality}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="last_name">Province</label>
 								<input type="text" name="province" class="input" id="last_name" value="{{$client->province}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="last_name">Region</label>
 								<input type="text" name="region" class="input" id="last_name" value="{{$client->region}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="company">Mobile Number</label>
 								<input type="text" name="mobilenumber" class="input" id="company" value="{{$client->contact_number}}">
+								<div class="error"></div>
 							</div>
 
 							<div class="input_wrap">
 								<label for="experience">Landline Number</label>
 								<input type="text" name="landlinenumber" class="input" id="experience" value="{{$client->landline_number}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="designation">Email Address</label>
 								<input type="text" name="emailaddress" class="input" id="designation" value="{{$client->email_address}}">
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label for="confirm_text">Skill/Talent</label>
@@ -212,6 +227,7 @@
 										<option value="Unemployed" <?php if($client->occupations->employment_status == "Unemployed") echo 'selected="selected"'; ?> >Unemployed</option>
 										<option value="Self Employed" <?php if($client->occupations->employment_status == "Self Employed") echo 'selected="selected"'; ?> >Self Employed</option>
 								</select>
+								<div class="error"></div>
 							
 							</div>
 							<div class="input_wrap">
@@ -222,6 +238,7 @@
 									<option value="Private"<?php if($client->occupations->employment_category == "Private") echo 'selected="selected"'; ?> >Private</option>
 									
 								</select>
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label class="special-label">Type of Employment:</label>
@@ -234,6 +251,7 @@
 										<option value="Emergency"<?php if($client->occupations->employment_type == "Emergency") echo 'selected="selected"'; ?> >Emergency</option>
 										
 								</select>
+								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
 								<label class="special-label">Occupation</label>
@@ -292,6 +310,8 @@
 								<input type="radio" name="occupation"  value="Others, specify" onclick="text(0)" <?php echo ($client->occupations->occupation == "Others, specify" ? 'checked="checked"': '');?>> 
 								<span class="checkmark1"></span>
 								</label>
+
+								<div class="error" id="bank"></div>
 
 								<div id="divothers">
 									<label for="">Specify</label>
@@ -511,6 +531,8 @@
 										<input type="checkbox" name="type[]" value="Rare Disease (RA10747)" {{ (in_array('Rare Disease (RA10747)',$all_datatypes) ? 'checked' : '')}}>
 										<span class="checkmark"></span>
 									</label>
+
+									<div class="error" id="type1"></div>
 								</div>
 								<div class="input_wrap">
 									<label class="special-label">Cause  of Disability :</label>
@@ -550,6 +572,9 @@
 														<span class="checkmark"></span>
 													</label>
 
+													<div class="error" id="inborn1"></div>
+
+
 													<div id="divinborn">
 														<label for="last_name">Specify</label>
 														<input type="text" name="othersinborn" class="input" id="others" {{ (in_array('Cerebral Palsy',$all_data) ? 'checked' : '')}}>
@@ -581,6 +606,8 @@
 														<input type="checkbox"  onclick="text(4)" name="acquired[]" value="Others, Specify" {{ (in_array('Others, Specify',$all_data) ? 'checked' : '')}}>
 														<span class="checkmark"></span>
 													</label>
+
+													<div class="error" id="acquired1"></div>
 
 													<div id="divacquired">
 														<label for="last_name">Specify</label>
@@ -685,6 +712,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 	<script src="http://parsleyjs.org/dist/parsley.js"defer></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="{{ asset('dist/js3/mainpwd.js') }}"></script>
 	
 <script src="{{ asset('dist/js3/mainpwd.js') }}"></script>
 <?php

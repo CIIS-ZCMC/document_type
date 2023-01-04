@@ -168,6 +168,52 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+<?php
+  session_start();
+		if (isset($_SESSION['success']) == 'success') 
+		{
+			?>
+				<script>
+				swal({
+						
+						title: "SAVED",
+						text: "Successfully saved!",
+						icon: "success",
+						button: "ok",
+					})
+					
+				
+				</script>
+			<?php
+			unset($_SESSION['success']);
+		}
+				
+		if (isset($_SESSION['fail']) == 'fail') 
+		{
+			?>
+			<script>
+				swal({
+					
+						title: "Fail",
+						text: "Successfully saved!",
+						icon: "error",
+						button: "ok",
+					})
+				
+				
+				</script>
+			<?php
+			unset($_SESSION['fail']);
+		}
+   
+?>
+
 <script type="text/javascript">
     $(document).ready(function()
     {

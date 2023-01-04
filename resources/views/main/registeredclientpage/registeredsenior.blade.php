@@ -127,46 +127,62 @@
 	</script>
   <?php
   session_start();
-		if (isset($_SESSION['success']) == 'success') 
-		{
-			?>
-				<script>
-				swal({
-						
-						title: "SAVED",
-						text: "Successfully saved!",
-						icon: "success",
-						button: "ok",
-					})
-					
+if (isset($_SESSION['success']) == 'success') 
+{
+	?>
+		<script>
+		swal({
 				
-				</script>
-			<?php
-			unset($_SESSION['success']);
-		}
-				
-		if (isset($_SESSION['fail']) == 'fail') 
-		{
-			?>
-			<script>
-				swal({
-					
-						title: "Fail",
-						text: "Successfully saved!",
-						icon: "error",
-						button: "ok",
-					})
-				
-				
-				</script>
-			<?php
-			unset($_SESSION['fail']);
-		}
-   
+				title: "SAVED",
+				text: "Successfully saved!",
+				icon: "success",
+				button: "ok",
+			})
+			
+		
+		</script>
+	<?php
+	unset($_SESSION['success']);
+}
+		
+if (isset($_SESSION['fail']) == 'fail') 
+{
+	?>
+	<script>
+		swal({
+			
+				title: "Fail",
+				text: "Record not found!",
+				icon: "error",
+				button: "ok",
+			})
+		
+		
+		</script>
+	<?php
+	unset($_SESSION['fail']);
+}
+
+if (isset($_SESSION['Error']) == 'Error') 
+{
+	?>
+	<script>
+		swal({
+			
+				title: "Registered",
+				text: "You are already a registered citizen!",
+				icon: "error",
+				button: "ok",
+			})
+		
+		
+		</script>
+	<?php
+	unset($_SESSION['Error']);
+}
+
 ?>
  
-
-
 
 	
 </body>

@@ -30,8 +30,8 @@
                         <th class="whitespace-nowrap">No.</th>
                         <th class="whitespace-nowrap">Name</th>
                         <th class="whitespace-nowrap">Address</th>
-                        <th class="whitespace-nowrap">Reference Number</th>
-                         <th class="whitespace-nowrap">Date Applied</th>
+                        <th class="whitespace-nowrap">Card Number</th>
+                         <th id="filename" class="whitespace-nowrap">Date Applied</th>
                          <th id="filename" class="whitespace-nowrap">filename</th>
                        
                         <th id="filename" class="whitespace-nowrap">firstname</th>
@@ -89,7 +89,7 @@
                                     <td> @foreach($client->client_cards as  $clientcard)
                                         {{$clientcard->card_number}}
                                       @endforeach</td>
-                                      <td> @foreach($client->client_cards as  $clientcard)
+                                      <td id="filename" > @foreach($client->client_cards as  $clientcard)
                                         {{$clientcard->card_status}}
                                       @endforeach</td>    
                                       <td id="filename"> 
@@ -584,7 +584,7 @@
                                 <div class="modal-footer text-right">
                                     <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Back</button>
                                
-                                    <button onclick="doCapture();">Capture</button>
+                                    <button onclick="doCapture();">Send</button>
                                     <button class="submit" type="submit" value="Submit" id="secondbutton" hidden>Capture</button>
                                 </div>
             </form>

@@ -14,34 +14,30 @@ box icon
 @endsection
 
 @section('subcontent')
-<form action="">
-    <div class="container shadow d-flex justofy-content-center">
-        <div class="col-4" >
-            <img alt="Profile" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}" style="width: 200px; height: 200px; margin:50px;border-radius: 50%;">
+<div style="backgound-color:green;">
+    <form action="" >
+    
+        <div class="mb-5">
+            <img alt="Profile" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}" style="width: 200px; height: 200px; border-radius: 50%;z-index:2;position:absolute;top:250px;left:100px;border:solid white 5px;margin:20px;">        
+        </div>   
+        <div>
+            <img alt="Profile" src="{{ asset('dist/images2/cityhallzc.jpg') }}" style="width: 400%;height:300px;filter: blur(5px);
+            -webkit-filter: blur(5px);position:relative;">
         </div>
-      <div class="row g-3">
-          
-            <div class="col-4">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Name</label>
-                    <input type="email" class="form-control w-100" >
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email</label>
-                    <input type="email" class="form-control"  >
-                    
-                    <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Contact</label>
-                    <input type="email" class="form-control" >
-                    </div>
+        <div style="position:relative;width:50%;border:solid white 5px;width:100%;padding:50px; margin-top:32px;border-radius:10px;">
+            <div class="mb-3">     
+                <label for="exampleInputEmail1" class="form-label">Name</label>
+                <input type="email"  class="form-control" value="{{ $LoggedUserInfo['name'] }}" readonly>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email</label>
+                <input type="email" class="form-control" value="{{ $LoggedUserInfo['email'] }}" readonly>
             </div>
         </div>
-                {{--<button type="submit" class="btn btn-primary">Submit</button>--}}
-           
-        </div>
-    </div>
-</form>
-
+    
+    </form>
+</div>
 
 
 @endsection
