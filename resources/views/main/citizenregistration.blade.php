@@ -158,7 +158,7 @@
 									<input type="text" name="skill" class="input" id="skill" >
 								</div>
 								<div class="input_wrap">
-									<label for="confirm_password">Hobies</label>
+									<label for="confirm_password">Hobbies</label>
 									<input type="text" name="hobbies" class="input" id="confirm_password">
 								</div>
 								<div class="input_wrap">

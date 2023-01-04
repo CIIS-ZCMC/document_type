@@ -114,7 +114,7 @@
 									<label for="confirm_text">Civil Status</label>
 									<select class="select" id="addCivilStatus" name="civilstatus" required>
 										<option  value="0" selected>Select Civil Status</option>
-										<option value="Married">Maried</option>
+										<option value="Married">Married</option>
 										<option value="Widowed">Widowed</option>  
 										<option value="Separated">Separated</option>
 										<option value="Divorced">Divorced</option>  
@@ -205,9 +205,33 @@
 								<input type="text" name="province" class="input" id="province" style="text-transform: capitalize;">
 								<div class="error"></div>
 							</div>
-							<div class="input_wrap">
+							<!-- <div class="input_wrap">
 								<label for="last_name">Region</label>
 								<input type="text" name="region" class="input" id="region">
+								<div class="error"></div>
+							</div> -->
+							
+							<div class="input_wrap">
+								<label for="first_name">Region</label>
+								<select class="select" id="region" name="region" required>
+									<option value="0" selected>Select Region</option>
+									<option value="Region I">Region I</option>
+									<option value="Region II">Region II</option>
+									<option value="Region III">Region III</option>
+									<option value="Region IV">Region IV</option>
+									<option value="Region V">Region V</option>
+									<option value="Region VI">Region VI</option>
+									<option value="Region VII">Region VII</option>
+									<option value="Region VIII">Region VIII</option>
+									<option value="Region IX">Region IX</option>
+									<option value="Region X">Region X</option>
+									<option value="Region XI">Region XI</option>
+									<option value="Region XII">Region XII</option>
+									<option value="Region XIII">Region XIII</option>
+									<option value="NCR">NCR</option>
+									<option value="CAR">CAR</option>
+									<option value="BARMM">BARMM</option>
+								<select>
 								<div class="error"></div>
 							</div>
 
