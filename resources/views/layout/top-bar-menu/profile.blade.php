@@ -18,7 +18,7 @@ box icon
     <form action="" >
     
         <div class="mb-5">
-            <img alt="Profile" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}" style="width: 200px; height: 200px; border-radius: 50%;z-index:2;position:absolute;top:250px;left:100px;border:solid white 5px;margin:20px;">        
+            <img alt="Profile" src="{{ asset('dist/images/user.png') }}" style="width: 200px; height: 200px; background: white; border-radius: 50%;z-index:2;position:absolute;top:250px;left:100px;border:solid white 5px;margin:20px;">        
         </div>   
         <div>
             <img alt="Profile" src="{{ asset('dist/images2/cityhallzc.jpg') }}" style="width: 400%;height:300px;filter: blur(5px);

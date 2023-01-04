@@ -40,9 +40,9 @@
                     <div class="intro-x mt-2 text-slate-400 xl:hidden text-center"></div>
                     <div class="intro-x mt-8">
                         <form id="login-form">
-                            <input name="email" id="email" type="text" class="intro-x login__input form-control py-3 px-4 block" placeholder="Email" >
+                            <input name="email" id="email" type="text" class="intro-x login__input form-control py-3 px-4 block" placeholder="Email" required>
                             <div id="error-email" class="login__input-error text-danger mt-2"></div>
-                            <input name="password" id="password" type="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password">
+                            <input name="password" id="password" type="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password" required>
                             <div id="error-password" class="login__input-error text-danger mt-2"></div>
                         </form>
                     </div>
@@ -50,8 +50,8 @@
                         <div class="flex items-center mr-auto">
                             <input id="remember-me" type="checkbox" class="form-check-input border mr-2">
                             {{-- <label class="cursor-pointer select-none" for="remember-me">Remember me</label> --}}
+                            <a href="">Forgot Password?</a>
                         </div>
-                        <a href="">Forgot Password?</a>
                     </div>
       
                     <div class="intro-x mt-5 xl:mt-8 text-center xl:text-center ">

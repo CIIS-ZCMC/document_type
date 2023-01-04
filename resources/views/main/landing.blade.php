@@ -88,7 +88,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('') }}">
-                                <span id="btn-span" style="background: white; padding: 5px 20px; color: #1e3a8a; border-radius: 5px">Login</span>
+                                <span id="btn-span">Login</span>
                             </a>
                         </li>
                     </ul>
@@ -98,7 +98,7 @@
         <!-- END NAVBAR -->
 
          <!-- home section -->
-         <section class="home-4 bg-soft-primary" id="_home" style="background: url('https://freedesignfile.com/upload/2017/02/White-abstract-background-with-wave-vector-illustration-01.jpg'); background-size: cover; width: 100%; height: 100vh">
+         <section class="home-4 bg-soft-primary" id="_home" style="background: url('https://www.vhv.rs/file/max/19/191341_white-waves-png.png'); background-size: cover; width: 100%; height: 100vh">
             <!-- start container -->
                 <div class="container">
                     <div class="home-content">
