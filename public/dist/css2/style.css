@@ -179,7 +179,7 @@ ul.pattern .color3 {
   position: relative;
   font-weight: 700;
 }
-.navbar .navbar-nav .nav-link:hover, .navbar .navbar-nav .nav-link:active, .navbar .navbar-nav .nav-link.active {
+.navbar .navbar-nav .nav-link:hover, .navbar .navbar-nav .nav-link:active /*, .navbar .navbar-nav .nav-link.active*/ {
   color: #0076a3 !important;
 }
 .navbar .navbar-brand {
