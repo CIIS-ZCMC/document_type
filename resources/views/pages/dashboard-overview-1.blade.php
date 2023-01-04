@@ -30,7 +30,7 @@ box icon
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="33% Higher than last month">  <i data-lucide="" class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$citizencount}}-Citizen">  <i data-lucide="" class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$citizencount}}</div>
@@ -44,7 +44,7 @@ box icon
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="2% Lower than last month"> <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$seniorcount}}-Senior Citizen"> <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$seniorcount}}</div>
@@ -58,7 +58,7 @@ box icon
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="12% Higher than last month"> <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pwdcount}}-PWD"> <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$pwdcount}}</div>
@@ -72,7 +72,7 @@ box icon
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="22% Higher than last month">  <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$soloparentcount}}-Solo Parent">  <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$soloparentcount}}</div>
@@ -98,7 +98,7 @@ box icon
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="33% Higher than last month">  <i data-lucide="" class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pendingcitizencount}}-Citizen (Pending)">  <i data-lucide="" class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$pendingcitizencount}}</div>
@@ -112,7 +112,7 @@ box icon
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="2% Lower than last month"> <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pendingseniorcount}}-Senior Citizen (Pending)"> <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$pendingseniorcount}}</div>
@@ -126,7 +126,7 @@ box icon
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="12% Higher than last month"> <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pendingpwdcount}}-PWD (Pending)"> <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$pendingpwdcount}}</div>
@@ -140,7 +140,7 @@ box icon
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="22% Higher than last month">  <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pendingsoloparentcount}}-Solo Parent (Pending)">  <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{$pendingsoloparentcount}}</div>
