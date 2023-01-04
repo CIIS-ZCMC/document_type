@@ -119,7 +119,8 @@ function login(Request $request)
 
                 if ($userInfo->role == 'ADMIN') {
                     $request->session()->put('LoggedUser', $userInfo->id);
-                   return view('pages/dashboard-overview-1', [
+                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                   return view('pages/dashboard-overview-1', $data,[
                     // Specify the base layout.
                     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                     // The default value is 'side-menu'
@@ -128,9 +129,12 @@ function login(Request $request)
                 ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                 }
 
+                 
                   if ($userInfo->role == 'SENIOR ADMIN') {
                     $request->session()->put('LoggedUser', $userInfo->id);
-                    return view('pages/dashboard-overview-3', [
+                    
+                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                    return view('pages/dashboard-overview-3', $data,[
                         // Specify the base layout.
                         // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                         // The default value is 'side-menu'
@@ -142,7 +146,8 @@ function login(Request $request)
                     
                   if ($userInfo->role == 'SENIOR EVALUATOR') {
                     $request->session()->put('LoggedUser', $userInfo->id);
-                    return view('pages/senior-evaluator-dashboard', [
+                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                    return view('pages/senior-evaluator-dashboard', $data,[
                         // Specify the base layout.
                         // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                         // The default value is 'side-menu'
@@ -154,7 +159,8 @@ function login(Request $request)
                           
                   if ($userInfo->role == 'SENIOR APPROVER') {
                     $request->session()->put('LoggedUser', $userInfo->id);
-                    return view('pages/senior-approver-dashboard', [
+                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                    return view('pages/senior-approver-dashboard', $data,[
                         // Specify the base layout.
                         // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                         // The default value is 'side-menu'
@@ -165,7 +171,8 @@ function login(Request $request)
 
                     if ($userInfo->role == 'SENIOR VERIFIER') {
                         $request->session()->put('LoggedUser', $userInfo->id);
-                        return view('pages/senior-verifier-dashboard', [
+                        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                        return view('pages/senior-verifier-dashboard',$data, [
                             // Specify the base layout.
                             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                             // The default value is 'side-menu'
@@ -176,7 +183,8 @@ function login(Request $request)
 
                     if ($userInfo->role == 'PWD ADMIN') {
                         $request->session()->put('LoggedUser', $userInfo->id);
-                        return view('pages/dashboard-overview-3', [
+                        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                        return view('pages/dashboard-overview-3',$data, [
                             // Specify the base layout.
                             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                             // The default value is 'side-menu'
@@ -187,7 +195,8 @@ function login(Request $request)
 
                         if ($userInfo->role == 'PWD EVALUATOR') {
                             $request->session()->put('LoggedUser', $userInfo->id);
-                            return view('pages/pwd-evaluator-dashboard', [
+                            $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                            return view('pages/pwd-evaluator-dashboard',$data, [
                                 // Specify the base layout.
                                 // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                                 // The default value is 'side-menu'
@@ -198,7 +207,8 @@ function login(Request $request)
 
                             if ($userInfo->role == 'PWD APPROVER') {
                                 $request->session()->put('LoggedUser', $userInfo->id);
-                                return view('pages/pwd-approver-dashboard', [
+                                $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                                return view('pages/pwd-approver-dashboard',$data, [
                                     // Specify the base layout.
                                     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                                     // The default value is 'side-menu'
@@ -208,8 +218,10 @@ function login(Request $request)
                                 }
 
                                 if ($userInfo->role == 'PWD VERIFIER') {
+
                                     $request->session()->put('LoggedUser', $userInfo->id);
-                                    return view('pages/pwd-verifier-dashboard', [
+                                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                                    return view('pages/pwd-verifier-dashboard', $data,[
                                         // Specify the base layout.
                                         // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                                         // The default value is 'side-menu'
@@ -220,7 +232,8 @@ function login(Request $request)
 
                         if ($userInfo->role == 'SOLO PARENT ADMIN') {
                             $request->session()->put('LoggedUser', $userInfo->id);
-                            return view('pages/dashboard-overview-3', [
+                            $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                            return view('pages/dashboard-overview-3', $data, [
                                 // Specify the base layout.
                                 // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                                 // The default value is 'side-menu'
@@ -231,7 +244,8 @@ function login(Request $request)
 
                             if ($userInfo->role == 'SOLO PARENT EVALUATOR') {
                                 $request->session()->put('LoggedUser', $userInfo->id);
-                                return view('pages/pwd-verifier-dashboard', [
+                                $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                                return view('pages/pwd-verifier-dashboard',$data, [
                                     // Specify the base layout.
                                     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                                     // The default value is 'side-menu'
@@ -242,7 +256,8 @@ function login(Request $request)
 
                                 if ($userInfo->role == 'SOLO PARENT APPROVER') {
                                     $request->session()->put('LoggedUser', $userInfo->id);
-                                    return view('pages/pwd-approver-dashboard', [
+                                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                                    return view('pages/pwd-approver-dashboard', $data,[
                                         // Specify the base layout.
                                         // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                                         // The default value is 'side-menu'
@@ -253,7 +268,8 @@ function login(Request $request)
 
                                     if ($userInfo->role == 'SOLO PARENT VERIFIER') {
                                         $request->session()->put('LoggedUser', $userInfo->id);
-                                        return view('pages/pwd-verifier-dashboard', [
+                                        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                                        return view('pages/pwd-verifier-dashboard', $data,[
                                             // Specify the base layout.
                                             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
                                             // The default value is 'side-menu'
