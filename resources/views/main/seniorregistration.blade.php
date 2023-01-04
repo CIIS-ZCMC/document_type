@@ -109,7 +109,7 @@
 									<label for="confirm_password">Civil Status</label>
 									<select class="select" id="addCivilStatus" name="civilstatus" required>
 										<option value="0" selected>Select Civil Status</option>
-										<option value="Married">Maried</option>
+										<option value="Married">Married</option>
 										<option value="Widowed">Widowed</option>  
 										<option value="Separated">Separated</option>
 										<option value="Divorced">Divorced</option>  
@@ -146,7 +146,7 @@
 									<input type="text" name="skill" class="input" id="skill">
 								</div>
 								<div class="input_wrap">
-									<label for="confirm_password">Hobies</label>
+									<label for="confirm_password">Hobbies</label>
 									<input type="text" name="hobbies" class="input" id="confirm_password">
 								</div>
 								<div class="input_wrap">
