@@ -18,11 +18,10 @@ box icon
     <form action="" >
     
         <div class="mb-5">
-            <img alt="Profile" src="{{ asset('dist/images/user.png') }}" style="width: 200px; height: 200px; background: white; border-radius: 50%;z-index:2;position:absolute;top:250px;left:100px;border:solid white 5px;margin:20px;">        
+            <img alt="Profile" src="{{ asset('dist/images/user.png') }}" style="width: 150px; height: 150px; background: white; border-radius: 50%;z-index:2;position:absolute;top:290px;left:100px;border:solid white 5px;margin:20px;">        
         </div>   
         <div>
-            <img alt="Profile" src="{{ asset('dist/images2/cityhallzc.jpg') }}" style="width: 400%;height:300px;filter: blur(5px);
-            -webkit-filter: blur(5px);position:relative;">
+            <img alt="Profile" src="https://clipground.com/images/professional-background-png-3.png" style="width: 400%;height:300px;">
         </div>
         <div style="position:relative;width:50%;border:solid white 5px;width:100%;padding:50px; margin-top:32px;border-radius:10px;">
             <div class="mb-3">     
