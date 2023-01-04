@@ -29,6 +29,8 @@
 
         <!-- zc seal -->
         <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
+
+    
     </head>
 
     <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="-1">
@@ -85,7 +87,9 @@
                             <a class="nav-link" href="#_contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('') }}">Login</a>
+                            <a class="nav-link" href="{{ url('') }}">
+                                <span id="btn-span">Login</span>
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -94,7 +98,7 @@
         <!-- END NAVBAR -->
 
          <!-- home section -->
-         <section class="home-4 bg-soft-primary" id="_home" style="background: url('https://freedesignfile.com/upload/2017/02/White-abstract-background-with-wave-vector-illustration-01.jpg'); background-size: cover; width: 100%; height: 100vh">
+         <section class="home-4 bg-soft-primary" id="_home" style="background: url('https://www.vhv.rs/file/max/19/191341_white-waves-png.png'); background-size: cover; width: 100%; height: 100vh">
             <!-- start container -->
                 <div class="container">
                     <div class="home-content">
@@ -108,7 +112,7 @@
                                     <h3 class="display-5 fw-bold">CITY GOVERNMENT OF ZAMBOANGA</h3>
                                     <h5>Zamboanga Card Registration System</h5>
                                 </div>
-                                <div class="d-flex">
+                                <div class="d-flex mt-3">
                                 <style>
                                     @media screen and (max-width: 768px) {
                                         .material-symbols-outlined {
@@ -695,7 +699,7 @@
         <!-- end footer -->
 
         <!--Bootstrap Js-->
-        <script src="{{ asset('dist/js2/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('dist/js2/bootstrap.bundle.min.js') }}"></script> 
 
         <!-- Slider Js -->
         <script src="{{ asset('dist/js2/tiny-slider.js') }}"></script>

@@ -2,10 +2,10 @@
 <div class="top-bar -mx-4 px-4 md:mx-0 md:px-0">
     <!-- BEGIN: Breadcrumb -->
     <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Inventory</a></li>
+        {{--<ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">SWRABS</a></li>
             <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-        </ol>
+        </ol>--}}
     </nav>
     <!-- END: Breadcrumb -->
     <!-- BEGIN: Search -->
@@ -26,13 +26,14 @@
     <!-- BEGIN: Account Menu -->
     <div class="intro-x dropdown w-8 h-8">
         <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in" role="button" aria-expanded="false" data-tw-toggle="dropdown">
-            <img alt="Midone - HTML Admin Template" src="{{ asset('dist/images/' . $fakers[9]['photos'][0]) }}">
+            <img alt="Midone - HTML Admin Template" src="{{ asset('dist/images/user.png') }}">
+            <!-- {{ asset('dist/images/' . $fakers[9]['photos'][0]) }} -->
         </div>
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">
                 <li class="p-2">
                     {{-- <div class="font-medium"> {{$user->username}}</div> --}}
-                    {{-- <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500"> {{ $LoggedUserInfo['name'] }}</div> --}}
+                    <div class="font-medium" style="text-transform: uppercase;"> {{ $LoggedUserInfo['name'] }}</div>
                 </li>
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>

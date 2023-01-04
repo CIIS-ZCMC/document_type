@@ -7,7 +7,13 @@
 
         <!-- zc seal -->
         <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
-
+	<style>
+		#btn-right {
+			display: flex;
+			justify-content: flex-end;
+			align-items:center;
+		}
+	</style>
 </head>
 <body>
 	<section>
@@ -101,21 +107,25 @@
 									<label for="confirm_password">Blood Type</label>
 									<select class="select" id="" name="bloodtype" >
 										<option  selected>Select Blood Type</option>
-										<option value="Male">A</option>
-										<option value="Female">B</option>  
-										<option value="Male">AB</option>
-										<option value="Female">O</option>  
+										<option value="A+">A+</option>
+										<option value="A-">A-</option>
+										<option value="B+">B+</option>  
+										<option value="B-">B-</option>  
+										<option value="AB+">AB+</option>
+										<option value="AB-">AB-</option>
+										<option value="O+">O+</option>  
+										<option value="O-">O-</option>  
 									</select>
 								</div>
 								<div class="input_wrap">
 									<label for="confirm_password">Civil Status</label>
 									<select class="select" id="addCivilStatus" name="civilstatus" >
 										<option value="0" selected>Select Civil Status</option>
-										<option value="Male">Maried</option>
-										<option value="Female">Widowed</option>  
+										<option value="Married">Married</option>
+										<option value="Widowed">Widowed</option>  
 										<option value="Separated">Separated</option>
-										<option value="Female">Divorced</option>  
-										<option value="Female">Single</option>  
+										<option value="Divorced">Divorced</option>  
+										<option value="Single">Single</option>  
 									</select>
 									<div class="error"></div>
 								</div>
@@ -215,7 +225,7 @@
 							</div>
 							<div class="input_wrap">
 								<label for="designation">Email Address</label>
-								<input type="text" name="emailaddress" class="input"  style="text-transform: capitalize;" id="emailaddress">
+								<input type="text" name="emailaddress" class="input"  id="emailaddress">
 								<div class="error"></div>
 							</div>
 						
@@ -230,9 +240,9 @@
 								<label for="first_name">Status of Employment</label>
 								<select class="select" id="addEmployment" name="employmentstatus" >
 									<option value="0" selected>Select Employment Status</option>
-									<option value="Male">Employed</option>
-									<option value="Female">Unemployed</option>  
-									<option value="Female">Self-employed</option> 
+									<option value="Employed">Employed</option>
+									<option value="Unemployed">Unemployed</option>  
+									<option value="Self-employed">Self-employed</option> 
 								</select>
 								<div class="error"></div>
 							
@@ -241,9 +251,9 @@
 								<label class="special-label">Category of Employment:</label>
 								<select class="select" id="addCategory" name="employmentcategory" >
 									<option value="0" selected>Select Employment Type</option>
-									<option value="Male">N/A</option>
-									<option value="Female">Government</option>  
-									<option value="Female">Private</option> 
+									<option value="N/A">N/A</option>
+									<option value="Government">Government</option>  
+									<option value="Private">Private</option> 
 									
 								</select>
 								<div class="error"></div>
@@ -252,11 +262,11 @@
 								<label class="special-label">Type of Employment:</label>
 								<select class="select" id="addType" name="employmenttype" >
 									<option value="0" selected>Select Employment Type</option>
-									<option value="Male">N/A</option>
-									<option value="Female">Permanent/Regular</option>  
-									<option value="Female">Seasonal</option> 
-									<option value="Female">Casual</option>  
-									<option value="Female">Emergency</option> 
+									<option value="N/A">N/A</option>
+									<option value="Permanent/Regular">Permanent/Regular</option>  
+									<option value="Seasonal">Seasonal</option> 
+									<option value="Casual">Casual</option>  
+									<option value="Emergency">Emergency</option> 
 									
 								</select>
 								<div class="error"></div>
@@ -413,7 +423,28 @@
 											<label for="confirm_password">Date of Birth</label>
 											<input data-format="MM/DD/YYYY" class="input" type="date" id="familybirthdate[]" name="familybirthdate[]">
 										</div>
-										<input type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily" value="add">
+										
+										<style>
+												.add_rel {
+												display: flex;
+												justify-content: flex-end;
+												align-items: center;
+												width: 80%;
+												margin: auto;
+												}
+												#addfamily {
+													background: #0083ce;
+													border: none;
+													cursor: pointer;
+													padding: 7px 10px; 
+													color: white;
+													width: 100px;
+													margin: 20px 0;
+												}
+										</style>
+										<div class="add_rel">
+											<input type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily" value="add">
+										</div>
 									</div>
 								</div>
 								{{-- <label for="company">Fathers Name </label>
@@ -634,6 +665,11 @@
 
 				<div class="btns_wrap">
 					<div class="common_btns form_1_btns">
+						<a href="/main" style="text-decoration: none;">
+							
+							<button type="button" onclick="unsave()" class="btn_back" style="margin-right: 5px;"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+						
+						</a>
 						<button type="button" class="btn_next">Next <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
 					</div>
 					<div class="common_btns form_2_btns" style="display: none;">
@@ -673,6 +709,13 @@
 	</div>
 </div> --}}
 
+<script>
+			window.onbeforeunload = function() {
+				//Whatever
+				return "WARNING! You have unsaved changes that may be lost!";
+			}
+	
+	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -818,7 +861,23 @@ document.getElementById("birthdate").setAttribute("max", today);
 											<label for="confirm_password">Date of Birth</label>
 											<input data-format="MM/DD/YYYY" class="input" type="date" id="familybirthdate[]" name="familybirthdate[]">
 										</div>
-										<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+										
+										
+										<style>
+												#remove {
+													background: #e80027;
+													border: none;
+													cursor: pointer;
+													padding: 7px 10px; 
+													color: white;
+													width: 100px;
+													margin: 20px 78%;
+													
+												}
+
+											</style>
+											<input type="button" name="remove" id="remove" value="REMOVE">
+										
 									</div>`;
 				var x = 1;
 	

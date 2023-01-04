@@ -37,10 +37,23 @@
   text-align: center;
 }
 
+/* LOGIN BUTTON MAIN PAGE */
+#btn-span {
+  background: rgb(231, 232, 240);
+  padding: 7px 25px; 
+  color: #1e3a8a; 
+  border-radius: 5px;
+}
+
+#btn-span:hover {
+  background: white;
+}
+
 ul.pattern {
   overflow: hidden;
   border-radius: 0px;
 }
+
 ul.pattern li {
   float: left;
   margin: 2px;
@@ -179,7 +192,7 @@ ul.pattern .color3 {
   position: relative;
   font-weight: 700;
 }
-.navbar .navbar-nav .nav-link:hover, .navbar .navbar-nav .nav-link:active, .navbar .navbar-nav .nav-link.active {
+.navbar .navbar-nav .nav-link:hover, .navbar .navbar-nav .nav-link:active /*, .navbar .navbar-nav .nav-link.active*/ {
   color: #0076a3 !important;
 }
 .navbar .navbar-brand {

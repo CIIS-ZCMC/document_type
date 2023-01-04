@@ -2673,7 +2673,7 @@ select {
 @-webkit-keyframes type-animation {
     50% {
     opacity: 1;
-  }
+    }
   }
 @keyframes type-animation {
     50% {
