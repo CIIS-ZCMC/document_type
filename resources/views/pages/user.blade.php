@@ -12,11 +12,39 @@
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
         <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-56 relative text-slate-500">
-                <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
+                <input type="text" class="form-control w-56 box pr-10" id="myInput" onkeyup="myFunction()" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
             </div>
         </div>
        
+        <script>
+            function myFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("datatable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                td1 = tr[i].getElementsByTagName("td")[1];
+                td2 = tr[i].getElementsByTagName("td")[2];
+                td3 = tr[i].getElementsByTagName("td")[3];
+                if (td || td1 || td2 || td3) {
+                txtValue = td.textContent || td.innerText;
+                txtValue1 = td1.textContent || td1.innerText;
+                txtValue2 = td2.textContent || td2.innerText;
+                txtValue3 = td3.textContent || td3.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1 || txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1 || txtValue3.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                    document.getElementById("dtable").style.display="none";
+                } else {
+                    tr[i].style.display = "none";
+                    document.getElementById("dtable").style.display="block";
+                }
+                }       
+            }
+            }
+            </script>
        
         <div class="hidden md:block mx-auto text-slate-500"></div>
         <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#new-fo-modal" class="btn btn-primary shadow-md mr-2">Add New User</a>
@@ -74,6 +102,9 @@
 
                     </td>
                     
+                </tr>
+                <tr id="dtable" style="display: none;">
+                    <td  colspan="5" style="text-align:center;">No Record Found!</td>
                 </tr>
                 @endforeach
             </tbody>

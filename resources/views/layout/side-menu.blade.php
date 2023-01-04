@@ -91,12 +91,12 @@
     function logout_func() {
         Swal.fire({
         title: 'Are you sure?',
-        text: "You want to logout..",
+        text: "LOGOUT CONFIRMATION",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#d33',
         cancelButtonColor: '#3085d6',
-        confirmButtonText: 'Yes, logout it!'
+        confirmButtonText: 'Logout'
         }).then((result) => {
         if (result.isConfirmed) {
             //Swal.fire(
