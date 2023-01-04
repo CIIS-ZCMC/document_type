@@ -439,14 +439,14 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="col-span-12 xl:col-span-6">
+                                    {{-- <div class="col-span-12 xl:col-span-6">
                                         <div class="mt-3 xl:mt-0">
                                             <label for="religion" class="form-label">Number of Clients Scheduled</label>
                                             <input id="ricah" type="text" class="form-control"  value="" disabled>
                                         </div>
                                        
                                         
-                                    </div>
+                                    </div> --}}
                                 </div>
                                
                             </div>
@@ -540,6 +540,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <?php
+    session_start();
 
 		if (isset($_SESSION['success']) == 'success') 
 		{
@@ -582,6 +583,24 @@
     
         $(document).ready(function()
         {
+
+            
+    var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("schedule").setAttribute("min", today);
+
           
             $("#datatable").DataTable({
             "bPaginate": true,

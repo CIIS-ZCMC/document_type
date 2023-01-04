@@ -27,7 +27,7 @@ use Psr\Http\Client\ClientInterface;
 |
 */
 
-Route::get('/main', [PageController::class, 'main']); //login route
+Route::get('/main', [PageController::class, 'main'])->name('main'); //login route
 
 Route::get('/registration', [PageController::class, 'registration']); //login route
 Route::get('/seniorregistration', [PageController::class, 'seniorregistration']); //login route

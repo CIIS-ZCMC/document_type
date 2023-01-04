@@ -104,7 +104,7 @@ class PageController extends Controller
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
         $barangaylist = Barangay::select('id', 'name')->get();
-        return view('main/seniorregistration', $data [
+        return view('main/seniorregistration', $data, [
             // Specify the base layout.
             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
             // The default value is 'side-menu'

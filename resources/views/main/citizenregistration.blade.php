@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +13,8 @@
         <!-- zc seal -->
     <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
 </head>
+@include('sweetalert::alert')
+
 <body>
 	<section>
 		<div class="wrapper">
@@ -338,7 +341,7 @@
 							<div class="form_container">
 								<div class="input_wrap">
 									<label for="company">Mobile Number</label>
-									<input type="text" name="mobilenumber" class="input" id="mobilenumber" required>
+									<input type="text" name="mobilenumber" class="input" id="mobilenumber" maxlength="11" required>
 									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
@@ -408,6 +411,8 @@
 				</div>
 			</form>
 		</div>
+
+		
 	</section>
 
 
@@ -432,6 +437,7 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="{{ asset('dist/js3/main.js') }}"></script>
   <?php
+  
   session_start();
 		if (isset($_SESSION['success']) == 'success') 
 		{
@@ -442,9 +448,11 @@
 						title: "REGISTERED",
 						text: "Successfully registered!",
 						icon: "success",
-						button: "ok",
-					})
-					
+						type: "success"}).then(okay => {
+						if (okay) {
+							window.location.href = "http://127.0.0.1:8000/main";
+						}
+						});
 				
 				</script>
 			<?php
@@ -460,8 +468,11 @@
 						title: "Fail",
 						text: "Fail to register!",
 						icon: "error",
-						button: "ok",
-					})
+						type: "error"}).then(okay => {
+						if (okay) {
+							window.location.href = "http://127.0.0.1:8000/main";
+						}
+						});
 				
 				
 				</script>
@@ -488,6 +499,22 @@
 					
 
 		// 	});	
+
+		var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("birthdate").setAttribute("max", today);
 
 		function text(x)
 			{

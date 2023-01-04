@@ -1,6 +1,7 @@
 @extends('../layout/base')
 
 @section('body')
+@include('sweetalert::alert')
     <body class="py-5 md:py-0 bg-white dark:bg-transparent">
         
       
@@ -17,6 +18,7 @@
       
      
         @yield('script')
+      
       
     </body>
 @endsection
