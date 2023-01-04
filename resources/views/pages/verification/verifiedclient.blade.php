@@ -37,7 +37,7 @@
 <body>
     <div class="container">
         <h1>Verified</h1>
-        <img src="{{ url('dist/images2/serviceverified.svg') }}" alt="">
+        <img src="{{ url('dist/images2/service/verified.svg') }}" alt="">
      
     </div>
     
