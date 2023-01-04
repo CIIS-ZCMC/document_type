@@ -50,7 +50,7 @@
                         <div class="flex items-center mr-auto">
                             <input id="remember-me" type="checkbox" class="form-check-input border mr-2">
                             {{-- <label class="cursor-pointer select-none" for="remember-me">Remember me</label> --}}
-                            <a href="">Forgot Password?</a>
+                            <!-- <a href="">Forgot Password?</a> -->
                         </div>
                     </div>
       
