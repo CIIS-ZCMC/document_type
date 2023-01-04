@@ -112,7 +112,7 @@
                                     <h3 class="display-5 fw-bold">CITY GOVERNMENT OF ZAMBOANGA</h3>
                                     <h5>Zamboanga Card Registration System</h5>
                                 </div>
-                                <div class="d-flex">
+                                <div class="d-flex mt-3">
                                 <style>
                                     @media screen and (max-width: 768px) {
                                         .material-symbols-outlined {
