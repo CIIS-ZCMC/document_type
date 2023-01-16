@@ -1,14 +1,15 @@
 @extends('../layout/' . $layout)
-<link rel="stylesheet" href=" https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
 @section('subhead')
-    <title>Senior Benefit Verification | Social Welfare Registration and Benefits System</title>
+    <title>Senior Benefit Approval | Social Welfare Registration and Benefits System</title>
 @endsection
 
 @section('subcontent')
 
  
     <h2 class="intro-y text-lg font-medium mt-10">List of Items</h2>
-    <div class="grid grid-cols-12 gap-6 mt-5">       <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
+    <div class="grid grid-cols-12 gap-6 mt-5">
+        <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
           
           
                 
@@ -57,8 +58,8 @@
                         <th id="filename" class="whitespace-nowrap">salary</th>
                         <th id="filename" class="whitespace-nowrap">id</th>
                         <th id="filename" class="whitespace-nowrap">appid</th>
-                        <th  id="filename" class="whitespace-nowrap">schedule</th>
                         <th class="whitespace-nowrap">Applied Benefit</th>
+                       
                        
                        
                        
@@ -68,7 +69,6 @@
                 <tbody>
                     @foreach($clients as $index => $client) 
                     @foreach($client->benefit_applications as $index => $clientapp) 
-                    
                             {{-- @php
                                 dd($clients)
                             @endphp --}}
@@ -77,12 +77,15 @@
                                     <td id="clientid">{{$index + 1}}</td>
                                     <td>{{ $client->last_name}}, {{ $client->first_name}} {{ $client->middle_name}} {{ $client->extension_name}}</td>
                                     <td>{{$client->barangays->name}}
-                                        <td> 
-                                            {{$clientapp->application_reference_number}}
-                                        </td>
-                                          <td> 
-                                            {{$clientapp->application_date}}
-                                          </td>
+                                    <td> 
+                                        {{$clientapp->application_reference_number}}
+                                    </td>
+                                      <td> 
+                                        {{$clientapp->application_date}}
+                                      </td>
+                                    
+
+                                  
                                       <td id="filename"> 
                                         {{$client->client_application_requirements[0]->filename}}
                                       </td>
@@ -114,12 +117,11 @@
                                               @endforeach
                                             
                                             </td>
-
-                                                      <td  id="filename">{{$client->client_schedules[0]->date}}</td>
-                                                        
                                                       <td> 
                                                         {{$clientapp->benefit_type}}
                                                       </td>
+                                                        
+                                                       
                                                      
                                    
                                 
@@ -136,7 +138,7 @@
                            
                         
                         
-                   
+                   @endforeach
                     @endforeach
                    
                 </tbody>
@@ -202,7 +204,7 @@
                 <div class="modal-header">
                     <h2 class="font-medium text-base mr-auto">Verify Benefit</h2>
                 </div>
-                <form action="/verifycitizen" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
+                <form action="/verifyseniorbenefit" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
                     @csrf
                     <div class="intro-y box px-5 pt-5 mt-5">
                         <div class="flex flex-col lg:flex-row border-b border-slate-200/60 dark:border-darkmode-400 pb-5 -mx-5">
@@ -226,10 +228,10 @@
                             <div class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
                                 <div class="font-medium text-center lg:text-left lg:mt-3">Client Name</div>
                                 <div class="flex flex-col justify-center items-center lg:items-start mt-4">
-                                    <div id="firstname" class="truncate sm:whitespace-normal flex items-center"> <i data-lucide="mail" class="w-4 h-4 mr-2"></i> johnnydepp@left4code.com </div>
-                                    <div id="middlename" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="instagram" class="w-4 h-4 mr-2"></i> Instagram Johnny Depp </div>
-                                    <div id="lastname" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="twitter" class="w-4 h-4 mr-2"></i> Twitter Johnny Depp </div>
-                                    <div id="middlename1" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="twitter" class="w-4 h-4 mr-2"></i> Twitter Johnny Depp </div>
+                                    <div id="firstname" class="truncate sm:whitespace-normal flex items-center"> <i data-lucide="mail" class="w-4 h-4 mr-2"></i> </div>
+                                    <div id="middlename" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="instagram" class="w-4 h-4 mr-2"></i> </div>
+                                    <div id="lastname" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="twitter" class="w-4 h-4 mr-2"></i>  </div>
+                                    <div id="middlename1" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="twitter" class="w-4 h-4 mr-2"></i>  </div>
                                 </div>
                             </div>
                             <div class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
@@ -334,59 +336,6 @@
                         </div>
                     </div>
 
-                    <div class="intro-y box mt-5">
-                        <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                            <h2 class="font-medium text-base mr-auto">
-                                Benefit Application
-                            </h2>
-                        </div>
-                        <div class="p-5">
-                            <div class="grid grid-cols-12 gap-x-5">
-                                <div class="col-span-12 xl:col-span-6">
-                                    <div >
-                                        <label for="update-profile-form-6" class="form-label">Benefit Type</label>
-                                        <input id="benefittype" type="text" class="form-control"  value="" disabled>
-                                    </div>
-                                   
-                                    
-                                </div>
-                                <div class="col-span-12 xl:col-span-6">
-                                    <div class="mt-3 xl:mt-0">
-                                        <label for="religion" class="form-label">Date Applied</label>
-                                        <input id="dateapplied" type="text" class="form-control" placeholder="Input text" value="" disabled>
-                                    </div>
-                                 
-                                    
-                                </div>
-                            </div>
-                           
-                        </div>
-                    </div>
-
-
-                    <div class="intro-y box mt-5">
-                        <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                            <h2 class="font-medium text-base mr-auto">
-                                Client Schedule
-                            </h2>
-                        </div>
-                        <div class="p-5">
-                            <div class="grid grid-cols-12 gap-x-5">
-                                <div class="col-span-12 xl:col-span-6">
-                                    <div >
-                                        <label for="update-profile-form-6" class="form-label">Date:</label>
-                                        <input id="verifyschedule" type="text" class="form-control" name="verifyschedule" disabled>
-                                    </div>
-                                    <div >
-                                        
-                                    </div>
-                                </div>
-                               
-                            </div>
-                           
-                        </div>
-                    </div>
-
                   
                
                     
@@ -396,7 +345,7 @@
                        
 
                          <!-- BEGIN: Multiple Item -->
-                         {{-- <div class="intro-y box mt-5">
+                         <div class="intro-y box mt-5">
                             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                                 <h2 class="font-medium text-base mr-auto">
                                     Requirements
@@ -436,13 +385,67 @@
                                 </a>
                                
                             </div>
-                        </div> --}}
+                        </div>
                         <!-- END: Multiple Item -->
-                        
+                        <div class="intro-y box mt-5">
+                            <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <h2 class="font-medium text-base mr-auto">
+                                    Benefit Application
+                                </h2>
+                            </div>
+                            <div class="p-5">
+                                <div class="grid grid-cols-12 gap-x-5">
+                                    <div class="col-span-12 xl:col-span-6">
+                                        <div >
+                                            <label for="update-profile-form-6" class="form-label">Benefit Type</label>
+                                            <input id="benefittype" type="text" class="form-control"  value="" disabled>
+                                        </div>
+                                       
+                                        
+                                    </div>
+                                    <div class="col-span-12 xl:col-span-6">
+                                        <div class="mt-3 xl:mt-0">
+                                            <label for="religion" class="form-label">Date Applied</label>
+                                            <input id="dateapplied" type="text" class="form-control" placeholder="Input text" value="" disabled>
+                                        </div>
+                                     
+                                        
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+    
 
-                        
+
+
+                        {{-- <div class="intro-y box mt-5">
+                            <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                                <h2 class="font-medium text-base mr-auto">
+                                    Select Verification Schedule
+                                </h2>
+                            </div>
+                            <div class="p-5">
+                                <div class="grid grid-cols-12 gap-x-5">
+                                    <div class="col-span-12 xl:col-span-6">
+                                        <div >
+                                            <label for="update-profile-form-6" class="form-label">Date:</label>
+                                            <input id="schedule" type="date" class="form-control" name="schedule" >
+                                        </div>
+                                        <div >
+                                            
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                        </div> --}}
+
+                     
+
                       
-
+                   
                         
                         
                         <!-- END: Post Info -->
@@ -466,14 +469,14 @@
                     <!-- BEGIN: Modal Header -->
                     <div class="modal-header">
                         <h2 class="font-medium text-base mr-auto">
-                            Decline Benefit
+                            Decline Client
                         </h2>
                         
                        
                     </div>
                     <!-- END: Modal Header -->
                     <!-- BEGIN: Modal Body -->
-                    <form action="/declineseniorverificationbenefit" method="POST" method="POST" enctype="multipart/form-data" id="declineform" >
+                    <form action="/declineseniorapprovalbenefit" method="POST" method="POST" enctype="multipart/form-data" id="declineform" >
                         @csrf
                         <div class="modal-body">
                             <div>
@@ -486,11 +489,8 @@
                                             <label>Select Decline Reason</label>
                                             <div class="mt-2">
                                                 <select data-placeholder="Select Decline Reason" class="tom-select w-full" name="declinetype">
-                                                    <option value="1">Leonardo DiCaprio</option>
-                                                    <option value="2">Johnny Deep</option>
-                                                    <option value="3">Robert Downey, Jr</option>
-                                                    <option value="4">Samuel L. Jackson</option>
-                                                    <option value="5">Morgan Freeman</option>
+                                                    <option value="1">Documents</option>
+                                                    <option value="2">Input Fields</option>
                                                 </select>
                                         
                                             </div>
@@ -521,13 +521,14 @@
     </div>
     
 
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <?php
+    session_start();
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-<?php
-  
 		if (isset($_SESSION['success']) == 'success') 
 		{
 			?>
@@ -535,7 +536,7 @@
 				swal({
 						
 						title: "SAVED",
-						text: "Successfully saved!",
+						text: "Successfully verified!",
 						icon: "success",
 						button: "ok",
 					})
@@ -565,31 +566,24 @@
 		}
    
 ?>
-<script type="text/javascript">
-    $(document).ready(function()
-    {
-
-        // $('#datatable tr > *:nth-child(6)').hide();
-        // $('#datatable tr > *:nth-child(7)').hide();
-        // $('#datatable tr > *:nth-child(8)').hide();
-        // $('#datatable tr > *:nth-child(9)').hide();
-        // $('#datatable tr > *:nth-child(10)').hide();
-        // $('#datatable tr > *:nth-child(11)').hide();
-        // $('#datatable tr > *:nth-child(12)').hide();
-        // $('#datatable tr > *:nth-child(13)').hide();
-        // $('#datatable tr > *:nth-child(14)').hide();
-       
-        
-        $("#datatable").on('click', '.edit', function()
+    <script type="text/javascript">
+    
+        $(document).ready(function()
         {
-            $tr=$(this).closest('tr');
-            if ($($tr).hasClass('child'))
-            {
-                $tr = $tr.prev('.parent');
-            }
           
-
-            var data = $('#datatable').DataTable(
+           
+         
+            $("#datatable").on('click', '.edit', function()
+            {
+                $tr=$(this).closest('tr');
+                if ($($tr).hasClass('child'))
+                {
+                    $tr = $tr.prev('.parent');
+                }
+          
+                // var table = ;
+             
+                var data = $('#datatable').DataTable(
                 {
                     "retrieve": true,
                     "bPaginate": false,
@@ -597,89 +591,101 @@
        
                 }
             ).row($tr).data();
-           
-            // document.getElementById('fullname').innerHTML
-            //     = data[1];
-                document.getElementById('type').innerHTML
-                    = "Citizen: "+data[3];
-                document.getElementById('date').innerHTML
-                = "Date Applied: "+data[4];
-                document.getElementById('firstname').innerHTML
-                = "First Name: " + data[6];
-                document.getElementById('lastname').innerHTML
-                = "Last Name: " + data[7];
-                document.getElementById('middlename').innerHTML
-                = "Middle Name: " + data[8];
-                document.getElementById('middlename1').innerHTML
-                = "Extension Name: " + data[9];
-                document.getElementById('street').innerHTML
-                = "Street: " + data[10];
-                document.getElementById('barangay').innerHTML
-                = "Barangay: " + data[2];
-                document.getElementById('city').innerHTML
-                = "City: " + data[11];
-                document.getElementById('province').innerHTML
-                = "Province: " + data[12];
-                document.getElementById('sex').innerHTML
-                = "Sex: " + data[13];
-                var dob=data[14];
-                document.getElementById('birthdate').value
-                =  data[14];
-                const ageInYears = moment().diff(new Date(dob), 'years');
-                document.getElementById('age').innerHTML
-                = "Age: " + ageInYears;
-                document.getElementById('birthplace').value
-                =  data[15];
-                document.getElementById('civilstatus').value
-                =  data[16];
-                document.getElementById('educational').value
-                =  data[17];
-                document.getElementById('religion').value
-                =  data[18];
-                document.getElementById('nationality').value
-                =  data[19];
-                document.getElementById('skills').value
-                =  data[20];
-                document.getElementById('hobbies').value
-                =  data[21];
-                document.getElementById('status').value
-                =  data[22];
-                document.getElementById('category').value
-                =  data[23];
-                document.getElementById('typeemp').value
-                =  data[24];
-                document.getElementById('occupation').value
-                =  data[25];
-                document.getElementById('salary').value
-                =  data[26];
-                document.getElementById('verifyschedule').value
-                =  data[29];
-                document.getElementById('benefittype').value
-                =  data[30];
-                document.getElementById('dateapplied').value
-                =  data[4];
-                
-                
-                
                
-            $('#editform').attr('action','/verifyseniorbenefit /' + data[27]+'/'+data[28]);
-            $('#userphoto').attr("src","/images/picture/"+data[5]);
-            $('#picture').attr("src","/images/picture/"+data[5]);
-            $('#birth').attr("src","/images/birth/"+data[5]);
-            $('#barangaycert').attr("src","/images/barangay/"+data[5]);
-            $('#declineform').attr('action','/declineseniorverificationbenefit/' + data[27]+'/'+data[28]);
-           
+                // document.getElementById('fullname').innerHTML
+                //     = data[1];
+                    document.getElementById('type').innerHTML
+                        = "Citizen: "+data[3];
+                    document.getElementById('date').innerHTML
+                    = "Date Applied: "+data[4];
+                    document.getElementById('firstname').innerHTML
+                    = "First Name: " + data[6];
+                    document.getElementById('lastname').innerHTML
+                    = "Last Name: " + data[7];
+                    document.getElementById('middlename').innerHTML
+                    = "Middle Name: " + data[8];
+                    document.getElementById('middlename1').innerHTML
+                    = "Extension Name: " + data[9];
+                    document.getElementById('street').innerHTML
+                    = "Street: " + data[10];
+                    document.getElementById('barangay').innerHTML
+                    = "Barangay: " + data[2];
+                    document.getElementById('city').innerHTML
+                    = "City: " + data[11];
+                    document.getElementById('province').innerHTML
+                    = "Province: " + data[12];
+                    document.getElementById('sex').innerHTML
+                    = "Sex: " + data[13];
+                    var dob=data[14];
+                    document.getElementById('birthdate').value
+                    =  data[14];
+                    const ageInYears = moment().diff(new Date(dob), 'years');
+                    document.getElementById('age').innerHTML
+                    = "Age: " + ageInYears;
+                    document.getElementById('birthplace').value
+                    =  data[15];
+                    document.getElementById('civilstatus').value
+                    =  data[16];
+                    document.getElementById('educational').value
+                    =  data[17];
+                    document.getElementById('religion').value
+                    =  data[18];
+                    document.getElementById('nationality').value
+                    =  data[19];
+                    document.getElementById('skills').value
+                    =  data[20];
+                    document.getElementById('hobbies').value
+                    =  data[21];
+                    document.getElementById('status').value
+                    =  data[22];
+                    document.getElementById('category').value
+                    =  data[23];
+                    document.getElementById('typeemp').value
+                    =  data[24];
+                    document.getElementById('occupation').value
+                    =  data[25];
+                    document.getElementById('salary').value
+                    =  data[26];
+                    document.getElementById('benefittype').value
+                =  data[29];
+                document.getElementById('dateapplied').value
+                = data[4];
+                    
+                   
+                $('#editform').attr('action','/verifyseniorbenefit/' + data[27]+'/'+data[28]);
+                $('#userphoto').attr("src","/images/picture/"+data[5]);
+                $('#picture').attr("src","/images/picture/"+data[5]);
+                $('#birth').attr("src","/images/birth/"+data[5]);
+                $('#barangaycert').attr("src","/images/barangay/"+data[5]);
+                $('#declineform').attr('action','/declineseniorapprovalbenefit/' + data[27]+'/'+data[28]);
+            })
+    
         })
 
-    })
 
-</script>
+        
+        // $('#schedule').on("change",function () {
+        //    var wpdb;
+        //     var input = document.getElementById("schedule").value;
+        //     result = wpdb->get_results("SELECT *  FROM  client_schedules WHERE  date =  '2015-08-01'");
+        //     document.getElementById('ricah').value = input;
+        //     console.log(result)
+        //     // $('#ricah').text($('#schedule').data('date'))
+        //     })
 
 
-            
-
-
+         
+    
+       
+    
+    </script>
+    
+  
+    
     
    
 @endsection
+
+
+
 

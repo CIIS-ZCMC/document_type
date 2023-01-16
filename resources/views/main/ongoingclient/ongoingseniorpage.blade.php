@@ -70,15 +70,15 @@
 						<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
 							<div class="form_container">
 								<div class="input_wrap">
-									<label for="phone">Birth Certificate/ Any VALID Documents with DATE OF BIRTH</label>
+									<label class="required" for="phone">Birth Certificate/ Any VALID Documents with DATE OF BIRTH</label>
 									<input type="file" id="Image" class="select" name="imagebirth" value="{{ old('c') }}" required>
 								</div>
 								<div class="input_wrap">
-									<label for="email">Barangay certificate of residency</label>
+									<label class="required" for="email">Barangay certificate of residency</label>
 									<input type="file" id="Image" class="select" name="imagebarangay" value="{{ old('c') }}" required>
 								</div>
 								<div class="input_wrap">
-									<label for="email">Latest 2x2 picture with white background</label>
+									<label class="required" for="email">Latest 2x2 picture with white background</label>
 									<input type="file" id="Image" class="select" name="imagepicture" value="{{ old('c') }}" required>
 								</div>
 							</div>
@@ -130,11 +130,18 @@
 				<script>
 				swal({
 						
-						title: "SAVED",
-						text: "Successfully saved!",
+					title: "REGISTERED",
+						text: "Successfully registered!",
 						icon: "success",
-						button: "ok",
-					})
+						buttons: ["Register Again!","Main Menu"],
+						type: "success"}).then(okay => {
+						if (okay) {
+							window.location.href = "http://127.0.0.1:8000/main";
+						}
+						else{
+							window.location.href = "http://127.0.0.1:8000/registration";
+						}
+						});
 					
 				
 				</script>
@@ -167,7 +174,7 @@
 				swal({
 					
 						title: "Registered",
-						text: "You are already a registered citizen!",
+						text: "You are already registered!",
 						icon: "error",
 						button: "ok",
 					})

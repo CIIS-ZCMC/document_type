@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('dist/css/card.css') }}"/>
     <title>Verified </title>
     <Style>
         @import url('https://fonts.googleapis.com/css2?family=Andika&family=Montserrat:wght@100;200&family=Poppins:ital,wght@0,200;0,300;1,100&display=swap');
@@ -38,7 +39,10 @@
     <div class="container">
         <h1>Verified</h1>
         <img src="{{ url('dist/images2/service/verified.svg') }}" alt="">
-     
+        <img src="{{ asset('/').$verifclient->identification}}" alt="">
+
+        
+</div>
     </div>
     
 </body>

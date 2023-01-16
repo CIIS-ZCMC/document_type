@@ -57,6 +57,7 @@ Route::post('/searchregisteredsoloparent', [PageController::class, 'searchregist
 
 Route::post('/searchongoingsenior', [PageController::class, 'searchongoingsenior']);
 Route::post('/searchongoingpwd', [PageController::class, 'searchongoingpwd']);
+Route::post('/searchongoingpwd1', [PageController::class, 'searchongoingpwd1']);
 Route::post('/searchongoingsoloparent', [PageController::class, 'searchongoingsoloparent']);
 
 Route::post('/save-capture.php', function()
@@ -125,6 +126,7 @@ Route::post('/createregisteredsoloparent', [ClientController::class, 'createregi
 
 Route::post('/createongoingsenior', [ClientController::class, 'createongoingsenior']);
 Route::post('/createongoingpwd', [ClientController::class, 'createongoingpwd']);
+Route::post('/createongoingpwd1', [ClientController::class, 'createongoingpwd1']);
 Route::post('/createongoingsoloparent', [ClientController::class, 'createongoing']);
 
 

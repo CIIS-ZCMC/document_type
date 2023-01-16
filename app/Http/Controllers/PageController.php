@@ -694,14 +694,35 @@ class PageController extends Controller
         {
         
 
-        
+            $clientregistered= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
+                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+            })->with(["client_applications" => function($subQuery) use ($request){
+                $subQuery->where("client_applications.application_type", "=", 'Citizen')->where("client_applications.application_process", "=", 'Online-Registered')->where("client_applications.application_reference_number", "=" ,$request->input('number')); 
+            }])->first();
             
 
-                    session_start();
-                    $_SESSION['fail'] ="fail";
 
-                    return redirect()->back()->with('fail');  
-                    exit;
+            if($clientregistered==null)
+            {
+                session_start();
+                $_SESSION['fail'] ="fail";
+
+                return redirect()->back()->with('fail');  
+                exit;
+
+            }
+            else
+            {
+               
+        
+                session_start();
+                $_SESSION['error'] ="error";
+
+                return redirect()->back()->with('error');  
+                exit;
+
+            }
+                   
         }
 
                 
@@ -723,12 +744,8 @@ class PageController extends Controller
 
             if($clientsenior == null)
             {
-                return view('main/ongoingclient/ongoingpwdpage', [
-                    // Specify the base layout.
-                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                    // The default value is 'side-menu'
-        
-                    // 'layout' => 'side-menu'
+                return view('main/ongoingclient/ongoingpwd', [
+                    
                     ])->with(compact('client','barangaylist'));
            
 
@@ -746,6 +763,7 @@ class PageController extends Controller
             }
          
         }
+     
      
     }
 
@@ -814,7 +832,7 @@ class PageController extends Controller
 
             if($clientsenior == null)
             {
-                return view('main/ongoingclient/ongoingsoloparentpage', [
+                return view('main/ongoingclient/ongoingsoloparent', [
                     
                     ])->with(compact('client','barangaylist'));
            

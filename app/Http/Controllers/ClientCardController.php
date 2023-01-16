@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClientCard;
+use App\Models\Client;
 use Illuminate\Http\Request;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class ClientCardController extends Controller
@@ -13,7 +14,8 @@ class ClientCardController extends Controller
     public function verifyclient($cardnumber,$token)
     {
        $verifclient= ClientCard::where('card_number',$cardnumber)->where('token',$token)->first();
-       
+       $clientid= $verifclient->client_id;
+       $clientdetails= Client::where('id',$clientid)->first();
         if($verifclient == null)
         {
 
@@ -21,11 +23,7 @@ class ClientCardController extends Controller
           
          
             return view('pages/verification/notverifiedclient', [
-                // Specify the base layout.
-                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                // The default value is 'side-menu'
-    
-                // 'layout' => 'side-menu'
+            
             ])->with('fail');
          
             
@@ -35,15 +33,11 @@ class ClientCardController extends Controller
         }
         else
         {
-          
+       
          
             return view('pages/verification/verifiedclient', [
-                // Specify the base layout.
-                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                // The default value is 'side-menu'
-    
-                // 'layout' => 'side-menu'
-            ])->with('fail');
+               
+            ])->with('fail')->with(compact('clientdetails','verifclient'));
          
             
         

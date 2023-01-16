@@ -58,7 +58,7 @@
 							<div class="form_container">
 								<div class="input_wrap">
 									<label for="email">Full Name</label>
-									<input type="text" name="fullname" class="input" value="{{$client->first_name}} {{$client->middle_name}} {{$client->last_name}} {{$client->extension_name}}" id="fullname" style="text-transform: capitalize;" required>
+									<input type="text" name="fullname" class="input" value="{{$client->first_name}} {{$client->middle_name}} {{$client->last_name}} {{$client->extension_name}}" id="fullname" style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -66,21 +66,21 @@
 								
 								<div class="input_wrap">
 									<label for="email">ID Number</label>
-									<input type="text"  name="idnumber" value="@foreach($client->client_cards as  $clientcard){{$clientcard->card_number}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" required>
+									<input type="text"  name="idnumber" value="@foreach($client->client_cards as  $clientcard){{$clientcard->card_number}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
 								</div>
                                 <div class="input_wrap">
 									
-									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" required>
+									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
 								</div>
 								<div class="input_wrap">
 								
-									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" required>
+									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -88,7 +88,7 @@
 								
 								<div class="input_wrap">
 									
-									<input type="hidden"  name="clientid" class="input" id="clientid" id="email" value="{{$client->id}}" style="text-transform: capitalize;" required>
+									<input type="hidden"  name="clientid" class="input" id="clientid" id="email" value="{{$client->id}}" style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -108,22 +108,22 @@
 						<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
 						<div class="form_container">
 							<div class="input_wrap">
-								<label for="phone">Valid ID</label>
+								<label class="required"  for="phone">Valid ID</label>
 								<input type="file" id="imageid" class="select" name="imageid" value="{{ old('c') }}" required>
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="email">Barangay certificate of residency</label>
+								<label class="required"  for="email">Barangay certificate of residency</label>
 								<input type="file" id="imagebarangay" class="select" name="imagebarangay" value="{{ old('c') }}" required>
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="email">Certificate of Disability</label>
+								<label class="required"  for="email">Certificate of Disability</label>
 								<input type="file" id="imagedisability" class="select" name="imagedisability" value="{{ old('c') }}" required>
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="email">Latest 1x1 picture with white background</label>
+								<label class="required"  for="email">Latest 1x1 picture with white background</label>
 								<input type="file" id="imagepicture" class="select" name="imagepicture" value="{{ old('c') }}" required>
 								<div class="error"></div>
 							</div>
@@ -141,7 +141,7 @@
 						<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
 						<div class="form_container">
 							<div class="input_wrap">
-								<label class="special-label">Type of Disability :</label>
+								<label class="required" >Type of Disability :</label>
 												
 													
 													
@@ -194,7 +194,7 @@
 								<div class="error" id="type1"></div>
 							</div>
 							<div class="input_wrap">
-								<label class="special-label">Cause  of Disability :</label>
+								<label class="required" >Cause  of Disability :</label>
 													<label class="container"> Congenital / Inborn
 												
 												</label>
@@ -355,7 +355,28 @@
 											<label for="confirm_password">Date of Birth</label>
 											<input data-format="MM/DD/YYYY" class="input" type="date" id="familybirthdate[]" name="familybirthdate[]">
 										</div>
+
+										<style>
+											.add_rel {
+											display: flex;
+											justify-content: flex-end;
+											align-items: center;
+											width: 80%;
+											margin: auto;
+											}
+											#addfamily {
+												background: #0083ce;
+												border: none;
+												cursor: pointer;
+												padding: 7px 10px; 
+												color: white;
+												width: 100px;
+												margin: 20px 0;
+											}
+									</style>
+										<div class="add_rel">
 										<input type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily" value="add">
+									</div>
 									</div>
 								</div>
 								{{-- <label for="company">Fathers Name </label>
@@ -407,7 +428,13 @@
 				</div>
 
 				<div class="btns_wrap">
+
 					<div class="common_btns form_1_btns">
+						<a href="/registeredpwd" style="text-decoration: none;">
+							
+							<button type="button" onclick="unsave()" class="btn_back" style="margin-right: 5px;"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+						
+						</a>
 						<button type="button"  class="btn_next">Next  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
 					</div>
 					<div class="common_btns form_2_btns" style="display: none;">
@@ -450,10 +477,17 @@
 		  swal({
 				  
 				  title: "SAVED",
-				  text: "Successfully saved!",
+				  text: "Successfully registered!",
 				  icon: "success",
-				  button: "ok",
-			  })
+				  buttons: ["Register Again!","Main Menu"],
+						type: "success"}).then(okay => {
+						if (okay) {
+							window.location.href = "http://127.0.0.1:8000/main";
+						}
+						else{
+							window.location.href = "http://127.0.0.1:8000/registration";
+						}
+						});
 			  
 		  
 		  </script>
@@ -486,7 +520,7 @@
 		  swal({
 			  
 				  title: "Registered",
-				  text: "You are already a registered citizen!",
+				  text: "You are already registered !",
 				  icon: "error",
 				  button: "ok",
 			  })
@@ -574,7 +608,21 @@
 											<label for="confirm_password">Date of Birth</label>
 											<input data-format="MM/DD/YYYY" class="input" type="date" id="familybirthdate[]" name="familybirthdate[]">
 										</div>
-										<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
+										
+										<style>
+												#remove {
+													background: #e80027;
+													border: none;
+													cursor: pointer;
+													padding: 7px 10px; 
+													color: white;
+													width: 100px;
+													margin: 20px 78%;
+													
+												}
+
+											</style>
+										<input type="button" name="remove" id="remove" value="remove">
 									</div>`;
 				var x = 1;
 	

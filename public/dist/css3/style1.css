@@ -34,7 +34,15 @@ body{
 	padding: 50px;
 	border-radius: 5px;
 }
-
+.required:after {
+	content:" *";
+	color: red;
+  }
+  
+  .special-label:after {
+	  content:" *";
+	  color: red;
+	}
 .wrapper .header{
 	margin-bottom: 35px;
 	display: flex;

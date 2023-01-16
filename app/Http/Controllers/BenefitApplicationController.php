@@ -397,7 +397,8 @@ class BenefitApplicationController extends Controller
             $applicationsave->save();
 
 
-
+            session_start();
+            $_SESSION['success'] ="success";
 
             return view('main/landing', [
                 // Specify the base layout.
@@ -439,7 +440,7 @@ class BenefitApplicationController extends Controller
             $applicationsave->benefit_type = 'Octogenarian';
             $applicationsave->application_Status = 'Applied';
                    
-                        $applicationsave->application_reference_number =  $generator;
+            $applicationsave->application_reference_number =  $generator;
                     
         
             $applicationsave->application_process = 'Online-Ongoing';
@@ -449,7 +450,8 @@ class BenefitApplicationController extends Controller
 
 
 
-
+            session_start();
+            $_SESSION['success'] ="success";
             return view('main/landing', [
                 // Specify the base layout.
                 // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
@@ -489,7 +491,7 @@ class BenefitApplicationController extends Controller
             $applicationsave->benefit_type = 'Nonagenarian';
             $applicationsave->application_Status = 'Applied';
                   
-                        $applicationsave->application_reference_number = $generator;
+            $applicationsave->application_reference_number = $generator;
                     
         
             $applicationsave->application_process = 'Online-Ongoing';
@@ -499,7 +501,8 @@ class BenefitApplicationController extends Controller
 
          
 
-
+            session_start();
+            $_SESSION['success'] ="success";
             return view('main/landing', [
                 // Specify the base layout.
                 // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
@@ -552,7 +555,8 @@ class BenefitApplicationController extends Controller
 
 
           
-
+            session_start();
+            $_SESSION['success'] ="success";
 
             return view('main/landing', [
                 // Specify the base layout.
@@ -604,22 +608,24 @@ class BenefitApplicationController extends Controller
     {
         
         $schedule = Carbon::parse($request->input('schedule'))->format('Y-m-d');
-        $applicationlogsave = new BenefitApplicationLog();
+        // $applicationlogsave = new BenefitApplicationLog();
      
-        $applicationlogsave->process_name = 'Approval-Approved';
-        $applicationlogsave->date= now()->toDateString('Y-m-d');;
-        $applicationlogsave->client_id = $clientid;
-        $applicationlogsave->client_application_id = $applicationid;
-     
-        $applicationlogsave->save();
+        // $applicationlogsave->process_name = 'Approval-Approved';
+        // $applicationlogsave->date= now()->toDateString('Y-m-d');;
+        // $applicationlogsave->client_card_id = $clientid;
 
-        $clientschedulesave = new ClientSchedule();
+        
+        // $applicationlogsave->benefit_application_id = $applicationid;
      
-        $clientschedulesave->date = $schedule;
-        $clientschedulesave->date_created= now()->toDateString('Y-m-d');
-        $clientschedulesave->client_application_id = $applicationid;
+        // $applicationlogsave->save();
+
+        // $clientschedulesave = new ClientSchedule();
      
-        $clientschedulesave->save();
+        // $clientschedulesave->date = $schedule;
+        // $clientschedulesave->date_created= now()->toDateString('Y-m-d');
+        // $clientschedulesave->client_application_id = $applicationid;
+     
+        // $clientschedulesave->save();
 
         $clientdetails=Client::where('id',$clientid)->first();
 
@@ -645,14 +651,15 @@ class BenefitApplicationController extends Controller
     {
        
     
-        $applicationlogsave = new BenefitApplicationLog();
+        // $applicationlogsave = new BenefitApplicationLog();
      
-        $applicationlogsave->process_name = 'Verification-Approved';
-        $applicationlogsave->date= now()->toDateString('Y-m-d');
-        $applicationlogsave->client_id = $clientid;
-        $applicationlogsave->client_application_id = $applicationid;
-     
-        $applicationlogsave->save();
+        // $applicationlogsave->process_name = 'Verification-Approved';
+        // $applicationlogsave->date= now()->toDateString('Y-m-d');
+        // $applicationlogsave->client_card_id = $clientid;
+
+        
+        // $applicationlogsave->benefit_application_id = $applicationid;
+        // $applicationlogsave->save();
 
         // $clientcardsave = new ClientCard();
      
@@ -792,7 +799,8 @@ class BenefitApplicationController extends Controller
 
 
 
-
+            session_start();
+            $_SESSION['success'] ="success";
             return view('main/landing', [
                 // Specify the base layout.
                 // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'

@@ -419,7 +419,7 @@
 
 
 
-                        <div class="intro-y box mt-5">
+                        {{-- <div class="intro-y box mt-5">
                             <div class="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                                 <h2 class="font-medium text-base mr-auto">
                                     Select Verification Schedule
@@ -436,18 +436,11 @@
                                             
                                         </div>
                                     </div>
-                                    <div class="col-span-12 xl:col-span-6">
-                                        <div class="mt-3 xl:mt-0">
-                                            <label for="religion" class="form-label">Number of Clients Scheduled</label>
-                                            <input id="ricah" type="text" class="form-control"  value="" disabled>
-                                        </div>
-                                       
-                                        
-                                    </div>
+                                    
                                 </div>
                                
                             </div>
-                        </div>
+                        </div> --}}
 
                      
 
@@ -459,7 +452,7 @@
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
                             <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#next-overlapping-modal-preview" class="btn btn-primary">Decline</a> 
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Approve</button>
+                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Verify</button>
                         </div>
                     
                    
@@ -496,11 +489,8 @@
                                             <label>Select Decline Reason</label>
                                             <div class="mt-2">
                                                 <select data-placeholder="Select Decline Reason" class="tom-select w-full" name="declinetype">
-                                                    <option value="1">Leonardo DiCaprio</option>
-                                                    <option value="2">Johnny Deep</option>
-                                                    <option value="3">Robert Downey, Jr</option>
-                                                    <option value="4">Samuel L. Jackson</option>
-                                                    <option value="5">Morgan Freeman</option>
+                                                    <option value="1">Documents</option>
+                                                    <option value="2">Input Fields</option>
                                                 </select>
                                         
                                             </div>
@@ -537,6 +527,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <?php
+    session_start();
 
 		if (isset($_SESSION['success']) == 'success') 
 		{
@@ -545,7 +536,7 @@
 				swal({
 						
 						title: "SAVED",
-						text: "Successfully saved!",
+						text: "Successfully approved!",
 						icon: "success",
 						button: "ok",
 					})
@@ -655,6 +646,10 @@
                     =  data[25];
                     document.getElementById('salary').value
                     =  data[26];
+                    document.getElementById('benefittype').value
+                =  data[29];
+                document.getElementById('dateapplied').value
+                = data[4];
                     
                    
                 $('#editform').attr('action','/approveseniorbenefit/' + data[27]+'/'+data[28]);

@@ -58,7 +58,7 @@
 							<div class="form_container">
 								<div class="input_wrap">
 									<label for="email">Full Name</label>
-									<input type="text" name="fullname" class="input" value="{{$client->first_name}} {{$client->middle_name}} {{$client->last_name}} {{$client->extension_name}}" id="fullname" style="text-transform: capitalize;" required>
+									<input type="text" name="fullname" class="input" value="{{$client->first_name}} {{$client->middle_name}} {{$client->last_name}} {{$client->extension_name}}" id="fullname" style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -66,21 +66,21 @@
 								
 								<div class="input_wrap">
 									<label for="email">ID Number</label>
-									<input type="text"  name="idnumber" value="@foreach($client->client_cards as  $clientcard){{$clientcard->card_number}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" required>
+									<input type="text"  name="idnumber" value="@foreach($client->client_cards as  $clientcard){{$clientcard->card_number}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
 								</div>
                                 <div class="input_wrap">
 									
-									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" required>
+									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
 								</div>
 								<div class="input_wrap">
 								
-									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" required>
+									<input type="hidden" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -88,7 +88,7 @@
 								
 								<div class="input_wrap">
 									
-									<input type="hidden"  name="clientid" class="input" id="clientid" id="email" value="{{$client->id}}" style="text-transform: capitalize;" required>
+									<input type="hidden"  name="clientid" class="input" id="clientid" id="email" value="{{$client->id}}" style="text-transform: capitalize;" >
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -108,22 +108,22 @@
 						<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
 						<div class="form_container">
 							<div class="input_wrap">
-								<label for="phone">Valid ID</label>
+								<label class="required"  for="phone">Valid ID</label>
 								<input type="file" id="imageid" class="select" name="imageid" value="{{ old('c') }}" required>
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="email">Barangay certificate of residency</label>
+								<label class="required"  for="email">Barangay certificate of residency</label>
 								<input type="file" id="imagebarangay" class="select" name="imagebarangay" value="{{ old('c') }}" required>
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="email">Birth Certificate</label>
+								<label class="required"  for="email">Birth Certificate</label>
 								<input type="file" id="imagebirth" class="select" name="imagebirth" value="{{ old('c') }}" required>
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="email">Latest 1x1 picture with white background</label>
+								<label class="required"  for="email">Latest 1x1 picture with white background</label>
 								<input type="file" id="imagepicture" class="select" name="imagepicture" value="{{ old('c') }}" required>
 								<div class="error"></div>
 							</div>
@@ -162,7 +162,28 @@
 										<label for="confirm_text">Date of Birth</label>
 										<input data-format="MM/DD/YYYY" class="input" type="date" id="familybirthdate[]" name="familybirthdate[]">
 									</div>
+									<style>
+										    
+										.add_rel {
+										display: flex;
+										justify-content: flex-end;
+										align-items: center;
+										width: 80%;
+										margin: auto;
+										}
+										#addfamily {
+											background: #0083ce;
+											border: none;
+											cursor: pointer;
+											padding: 7px 10px; 
+											color: white;
+											width: 100px;
+											margin: 20px 0;
+										}
+								 </style>
+								<div class="add_rel">
 									<input type="button" class="btn btn-warning add_item_btn" name="addfamily" id="addfamily" value="add">
+								</div>
 								</div>
 							</div>
 							
@@ -180,7 +201,7 @@
 										<label for="experience">Type</label>
 										<input type="text" name="type[]" class="input" id="type">
 										<label for="experience">Name of School</label>
-										<input type="text" name="schoolname[]" class="input" id="schoolname" required>
+										<input type="text" name="schoolname[]" class="input" id="schoolname" >
 										<label for="experience">Course</label>
 										<input type="text" name="course[]" class="input" id="course">
 										<label for="experience">Year Graduated</label>
@@ -188,7 +209,31 @@
 										<label for="experience">Achievement/Award Received</label>
 										<input type="text" name="achievementaward[]" class="input" id="achievementaward
 										">
-										<input type="button" class="btn btn-warning add_item_btn" name="addeducation" id="addeducation" value="add">
+										<style>
+										    
+											.add_ed {
+											display: flex;
+											justify-content: flex-end;
+											align-items: center;
+											width: 80%;
+											margin: auto;
+											}
+											#addeducation {
+												background: #0083ce;
+												border: none;
+												cursor: pointer;
+												padding: 7px 10px; 
+												color: white;
+												width: 100px;
+												margin: 20px 0;
+											}
+
+									 
+
+									 </style>
+										<div class="add_ed">
+											<input type="button" class="btn btn-warning add_item_btn" name="addeducation" id="addeducation" value="add">
+										</div>
 									</div>
 								</div>
 		
@@ -205,10 +250,30 @@
 								<label for="experience">Name</label>
 								<input type="text" name="organizationname[]" class="input" id="type">
 								<label for="experience">Position</label>
-								<input type="text" name="position[]" class="input" id="schoolname" required>
+								<input type="text" name="position[]" class="input" id="schoolname" >
 								<label for="experience">Inclusive Date</label>
 								<input data-format="yyyy-MM-dd" class="input" type="date" id="commmunitydate" name="commmunitydate[]">
+								<style>
+									.add_com {
+									display: flex;
+									justify-content: flex-end;
+									align-items: center;
+									width: 80%;
+									margin: auto;
+									}
+									#addcommunity {
+										background: #0083ce;
+										border: none;
+										cursor: pointer;
+										padding: 7px 10px; 
+										color: white;
+										width: 100px;
+										margin: 20px 0;
+									}
+							 </style>
+							 <div class="add_com">
 								<input type="button" class="btn btn-warning add_item_btn" name="addcommunity" id="addcommunity" value="add">
+							 </div>
 							</div>
 						</div>
 
@@ -223,10 +288,35 @@
 								<label for="experience">Name</label>
 								<input type="text" name="seminarorganizationname[]" class="input" id="type">
 								<label for="experience">Position</label>
-								<input type="text" name="seminarposition[]" class="input" id="schoolname" required>
+								<input type="text" name="seminarposition[]" class="input" id="schoolname" >
 								<label for="experience">Inclusive Date</label>
 								<input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="seminardate[]">
+										
+								<style>
+										    
+									.add_sem {
+									display: flex;
+									justify-content: flex-end;
+									align-items: center;
+									width: 80%;
+									margin: auto;
+									}
+									#addseminar {
+										background: #0083ce;
+										border: none;
+										cursor: pointer;
+										padding: 7px 10px; 
+										color: white;
+										width: 100px;
+										margin: 20px 0;
+									}
+
+							 
+
+							 </style>
+							 <div class="add_sem">
 								<input type="button" class="btn btn-warning add_item_btn" name="addseminar" id="addseminar" value="add">
+							 </div>
 							</div>
 						</div>
 						
@@ -235,6 +325,11 @@
 
 				<div class="btns_wrap">
 					<div class="common_btns form_1_btns">
+						<a href="/registeredsoloparent" style="text-decoration: none;">
+							
+							<button type="button" onclick="unsave()" class="btn_back" style="margin-right: 5px;"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+						
+						</a>
 						<button type="button"  class="btn_next">Next  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
 					</div>
 					<div class="common_btns form_2_btns" style="display: none;">
@@ -276,11 +371,17 @@ if (isset($_SESSION['success']) == 'success')
 	  swal({
 			  
 			  title: "SAVED",
-			  text: "Successfully saved!",
+			  text: "Successfully registered!",
 			  icon: "success",
-			  button: "ok",
-		  })
-		  
+			  buttons: ["Register Again!","Main Menu"],
+						type: "success"}).then(okay => {
+						if (okay) {
+							window.location.href = "http://127.0.0.1:8000/main";
+						}
+						else{
+							window.location.href = "http://127.0.0.1:8000/registration";
+						}
+						});
 	  
 	  </script>
   <?php
@@ -312,7 +413,7 @@ if (isset($_SESSION['Error']) == 'Error')
 	  swal({
 		  
 			  title: "Registered",
-			  text: "You are already a registered citizen!",
+			  text: "You are already registered!",
 			  icon: "error",
 			  button: "ok",
 		  })
@@ -334,7 +435,7 @@ var htmlcommunity =`<div class="input_wrap" >
 					<label for="experience">Name</label>
 					<input type="text" name="organizationname[]" class="input" id="type">
 					<label for="experience">Position</label>
-					<input type="text" name="position[]" class="input" id="schoolname" required>
+					<input type="text" name="position[]" class="input" id="schoolname" >
 					<label for="experience">Inclusive Date</label>
 					<input data-format="yyyy-MM-dd" class="input" type="date" id="commmunitydate" name="commmunitydate[]">
 					<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
@@ -345,7 +446,7 @@ var htmlseminar =`<div class="input_wrap" >
 					<label for="experience">Name</label>
 					<input type="text" name="seminarorganizationname[]" class="input" id="type">
 					<label for="experience">Position</label>
-					<input type="text" name="seminarposition[]" class="input" id="schoolname" required>
+					<input type="text" name="seminarposition[]" class="input" id="schoolname" >
 					<label for="experience">Inclusive Date</label>
 					<input data-format="yyyy-MM-dd" class="input" type="date" id="birthdaytime" name="seminardate[]">
 					<input type="button" class="btn btn-danger add_item_btn" name="remove" id="remove" value="remove">
@@ -355,7 +456,7 @@ var x = 1;
 										<label for="experience">Type</label>
 										<input type="text" name="type[]" class="input" id="type">
 										<label for="experience">Name of School</label>
-										<input type="text" name="schoolname[]" class="input" id="schoolname" required>
+										<input type="text" name="schoolname[]" class="input" id="schoolname" >
 										<label for="experience">Course</label>
 										<input type="text" name="course[]" class="input" id="course">
 										<label for="experience">Year Graduated</label>
