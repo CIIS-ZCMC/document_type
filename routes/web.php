@@ -187,6 +187,7 @@ Route::middleware('isLogged')->group(function() {
         Route::get('regular-table-page', 'regularTable')->name('regular-table');
         Route::get('tabulator-page', 'tabulator')->name('tabulator');
         Route::get('fieldoffice-page', 'fieldoffice')->name('fieldoffice');
+        Route::get('benefits-page', 'benefits')->name('benefits');
 
         Route::get('declinesenior-page', 'declinesenior')->name('declinesenior');
         Route::get('declinesoloparent-page', 'declinesoloparent')->name('declinesoloparent');

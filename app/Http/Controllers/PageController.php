@@ -1242,6 +1242,17 @@ class PageController extends Controller
         ->get();
         return view('pages/fieldoffice',$data)->with(compact('fo'));
     }
+
+    
+    public function benefits()
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $fo = DB::table('benefits')
+        ->select()
+        ->get();
+        return view('pages/benefits',$data)->with(compact('fo'));
+    }
+
     /**
      * Show specified view.
      *
