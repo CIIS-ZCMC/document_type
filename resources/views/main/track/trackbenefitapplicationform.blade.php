@@ -32,7 +32,7 @@
 								
 								<div class="input_wrap">
 									<label for="email">Reference Number</label>
-									<input type="text"  name="idnumber" value="@foreach($client->benefit_applicatons as  $clientcard){{$clientcard->application_reference_number}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" required>
+									<input type="text"  name="idnumber" value="@foreach($client->benefit_applications as  $clientcard){{$clientcard->application_reference_number}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" required>
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -40,7 +40,7 @@
 
                                 <div class="input_wrap">
 									<label for="email">Status</label>
-									<input type="text"  name="idnumber" value="@foreach($client->benefit_applicatons as  $clientcard){{$clientcard->application_status}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" required>
+									<input type="text"  name="idnumber" value="@foreach($client->benefit_applications as  $clientcard){{$clientcard->application_status}}@endforeach" class="input" id="idnumber" id="email"  style="text-transform: capitalize;" required>
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
 									
@@ -99,7 +99,9 @@
                                      --}}
                         {{-- @else --}}
                             <div class="common_btns form_1_btns">
-                                <button type="button"  class="btn_done">Back  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+                                <div class="common_btns form_1_btns">
+									<button type="button"  class=""  onclick="history.go(-2)">Back  <span class="icon"></span></button>
+								</div>
                             </div>
                             
                         {{-- @endif --}}

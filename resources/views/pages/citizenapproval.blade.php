@@ -237,10 +237,10 @@
                             <div class="mt-6 lg:mt-0 flex-1 px-5 border-l border-r border-slate-200/60 dark:border-darkmode-400 border-t lg:border-t-0 pt-5 lg:pt-0">
                                 <div class="font-medium text-center lg:text-left lg:mt-3">Clent Address</div>
                                 <div class="flex flex-col justify-center items-center lg:items-start mt-4">
-                                    <div id="street" class="truncate sm:whitespace-normal flex items-center"> <i data-lucide="mail" class="w-4 h-4 mr-2"></i> johnnydepp@left4code.com </div>
-                                    <div id="barangay" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="instagram" class="w-4 h-4 mr-2"></i> Instagram Johnny Depp </div>
-                                    <div id="city" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="twitter" class="w-4 h-4 mr-2"></i> Twitter Johnny Depp </div>
-                                    <div id="province" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="twitter" class="w-4 h-4 mr-2"></i> Twitter Johnny Depp </div>
+                                    <div id="street" class="truncate sm:whitespace-normal flex items-center"> <i data-lucide="mail" class="w-4 h-4 mr-2"></i>  </div>
+                                    <div id="barangay" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="instagram" class="w-4 h-4 mr-2"></i>  </div>
+                                    <div id="city" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="twitter" class="w-4 h-4 mr-2"></i> </div>
+                                    <div id="province" class="truncate sm:whitespace-normal flex items-center mt-3"> <i data-lucide="twitter" class="w-4 h-4 mr-2"></i> </div>
                                 </div>
                             </div>
                         </div>
@@ -390,7 +390,7 @@
                                     <div class="box rounded-md p-3 relative zoom-in">
                                         <div class="flex-none relative block before:block before:w-full before:pt-[100%]">
                                             <div class="absolute top-0 left-0 w-full h-full image-fit">
-                                                <img id="picture"  class="rounded-md" src="dist/images/food-beverage-16.jpg">
+                                                <img id="picture"  class="rounded-md" >
                                             </div>
                                         </div>
                                         <div class="block font-medium text-center truncate mt-3">2x2 Picture</div>
@@ -400,7 +400,7 @@
                                     <div class="box rounded-md p-3 relative zoom-in">
                                         <div class="flex-none relative block before:block before:w-full before:pt-[100%]">
                                             <div class="absolute top-0 left-0 w-full h-full image-fit">
-                                                <img id="birth"  class="rounded-md" src="dist/images/food-beverage-16.jpg">
+                                                <img id="birth"  class="rounded-md" >
                                             </div>
                                         </div>
                                         <div class="block font-medium text-center truncate mt-3">Birth Certificate</div>
@@ -434,20 +434,20 @@
                                     <div class="col-span-12 xl:col-span-6">
                                         <div >
                                             <label for="update-profile-form-6" class="form-label">Date:</label>
-                                            <input id="schedule" type="date" class="form-control" name="schedule" >
+                                            <input id="schedule" type="date" class="form-control" name="schedule" required>
                                         </div>
                                         <div >
                                             
                                         </div>
                                     </div>
-                                    <div class="col-span-12 xl:col-span-6">
+                                    {{-- <div class="col-span-12 xl:col-span-6">
                                         <div class="mt-3 xl:mt-0">
                                             <label for="religion" class="form-label">Number of Clients Scheduled</label>
                                             <input id="ricah" type="text" class="form-control"  value="" disabled>
                                         </div>
                                        
                                         
-                                    </div>
+                                    </div> --}}
                                 </div>
                                
                             </div>
@@ -463,7 +463,7 @@
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
                             <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#next-overlapping-modal-preview" class="btn btn-primary">Decline</a> 
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Approve</button>
+                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Approved</button>
                         </div>
                     
                    
@@ -500,11 +500,9 @@
                                             <label>Select Decline Reason</label>
                                             <div class="mt-2">
                                                 <select data-placeholder="Select Decline Reason" class="tom-select w-full" name="declinetype">
-                                                    <option value="1">Leonardo DiCaprio</option>
-                                                    <option value="2">Johnny Deep</option>
-                                                    <option value="3">Robert Downey, Jr</option>
-                                                    <option value="4">Samuel L. Jackson</option>
-                                                    <option value="5">Morgan Freeman</option>
+                                                    <option value="1">Documents</option>
+                                                    <option value="2">Input Fields</option>
+                                                  
                                                 </select>
                                         
                                             </div>
@@ -581,6 +579,23 @@
 ?>
     <script type="text/javascript">
     
+
+    var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("schedule").setAttribute("min", today);
+
         $(document).ready(function()
         {
             $("#datatable").DataTable({

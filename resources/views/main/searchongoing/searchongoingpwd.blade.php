@@ -24,7 +24,7 @@
 							<div class="form_container">
 								
 								<div class="input_wrap">
-									<label for="email">First Name</label>
+									<label class="required"  for="email">First Name</label>
 									<input type="text" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" required>
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
@@ -32,7 +32,7 @@
 								</div>
 								
 								<div class="input_wrap">
-									<label for="email">Last Name</label>
+									<label class="required"  for="email">Last Name</label>
 									<input type="text"  name="lastname" class="input" id="lastname" id="email"  style="text-transform: capitalize;" required>
 									<i class="fas fa-check-circle"></i>
 									<i class="fas fa-exclamation-circle"></i>
@@ -49,8 +49,8 @@
 								</div>
 							
 								<div class="input_wrap">
-									<label for="confirm_password">Application Reference Number</label>
-									<input type="text" name="number" class="input" id="skill">
+									<label class="required" for="confirm_password">Application Reference Number</label>
+									<input type="text" name="number" class="input" id="skill" required>
 								</div>
 								
 							</div>
@@ -60,11 +60,18 @@
 					
 				</div>
 
+				
 				<div class="btns_wrap">
-					<div class="common_btns form_1_btns">
-						<button type="submit"  class="">Search  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
-					</div>
-					
+					<div class="common_btns form_1_btns d-flex flex-direction-row ">
+						<a href="/main" style="text-decoration: none;">						
+							<button type="button" onclick="unsave()" class="btn_back" style="margin-right: 5px;"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>				
+						</a>
+				
+						<div class="common_btns form_1_btns">
+							<button type="submit"  class="">Search  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+						</div>
+
+					</div>						
 				</div>
 			</form>
 		</div>
@@ -96,8 +103,8 @@
 				<script>
 				swal({
 						
-						title: "SAVED",
-						text: "Successfully saved!",
+					title: "REGISTERED",
+						text: "Successfully registered!",
 						icon: "success",
 						button: "ok",
 					})

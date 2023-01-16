@@ -143,7 +143,7 @@
                           
                             <div class="col-span-12">
                                 <label for="pos-form-1" class="form-label">Barangay Name</label>
-                                <input id="barngayname" name="barangayname" type="text" class="form-control flex-1" placeholder="Customer name">
+                                <input id="barngayname" name="barangayname" type="text" class="form-control flex-1" placeholder="Barangay name">
                             </div>
                           
                            

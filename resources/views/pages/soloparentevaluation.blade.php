@@ -600,7 +600,7 @@
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
                             <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#next-overlapping-modal-preview" class="btn btn-primary">Decline</a> 
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Evaluate</button>
+                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Evaluated</button>
                         </div>
                     
                    
@@ -637,11 +637,8 @@
                                             <label>Select Decline Reason</label>
                                             <div class="mt-2">
                                                 <select data-placeholder="Select Decline Reason" class="tom-select w-full" name="declinetype">
-                                                    <option value="1">Leonardo DiCaprio</option>
-                                                    <option value="2">Johnny Deep</option>
-                                                    <option value="3">Robert Downey, Jr</option>
-                                                    <option value="4">Samuel L. Jackson</option>
-                                                    <option value="5">Morgan Freeman</option>
+                                                    <option value="1">Documents</option>
+                                                    <option value="2">Input Fields</option>
                                                 </select>
                                         
                                             </div>
@@ -681,6 +678,7 @@
     
     
     <?php
+    session_start();
     
             if (isset($_SESSION['success']) == 'success') 
             {

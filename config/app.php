@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Facade;
 
+
+
+
 return [
 
     /*
@@ -164,6 +167,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Illuminate\Session\SessionServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -179,6 +183,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+   
        
     ],
 
@@ -199,7 +204,8 @@ return [
         ])->toArray(),
        
         'Image' => Intervention\Image\Facades\Image::class,
-        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
+      
     ] 
     
     

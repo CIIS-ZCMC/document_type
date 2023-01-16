@@ -76,17 +76,17 @@
 						<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
 							<div class="form_container">
 								<div class="input_wrap">
-									<label for="email">First Name</label>
+									<label class="required"  for="email">First Name</label>
 									<input type="text" name="firstname" class="input"  style="text-transform: capitalize;" id="firstname" >
 									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
-									<label for="email">Last Name</label>
+									<label class="required"  for="email">Last Name</label>
 									<input type="text" name="lastname" class="input"  style="text-transform: capitalize;" id="lastname">
 									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
-									<label for="email">Middle Name</label>
+									<label  for="email">Middle Name</label>
 									<input type="text" name="middlename" class="input"   style="text-transform: capitalize;" id="middlename">
 									<div class="error"></div>
 								</div>
@@ -95,7 +95,7 @@
 									<input type="text" name="extensionname" class="input"  style="text-transform: capitalize;" id="extensionname">
 								</div>
 								<div class="input_wrap">
-									<label for="confirm_password">Gender</label>
+									<label class="required"  for="confirm_password">Gender</label>
 									<select class="select" id="addGender" name="gender" >
 										<option value="0" selected>Select Gender</option>
 										<option value="Male">Male</option>
@@ -118,7 +118,7 @@
 									</select>
 								</div>
 								<div class="input_wrap">
-									<label for="confirm_password">Civil Status</label>
+									<label class="required"  for="confirm_password">Civil Status</label>
 									<select class="select" id="addCivilStatus" name="civilstatus" >
 										<option value="0" selected>Select Civil Status</option>
 										<option value="Married">Married</option>
@@ -131,7 +131,7 @@
 								</div>
 
 								<div class="input_wrap">
-									<label for="confirm_text">Educational Attainment</label>
+									<label class="required"  for="confirm_text">Educational Attainment</label>
 									<select class="select" id="addEducation" name="educationalattainment" required>
 										<option value="0" selected>Select</option>
 										<option value="None">None</option>
@@ -165,12 +165,12 @@
 									<input type="text" name="religion" class="input"  style="text-transform: capitalize;" id="">
 								</div>
 								<div class="input_wrap">
-									<label for="">Date of Birth</label>
+									<label class="required"  for="">Date of Birth</label>
 									<input data-format="MM/DD/YYYY" class="input" type="date" id="birthdate"  style="text-transform: capitalize;" name="birthdate">
 									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
-									<label for="">Place of Birth</label>
+									<label class="required"  for="">Place of Birth</label>
 									<input type="text" name="birthplace" class="input"  style="text-transform: capitalize;" id="birthplace">
 									<div class="error"></div>
 								</div>
@@ -178,12 +178,12 @@
 							<h2></h2>
 							<h2>Present Address</h2>
 							<div class="input_wrap">
-								<label for="user_name">Street</label>
+								<label class="required"  for="user_name">Street</label>
 								<input type="text" name="street" class="input"  style="text-transform: capitalize;" id="street">
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="first_name">Barangay</label>
+								<label class="required"  for="first_name">Barangay</label>
 								<select class="select" id="addBarangay"  name="barangay" >
 									<option value="0" selected>Select Barangay</option>
 									@foreach ($barangaylist as $item)
@@ -195,17 +195,17 @@
 									<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="last_name">City/Municipality</label>
+								<label class="required"  for="last_name">City/Municipality</label>
 								<input type="text" name="city" class="input"  style="text-transform: capitalize;" id="city">
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="last_name">Province</label>
+								<label class="required"  for="last_name">Province</label>
 								<input type="text" name="province" class="input"   style="text-transform: capitalize;" id="province">
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="last_name">Region</label>
+								<label class="required"  for="last_name">Region</label>
 								<input type="text" name="region" class="input"  style="text-transform: capitalize;" id="region">
 								<div class="error"></div>
 							</div>
@@ -213,7 +213,7 @@
 							<h2>Contact Information</h2>
 
 							<div class="input_wrap">
-								<label for="company">Mobile Number</label>
+								<label class="required"  for="company">Mobile Number</label>
 								<input type="text" name="mobilenumber" class="input"  style="text-transform: capitalize;" id="mobilenumber">
 								<div class="error"></div>
 							</div>
@@ -224,7 +224,7 @@
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label for="designation">Email Address</label>
+								<label class="required"  for="designation">Email Address</label>
 								<input type="text" name="emailaddress" class="input"  id="emailaddress">
 								<div class="error"></div>
 							</div>
@@ -237,7 +237,7 @@
 						<div class="form_container">
 								
 							<div class="input_wrap">
-								<label for="first_name">Status of Employment</label>
+								<label class="required"  for="first_name">Status of Employment</label>
 								<select class="select" id="addEmployment" name="employmentstatus" >
 									<option value="0" selected>Select Employment Status</option>
 									<option value="Employed">Employed</option>
@@ -248,7 +248,7 @@
 							
 							</div>
 							<div class="input_wrap">
-								<label class="special-label">Category of Employment:</label>
+								<label  class="required" >Category of Employment:</label>
 								<select class="select" id="addCategory" name="employmentcategory" >
 									<option value="0" selected>Select Employment Type</option>
 									<option value="N/A">N/A</option>
@@ -259,7 +259,7 @@
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label class="special-label">Type of Employment:</label>
+								<label class="required" >Type of Employment:</label>
 								<select class="select" id="addType" name="employmenttype" >
 									<option value="0" selected>Select Employment Type</option>
 									<option value="N/A">N/A</option>
@@ -272,7 +272,7 @@
 								<div class="error"></div>
 							</div>
 							<div class="input_wrap">
-								<label class="special-label">Occupation</label>
+								<label class="required" >Occupation</label>
 													
 								<label class="container1">Managers
 								<input type="radio" name="occupation" value="Managers" onclick="text(1)">
@@ -497,7 +497,7 @@
 						<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
 							<div class="form_container">
 								<div class="input_wrap">
-									<label class="special-label">Type of Disability :</label>
+									<label  class="required" >Type of Disability :</label>
 													
 														
 														
@@ -550,7 +550,7 @@
 									<div class="error" id="type1"></div>
 								</div>
 								<div class="input_wrap">
-									<label class="special-label">Cause  of Disability :</label>
+									<label  class="required" >Cause  of Disability :</label>
 														<label class="container"> Congenital / Inborn
 													
 													</label>
@@ -639,22 +639,22 @@
 						<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
 							<div class="form_container">
 								<div class="input_wrap">
-									<label for="phone">Valid ID</label>
+									<label class="required"  for="phone">Valid ID</label>
 									<input type="file" id="imageid" class="select" name="imageid" value="{{ old('c') }}" required>
 									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
-									<label for="email">Barangay certificate of residency</label>
+									<label class="required"  for="email">Barangay certificate of residency</label>
 									<input type="file" id="imagebarangay" class="select" name="imagebarangay" value="{{ old('c') }}" required>
 									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
-									<label for="email">Certificate of Disability</label>
+									<label class="required"  for="email">Certificate of Disability</label>
 									<input type="file" id="imagedisability" class="select" name="imagedisability" value="{{ old('c') }}" required>
 									<div class="error"></div>
 								</div>
 								<div class="input_wrap">
-									<label for="email">Latest 1x1 picture with white background</label>
+									<label class="required" for="email">Latest 1x1 picture with white background</label>
 									<input type="file" id="imagepicture" class="select" name="imagepicture" value="{{ old('c') }}" required>
 									<div class="error"></div>
 								</div>
@@ -709,13 +709,13 @@
 	</div>
 </div> --}}
 
-<script>
+{{-- <script>
 			window.onbeforeunload = function() {
 				//Whatever
 				return "WARNING! You have unsaved changes that may be lost!";
 			}
 	
-	</script>
+	</script> --}}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
@@ -732,11 +732,18 @@ session_start();
 			  swal({
 					  
 					  title: "REGISTERED",
-					  text: "Successfully registered!",
+					  text: "Successfully registered! We sent the application reference number to your provided email. Please use your reference number to track your application.Thank you! ",
 					  icon: "success",
-					  button: "ok",
-				  })
-				  
+					  buttons: ["Register Again!","Main Menu"],
+						type: "success"}).then(okay => {
+						if (okay) {
+							window.location.href = "http://127.0.0.1:8000/main";
+						}
+						else{
+							window.location.href = "http://127.0.0.1:8000/registration";
+						}
+						});
+				    
 			  
 			  </script>
 		  <?php
@@ -752,9 +759,11 @@ session_start();
 					  title: "Fail",
 					  text: "Fail to register!",
 					  icon: "error",
-					  button: "ok",
-				  })
-			  
+					  type: "error"}).then(okay => {
+						if (okay) {
+							window.location.href = "http://127.0.0.1:8000/main";
+						}
+						});
 			  
 			  </script>
 		  <?php
@@ -766,16 +775,28 @@ session_start();
 
 <script>
 
-	
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1; //January is 0!
+var yyyy = today.getFullYear();
+
+if (dd < 10) {
+   dd = '0' + dd;
+}
+
+if (mm < 10) {
+   mm = '0' + mm;
+} 
+    
+today = yyyy + '-' + mm + '-' + dd;
+document.getElementById("birthdate").setAttribute("max", today);
+
 		$(document).ready(function ()
 			{
 				document.getElementById('divothers').style.display="none";
 				document.getElementById('divinborn').style.display="none";
 				document.getElementById('divacquired').style.display="none";
-			
-			
-
-					
+	
 
 			});	
 
@@ -861,14 +882,11 @@ session_start();
 												}
 
 											</style>
-											<input type="button" name="remove" id="remove" value="REMOVE">
+											<input type="button" name="remove" id="remove" value="Remove">
 										
 									</div>`;
 				var x = 1;
-	
-	
-	
-			
+
 				$("#addfamily").click(function()
 				{
 					$('#family').append(htmlfamily);

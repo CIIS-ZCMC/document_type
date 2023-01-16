@@ -35,9 +35,7 @@ class BarangayController extends Controller
      */
     public function store(Request $request, $id = null)
     {
-        session_start();
-        $_SESSION['success'] ="success";
-
+       
 
         $barangaysave = new Barangay();
      
@@ -48,8 +46,11 @@ class BarangayController extends Controller
 
     
       
-        
+        session_start();
+        $_SESSION['success'] ="success";
+
         return redirect()->back()->with('success');  
+        exit;
     }
 
     /**

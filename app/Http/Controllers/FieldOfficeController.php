@@ -35,8 +35,7 @@ class FieldOfficeController extends Controller
      */
     public function store(Request $request)
     {
-        session_start();
-        $_SESSION['success'] ="success";
+       
 
 
         $fosave = new FieldOffice();
@@ -47,9 +46,11 @@ class FieldOfficeController extends Controller
         $fosave->save();
 
     
-      
+        session_start();
+        $_SESSION['success'] ="success";
         
         return redirect()->back()->with('success');  
+        exit;
     }
 
     /**

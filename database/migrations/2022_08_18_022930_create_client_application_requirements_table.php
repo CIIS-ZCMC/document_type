@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('filename');
+            $table->unsignedBigInteger('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->unsignedBigInteger('client_application_id')->unsigned();
             $table->foreign('client_application_id')->references('id')->on('client_applications')->onDelete('cascade')->onUpdate('cascade');
+            
             $table->timestamps();
         });
     }

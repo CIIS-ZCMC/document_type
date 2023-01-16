@@ -448,11 +448,8 @@
                                             <label>Select Decline Reason</label>
                                             <div class="mt-2">
                                                 <select data-placeholder="Select Decline Reason" class="tom-select w-full" name="declinetype">
-                                                    <option value="1">Leonardo DiCaprio</option>
-                                                    <option value="2">Johnny Deep</option>
-                                                    <option value="3">Robert Downey, Jr</option>
-                                                    <option value="4">Samuel L. Jackson</option>
-                                                    <option value="5">Morgan Freeman</option>
+                                                    <option value="1">Documents</option>
+                                                    <option value="2">Input Fields</option>
                                                 </select>
                                         
                                             </div>
@@ -492,6 +489,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
+session_start();
 
 		if (isset($_SESSION['success']) == 'success') 
 		{

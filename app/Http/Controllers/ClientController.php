@@ -33,9 +33,9 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
-
+use Session;
 use Illuminate\Support\Str;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class ClientController extends Controller
@@ -147,6 +147,7 @@ class ClientController extends Controller
                         $requirementsave->name = 'Birth Certificate';
                         $requirementsave->filename = $filename;
                         $requirementsave->client_application_id =$applicationsave->id;
+                        $requirementsave->client_id =$clientsave->id;
                         $requirementsave->save();
                         
                     }
@@ -166,6 +167,7 @@ class ClientController extends Controller
                         $requirementsave->name = 'Barangay Certificate';
                         $requirementsave->filename = $filename;
                         $requirementsave->client_application_id =$applicationsave->id;
+                        $requirementsave->client_id =$clientsave->id;
                         $requirementsave->save();
                         
                     }
@@ -185,6 +187,7 @@ class ClientController extends Controller
                         $requirementsave->name = 'Picture';
                         $requirementsave->filename = $filename;
                         $requirementsave->client_application_id =$applicationsave->id;
+                        $requirementsave->client_id =$clientsave->id;
                         $requirementsave->save();
                         
                     }
@@ -207,19 +210,21 @@ class ClientController extends Controller
 
 
 
-                session_start();
-                $_SESSION['success'] ="success";
-               
+  
+        session_start();
+        $_SESSION['success'] ="success";
+       
              
-                return view('main/landing', [
-                    // Specify the base layout.
-                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                    // The default value is 'side-menu'
+             
+                // return redirect('main', [
+                //     // Specify the base layout.
+                //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                //     // The default value is 'side-menu'
         
-                    // 'layout' => 'side-menu'
-                ])->with('success');
-             
-                
+                //     // 'layout' => 'side-menu'
+                // ])->with('success');
+                // Alert::success('Congrats', 'You\'ve Successfully Registered');
+                return back()->with('success');
                 exit;
 
                
@@ -324,13 +329,7 @@ class ClientController extends Controller
                         $_SESSION['fail'] ="fail";
                        
                      
-                        return view('main/landing', [
-                            // Specify the base layout.
-                            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                            // The default value is 'side-menu'
-                
-                            // 'layout' => 'side-menu'
-                        ])->with('fail');
+                        return back()->with('fail');
                      
                         
                         exit;
@@ -373,7 +372,7 @@ class ClientController extends Controller
         {
             $application_date= now()->toDateString('Ymd');
             $yearOnly=substr($application_date,0,4);
-            $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'OSID-'.$yearOnly,$yearOnly);
+            $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SID-'.$yearOnly,$yearOnly);
                         $applicationsave = new ClientApplication();
                     
                         $applicationsave->application_date= now()->toDateString('Y-m-d');;
@@ -403,6 +402,7 @@ class ClientController extends Controller
                                 $requirementsave->name = 'Birth Certificate';
                                 $requirementsave->filename = $filename;
                                 $requirementsave->client_application_id =$applicationsave->id;
+                                $requirementsave->client_id = $clientid;
                                 $requirementsave->save();
                                 
                             }
@@ -422,6 +422,7 @@ class ClientController extends Controller
                                 $requirementsave->name = 'Barangay Certificate';
                                 $requirementsave->filename = $filename;
                                 $requirementsave->client_application_id =$applicationsave->id;
+                                $requirementsave->client_id = $clientid;
                                 $requirementsave->save();
                                 
                             }
@@ -441,6 +442,7 @@ class ClientController extends Controller
                                 $requirementsave->name = 'Picture';
                                 $requirementsave->filename = $filename;
                                 $requirementsave->client_application_id =$applicationsave->id;
+                                $requirementsave->client_id = $clientid;
                                 $requirementsave->save();
                                 
                             }
@@ -459,7 +461,8 @@ class ClientController extends Controller
                         Mail::to($clientdetails->email_address)->send(new ReferenceMail($details, $clientapplication, $clientdetails));
                         session_start();
                         $_SESSION['success'] ="success";
-                       
+                      
+                    //    return back('http://127.0.0.1:8000/main','success')->with('success');
                      
                         return view('main/landing', [
                             // Specify the base layout.
@@ -469,7 +472,7 @@ class ClientController extends Controller
                             // 'layout' => 'side-menu'
                         ])->with('success');
                      
-                        
+                       
                         exit;
         
 
@@ -488,6 +491,7 @@ class ClientController extends Controller
         
                     // 'layout' => 'side-menu'
                 ])->with('fail');
+                // return back()->with('fail');
              
                 
                 exit;
@@ -509,7 +513,7 @@ class ClientController extends Controller
     }
 
     
-    public function createongoingpwd(Request $request)
+    public function createongoingpwd1(Request $request)
     {
        
      
@@ -517,8 +521,16 @@ class ClientController extends Controller
         $latestreferencenumber = ClientApplication::where('id','DESC')->first();
         $dob = Carbon::parse($request->input('birthdate'))->format('Y-m-d');
       
-          
         $clientid =  $request->input('clientid');
+        
+
+        $clientapplication=ClientApplication::where('client_id',$clientid)->where('application_type','=','Senior')->first();
+
+        if($clientapplication == null)
+
+      
+        {
+    
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
         $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'PID-'.$yearOnly,$yearOnly);
@@ -566,49 +578,68 @@ class ClientController extends Controller
             $birthdate =  $request->input('familybirthdate');
             $relationship =  $request->input('relationship');
 
-            foreach($relationship  as $key => $value) {       
-                $familysave = new FamilyComposition();
-                $familysave ->relationship = $value;
-                $familysave ->last_name = $lastname[$key];
-                $familysave ->first_name = $firstname[$key];
-                $familysave ->middle_name = $middlename[$key];
-                $familysave ->extension_name = $extensionname[$key];
-                $familysave ->sex = $sex[$key];
-                $familysave ->birth_date = $birthdate[$key];
-                $familysave->client_id =$clientid;
-                $familysave->save();
+            foreach($relationship  as $key => $value) {     
+                if($relationship!=null)
+                {
+                    $familysave = new FamilyComposition();
+                    $familysave ->relationship = $value;
+                    $familysave ->last_name = $lastname[$key];
+                    $familysave ->first_name = $firstname[$key];
+                    $familysave ->middle_name = $middlename[$key];
+                    $familysave ->extension_name = $extensionname[$key];
+                    $familysave ->sex = $sex[$key];
+                    $familysave ->birth_date = $birthdate[$key];
+                    $familysave->client_id =$clientid;
+                    $familysave->save();
+
+                }
+             
             
             }
             $type =  $request->input('type');
-            foreach($type  as $key => $value) {       
-                $disabilitytypesave = new DisabilityType();
-                $disabilitytypesave ->name = $value;
-                $disabilitytypesave->client_id =$clientid;
-                $disabilitytypesave->save();
+            foreach($type  as $key => $value) {     
+                if($type!=null) 
+                {
+                    $disabilitytypesave = new DisabilityType();
+                    $disabilitytypesave ->name = $value;
+                    $disabilitytypesave->client_id =$clientid;
+                    $disabilitytypesave->save();
+
+                }
+            
             
             }
 
             $acquired =  $request->input('acquired');
             $othersacquired =  $request->input('othersacquired');
-            foreach($acquired  as $key => $value) {       
-                $disabilitycausesave = new DisabilityCause();
-                $disabilitycausesave ->name = $value;
-                $disabilitycausesave ->type = 'Acquired';
-                $disabilitycausesave ->others = $othersacquired;
-                $disabilitycausesave->client_id =$clientid;
-                $disabilitycausesave->save();
+            foreach($acquired  as $key => $value) {  
+                if($acquired!=null)    
+                {
+
+                    $disabilitycausesave = new DisabilityCause();
+                    $disabilitycausesave ->name = $value;
+                    $disabilitycausesave ->type = 'Acquired';
+                    $disabilitycausesave ->others = $othersacquired;
+                    $disabilitycausesave->client_id =$clientid;
+                    $disabilitycausesave->save();
+                }
+              
             
             }
 
             $inborn =  $request->input('inborn');
             $othersinborn =  $request->input('othersinborn');
-            foreach($inborn  as $key => $value) {       
-                $disabilitycausesave = new DisabilityCause();
-                $disabilitycausesave ->name = $value;
-                $disabilitycausesave ->type = 'Congenital/Inborn';
-                $disabilitycausesave ->others = $othersinborn;
-                $disabilitycausesave->client_id =$clientid;
-                $disabilitycausesave->save();
+            foreach($inborn  as $key => $value) {   
+                if($inborn!=null)
+                {
+                    $disabilitycausesave = new DisabilityCause();
+                    $disabilitycausesave ->name = $value;
+                    $disabilitycausesave ->type = 'Congenital/Inborn';
+                    $disabilitycausesave ->others = $othersinborn;
+                    $disabilitycausesave->client_id =$clientid;
+                    $disabilitycausesave->save();
+                }   
+              
             
             }
 
@@ -638,6 +669,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Valid ID';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -657,6 +689,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Barangay Certificate';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -676,6 +709,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Picture';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -694,6 +728,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Certificate of Disability';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -722,11 +757,32 @@ class ClientController extends Controller
                     // 'layout' => 'side-menu'
                 ])->with('success');
              
-                
+                // return back()->with('success');
                 exit;
 
             
-           
+                }
+
+                else
+                {
+                    session_start();
+                    $_SESSION['fail'] ="fail";
+                   
+                 
+                    return view('main/landing', [
+                        // Specify the base layout.
+                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                        // The default value is 'side-menu'
+            
+                        // 'layout' => 'side-menu'
+                    ])->with('fail');
+                    // return back()->with('fail');
+                 
+                    
+                    exit;
+    
+                }
+
 
 
          
@@ -745,6 +801,15 @@ class ClientController extends Controller
       
           
         $clientid =  $request->input('clientid');
+        
+
+        $clientapplication=ClientApplication::where('client_id',$clientid)->where('application_type','=','Senior')->first();
+
+        if($clientapplication == null)
+
+      
+        {
+    
         $application_date= now()->toDateString('Ymd');
         $yearOnly=substr($application_date,0,4);
         $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SID-'.$yearOnly,$yearOnly);
@@ -769,15 +834,19 @@ class ClientController extends Controller
           
             
             foreach($type  as $key => $value) {       
-                $educationsave = new Education();
-                $educationsave ->educational_attainment = $value;
-                $educationsave ->school = $schoolname[$key];
-                $educationsave ->course = $course[$key];
-                $educationsave ->year_graduated = $yeargraduated[$key];
-                $educationsave ->achievement_award = $achievementaward[$key];
-                $educationsave->client_id =$clientid;
-                $educationsave->save();
-            
+                if($type!=null)
+                {
+                    $educationsave = new Education();
+                    $educationsave ->educational_attainment = $value;
+                    $educationsave ->school = $schoolname[$key];
+                    $educationsave ->course = $course[$key];
+                    $educationsave ->year_graduated = $yeargraduated[$key];
+                    $educationsave ->achievement_award = $achievementaward[$key];
+                    $educationsave->client_id =$clientid;
+                    $educationsave->save();
+                
+                }
+             
             }
     
             $lastname =  $request->input('familylastname');
@@ -788,17 +857,21 @@ class ClientController extends Controller
             $birthdate =  $request->input('familybirthdate');
             $relationship =  $request->input('relationship');
     
-            foreach($relationship  as $key => $value) {       
-                $familysave = new FamilyComposition();
-                $familysave ->relationship = $value;
-                $familysave ->last_name = $lastname[$key];
-                $familysave ->first_name = $firstname[$key];
-                $familysave ->middle_name = $middlename[$key];
-                $familysave ->extension_name = $extensionname[$key];
-                $familysave ->sex = $sex[$key];
-                $familysave ->birth_date = $birthdate[$key];
-                $familysave->client_id =$clientid;
-                $familysave->save();
+            foreach($relationship  as $key => $value) {     
+                if($relationship!=null) 
+                {
+                    $familysave = new FamilyComposition();
+                    $familysave ->relationship = $value;
+                    $familysave ->last_name = $lastname[$key];
+                    $familysave ->first_name = $firstname[$key];
+                    $familysave ->middle_name = $middlename[$key];
+                    $familysave ->extension_name = $extensionname[$key];
+                    $familysave ->sex = $sex[$key];
+                    $familysave ->birth_date = $birthdate[$key];
+                    $familysave->client_id =$clientid;
+                    $familysave->save();
+                }
+              
             
             }
           
@@ -807,13 +880,18 @@ class ClientController extends Controller
             $commmunitydate =  $request->input('commmunitydate');
           
     
-            foreach($organizationname  as $key => $value) {       
-                $communitysave = new CommunityInvolvement();
-                $communitysave ->organization_name = $value;
-                $communitysave ->position = $position[$key];
-                $communitysave ->date = $commmunitydate[$key];
-                $communitysave->client_id =$clientid;
-                $communitysave->save();
+            foreach($organizationname  as $key => $value) {      
+                if($organizationname!=null)
+                {
+                    $communitysave = new CommunityInvolvement();
+                    $communitysave ->organization_name = $value;
+                    $communitysave ->position = $position[$key];
+                    $communitysave ->date = $commmunitydate[$key];
+                    $communitysave->client_id =$clientid;
+                    $communitysave->save();
+
+                }
+              
             
             }
     
@@ -822,13 +900,17 @@ class ClientController extends Controller
             $seminardate =  $request->input('seminardate');
           
     
-            foreach($seminarorganizationname  as $key => $value) {       
-                $seminarsave = new SeminarTraining();
-                $seminarsave ->organization_name = $value;
-                $seminarsave ->position = $seminarposition[$key];
-                $seminarsave ->date = $seminardate[$key];
-                $seminarsave->client_id =$clientid;
-                $seminarsave->save();
+            foreach($seminarorganizationname  as $key => $value) {   
+                if($seminarorganizationname!=null)   
+                {
+                    $seminarsave = new SeminarTraining();
+                    $seminarsave ->organization_name = $value;
+                    $seminarsave ->position = $seminarposition[$key];
+                    $seminarsave ->date = $seminardate[$key];
+                    $seminarsave->client_id =$clientid;
+                    $seminarsave->save();
+                }
+             
             
             }
     
@@ -849,6 +931,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Valid ID';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -868,6 +951,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Barangay Certificate';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -887,6 +971,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Picture';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -905,6 +990,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Birth Certificate';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -933,11 +1019,34 @@ class ClientController extends Controller
                 // 'layout' => 'side-menu'
             ])->with('success');
          
-            
+            // return back()->with('success');
             exit;
 
            
+            }
 
+            
+            else
+            {
+                session_start();
+                $_SESSION['fail'] ="fail";
+               
+             
+                return view('main/landing', [
+                    // Specify the base layout.
+                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                    // The default value is 'side-menu'
+        
+                    // 'layout' => 'side-menu'
+                ])->with('fail');
+                // return back()->with('fail');
+             
+                
+                exit;
+
+            }
+
+ 
 
          
           
@@ -989,6 +1098,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Birth Certificate';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1008,6 +1118,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Barangay Certificate';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1027,6 +1138,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Picture';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1126,49 +1238,67 @@ class ClientController extends Controller
             $birthdate =  $request->input('familybirthdate');
             $relationship =  $request->input('relationship');
 
-            foreach($relationship  as $key => $value) {       
-                $familysave = new FamilyComposition();
-                $familysave ->relationship = $value;
-                $familysave ->last_name = $lastname[$key];
-                $familysave ->first_name = $firstname[$key];
-                $familysave ->middle_name = $middlename[$key];
-                $familysave ->extension_name = $extensionname[$key];
-                $familysave ->sex = $sex[$key];
-                $familysave ->birth_date = $birthdate[$key];
-                $familysave->client_id =$clientid;
-                $familysave->save();
+            foreach($relationship  as $key => $value) { 
+                if($relationship!=null)   
+                {
+                    $familysave = new FamilyComposition();
+                    $familysave ->relationship = $value;
+                    $familysave ->last_name = $lastname[$key];
+                    $familysave ->first_name = $firstname[$key];
+                    $familysave ->middle_name = $middlename[$key];
+                    $familysave ->extension_name = $extensionname[$key];
+                    $familysave ->sex = $sex[$key];
+                    $familysave ->birth_date = $birthdate[$key];
+                    $familysave->client_id =$clientid;
+                    $familysave->save();
+                }   
+             
             
             }
             $type =  $request->input('type');
+          
             foreach($type  as $key => $value) {       
-                $disabilitytypesave = new DisabilityType();
-                $disabilitytypesave ->name = $value;
-                $disabilitytypesave->client_id =$clientid;
-                $disabilitytypesave->save();
-            
+                if($type!=null)
+                {
+                    $disabilitytypesave = new DisabilityType();
+                    $disabilitytypesave ->name = $value;
+                    $disabilitytypesave->client_id =$clientid;
+                    $disabilitytypesave->save();
+                
+
+                }
+             
             }
 
             $acquired =  $request->input('acquired');
             $othersacquired =  $request->input('othersacquired');
-            foreach($acquired  as $key => $value) {       
-                $disabilitycausesave = new DisabilityCause();
-                $disabilitycausesave ->name = $value;
-                $disabilitycausesave ->type = 'Acquired';
-                $disabilitycausesave ->others = $othersacquired;
-                $disabilitycausesave->client_id =$clientid;
-                $disabilitycausesave->save();
+            foreach($acquired  as $key => $value) {    
+                if($acquired!=null)   
+                {
+                    $disabilitycausesave = new DisabilityCause();
+                    $disabilitycausesave ->name = $value;
+                    $disabilitycausesave ->type = 'Acquired';
+                    $disabilitycausesave ->others = $othersacquired;
+                    $disabilitycausesave->client_id =$clientid;
+                    $disabilitycausesave->save();
+                }
+           
             
             }
 
             $inborn =  $request->input('inborn');
             $othersinborn =  $request->input('othersinborn');
             foreach($inborn  as $key => $value) {       
-                $disabilitycausesave = new DisabilityCause();
-                $disabilitycausesave ->name = $value;
-                $disabilitycausesave ->type = 'Congenital/Inborn';
-                $disabilitycausesave ->others = $othersinborn;
-                $disabilitycausesave->client_id =$clientid;
-                $disabilitycausesave->save();
+                if($inborn!=null)
+                {
+                    $disabilitycausesave = new DisabilityCause();
+                    $disabilitycausesave ->name = $value;
+                    $disabilitycausesave ->type = 'Congenital/Inborn';
+                    $disabilitycausesave ->others = $othersinborn;
+                    $disabilitycausesave->client_id =$clientid;
+                    $disabilitycausesave->save();
+                }
+          
             
             }
 
@@ -1198,6 +1328,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Valid ID';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1217,6 +1348,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Barangay Certificate';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1236,6 +1368,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Picture';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1254,6 +1387,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Certificate of Disability';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1330,15 +1464,19 @@ class ClientController extends Controller
             $achievementaward =  $request->input('achievementaward');
           
             
-            foreach($type  as $key => $value) {       
-                $educationsave = new Education();
-                $educationsave ->educational_attainment = $value;
-                $educationsave ->school = $schoolname[$key];
-                $educationsave ->course = $course[$key];
-                $educationsave ->year_graduated = $yeargraduated[$key];
-                $educationsave ->achievement_award = $achievementaward[$key];
-                $educationsave->client_id =$clientid;
-                $educationsave->save();
+            foreach($type  as $key => $value) {  
+                if($type!=null)    
+                {
+                    $educationsave = new Education();
+                    $educationsave ->educational_attainment = $value;
+                    $educationsave ->school = $schoolname[$key];
+                    $educationsave ->course = $course[$key];
+                    $educationsave ->year_graduated = $yeargraduated[$key];
+                    $educationsave ->achievement_award = $achievementaward[$key];
+                    $educationsave->client_id =$clientid;
+                    $educationsave->save();
+                }
+              
             
             }
     
@@ -1350,17 +1488,21 @@ class ClientController extends Controller
             $birthdate =  $request->input('familybirthdate');
             $relationship =  $request->input('relationship');
     
-            foreach($relationship  as $key => $value) {       
-                $familysave = new FamilyComposition();
-                $familysave ->relationship = $value;
-                $familysave ->last_name = $lastname[$key];
-                $familysave ->first_name = $firstname[$key];
-                $familysave ->middle_name = $middlename[$key];
-                $familysave ->extension_name = $extensionname[$key];
-                $familysave ->sex = $sex[$key];
-                $familysave ->birth_date = $birthdate[$key];
-                $familysave->client_id =$clientid;
-                $familysave->save();
+            foreach($relationship  as $key => $value) {    
+                if($relationship!=null)   
+                {
+                    $familysave = new FamilyComposition();
+                    $familysave ->relationship = $value;
+                    $familysave ->last_name = $lastname[$key];
+                    $familysave ->first_name = $firstname[$key];
+                    $familysave ->middle_name = $middlename[$key];
+                    $familysave ->extension_name = $extensionname[$key];
+                    $familysave ->sex = $sex[$key];
+                    $familysave ->birth_date = $birthdate[$key];
+                    $familysave->client_id =$clientid;
+                    $familysave->save();
+                }
+              
             
             }
           
@@ -1369,13 +1511,17 @@ class ClientController extends Controller
             $commmunitydate =  $request->input('commmunitydate');
           
     
-            foreach($organizationname  as $key => $value) {       
-                $communitysave = new CommunityInvolvement();
-                $communitysave ->organization_name = $value;
-                $communitysave ->position = $position[$key];
-                $communitysave ->date = $commmunitydate[$key];
-                $communitysave->client_id =$clientid;
-                $communitysave->save();
+            foreach($organizationname  as $key => $value) {  
+                if($organizationname!=null)   
+                {
+                    $communitysave = new CommunityInvolvement();
+                    $communitysave ->organization_name = $value;
+                    $communitysave ->position = $position[$key];
+                    $communitysave ->date = $commmunitydate[$key];
+                    $communitysave->client_id =$clientid;
+                    $communitysave->save();
+                }  
+             
             
             }
     
@@ -1384,13 +1530,18 @@ class ClientController extends Controller
             $seminardate =  $request->input('seminardate');
           
     
-            foreach($seminarorganizationname  as $key => $value) {       
-                $seminarsave = new SeminarTraining();
-                $seminarsave ->organization_name = $value;
-                $seminarsave ->position = $seminarposition[$key];
-                $seminarsave ->date = $seminardate[$key];
-                $seminarsave->client_id =$clientid;
-                $seminarsave->save();
+            foreach($seminarorganizationname  as $key => $value) {     
+                if($seminarorganizationname!=null)  
+                {
+                    $seminarsave = new SeminarTraining();
+                    $seminarsave ->organization_name = $value;
+                    $seminarsave ->position = $seminarposition[$key];
+                    $seminarsave ->date = $seminardate[$key];
+                    $seminarsave->client_id =$clientid;
+                    $seminarsave->save();
+
+                }
+             
             
             }
     
@@ -1411,6 +1562,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Valid ID';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1430,6 +1582,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Barangay Certificate';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1449,6 +1602,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Picture';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -1467,6 +1621,7 @@ class ClientController extends Controller
                     $requirementsave->name = 'Birth Certificate';
                     $requirementsave->filename = $filename;
                     $requirementsave->client_application_id =$applicationsave->id;
+                    $requirementsave->client_id = $clientid;
                     $requirementsave->save();
                     
                 }
@@ -2045,6 +2200,7 @@ class ClientController extends Controller
         $_SESSION['success'] ="success";
       
      
+        
         return redirect()->back()->with('success');  
         exit;
     }
@@ -2406,7 +2562,7 @@ class ClientController extends Controller
 
                 $application_date= now()->toDateString('Ymd');
                 $yearOnly=substr($application_date,0,4);
-                $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'SID-'.$yearOnly,$yearOnly);
+                $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'CID-'.$yearOnly,$yearOnly);
                         $clientsave = new Client();
                     
                         $clientsave->first_name = $request->input('firstname');
@@ -2490,6 +2646,7 @@ class ClientController extends Controller
                                 $requirementsave->name = 'Birth Certificate';
                                 $requirementsave->filename = $filename;
                                 $requirementsave->client_application_id =$applicationsave->id;
+                                $requirementsave->client_id =$clientsave->id;
                                 $requirementsave->save();
                                 
                             }
@@ -2509,6 +2666,7 @@ class ClientController extends Controller
                                 $requirementsave->name = 'Barangay Certificate';
                                 $requirementsave->filename = $filename;
                                 $requirementsave->client_application_id =$applicationsave->id;
+                                $requirementsave->client_id =$clientsave->id;
                                 $requirementsave->save();
                                 
                             }
@@ -2528,6 +2686,7 @@ class ClientController extends Controller
                                 $requirementsave->name = 'Picture';
                                 $requirementsave->filename = $filename;
                                 $requirementsave->client_application_id =$applicationsave->id;
+                                $requirementsave->client_id =$clientsave->id;
                                 $requirementsave->save();
                                 
                             }
@@ -2551,14 +2710,16 @@ class ClientController extends Controller
                             $_SESSION['success'] ="success";
                         
                         
-                            return view('main/landing', [
-                                // Specify the base layout.
-                                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                                // The default value is 'side-menu'
+                            // return view('main/landing', [
+                            //     // Specify the base layout.
+                            //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                            //     // The default value is 'side-menu'
                     
-                                // 'layout' => 'side-menu'
-                            ])->with('success');
-                        
+                            //     // 'layout' => 'side-menu'
+                            // ])->with('success');
+                            return back()->with('success');
+                      
+
                             
                             exit;
                         
@@ -2663,14 +2824,15 @@ class ClientController extends Controller
                         $_SESSION['fail'] ="fail";
                        
                      
-                        return view('main/landing', [
-                            // Specify the base layout.
-                            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                            // The default value is 'side-menu'
+                        // return view('main/landing', [
+                        //     // Specify the base layout.
+                        //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                        //     // The default value is 'side-menu'
                 
-                            // 'layout' => 'side-menu'
-                        ])->with('fail');
-                     
+                        //     // 'layout' => 'side-menu'
+                        // ])->with('fail');
+                        return back()->with('fail');
+                      
                         
                         exit;
 
@@ -2982,48 +3144,66 @@ class ClientController extends Controller
                 $relationship =  $request->input('relationship');
 
                 foreach($relationship  as $key => $value) {       
-                    $familysave = new FamilyComposition();
-                    $familysave ->relationship = $value;
-                    $familysave ->last_name = $lastname[$key];
-                    $familysave ->first_name = $firstname[$key];
-                    $familysave ->middle_name = $middlename[$key];
-                    $familysave ->extension_name = $extensionname[$key];
-                    $familysave ->sex = $sex[$key];
-                    $familysave ->birth_date = $birthdate[$key];
-                    $familysave->client_id =$clientsave->id;
-                    $familysave->save();
+                    if($relationship!=null)
+                    {
+                        $familysave = new FamilyComposition();
+                        $familysave ->relationship = $value;
+                        $familysave ->last_name = $lastname[$key];
+                        $familysave ->first_name = $firstname[$key];
+                        $familysave ->middle_name = $middlename[$key];
+                        $familysave ->extension_name = $extensionname[$key];
+                        $familysave ->sex = $sex[$key];
+                        $familysave ->birth_date = $birthdate[$key];
+                        $familysave->client_id =$clientsave->id;
+                        $familysave->save();
+                    }
+                 
                 
                 }
                 $type =  $request->input('type');
                 foreach($type  as $key => $value) {       
-                    $disabilitytypesave = new DisabilityType();
-                    $disabilitytypesave ->name = $value;
-                    $disabilitytypesave->client_id =$clientsave->id;
-                    $disabilitytypesave->save();
-                
+                    if($type!=null)
+                    {
+                        $disabilitytypesave = new DisabilityType();
+                        $disabilitytypesave ->name = $value;
+                        $disabilitytypesave->client_id =$clientsave->id;
+                        $disabilitytypesave->save();
+                    
+
+                    }
+              
                 }
 
                 $acquired =  $request->input('acquired');
                 $othersacquired =  $request->input('othersacquired');
                 foreach($acquired  as $key => $value) {       
-                    $disabilitycausesave = new DisabilityCause();
-                    $disabilitycausesave ->name = $value;
-                    $disabilitycausesave ->type = 'Acquired';
-                    $disabilitycausesave ->others = $othersacquired;
-                    $disabilitycausesave->client_id =$clientsave->id;
-                    $disabilitycausesave->save();
+                    if($acquired!=null)
+                    {
+                        $disabilitycausesave = new DisabilityCause();
+                        $disabilitycausesave ->name = $value;
+                        $disabilitycausesave ->type = 'Acquired';
+                        $disabilitycausesave ->others = $othersacquired;
+                        $disabilitycausesave->client_id =$clientsave->id;
+                        $disabilitycausesave->save();
+                    }
+                
                 
                 }
 
                 $inborn =  $request->input('inborn');
                 $othersinborn =  $request->input('othersinborn');
-                foreach($inborn  as $key => $value) {       
-                    $disabilitycausesave = new DisabilityCause();
-                    $disabilitycausesave ->name = $value;
-                    $disabilitycausesave ->type = 'Congenital/Inborn';
-                    $disabilitycausesave ->others = $othersinborn;
-                    $disabilitycausesave->client_id =$clientsave->id;
-                    $disabilitycausesave->save();
+                foreach($inborn  as $key => $value) {   
+                    if($inborn!=null)    
+                    {
+                        $disabilitycausesave = new DisabilityCause();
+                        $disabilitycausesave ->name = $value;
+                        $disabilitycausesave ->type = 'Congenital/Inborn';
+                        $disabilitycausesave ->others = $othersinborn;
+                        $disabilitycausesave->client_id =$clientsave->id;
+                        $disabilitycausesave->save();
+
+                    }
+                  
                 
                 }
 
@@ -3050,6 +3230,7 @@ class ClientController extends Controller
                         $requirementsave->name = 'Valid ID';
                         $requirementsave->filename = $filename;
                         $requirementsave->client_application_id =$applicationsave->id;
+                        $requirementsave->client_id =$clientsave->id;
                         $requirementsave->save();
                         
                     }
@@ -3069,6 +3250,7 @@ class ClientController extends Controller
                         $requirementsave->name = 'Barangay Certificate';
                         $requirementsave->filename = $filename;
                         $requirementsave->client_application_id =$applicationsave->id;
+                        $requirementsave->client_id =$clientsave->id;
                         $requirementsave->save();
                         
                     }
@@ -3088,6 +3270,7 @@ class ClientController extends Controller
                         $requirementsave->name = 'Picture';
                         $requirementsave->filename = $filename;
                         $requirementsave->client_application_id =$applicationsave->id;
+                        $requirementsave->client_id =$clientsave->id;
                         $requirementsave->save();
                         
                     }
@@ -3106,6 +3289,7 @@ class ClientController extends Controller
                         $requirementsave->name = 'Certificate of Disability';
                         $requirementsave->filename = $filename;
                         $requirementsave->client_application_id =$applicationsave->id;
+                        $requirementsave->client_id =$clientsave->id;
                         $requirementsave->save();
                         
                     }
@@ -3126,14 +3310,15 @@ class ClientController extends Controller
                 $_SESSION['success'] ="success";
                
              
-                return view('main/landing', [
-                    // Specify the base layout.
-                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                    // The default value is 'side-menu'
+                // return view('main/landing', [
+                //     // Specify the base layout.
+                //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                //     // The default value is 'side-menu'
         
-                    // 'layout' => 'side-menu'
-                ])->with('success');
-             
+                //     // 'layout' => 'side-menu'
+                // ])->with('success');
+                return back()->with('success');
+                      
                 
                 exit;
 
@@ -3357,13 +3542,15 @@ class ClientController extends Controller
                         $_SESSION['fail'] ="fail";
                        
                      
-                        return view('main/landing', [
-                            // Specify the base layout.
-                            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                            // The default value is 'side-menu'
+                        // return view('main/landing', [
+                        //     // Specify the base layout.
+                        //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                        //     // The default value is 'side-menu'
                 
-                            // 'layout' => 'side-menu'
-                        ])->with('fail');
+                        //     // 'layout' => 'side-menu'
+                        // ])->with('fail');
+                        return back()->with('fail');
+                      
                      
                         
                         exit;
@@ -3825,7 +4012,7 @@ class ClientController extends Controller
                 $generator = Helper::IDGenerator(new ClientApplication,'application_reference_number',9,'CID-'.$yearOnly,$yearOnly);
             $applicationsave = new ClientApplication();
                     
-            $applicationsave->application_date= now()->toDateString('Y-m-d');;
+            $applicationsave->application_date= now()->toDateString('Y-m-d');
             $applicationsave->application_type = 'Citizen';
             $applicationsave->application_Status = 'Applied';
                   
@@ -3873,15 +4060,20 @@ class ClientController extends Controller
                                 $achievementaward =  $request->input('achievementaward');
                             
 
-                                foreach($type  as $key => $value) {       
-                                    $educationsave = new Education();
-                                    $educationsave ->educational_attainment = $value;
-                                    $educationsave ->school = $schoolname[$key];
-                                    $educationsave ->course = $course[$key];
-                                    $educationsave ->year_graduated = $yeargraduated[$key];
-                                    $educationsave ->achievement_award = $achievementaward[$key];
-                                    $educationsave->client_id =$clientsave->id;
-                                    $educationsave->save();
+                                foreach($type  as $key => $value) {      
+                                    if($type!=null) 
+                                    {
+                                        $educationsave = new Education();
+                                        $educationsave ->educational_attainment = $value;
+                                        $educationsave ->school = $schoolname[$key];
+                                        $educationsave ->course = $course[$key];
+                                        $educationsave ->year_graduated = $yeargraduated[$key];
+                                        $educationsave ->achievement_award = $achievementaward[$key];
+                                        $educationsave->client_id =$clientsave->id;
+                                        $educationsave->save();
+
+                                    }
+                                
                                 
                                 }
 
@@ -3894,17 +4086,22 @@ class ClientController extends Controller
                                 $relationship =  $request->input('relationship');
 
                                 foreach($relationship  as $key => $value) {       
-                                    $familysave = new FamilyComposition();
-                                    $familysave ->relationship = $value;
-                                    $familysave ->last_name = $lastname[$key];
-                                    $familysave ->first_name = $firstname[$key];
-                                    $familysave ->middle_name = $middlename[$key];
-                                    $familysave ->extension_name = $extensionname[$key];
-                                    $familysave ->sex = $sex[$key];
-                                    $familysave ->birth_date = $birthdate[$key];
-                                    $familysave->client_id =$clientsave->id;
-                                    $familysave->save();
-                                
+                                    if($relationship!=null)
+                                    {
+                                        $familysave = new FamilyComposition();
+                                        $familysave ->relationship = $value;
+                                        $familysave ->last_name = $lastname[$key];
+                                        $familysave ->first_name = $firstname[$key];
+                                        $familysave ->middle_name = $middlename[$key];
+                                        $familysave ->extension_name = $extensionname[$key];
+                                        $familysave ->sex = $sex[$key];
+                                        $familysave ->birth_date = $birthdate[$key];
+                                        $familysave->client_id =$clientsave->id;
+                                        $familysave->save();
+                                    
+
+                                    }
+                                  
                                 }
                             
                                 $organizationname =  $request->input('organizationname');
@@ -3912,14 +4109,19 @@ class ClientController extends Controller
                                 $commmunitydate =  $request->input('commmunitydate');
                             
 
-                                foreach($organizationname  as $key => $value) {       
-                                    $communitysave = new CommunityInvolvement();
-                                    $communitysave ->organization_name = $value;
-                                    $communitysave ->position = $position[$key];
-                                    $communitysave ->date = $commmunitydate[$key];
-                                    $communitysave->client_id =$clientsave->id;
-                                    $communitysave->save();
-                                
+                                foreach($organizationname  as $key => $value) {   
+                                    if($organizationname!=null)
+                                    {
+                                        $communitysave = new CommunityInvolvement();
+                                        $communitysave ->organization_name = $value;
+                                        $communitysave ->position = $position[$key];
+                                        $communitysave ->date = $commmunitydate[$key];
+                                        $communitysave->client_id =$clientsave->id;
+                                        $communitysave->save();
+                                    
+
+                                    }
+                                 
                                 }
 
                                 $seminarorganizationname =  $request->input('seminarorganizationname');
@@ -3927,13 +4129,18 @@ class ClientController extends Controller
                                 $seminardate =  $request->input('seminardate');
                             
 
-                                foreach($seminarorganizationname  as $key => $value) {       
-                                    $seminarsave = new SeminarTraining();
-                                    $seminarsave ->organization_name = $value;
-                                    $seminarsave ->position = $seminarposition[$key];
-                                    $seminarsave ->date = $seminardate[$key];
-                                    $seminarsave->client_id =$clientsave->id;
-                                    $seminarsave->save();
+                                foreach($seminarorganizationname  as $key => $value) {  
+                                    if($seminarorganizationname)   
+                                    {
+
+                                        $seminarsave = new SeminarTraining();
+                                        $seminarsave ->organization_name = $value;
+                                        $seminarsave ->position = $seminarposition[$key];
+                                        $seminarsave ->date = $seminardate[$key];
+                                        $seminarsave->client_id =$clientsave->id;
+                                        $seminarsave->save();
+                                    }  
+                                  
                                 
                                 }
 
@@ -3956,6 +4163,7 @@ class ClientController extends Controller
                                         $requirementsave->name = 'Valid ID';
                                         $requirementsave->filename = $filename;
                                         $requirementsave->client_application_id =$applicationsave->id;
+                                        $requirementsave->client_id =$clientsave->id;
                                         $requirementsave->save();
                                         
                                     }
@@ -3975,6 +4183,7 @@ class ClientController extends Controller
                                         $requirementsave->name = 'Barangay Certificate';
                                         $requirementsave->filename = $filename;
                                         $requirementsave->client_application_id =$applicationsave->id;
+                                        $requirementsave->client_id =$clientsave->id;
                                         $requirementsave->save();
                                         
                                     }
@@ -3994,6 +4203,7 @@ class ClientController extends Controller
                                         $requirementsave->name = 'Picture';
                                         $requirementsave->filename = $filename;
                                         $requirementsave->client_application_id =$applicationsave->id;
+                                        $requirementsave->client_id =$clientsave->id;
                                         $requirementsave->save();
                                         
                                     }
@@ -4012,6 +4222,7 @@ class ClientController extends Controller
                                         $requirementsave->name = 'Birth Certificate';
                                         $requirementsave->filename = $filename;
                                         $requirementsave->client_application_id =$applicationsave->id;
+                                        $requirementsave->client_id =$clientsave->id;
                                         $requirementsave->save();
                                         
                                     }
@@ -4037,13 +4248,15 @@ class ClientController extends Controller
             $_SESSION['success'] ="success";
            
          
-            return view('main/landing', [
-                // Specify the base layout.
-                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                // The default value is 'side-menu'
+            // return view('main/landing', [
+            //     // Specify the base layout.
+            //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+            //     // The default value is 'side-menu'
     
-                // 'layout' => 'side-menu'
-            ])->with('success');
+            //     // 'layout' => 'side-menu'
+            // ])->with('success');
+            return back()->with('success');
+                      
          
             
             exit;
@@ -4255,15 +4468,16 @@ class ClientController extends Controller
                 $_SESSION['fail'] ="fail";
                
              
-                return view('main/landing', [
-                    // Specify the base layout.
-                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                    // The default value is 'side-menu'
+                // return view('main/landing', [
+                //     // Specify the base layout.
+                //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+                //     // The default value is 'side-menu'
         
-                    // 'layout' => 'side-menu'
-                ])->with('fail');
+                //     // 'layout' => 'side-menu'
+                // ])->with('fail');
              
-                
+                return back()->with('fail');
+                      
                 exit;
                         // }
            
