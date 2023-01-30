@@ -13,11 +13,11 @@ class BenefitApplication extends Model
     {
         return $this->belongsTo(related:ClientCard::class);
     }
-    public function benefit_requirements()
-    {
-        return $this->hasMany(related:BenefitRequirement::class);
+    // public function benefit_requirements()
+    // {
+    //     return $this->hasMany(related:BenefitRequirement::class);
 
-    }
+    // }
     public function decline_benefits()
     {
         return $this->hasMany(related:DeclineBenefit::class);

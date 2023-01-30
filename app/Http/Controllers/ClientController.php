@@ -1746,6 +1746,7 @@ class ClientController extends Controller
             'body' => 'Identification Card'
 
         ];
+
         Mail::to($clientdetails->email_address)->send(new IdMail($details, $clientcarddetails, $clientdetails));
 
        

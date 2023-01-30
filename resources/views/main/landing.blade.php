@@ -187,10 +187,21 @@
                             <h5> Please Select Category For <span class="text-info"> BENEFITS </span> </h5>
                         </div>
                         <button type="button" class="btn-close" style="color: black;" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <form action="/applybenefit">
+                            @csrf
+                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Apply</button> </div>
+                        </form>
+                        <form action="/dummybenefit">
+                            @csrf
+                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Dummy</button> </div>
+                        </form>
                         {{--<p class="r3 px-md-5 px-sm-1">Please Select</p>--}}
-                        <div class="text-center mb-3"><a href="#seniorbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">Senior</a></div>
-                        <div class="text-center mb-3"><a href="#soloparentbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">Solo Parent</a></div>
-                        <div class="text-center mb-3"><a href="#pwdbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">PWD</a></div>
+{{-- 
+                        @foreach($clienttype as $clienttype)
+                        <div class="text-center mb-3"><a href="#seniorbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">{{$clienttype->name}}</a></div>
+                        {{-- <div class="text-center mb-3"><a href="#soloparentbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">Solo Parent</a></div>
+                        <div class="text-center mb-3"><a href="#pwdbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">PWD</a></div> --}}
+                        {{-- @endforeach --}}
                     </div>
                 </div>
             </div>
@@ -217,7 +228,7 @@
             </div>
 
             <div class="modal fade text-center" id="senior" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered text-center" role="document">
+                <div class="modal-dialog modal-dialog-centered text-center" role="document">.
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
 
                         <div class="modal-header mb-4 d-flex justify-content-center">

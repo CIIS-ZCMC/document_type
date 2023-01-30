@@ -4,12 +4,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BarangayController;
 use App\Http\Controllers\BenefitApplicationController;
+use App\Http\Controllers\BenefitController;
+use App\Http\Controllers\BenefitRequirementController;
 use App\Http\Controllers\ClientCardController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\FieldOfficeController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientBenefitController;
 use App\Models\BenefitRequirement;
 use App\Models\ClientCard;
 use App\Models\DeclineBenefit;
@@ -87,6 +91,12 @@ Route::post('/updatepwdcardapplication', [BenefitApplicationController::class, '
 Route::post('/updatesoloparentcardapplication', [BenefitApplicationController::class, 'updatesoloparentcardapplication']); //login route
 
 Route::post('/updateclientbenefitapplication', [BenefitApplicationController::class, 'updateclientbenefitapplication']); //login route  
+
+
+
+Route::get('/applybenefit', [BenefitApplicationController::class, 'applybenefitform']); //login route
+
+Route::get('/dummybenefit', [BenefitApplicationController::class, 'dummyform']); //login route
 
 Route::get('/searchseniorcashincentivesform', [BenefitApplicationController::class, 'searchseniorcashincentivesform']); //login route
 Route::get('/searchsenioroctogenarianform', [BenefitApplicationController::class, 'searchsenioroctogenarianform']); //login route
@@ -189,6 +199,9 @@ Route::middleware('isLogged')->group(function() {
         Route::get('regular-table-page', 'regularTable')->name('regular-table');
         Route::get('tabulator-page', 'tabulator')->name('tabulator');
         Route::get('fieldoffice-page', 'fieldoffice')->name('fieldoffice');
+        Route::get('benefit-page', 'benefit')->name('benefit');
+        Route::get('requirement-page', 'requirement')->name('requirement');
+        Route::get('clientbenefit-page', 'clientbenefit')->name('clientbenefit');
 
         Route::get('declinesenior-page', 'declinesenior')->name('declinesenior');
         Route::get('declinesoloparent-page', 'declinesoloparent')->name('declinesoloparent');
@@ -267,6 +280,10 @@ Route::middleware('isLogged')->group(function() {
     });
     Route::post('/item/add', [ItemController::class, 'store']);
     Route::post('/fo/add', [FieldOfficeController::class, 'store']);
+    Route::post('/requirements/add', [RequirementController::class, 'store']);
+    Route::post('/benefits/add', [BenefitController::class, 'store']);
+    Route::post('/addbenefitrequirements/{id}', [BenefitRequirementController::class, 'store']);
+    Route::post('/addclientbenefits/{id}', [ClientBenefitController::class, 'store']);
     Route::post('/user/add', [UserController::class, 'store']);
     Route::match(['get', 'post'], '/user/deactivateuser/{id}', [UserController::class, 'deactivateuser']);
     Route::match(['get', 'post'], '/user/activateuser/{id}', [UserController::class, 'activateuser']);

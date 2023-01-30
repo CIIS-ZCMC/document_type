@@ -452,7 +452,7 @@
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
                             <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#next-overlapping-modal-preview" class="btn btn-primary">Decline</a> 
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Verify</button>
+                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Approve</button>
                         </div>
                     
                    

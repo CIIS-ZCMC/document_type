@@ -599,17 +599,6 @@
 
     
     
-
-    
-
-    
-            
-
-
-    
-   
-@endsection
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -623,8 +612,8 @@
 				<script>
 				swal({
 						
-						title: "SAVED",
-						text: "Successfully saved!",
+						title: "SENT",
+						text: "Successfully sent!",
 						icon: "success",
 						button: "ok",
 					})
@@ -892,4 +881,15 @@
 
 </script>
 
+
+
+    
+
+    
+            
+
+
+    
+   
+@endsection
 

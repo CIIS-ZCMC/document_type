@@ -342,15 +342,12 @@
 						<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
 							<div class="form_container">
 
-								<div class="input_wrap">
-									<label for="phone">Birth Certificate/ Any VALID Documents with DATE OF BIRTH</label>
+								<div class="input_wrap d-flex justify-content-center overflow-auto">
+									<label for="phone">UPLOADED REQUIREMENTS</label>
 									
-								
-								
-									
-									<img id="picture"  class="rounded-md" src="{{ ('/images/picture/'.$client->client_application_requirements[0]->filename ) }}">
-									<img id="picture"  class="rounded-md" src="{{ ('/images/birth/'.$client->client_application_requirements[0]->filename ) }}">
-									<img id="picture"  class="rounded-md" src="{{ ('/images/barangay/'.$client->client_application_requirements[0]->filename ) }}">
+									<img id="picture" style="width:500px"  class="rounded-md" src="{{ ('/images/picture/'.$client->client_application_requirements[0]->filename ) }}">
+									<img id="picture"  style="width:500px"  class="rounded-md" src="{{ ('/images/birth/'.$client->client_application_requirements[0]->filename ) }}">
+									<img id="picture"  style="width:500px"  class="rounded-md" src="{{ ('/images/barangay/'.$client->client_application_requirements[0]->filename ) }}">
 								</div>
 								<div class="input_wrap">
 									<label for="phone">Birth Certificate/ Any VALID Documents with DATE OF BIRTH</label>
@@ -422,8 +419,8 @@
 				<script>
 				swal({
 						
-						title: "SAVED",
-						text: "Successfully saved!",
+						title: "UPDATED",
+						text: "Successfully updated!",
 						icon: "success",
 						button: "ok",
 					})

@@ -11,6 +11,7 @@ use App\Models\ClientApplicationLog;
 use App\Models\ClientApplicationRequirement;
 use App\Models\ClientCard;
 use App\Models\ClientSchedule;
+use App\Models\ClientType;
 use App\Models\CommunityInvolvement;
 use App\Models\DeclinedClient;
 use App\Models\DeclinedClientLog;
@@ -65,7 +66,7 @@ class PageController extends Controller
             // The default value is 'side-menu'
 
             // 'layout' => 'side-menu'
-        ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));;
+        ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
     }
 
     // top-bar-menu
@@ -78,13 +79,8 @@ class PageController extends Controller
     public function main()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-        return view('main/landing',$data, [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
-        ]);
+        $clienttype = ClientType::get();
+        return view('main/landing',$data)->with(compact('clienttype'));
     }
     public function registration()
     {
@@ -1259,6 +1255,39 @@ class PageController extends Controller
         ->select()
         ->get();
         return view('pages/fieldoffice',$data)->with(compact('fo'));
+    }
+
+    public function benefit()
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $fo = DB::table('benefits')
+        ->select()
+        ->get();
+
+        $requirements = DB::table('requirements')
+        ->select()
+        ->get();
+        return view('pages/benefits',$data)->with(compact('fo','requirements'));
+    }
+    public function requirement()
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $fo = DB::table('requirements')
+        ->select()
+        ->get();
+        return view('pages/requirements',$data)->with(compact('fo'));
+    }
+    public function clientbenefit()
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $fo = DB::table('client_types')
+        ->select()
+        ->get();
+
+        $benefits = DB::table('benefits')
+        ->select()
+        ->get();
+        return view('pages/clientbenefits',$data)->with(compact('fo','benefits'));
     }
     /**
      * Show specified view.

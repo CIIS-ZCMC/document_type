@@ -36,7 +36,29 @@ class BenefitApplicationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
+     public function applybenefitform()
+     {
+         $barangaylist = Barangay::select('id', 'name')->get();
+         return view('main/benefitapplication/loginbenefit', [
+             // Specify the base layout.
+             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+             // The default value is 'side-menu'
+ 
+             // 'layout' => 'side-menu'
+             ])->with(compact('barangaylist'));
+     }
+
+     public function dummyform()
+     {
+         $barangaylist = Barangay::select('id', 'name')->get();
+         return view('main/benefitapplication/dummyform', [
+             // Specify the base layout.
+             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+             // The default value is 'side-menu'
+ 
+             // 'layout' => 'side-menu'
+             ])->with(compact('barangaylist'));
+     }
     
 
     public function searchseniorcashincentivesform()
@@ -50,6 +72,7 @@ class BenefitApplicationController extends Controller
             // 'layout' => 'side-menu'
             ])->with(compact('barangaylist'));
     }
+
     public function searchsenioroctogenarianform()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
@@ -84,6 +107,7 @@ class BenefitApplicationController extends Controller
             // 'layout' => 'side-menu'
             ])->with(compact('barangaylist'));
     }
+    
     public function seniorcashincentivesform(Request $request)
     {
             $barangaylist = Barangay::select('id', 'name')->get();

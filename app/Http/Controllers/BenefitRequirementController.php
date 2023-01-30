@@ -33,9 +33,27 @@ class BenefitRequirementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id = null)
     {
-        //
+        $requirement =  $request->input('requirement');
+        foreach($requirement  as $key => $value) {     
+            if($requirement!=null) 
+            {
+                $benefitrequirementsave = new BenefitRequirement();
+                $benefitrequirementsave->requirement_id = $value;
+                $benefitrequirementsave->benefit_id =$id;
+                $benefitrequirementsave->save();
+
+            }
+        
+        
+        }
+
+        session_start();
+        $_SESSION['success'] ="success";
+        
+        return redirect()->back()->with('success');  
+        exit;
     }
 
     /**

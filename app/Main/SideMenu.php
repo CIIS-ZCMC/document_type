@@ -489,13 +489,29 @@ class SideMenu
                         ],
                         'title' => 'Field Office'
                     ],
-                    'School' => [
+                    'Requirements' => [
                         'icon' => 'graduation-cap',
-                        'route_name' => 'fieldoffice',
+                        'route_name' => 'requirement',
                         'params' => [
                             'layout' => 'side-menu'
                         ],
-                        'title' => 'School'
+                        'title' => 'Requirements'
+                    ],
+                    'Benefits' => [
+                        'icon' => 'graduation-cap',
+                        'route_name' => 'benefit',
+                        'params' => [
+                            'layout' => 'side-menu'
+                        ],
+                        'title' => 'Benefits'
+                    ],
+                    'Client Benefits' => [
+                        'icon' => 'graduation-cap',
+                        'route_name' => 'clientbenefit',
+                        'params' => [
+                            'layout' => 'side-menu'
+                        ],
+                        'title' => 'Client Benefits'
                     ],
                     // 'Card Requirements' => [
                     //     'icon' => 'credit-card',

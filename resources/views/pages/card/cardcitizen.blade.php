@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ asset('dist/css/card.css') }}"/>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 @section('subhead')
-    <title>Card Citizen | Social Welfare Registration and Benefits System</title>
+    <title>CRUD Data List - Midone - Tailwind HTML Admin Template</title>
 @endsection
 
 @section('subcontent')
@@ -32,8 +32,8 @@
                         <th class="whitespace-nowrap">No.</th>
                         <th class="whitespace-nowrap">Name</th>
                         <th class="whitespace-nowrap">Address</th>
-                        <th class="whitespace-nowrap">Card Number</th>
-                         <th  id="filename" class="whitespace-nowrap">Date Applied</th>
+                        <th class="whitespace-nowrap">Reference Number</th>
+                         <th class="whitespace-nowrap">Date Applied</th>
                          <th id="filename" class="whitespace-nowrap">filename</th>
                        
                         <th id="filename" class="whitespace-nowrap">firstname</th>
@@ -64,7 +64,6 @@
                         <th id="filename" class="whitespace-nowrap">appid</th>
                         <th id="filename" class="whitespace-nowrap">appid</th>
                         <th id="filename" class="whitespace-nowrap">appid</th>
-                        <th id="filename" class="whitespace-nowrap">appid</th>
                         {{-- <th id="filename" class="whitespace-nowrap">appid</th>
                         <th id="filename" class="whitespace-nowrap">appid</th>
                         --}}
@@ -85,12 +84,10 @@
                                     <td id="clientid">{{$index + 1}}</td>
                                     <td>{{ $client->last_name}}, {{ $client->first_name}} {{ $client->middle_name}} {{ $client->extension_name}}</td>
                                     <td>{{$client->barangays->name}}
-                                    <td> 
-                                       @foreach($client->client_cards as  $client_card)
-                                        {{$client_card->card_number}}
-                                      @endforeach
-                                     </td>
-                                      <td id="filename"> @foreach($client->client_applications as  $clientapp)
+                                    <td> @foreach($client->client_applications as  $clientapp)
+                                        {{$clientapp->application_reference_number}}
+                                      @endforeach</td>
+                                      <td> @foreach($client->client_applications as  $clientapp)
                                         {{$clientapp->application_date}}
                                       @endforeach</td>    
                                       <td id="filename"> 
@@ -140,9 +137,6 @@
 
                                                                 <td id="filename"> @foreach($client->client_cards as  $clientapp)
                                                                     {{$clientapp->id}}
-                                                                  @endforeach</td>
-                                                                  <td id="filename"> @foreach($client->client_cards as  $clientapp)
-                                                                    {{$clientapp->card_type}}
                                                                   @endforeach</td>
             
                                 
@@ -497,7 +491,6 @@
                                                 <div class="bottom">
 
                                                     <input type="text" name="idcard" id="idcard" hidden>
-                                                    <input type="text" name="cardtype" id="cardtype" hidden>
                                                     <input type="text" name="sendemail" id="sendemail" hidden>
                                                   
                                                     <p id="fullname"></p>
@@ -544,7 +537,7 @@
                                 <div class="modal-footer text-right">
                                     <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Back</button>
                                
-                                    <button onclick="doCapture();">Send</button>
+                                    <button onclick="doCapture();">Capture</button>
                                     <button class="submit" type="submit" value="Submit" id="secondbutton" hidden>Capture</button>
                                 </div>
             </form>
@@ -560,23 +553,7 @@
 
 
 
-         
-
-
-
-
-    
-
-    
-
-    
-            
-
-
-    
-   
-@endsection
-
+        
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
@@ -593,8 +570,8 @@
 				<script>
 				swal({
 						
-						title: "SAVED",
-						text: "Successfully saved!",
+						title: "SENT",
+						text: "Successfully sent!",
 						icon: "success",
 						button: "ok",
 					})
@@ -612,7 +589,7 @@
 				swal({
 					
 						title: "Fail",
-						text: "Successfully saved!",
+						text: "!",
 						icon: "error",
 						button: "ok",
 					})
@@ -624,79 +601,83 @@
 		}
    
 ?>
-
 <script>
+    
 
-    function doCapture() {
-        window.scrollTo(0, 0);
-       
-        event.preventDefault();
-     
-        html2canvas(document.getElementById("capture")).then(function (canvas) {
-            var name = $("#idcard").val();
-       
-             var dataString = 'name='+ name;
-            
-            // Create an AJAX object
-            var ajax = new XMLHttpRequest();
-     
-            // Setting method, server file name, and asynchronous
-            ajax.open("POST", "save-capture.php", true);
-     
-            // Setting headers for POST method
-            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     
-            // Sending image data to server
-            // ajax.send("image=" + canvas.toDataURL("image/png", 0.9));
-        
-    
-          
-      
-            // Receiving response from server
-            // This function will be called multiple times
-            ajax.onreadystatechange = function () {
-     
-                // Check when the requested is completed
-                if (this.readyState == 4 && this.status == 200) {
-     
-                    // Displaying response from server
-                    console.log(this.responseText);
-                }
-            };
-    
-    
-          
-            
+function doCapture() {
+    window.scrollTo(0, 0);
+   
+    event.preventDefault();
+ 
+    html2canvas(document.getElementById("capture")).then(function (canvas) {
         var name = $("#idcard").val();
-        var cardtype = $("#cardtype").val();
-        var sendemail = $("#sendemail").val();
-        var count_id = "count";
-        var dataString = 'name='+ name;
-        var dataString1 = 'count_id='+ count_id;
+   
+         var dataString = 'name='+ name;
+        
+        // Create an AJAX object
+        var ajax = new XMLHttpRequest();
+ 
+        // Setting method, server file name, and asynchronous
+        ajax.open("POST", "save-capture.php", true);
+ 
+        // Setting headers for POST method
+        ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+ 
+        // Sending image data to server
+        // ajax.send("image=" + canvas.toDataURL("image/png", 0.9));
     
-        $.ajax({
-                type: "POST",
-                url: "save-capture.php",
-                data:{registration: "success", sendemail: sendemail, cardtype: cardtype, name: name, image:canvas.toDataURL("image/png", 0.9)},
-                success : handleData
-                
-    
-    
-    
-            });
-    
-            
-        });
-     
-    
-       
-    }
-    
-    function handleData(data) {
-        $("#secondbutton").click();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                       }
+
       
-     </script>
+  
+        // Receiving response from server
+        // This function will be called multiple times
+        ajax.onreadystatechange = function () {
+ 
+            // Check when the requested is completed
+            if (this.readyState == 4 && this.status == 200) {
+ 
+                // Displaying response from server
+                console.log(this.responseText);
+            }
+        };
+
+
+      
+        
+    var name = $("#idcard").val();
+     
+    var sendemail = $("#sendemail").val();
+    var count_id = "count";
+    var dataString = 'name='+ name;
+    var dataString1 = 'count_id='+ count_id;
+
+    $.ajax({
+            type: "POST",
+            url: "save-capture.php",
+            data:{registration: "success", sendemail: sendemail, name: name, image:canvas.toDataURL("image/png", 0.9)},
+            success : handleData
+            
+
+
+
+        });
+
+        
+    });
+ 
+
+   
+}
+
+function handleData(data) {
+    $("#secondbutton").click();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                   }
+  
+ </script>
+
+
+ 
+
 
 <script type="text/javascript">
     $(document).ready(function()
@@ -831,9 +812,6 @@
                 document.getElementById('idcard').value
                 =  data[33];
 
-                document.getElementById('cardtype').value
-                =  data[34];
-
                 document.getElementById('sendemail').value
                 =  data[31];
              
@@ -845,4 +823,20 @@
     })
 
 </script>
+ 
+
+
+
+
+    
+
+    
+
+    
+            
+
+
+    
+   
+@endsection
 

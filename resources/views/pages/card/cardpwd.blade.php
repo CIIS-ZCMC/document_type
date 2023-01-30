@@ -795,7 +795,420 @@
 
    
     
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+
+      <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+      <script src="{{ asset('dist/js/html2canvas.js') }}"></script>
+      <?php
+        session_start();
+              if (isset($_SESSION['success']) == 'success') 
+              {
+                  ?>
+                      <script>
+                      swal({
+                              
+                              title: "SAVED",
+                              text: "Successfully saved!",
+                              icon: "success",
+                              button: "ok",
+                          })
+                          
+                      
+                      </script>
+                  <?php
+                  unset($_SESSION['success']);
+              }
+                      
+              if (isset($_SESSION['fail']) == 'fail') 
+              {
+                  ?>
+                  <script>
+                      swal({
+                          
+                              title: "Fail",
+                              text: "Successfully saved!",
+                              icon: "error",
+                              button: "ok",
+                          })
+                      
+                      
+                      </script>
+                  <?php
+                  unset($_SESSION['fail']);
+              }
+         
+      ?>
+      
+      <script>
+      
+          function doCapture() {
+              window.scrollTo(0, 0);
+             
+              event.preventDefault();
+           
+              html2canvas(document.getElementById("capture")).then(function (canvas) {
+                  var name = $("#idcard").val();
+             
+                   var dataString = 'name='+ name;
+                  
+                  // Create an AJAX object
+                  var ajax = new XMLHttpRequest();
+           
+                  // Setting method, server file name, and asynchronous
+                  ajax.open("POST", "save-capture.php", true);
+           
+                  // Setting headers for POST method
+                  ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+           
+                  // Sending image data to server
+                  // ajax.send("image=" + canvas.toDataURL("image/png", 0.9));
+              
+          
+                
+            
+                  // Receiving response from server
+                  // This function will be called multiple times
+                  ajax.onreadystatechange = function () {
+           
+                      // Check when the requested is completed
+                      if (this.readyState == 4 && this.status == 200) {
+           
+                          // Displaying response from server
+                          console.log(this.responseText);
+                      }
+                  };
+          
+          
+                
+                  
+              var name = $("#idcard").val();
+              var cardtype = $("#cardtype").val();
+              var sendemail = $("#sendemail").val();
+              var count_id = "count";
+              var dataString = 'name='+ name;
+              var dataString1 = 'count_id='+ count_id;
+          
+              $.ajax({
+                      type: "POST",
+                      url: "save-capture.php",
+                      data:{registration: "success", sendemail: sendemail, cardtype: cardtype, name: name, image:canvas.toDataURL("image/png", 0.9)},
+                      success : handleData
+                      
+          
+          
+          
+                  });
+          
+                  
+              });
+           
+          
+             
+          }
+          
+          function handleData(data) {
+              $("#secondbutton").click();
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             }
+            
+           </script>
+      
+      
+      <script type="text/javascript">
+          $(document).ready(function()
+          {
+      
+              $("#datatable").DataTable({
+                  "bPaginate": true,
+                  "bLengthChange": false,
+                  "bFilter": true,
+                  "bInfo": false,
+                  "bAutoWidth": false });
+             
+              $('#evaluateclient').on('hidden.bs.modal', function(e){
+                 $(this).find('editform')[0].reset();           
+          });
+              $("#datatable").on('click', '.edit', function()
+              {
+                  $tr=$(this).closest('tr');
+                  if ($($tr).hasClass('child'))
+                  {
+                      $tr = $tr.prev('.parent');
+                  }
+                
+      
+                  var data = $('#datatable').DataTable(
+                      {
+                          "retrieve": true,
+                          "bPaginate": false,
+                            "bFilter": false,
+             
+                      }
+                  ).row($tr).data();
+                 
+                  // document.getElementById('fullname').innerHTML
+                  //     = data[1];
+                      document.getElementById('type').innerHTML
+                          = "Citizen: "+data[3];
+                      document.getElementById('date').innerHTML
+                      = "Date Applied: "+data[4];
+                      document.getElementById('firstname').innerHTML
+                      = "First Name: " + data[6];
+                      document.getElementById('lastname').innerHTML
+                      = "Last Name: " + data[7];
+                      document.getElementById('middlename').innerHTML
+                      = "Middle Name: " + data[8];
+                      document.getElementById('middlename1').innerHTML
+                      = "Extension Name: " + data[9];
+                      document.getElementById('street').innerHTML
+                      = "Street: " + data[10];
+                      document.getElementById('barangay').innerHTML
+                      = "Barangay: " + data[2];
+                      document.getElementById('city').innerHTML
+                      = "City: " + data[11];
+                      document.getElementById('province').innerHTML
+                      = "Province: " + data[12];
+                      document.getElementById('sex').innerHTML
+                      = "Sex: " + data[13];
+                      var dob=data[14];
+                      document.getElementById('birthdate').value
+                      =  data[14];
+                      const ageInYears = moment().diff(new Date(dob), 'years');
+                      document.getElementById('age').innerHTML
+                      = "Age: " + ageInYears;
+                      document.getElementById('birthplace').value
+                      =  data[15];
+                      document.getElementById('civilstatus').value
+                      =  data[16];
+                      document.getElementById('educational').value
+                      =  data[17];
+                      document.getElementById('religion').value
+                      =  data[18];
+                      document.getElementById('nationality').value
+                      =  data[19];
+                      document.getElementById('skills').value
+                      =  data[20];
+                      document.getElementById('hobbies').value
+                      =  data[21];  
+                      document.getElementById('status').value
+                      =  data[22];
+                      document.getElementById('category').value
+                      =  data[23];
+                      document.getElementById('typeemp').value
+                      =  data[24];
+                      document.getElementById('occupation').value
+                      =  data[25];
+                      document.getElementById('salary').value
+                      =  data[26];
+      
+                      document.getElementById('sss').value
+                      =  data[40];
+                      document.getElementById('gsis').value
+                      =  data[41];
+                      document.getElementById('pagibig').value
+                      =  data[42];
+                      document.getElementById('psn').value
+                      =  data[43];
+                      document.getElementById('philhealth').value
+                      =  data[44];
+      
+                      document.getElementById('license').value
+                      =  data[45];
+                      document.getElementById('pfirstname').value
+                      =  data[46];
+                      document.getElementById('pmiddlename').value
+                      =  data[47];
+                      document.getElementById('plastname').value
+                      =  data[48];
+      
+                      document.getElementById('organization').value
+                      =  data[45];
+                      document.getElementById('contact').value
+                      =  data[46];
+                      document.getElementById('office').value
+                      =  data[47];
+                      document.getElementById('tel').value
+                      =  data[48];
+      
+                      document.getElementById('contactnumber').value
+                      =  data[49];
+                      document.getElementById('landlinenumber').value
+                      =  data[50];
+                      document.getElementById('emailaddress').value
+                      =  data[51];
+      
+                   
+      
+      
+      
+      
+                      $("#family").empty();
+                      $("#fam").empty();
+      
+                      var arrayname = new Array();
+                      var arraylastname = new Array();
+                      var arraymiddlename = new Array();
+                      var arrayextensionname = new Array();
+                      var arraysex = new Array();
+                      var arrayrelationship = new Array();
+                      var arrayage = new Array();
+                      var arraybirthdate = new Array();
+      
+                      var names = data[29];
+                      var lastname = data[30];
+                      var middlename = data[31];
+                      var extensionname = data[32];
+                      var sex = data[33];
+                      var relationship = data[34];
+                      var age = data[35];
+                      var birthdate = data[36];
+      
+                      arrayname = names.split(',');
+                      arraylastname = lastname.split(',');
+                      arraymiddlename = middlename.split(',');
+                      arrayextensionname = extensionname.split(',');
+                      arraysex = sex.split(',');
+                      arrayrelationship = relationship.split(',');
+                      arrayage = age.split(',');
+                      arraybirthdate = birthdate.split(',');
+      
+                      for (let i = 0; i < arrayname.length - 1; i++) {
+                          var name =  arrayname[i];
+                          var lastname =  arraylastname[i];
+                          var middlename =  arraymiddlename[i];
+                          var extensionname =  arrayextensionname[i];
+                          var sex =  arraysex[i];
+                          var relationship =  arrayrelationship[i];
+                          var age =  arrayage[i];
+                          var birthdate =  arraybirthdate[i];
+      
+      
+                        
+                          let birthDate = moment(birthdate);
+                          let famage = moment().diff(birthDate, 'years');
+      
+                         
+                              $("#family").append($('<label for="update-profile-form-6" class="form-label">First name</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(name),$('<label for="update-profile-form-6" class="form-label">Last name</label><input id="familyfirstname[]" type="text" class="form-control" value="" disabled>').val(lastname),$('<label for="update-profile-form-6" class="form-label">Middle name</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(middlename),$('<label for="update-profile-form-6" class="form-label">Extension name</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(extensionname),'<div class="p-5""></div>')
+                              $("#fam").append($('<label for="update-profile-form-6" class="form-label">Sex</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(sex),$('<label for="update-profile-form-6" class="form-label">Relationship</label><input id="familyfirstname[]" type="text" class="form-control" value="" disabled>').val(relationship),$('<label for="update-profile-form-6" class="form-label">Age</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(famage),$('<label for="update-profile-form-6" class="form-label">Date of Birth</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(birthdate),'<div class="p-5""></div>')
+                              
+                          }
+      
+      
+      
+                       
+                      $("#disability").empty();
+                      $("#dis").empty();
+      
+                      var arraydisabilitytype = new Array();
+                      var arraydisabilitycause = new Array();
+                      var arraydisabilitycausetype= new Array();
+                     
+                      var disabilitytype = data[37];
+                      var disabilitycause  = data[38];
+                      var disabilitycausetype = data[39];
+                   
+                      arraydisabilitytype = disabilitytype.split(',');
+                      arraydisabilitycause = disabilitycause.split(',');
+                      arraydisabilitycausetype = disabilitycausetype.split(',');
+                  
+                     
+      
+                      for (let i = 0; i < arraydisabilitytype.length - 1; i++) {
+                          var disabilitytype =  arraydisabilitytype[i];
+                          
+                              $("#disability").append($('<input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(disabilitytype))
+                              
+                          }
+                        
+      
+                          
+                      for (let i = 0; i < arraydisabilitycause.length - 1; i++) {
+                          var disabilitycause =  arraydisabilitycause[i];
+                          var disabilitycausetype =  arraydisabilitycausetype[i];
+                              $("#dis").append($('<input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(disabilitycausetype+ ': ' + disabilitycause  ))
+                              
+                          }
+                        
+                        
+                        
+                      
+                        
+                        
+                      
+                          
+      
+                       
+                                  
+                 
+      
+                   
+                                      
+                   
+                     
+                  $('#editform').attr('action','/evaluatepwd/' + data[27]+'/'+data[28]);
+                  $('#userphoto').attr("src","/images/picture/"+data[5]);
+                  $('#picture').attr("src","/images/picture/"+data[5]);
+                  $('#id').attr("src","/images/id/"+data[5]);
+                  $('#barangaycert').attr("src","/images/barangay/"+data[5]);
+                  $('#disabilitypic').attr("src","/images/disability/"+data[5]);
+      
+                 
+                
+              })
+      
+              $("#datatable").on('click', '.add', function()
+              {
+                  $tr=$(this).closest('tr');
+                  if ($($tr).hasClass('child'))
+                  {
+                      $tr = $tr.prev('.parent');
+                  }
+                
+      
+                  var data = $('#datatable').DataTable(
+                      {
+                          "retrieve": true,
+                          "bPaginate": false,
+                            "bFilter": false,
+             
+                      }
+                  ).row($tr).data();
+                 
+               
+                      
+                     
+                 
+                   
+                 
+                  document.getElementById('fullname').innerHTML
+                      =  data[6] + " " +  data[7] + " " +  data[8];
+                      document.getElementById('address').innerHTML
+                      =  data[10] +  " " +  data[2] + " " +  data[11];
+                      document.getElementById('phone').innerHTML
+                      =  data[30];
+      
+                      document.getElementById('idcard').value
+                      =  data[56];
+      
+                      document.getElementById('cardtype').value
+                      =  data[57];
+      
+                      document.getElementById('sendemail').value
+                      =  data[51];
+                   
+                  $('#qrcode').attr("src","/images/qrcode/"+data[59]);
+                  $('#photo').attr("src","/images/picture/"+data[5]);
+                  $('#formid').attr('action','/email/completeid/' + data[56]);
+              })
+      
+             
+      
+          })
+      
+         
+      
+      </script>
     
             
 
@@ -804,419 +1217,6 @@
    
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
-<script src="{{ asset('dist/js/html2canvas.js') }}"></script>
-<?php
-  session_start();
-		if (isset($_SESSION['success']) == 'success') 
-		{
-			?>
-				<script>
-				swal({
-						
-						title: "SAVED",
-						text: "Successfully saved!",
-						icon: "success",
-						button: "ok",
-					})
-					
-				
-				</script>
-			<?php
-			unset($_SESSION['success']);
-		}
-				
-		if (isset($_SESSION['fail']) == 'fail') 
-		{
-			?>
-			<script>
-				swal({
-					
-						title: "Fail",
-						text: "Successfully saved!",
-						icon: "error",
-						button: "ok",
-					})
-				
-				
-				</script>
-			<?php
-			unset($_SESSION['fail']);
-		}
-   
-?>
-
-<script>
-
-    function doCapture() {
-        window.scrollTo(0, 0);
-       
-        event.preventDefault();
-     
-        html2canvas(document.getElementById("capture")).then(function (canvas) {
-            var name = $("#idcard").val();
-       
-             var dataString = 'name='+ name;
-            
-            // Create an AJAX object
-            var ajax = new XMLHttpRequest();
-     
-            // Setting method, server file name, and asynchronous
-            ajax.open("POST", "save-capture.php", true);
-     
-            // Setting headers for POST method
-            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     
-            // Sending image data to server
-            // ajax.send("image=" + canvas.toDataURL("image/png", 0.9));
-        
-    
-          
-      
-            // Receiving response from server
-            // This function will be called multiple times
-            ajax.onreadystatechange = function () {
-     
-                // Check when the requested is completed
-                if (this.readyState == 4 && this.status == 200) {
-     
-                    // Displaying response from server
-                    console.log(this.responseText);
-                }
-            };
-    
-    
-          
-            
-        var name = $("#idcard").val();
-        var cardtype = $("#cardtype").val();
-        var sendemail = $("#sendemail").val();
-        var count_id = "count";
-        var dataString = 'name='+ name;
-        var dataString1 = 'count_id='+ count_id;
-    
-        $.ajax({
-                type: "POST",
-                url: "save-capture.php",
-                data:{registration: "success", sendemail: sendemail, cardtype: cardtype, name: name, image:canvas.toDataURL("image/png", 0.9)},
-                success : handleData
-                
-    
-    
-    
-            });
-    
-            
-        });
-     
-    
-       
-    }
-    
-    function handleData(data) {
-        $("#secondbutton").click();
-                                                                                                                                                                                                                                                                                                                                                                                                                                                       }
-      
-     </script>
-
-
-<script type="text/javascript">
-    $(document).ready(function()
-    {
-
-        $("#datatable").DataTable({
-            "bPaginate": true,
-            "bLengthChange": false,
-            "bFilter": true,
-            "bInfo": false,
-            "bAutoWidth": false });
-       
-        $('#evaluateclient').on('hidden.bs.modal', function(e){
-           $(this).find('editform')[0].reset();           
-    });
-        $("#datatable").on('click', '.edit', function()
-        {
-            $tr=$(this).closest('tr');
-            if ($($tr).hasClass('child'))
-            {
-                $tr = $tr.prev('.parent');
-            }
-          
-
-            var data = $('#datatable').DataTable(
-                {
-                    "retrieve": true,
-                    "bPaginate": false,
-                      "bFilter": false,
-       
-                }
-            ).row($tr).data();
-           
-            // document.getElementById('fullname').innerHTML
-            //     = data[1];
-                document.getElementById('type').innerHTML
-                    = "Citizen: "+data[3];
-                document.getElementById('date').innerHTML
-                = "Date Applied: "+data[4];
-                document.getElementById('firstname').innerHTML
-                = "First Name: " + data[6];
-                document.getElementById('lastname').innerHTML
-                = "Last Name: " + data[7];
-                document.getElementById('middlename').innerHTML
-                = "Middle Name: " + data[8];
-                document.getElementById('middlename1').innerHTML
-                = "Extension Name: " + data[9];
-                document.getElementById('street').innerHTML
-                = "Street: " + data[10];
-                document.getElementById('barangay').innerHTML
-                = "Barangay: " + data[2];
-                document.getElementById('city').innerHTML
-                = "City: " + data[11];
-                document.getElementById('province').innerHTML
-                = "Province: " + data[12];
-                document.getElementById('sex').innerHTML
-                = "Sex: " + data[13];
-                var dob=data[14];
-                document.getElementById('birthdate').value
-                =  data[14];
-                const ageInYears = moment().diff(new Date(dob), 'years');
-                document.getElementById('age').innerHTML
-                = "Age: " + ageInYears;
-                document.getElementById('birthplace').value
-                =  data[15];
-                document.getElementById('civilstatus').value
-                =  data[16];
-                document.getElementById('educational').value
-                =  data[17];
-                document.getElementById('religion').value
-                =  data[18];
-                document.getElementById('nationality').value
-                =  data[19];
-                document.getElementById('skills').value
-                =  data[20];
-                document.getElementById('hobbies').value
-                =  data[21];  
-                document.getElementById('status').value
-                =  data[22];
-                document.getElementById('category').value
-                =  data[23];
-                document.getElementById('typeemp').value
-                =  data[24];
-                document.getElementById('occupation').value
-                =  data[25];
-                document.getElementById('salary').value
-                =  data[26];
-
-                document.getElementById('sss').value
-                =  data[40];
-                document.getElementById('gsis').value
-                =  data[41];
-                document.getElementById('pagibig').value
-                =  data[42];
-                document.getElementById('psn').value
-                =  data[43];
-                document.getElementById('philhealth').value
-                =  data[44];
-
-                document.getElementById('license').value
-                =  data[45];
-                document.getElementById('pfirstname').value
-                =  data[46];
-                document.getElementById('pmiddlename').value
-                =  data[47];
-                document.getElementById('plastname').value
-                =  data[48];
-
-                document.getElementById('organization').value
-                =  data[45];
-                document.getElementById('contact').value
-                =  data[46];
-                document.getElementById('office').value
-                =  data[47];
-                document.getElementById('tel').value
-                =  data[48];
-
-                document.getElementById('contactnumber').value
-                =  data[49];
-                document.getElementById('landlinenumber').value
-                =  data[50];
-                document.getElementById('emailaddress').value
-                =  data[51];
-
-             
-
-
-
-
-                $("#family").empty();
-                $("#fam").empty();
-
-                var arrayname = new Array();
-                var arraylastname = new Array();
-                var arraymiddlename = new Array();
-                var arrayextensionname = new Array();
-                var arraysex = new Array();
-                var arrayrelationship = new Array();
-                var arrayage = new Array();
-                var arraybirthdate = new Array();
-
-                var names = data[29];
-                var lastname = data[30];
-                var middlename = data[31];
-                var extensionname = data[32];
-                var sex = data[33];
-                var relationship = data[34];
-                var age = data[35];
-                var birthdate = data[36];
-
-                arrayname = names.split(',');
-                arraylastname = lastname.split(',');
-                arraymiddlename = middlename.split(',');
-                arrayextensionname = extensionname.split(',');
-                arraysex = sex.split(',');
-                arrayrelationship = relationship.split(',');
-                arrayage = age.split(',');
-                arraybirthdate = birthdate.split(',');
-
-                for (let i = 0; i < arrayname.length - 1; i++) {
-                    var name =  arrayname[i];
-                    var lastname =  arraylastname[i];
-                    var middlename =  arraymiddlename[i];
-                    var extensionname =  arrayextensionname[i];
-                    var sex =  arraysex[i];
-                    var relationship =  arrayrelationship[i];
-                    var age =  arrayage[i];
-                    var birthdate =  arraybirthdate[i];
-
-
-                  
-                    let birthDate = moment(birthdate);
-                    let famage = moment().diff(birthDate, 'years');
-
-                   
-                        $("#family").append($('<label for="update-profile-form-6" class="form-label">First name</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(name),$('<label for="update-profile-form-6" class="form-label">Last name</label><input id="familyfirstname[]" type="text" class="form-control" value="" disabled>').val(lastname),$('<label for="update-profile-form-6" class="form-label">Middle name</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(middlename),$('<label for="update-profile-form-6" class="form-label">Extension name</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(extensionname),'<div class="p-5""></div>')
-                        $("#fam").append($('<label for="update-profile-form-6" class="form-label">Sex</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(sex),$('<label for="update-profile-form-6" class="form-label">Relationship</label><input id="familyfirstname[]" type="text" class="form-control" value="" disabled>').val(relationship),$('<label for="update-profile-form-6" class="form-label">Age</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(famage),$('<label for="update-profile-form-6" class="form-label">Date of Birth</label><input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(birthdate),'<div class="p-5""></div>')
-                        
-                    }
-
-
-
-                 
-                $("#disability").empty();
-                $("#dis").empty();
-
-                var arraydisabilitytype = new Array();
-                var arraydisabilitycause = new Array();
-                var arraydisabilitycausetype= new Array();
-               
-                var disabilitytype = data[37];
-                var disabilitycause  = data[38];
-                var disabilitycausetype = data[39];
-             
-                arraydisabilitytype = disabilitytype.split(',');
-                arraydisabilitycause = disabilitycause.split(',');
-                arraydisabilitycausetype = disabilitycausetype.split(',');
-            
-               
-
-                for (let i = 0; i < arraydisabilitytype.length - 1; i++) {
-                    var disabilitytype =  arraydisabilitytype[i];
-                    
-                        $("#disability").append($('<input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(disabilitytype))
-                        
-                    }
-                  
-
-                    
-                for (let i = 0; i < arraydisabilitycause.length - 1; i++) {
-                    var disabilitycause =  arraydisabilitycause[i];
-                    var disabilitycausetype =  arraydisabilitycausetype[i];
-                        $("#dis").append($('<input id="familyfirstname[]" type="text" class="form-control"  value="" disabled>').val(disabilitycausetype+ ': ' + disabilitycause  ))
-                        
-                    }
-                  
-                  
-                  
-                
-                  
-                  
-                
-                    
-
-                 
-                            
-           
-
-             
-                                
-             
-               
-            $('#editform').attr('action','/evaluatepwd/' + data[27]+'/'+data[28]);
-            $('#userphoto').attr("src","/images/picture/"+data[5]);
-            $('#picture').attr("src","/images/picture/"+data[5]);
-            $('#id').attr("src","/images/id/"+data[5]);
-            $('#barangaycert').attr("src","/images/barangay/"+data[5]);
-            $('#disabilitypic').attr("src","/images/disability/"+data[5]);
-
-           
-          
-        })
-
-        $("#datatable").on('click', '.add', function()
-        {
-            $tr=$(this).closest('tr');
-            if ($($tr).hasClass('child'))
-            {
-                $tr = $tr.prev('.parent');
-            }
-          
-
-            var data = $('#datatable').DataTable(
-                {
-                    "retrieve": true,
-                    "bPaginate": false,
-                      "bFilter": false,
-       
-                }
-            ).row($tr).data();
-           
-         
-                
-               
-           
-             
-           
-            document.getElementById('fullname').innerHTML
-                =  data[6] + " " +  data[7] + " " +  data[8];
-                document.getElementById('address').innerHTML
-                =  data[10] +  " " +  data[2] + " " +  data[11];
-                document.getElementById('phone').innerHTML
-                =  data[30];
-
-                document.getElementById('idcard').value
-                =  data[56];
-
-                document.getElementById('cardtype').value
-                =  data[57];
-
-                document.getElementById('sendemail').value
-                =  data[51];
-             
-            $('#qrcode').attr("src","/images/qrcode/"+data[59]);
-            $('#photo').attr("src","/images/picture/"+data[5]);
-            $('#formid').attr('action','/email/completeid/' + data[56]);
-        })
-
-       
-
-    })
-
-   
-
-</script>
 
                                                                                              

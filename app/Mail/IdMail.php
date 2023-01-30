@@ -33,6 +33,6 @@ class IdMail extends Mailable
     public function build()
     {
        
-        return $this->markdown('pages.email.idmail')->subject('Mail from Social Welfare and Development')->attach(public_path('/'. $this->clientcarddetails->identification));
+        return $this->markdown('pages.email.idmail')->subject('Mail from Social Welfare and Development')->attach(public_path('/'.$this->clientcarddetails->identification));
     }
 }
