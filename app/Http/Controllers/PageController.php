@@ -82,6 +82,13 @@ class PageController extends Controller
         $clienttype = ClientType::get();
         return view('main/landing',$data)->with(compact('clienttype'));
     }
+    public function userlogin()
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $clienttype = ClientType::get();
+        return view('login/userlogin',$data)->with(compact('clienttype'));
+    }
+    
     public function registration()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
@@ -366,14 +373,6 @@ class PageController extends Controller
             })->with(["client_cards" => function($subQuery) use ($request){
                 $subQuery->where("client_cards.card_type", "=", 'Citizen')->where("client_cards.card_number", "=" ,$request->input('number')); 
             }])->first();
-
-            
-
-
-        
-
-
-
 
         if($client == null)
             {

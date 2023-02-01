@@ -19,6 +19,7 @@ use App\Models\Occupation;
 use App\Models\Organization;
 use App\Models\Physician;
 use App\Models\SeminarTraining;
+use App\Models\User;
 
 use App\Models\BenefitRequirement;
 use App\Models\ClientSchedule;
@@ -28,6 +29,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Mail;
+
 class BenefitApplicationController extends Controller
 {
     /**
@@ -49,15 +51,10 @@ class BenefitApplicationController extends Controller
      }
 
      public function dummyform()
-     {
-         $barangaylist = Barangay::select('id', 'name')->get();
-         return view('main/benefitapplication/dummyform', [
-             // Specify the base layout.
-             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-             // The default value is 'side-menu'
- 
-             // 'layout' => 'side-menu'
-             ])->with(compact('barangaylist'));
+     {      
+        // $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        // return view('main/benefitapplication/dummyform', $data);
+        return view('main/benefitapplication/dummyform');
      }
     
 

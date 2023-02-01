@@ -32,6 +32,7 @@ use Psr\Http\Client\ClientInterface;
 */
 
 Route::get('/main', [PageController::class, 'main'])->name('main'); //login route
+Route::get('/userlogin', [PageController::class, 'userlogin'])->name('userlogin'); //login route
 
 Route::get('/registration', [PageController::class, 'registration']); //login route
 Route::get('/seniorregistration', [PageController::class, 'seniorregistration']); //login route
@@ -153,6 +154,7 @@ Route::controller(AuthController::class)->middleware('loggedin')->group(function
     Route::get('register', 'registerView')->name('register.index');
     Route::post('register', 'register')->name('register.store');
 });
+
 
 Route::middleware('isLogged')->group(function() {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');

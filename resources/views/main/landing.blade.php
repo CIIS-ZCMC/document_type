@@ -87,7 +87,10 @@
                             <a class="nav-link" href="#_contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('') }}">
+                            <!-- <a class="nav-link" href="{{ url('') }}">
+                                <span id="btn-span">Login</span>
+                            </a> -->
+                            <a class="nav-link" type="button" data-bs-target="#form_application"  data-bs-toggle="modal">
                                 <span id="btn-span">Login</span>
                             </a>
                         </li>
@@ -124,12 +127,15 @@
                                         <span class="material-symbols-outlined">app_registration</span> Register
                                     </button>
                                             {{-- <a href="#watchvideomodal" class="btn ms-3" data-bs-toggle="modal"> --}}
-                                    <button type="button" data-bs-target="#formbenefit" style="display:flex; align-items:center; justify-content: center;" class="btn ms-3" data-bs-toggle="modal">
+                                    <!-- <button type="button" data-bs-target="#formbenefit" style="display:flex; align-items:center; justify-content: center;" class="btn ms-3" data-bs-toggle="modal">
                                         <span class="material-symbols-outlined">loyalty</span>Benefit
                                     </button>
                                     <button type="button" data-bs-target="#formtrack" style="display:flex; align-items:center; justify-content: center;" class="btn ms-3" data-bs-toggle="modal">
                                         <span class="material-symbols-outlined">query_stats</span>Track
-                                    </button>
+                                    </button> -->
+                                
+
+                    
                                 </div>
                             </div>
                         </div>
@@ -183,25 +189,21 @@
             <div class="modal fade" id="formbenefit"data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">           
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
-                        <div class="modal-header mb-4 d-flex justify-content-center">
+                        <!-- <div class="modal-header mb-4 d-flex justify-content-center">
                             <h5> Please Select Category For <span class="text-info"> BENEFITS </span> </h5>
-                        </div>
+                        </div> -->
                         <button type="button" class="btn-close" style="color: black;" data-bs-dismiss="modal" aria-label="Close"></button>
                         <form action="/applybenefit">
                             @csrf
-                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Apply</button> </div>
+                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">User Login Application</button> </div>
                         </form>
-                        <form action="/dummybenefit">
-                            @csrf
-                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Dummy</button> </div>
-                        </form>
-                        {{--<p class="r3 px-md-5 px-sm-1">Please Select</p>--}}
-{{-- 
-                        @foreach($clienttype as $clienttype)
+                        <!-- {{--<p class="r3 px-md-5 px-sm-1">Please Select</p>--}}
+{{--  -->
+                        <!-- @foreach($clienttype as $clienttype)
                         <div class="text-center mb-3"><a href="#seniorbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">{{$clienttype->name}}</a></div>
                         {{-- <div class="text-center mb-3"><a href="#soloparentbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">Solo Parent</a></div>
                         <div class="text-center mb-3"><a href="#pwdbenefit" class="btn btn-dark w-50 rounded-pill b1" data-bs-toggle="modal">PWD</a></div> --}}
-                        {{-- @endforeach --}}
+                        {{-- @endforeach --}} -->
                     </div>
                 </div>
             </div>
@@ -227,6 +229,29 @@
                 </div>
             </div>
 
+            <!-- Modal Form For Application Login User -->
+            <div class="modal fade" id="form_application"data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">           
+                    <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
+                        <div class="modal-header mb-4 d-flex justify-content-center">
+                            <h5> Please Click to Proceed</h5>
+                        </div>
+                        <button type="button" class="btn-close" style="color: black;" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <form action="/applybenefit">
+                            @csrf
+                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Login User</button> </div>
+                        </form>
+                        <form>
+                            @csrf
+                            <div class="text-center mb-3"> <a href="/" type="button" class="btn btn-dark w-50 rounded-pill b1">Login Admin</a> </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+      
             <div class="modal fade text-center" id="senior" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered text-center" role="document">.
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">

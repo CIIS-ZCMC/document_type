@@ -14,6 +14,7 @@ use App\Models\ClientApplication;
 use App\Models\ClientApplicationLog;
 use App\Models\ClientApplicationRequirement;
 use App\Models\ClientCard;
+use App\Models\ClientType;
 
 class AuthController extends Controller
 {
@@ -72,11 +73,14 @@ function resetPassword()
     return view('auth.resetPassword');
 }
 
+
 function forgotPassword()
 {
     return view('auth.forgotPasswoampp
     rd');
 }
+
+
 function login(Request $request)
 {
     //Validate requests
