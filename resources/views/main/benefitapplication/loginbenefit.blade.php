@@ -19,45 +19,20 @@
 				@csrf
 				<div class="form_wrap">
 					<div class="form_1 data_info">
-						<h2>Personal Information</h2>
-						<p>Please enter your infomation and proceed to the next step so we can process your identiication card.  </p>
+						<h2>User Login Application</h2>
+						<p>  </p>
 							<div class="form_container">
-								
-								<div class="input_wrap">
-									<label class="required"  for="email">First Name</label>
-									<input type="text" name="firstname" class="input" id="firstname" style="text-transform: capitalize;" required>
-									<i class="fas fa-check-circle"></i>
-									<i class="fas fa-exclamation-circle"></i>
-									
-								</div>
-								
-								<div class="input_wrap">
-									<label class="required" for="email">Last Name</label>
-									<input type="text"  name="lastname" class="input" id="lastname" id="email"  style="text-transform: capitalize;" required>
-									<i class="fas fa-check-circle"></i>
-									<i class="fas fa-exclamation-circle"></i>
-									
-								</div>
-								<div class="input_wrap">
-									<label for="email">Middle Name</label>
-									<input type="text"  name="middlename" class="input"  style="text-transform: capitalize;" id="middlename" >
-									
-								</div>
-								<div class="input_wrap">
-									<label for="password">Extension Name</label>
-									<input type="text" name="extensionname" class="input"  style="text-transform: capitalize;" id="extensionname">
-								</div>
 							
 								<div class="input_wrap">
-									<label class="required" for="confirm_password">Citizen ID Number</label>
-									<input type="text" name="number" class="input" id="number" required>
+									<label class="required">Citizen ID Number</label>
+									<input type="text" name="number" class="input" id="number" autocomplete="off" placeholder="Enter Citizen ID Number" required>
 								</div>
-								
-							</div>
-						
+								<div class="input_wrap">
+									<label class="required">Password</label>
+									<input type="password" name="number" class="input" id="number" autocomplete="off" placeholder="Enter Password" required>
+								</div>						
+							</div>				
 					</div>
-					
-					
 				</div>
 
 				<div class="btns_wrap">
@@ -68,7 +43,7 @@
 						</a>
 				
 						<div class="common_btns form_1_btns">
-							<button type="submit"  class="">Search  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+							<button type="submit"  class="">Login</button>
 						</div>
 
 					</div>	
