@@ -48,17 +48,17 @@ class BenefitApplicationController extends Controller
              ])->with(compact('barangaylist'));
      }
 
-     public function dummyform()
-     {
-         $barangaylist = Barangay::select('id', 'name')->get();
-         return view('main/benefitapplication/dummyform', [
-             // Specify the base layout.
-             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-             // The default value is 'side-menu'
+    //  public function dummyform()
+    //  {
+    //      $barangaylist = Barangay::select('id', 'name')->get();
+    //      return view('main/benefitapplication/dummyform', [
+    //          // Specify the base layout.
+    //          // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+    //          // The default value is 'side-menu'
  
-             // 'layout' => 'side-menu'
-             ])->with(compact('barangaylist'));
-     }
+    //          // 'layout' => 'side-menu'
+    //          ])->with(compact('barangaylist'));
+    //  }
     
 
     public function searchseniorcashincentivesform()

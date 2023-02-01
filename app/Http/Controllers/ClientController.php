@@ -25,6 +25,7 @@ use App\Models\FamilyComposition;
 use App\Models\IdentificationCard;
 use App\Models\Occupation;
 use App\Models\Organization;
+use App\Models\ClientUser;
 use App\Models\Physician;
 use App\Models\SeminarTraining;
 use Illuminate\Http\Request;
@@ -1763,7 +1764,7 @@ class ClientController extends Controller
     {
        
        
-        
+        $hashed_random_password = Str::random(8);
         $applicationlogsave = new ClientApplicationLog();
       
         $applicationlogsave->process_name = 'Verification-Approved';
@@ -1792,9 +1793,18 @@ class ClientController extends Controller
         $clientcardsave->card_number = $generator;
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
-
-     
         $clientcardsave->save();
+
+        $clientusersave = new ClientUser();
+        $clientusersave->password=$hashed_random_password;
+        $clientusersave->status="new";
+        $clientusersave->client_id=$clientid;
+
+        $clientusersave->save();
+
+
+        // $clientuser = new ();
+
 
         QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
 
@@ -1810,7 +1820,7 @@ class ClientController extends Controller
             'body' => 'You are scheduled on'
 
         ];
-        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails, $clientusersave));
 
    
         session_start();
@@ -2209,7 +2219,7 @@ class ClientController extends Controller
     public function verifysenior(Request $request,$clientid = null,$applicationid=null)
     {
        
-    
+        $hashed_random_password = Str::random(8);
         $applicationlogsave = new ClientApplicationLog();
      
         $applicationlogsave->process_name = 'Verification-Approved';
@@ -2242,11 +2252,18 @@ class ClientController extends Controller
      
         $clientcardsave->save();
 
+        $clientusersave = new ClientUser();
+        $clientusersave->password=$hashed_random_password;
+        $clientusersave->status="new";
+        $clientusersave->client_id=$clientid;
+
+        $clientusersave->save();
+
         QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
 
 
      
-        $clientcardsave->save();
+        
 
         ClientApplication::where('id',$applicationid)->where('application_type','=','Senior')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
 
@@ -2259,7 +2276,7 @@ class ClientController extends Controller
             'body' => 'You are scheduled on'
 
         ];
-        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails,$clientusersave));
 
 
        
@@ -3637,7 +3654,7 @@ class ClientController extends Controller
 
     public function verifypwd(Request $request,$clientid = null,$applicationid=null)
     {
-      
+        $hashed_random_password = Str::random(8);
     
         $applicationlogsave = new ClientApplicationLog();
      
@@ -3671,11 +3688,18 @@ class ClientController extends Controller
      
         $clientcardsave->save();
 
+        $clientusersave = new ClientUser();
+        $clientusersave->password=$hashed_random_password;
+        $clientusersave->status="new";
+        $clientusersave->client_id=$clientid;
+
+        $clientusersave->save();
+
         QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
 
 
      
-        $clientcardsave->save();
+      
 
 
         ClientApplication::where('id',$applicationid)->where('application_type','=','PWD')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
@@ -3689,7 +3713,7 @@ class ClientController extends Controller
             'body' => 'You are scheduled on'
 
         ];
-        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails,$clientusersave));
 
 
        
@@ -4564,7 +4588,7 @@ class ClientController extends Controller
 
     public function verifysoloparent(Request $request,$clientid = null,$applicationid=null)
     {
-        
+        $hashed_random_password = Str::random(8);
         $applicationlogsave = new ClientApplicationLog();
      
         $applicationlogsave->process_name = 'Verification-Approved';
@@ -4597,11 +4621,17 @@ class ClientController extends Controller
      
         $clientcardsave->save();
 
+        $clientusersave = new ClientUser();
+        $clientusersave->password=$hashed_random_password;
+        $clientusersave->status="new";
+        $clientusersave->client_id=$clientid;
+
+        $clientusersave->save();
+
         QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
 
 
      
-        $clientcardsave->save();
 
         ClientApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
 
@@ -4614,7 +4644,7 @@ class ClientController extends Controller
             'body' => 'You are scheduled on'
 
         ];
-        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails,$clientusersave));
 
        
         session_start();

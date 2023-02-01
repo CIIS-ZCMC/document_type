@@ -13,18 +13,20 @@ class CardMail extends Mailable
 
     public $details;
     public $clientcardsave;
+    public $clientusersave;
     public $clientdetails;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details, $clientcardsave, $clientdetails)
+    public function __construct($details, $clientcardsave, $clientdetails,$clientusersave)
     {
       
         $this->details = $details;
         $this->clientcardsave = $clientcardsave;
         $this->clientdetails = $clientdetails;
+        $this->clientusersave = $clientusersave;
     }
 
     /**

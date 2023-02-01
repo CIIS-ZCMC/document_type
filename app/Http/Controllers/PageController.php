@@ -82,6 +82,14 @@ class PageController extends Controller
         $clienttype = ClientType::get();
         return view('main/landing',$data)->with(compact('clienttype'));
     }
+
+    public function user()
+    { 
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $clienttype = ClientType::get();
+        return view('main/user/userlogin',$data)->with(compact('clienttype'));
+    }
+
     public function registration()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];

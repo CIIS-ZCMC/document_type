@@ -187,13 +187,9 @@
                             <h5> Please Select Category For <span class="text-info"> BENEFITS </span> </h5>
                         </div>
                         <button type="button" class="btn-close" style="color: black;" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <form action="/applybenefit">
+                        <form action="/searchseniorcashincentivesform">
                             @csrf
-                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Apply</button> </div>
-                        </form>
-                        <form action="/dummybenefit">
-                            @csrf
-                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Dummy</button> </div>
+                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Cash Incentives</button> </div>
                         </form>
                         {{--<p class="r3 px-md-5 px-sm-1">Please Select</p>--}}
 {{-- 
