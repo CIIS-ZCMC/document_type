@@ -32,6 +32,9 @@
         <div class="dropdown-menu w-56">
             <ul class="dropdown-content bg-primary text-white">
                 <li class="p-2">
+                    {{-- <div class="font-medium"> {{$user->username}}</div> --}}
+                    {{-- <div class="font-medium" style="text-transform: uppercase;"> {{ $LoggedUserInfo['name'] }}</div>
+                    <div class="font-small" style="color: #ccc; font-size: 12px"> {{ $LoggedUserInfo['role'] }}</div> --}}
                 </li>
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>
@@ -39,21 +42,6 @@
                         <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile
                     </a>
                 </li>
-                {{--<li>
-                    <a href="{{url('/add_account/')}}" class="dropdown-item hover:bg-white/5">
-                        <i data-lucide="edit" class="w-4 h-4 mr-2"></i> Add Account
-                    </a>
-                </li>
-                <li>
-                    <a href="{{url('/reset_password/')}}" class="dropdown-item hover:bg-white/5">
-                        <i data-lucide="lock" class="w-4 h-4 mr-2"></i> Reset Password
-                    </a>
-                </li>
-                <li>
-                    <a href="{{url('/help/')}}" class="dropdown-item hover:bg-white/5">
-                        <i data-lucide="help-circle" class="w-4 h-4 mr-2"></i> Help
-                    </a>
-                </li>--}}
                 <li><hr class="dropdown-divider border-white/[0.08]"></li>
                 <li>
                     <a style="cursor:pointer;" onclick="logout_func()" class="dropdown-item hover:bg-white/5">
