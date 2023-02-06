@@ -17,7 +17,8 @@
             </a>
             <div class="side-nav__devider my-6"></div>
             <ul>
-                @foreach ($user_side_menu as $menuKey => $menu)
+                
+            @foreach ($user_side_menu as $menuKey => $menu)
                     @if ($menu == 'devider')
                         <li class="side-nav__devider my-6"></li>
                     @else
@@ -41,7 +42,7 @@
                                         <li>
                                             <a href="{{ isset($subMenu['route_name']) ? route($subMenu['route_name'], $subMenu['params']) : 'javascript:;' }}" class="{{ $second_level_active_index == $subMenuKey ? 'side-menu side-menu--active' : 'side-menu' }}">
                                                 <div class="side-menu__icon">
-                                                    <i data-lucide="activity"></i>
+                                                    <i data-lucide="{{ $subMenu['icon'] }}"></i>
                                                 </div>
                                                 <div class="side-menu__title">
                                                     {{ $subMenu['title'] }}
@@ -58,7 +59,7 @@
                                                         <li>
                                                             <a href="{{ isset($lastSubMenu['route_name']) ? route($lastSubMenu['route_name'], $lastSubMenu['params']) : 'javascript:;' }}" class="{{ $third_level_active_index == $lastSubMenuKey ? 'side-menu side-menu--active' : 'side-menu' }}">
                                                                 <div class="side-menu__icon">
-                                                                    <i data-lucide="zap"></i>
+                                                                    <i data-lucide="mouse-pointer-click"></i>
                                                                 </div>
                                                                 <div class="side-menu__title">{{ $lastSubMenu['title'] }}</div>
                                                             </a>
