@@ -4508,17 +4508,7 @@ class ClientController extends Controller
            
 
         
-     }
-       
-
-         
-               
-
-
-    
-    
-        
-       
+     }   
     }
 
     public function evaluatesoloparent($clientid = null,$applicationid=null)
