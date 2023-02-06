@@ -2,19 +2,15 @@
 
 <link rel="stylesheet" href=" https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
 @section('subhead')
-    <title>CRUD Data List - Midone - Tailwind HTML Admin Template</title>
+    <title>User | Dashboard
+    </title>
 @endsection
 
 @section('subcontent')
-
- 
-   
-   
-
               <div class="col-span-12 mt-8">
                 <div class="intro-y flex items-center h-10">
                     <h2 class="text-lg font-medium truncate mr-5">
-                        Registered
+                        Applied Application
                        
                     </h2>
                     <a href="" class="ml-auto flex items-center text-primary"> <i data-lucide="refresh-ccw" class="w-4 h-4 mr-3"></i> Reload Data </a>
@@ -83,7 +79,7 @@
             <div class="col-span-12 mt-8">
                 <div class="intro-y flex items-center h-10">
                     <h2 class="text-lg font-medium truncate mr-5">
-                        Pending Applicants
+                        Pending Applications
                     </h2>
                    
                 </div>

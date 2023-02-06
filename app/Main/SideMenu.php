@@ -585,16 +585,16 @@ class SideMenu
             'benefits' => [
                 'icon' => 'cross',
                 'title' => 'Benefits',
-                'route_name' => 'userdashboard',
+                'route_name' => 'userbenefits',
                 'params' => [
                     'layout' => 'side-menu'
                 ],
                 'title' => 'Benefits'              
             ],     
             'applications' => [
-                'icon' => 'file',
+                'icon' => 'files',
                 'title' => 'Applications',
-                'route_name' => 'userdashboard',
+                'route_name' => 'userapplications',
                 'params' => [
                     'layout' => 'side-menu'
                 ],

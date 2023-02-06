@@ -163,7 +163,11 @@ Route::middleware('isLogged')->group(function() {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::controller(PageController::class)->group(function() {
         // top-bar-menu
+        //USER ROUTE
         Route::get('/userdashboard', 'userdashboard')->name('userdashboard');
+        Route::get('/userbenefits', 'userbenefits')->name('userbenefits');
+        Route::get('/userapplications', 'userapplications')->name('userapplications');
+
         Route::get('/user-profile', 'profile')->name('profile');
 
         Route::get('/', 'dashboardOverview1')->name('dashboard-overview-1');

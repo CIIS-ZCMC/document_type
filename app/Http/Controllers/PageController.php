@@ -876,6 +876,18 @@ class PageController extends Controller
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
         return view('main/user/dashboard',$data);
     }
+
+    public function userbenefits()
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        return view('main/user/benefits',$data);
+    }
+
+    public function userapplications()
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        return view('main/user/applications',$data);
+    }
     /**
      * Show specified view.
      *
