@@ -83,5 +83,31 @@
         </div>
         <!-- END: Content -->
     </div>
+
+    <!--Logout-->
+<script>
+    function logout_func() {
+        Swal.fire({
+        title: 'Are you sure?',
+        text: "LOGOUT CONFIRMATION",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'Logout'
+        }).then((result) => {
+        if (result.isConfirmed) {
+            //Swal.fire(
+            // 'Logout!',
+            // 'Account logged out.',
+            // 'success',
+            location.href="{{ route('logout') }}"
+            //)
+        }
+        })
+    }
+</script>
   
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 @endsection
