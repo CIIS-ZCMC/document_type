@@ -52,30 +52,7 @@ class BenefitApplicationController extends Controller
      }
      public function userloginpage(Request $request)
      {  
-        // $userInfo = User::where('email', '=', $request->input('email'))->first();
-
-        //     if (!$userInfo) {
-        //         return back()->with('fail', 'We do not recognize your email address');
-        //     } else {
-        //         $request->session()->put('LoggedUser', $userInfo->id);
-        //         $userpassword = ClientUser::where('client_id', '=', $userInfo->id)->first();
-        //         $password=$request->input('password');
-        //         if ( $password = $userpassword->password) {
-        //             $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-        //             return view('main/user', $data,[
-        //                 // Specify the base layout.
-        //                 // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-        //                 // The default value is 'side-menu'
-            
-        //                 // 'layout' => 'side-menu'
-        //             ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
-        //     }
-        // }
-
-      $barangaylist = Barangay::select('id', 'name')->get();
-         return view('main/user/userlogin',  [
-            'layout' => 'side-menu'
-        ])->with(compact('barangaylist'));
+        return view('main/user/userlogin',  []);
      }
 
      public function userlogin(Request $request)
@@ -97,14 +74,6 @@ class BenefitApplicationController extends Controller
 
      }
 
-     public function dummyform()
-     {
-         $barangaylist = Barangay::select('id', 'name')->get();
-         return view('main/benefitapplication/dummyform', [
-       
-             ])->with(compact('barangaylist'));
-     }
-    
 
     public function searchseniorcashincentivesform()
     {

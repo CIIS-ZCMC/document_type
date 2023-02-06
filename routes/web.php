@@ -100,8 +100,6 @@ Route::post('/userlogin', [BenefitApplicationController::class, 'userlogin']); /
 Route::get('/userloginpage', [BenefitApplicationController::class, 'userloginpage']); //login route
 Route::get('/applybenefit', [BenefitApplicationController::class, 'applybenefitform']); //login route
 
-Route::get('/dummybenefit', [BenefitApplicationController::class, 'dummyform']); //login route
-
 Route::get('/searchseniorcashincentivesform', [BenefitApplicationController::class, 'searchseniorcashincentivesform']); //login route
 Route::get('/searchsenioroctogenarianform', [BenefitApplicationController::class, 'searchsenioroctogenarianform']); //login route
 Route::get('/searchseniornonagenarianform', [BenefitApplicationController::class, 'searchseniornonagenarianform']); //login route

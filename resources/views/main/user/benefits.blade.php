@@ -34,9 +34,7 @@
                     <tr>
                         <th class="whitespace-nowrap">No.</th>
                         <th class="whitespace-nowrap">NAME</th>
-                        <th class="whitespace-nowrap">DESCRIPTION</th>
-                    
-                    
+                        <th class="whitespace-nowrap">DESCRIPTION</th>            
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
                     </tr>
                 </thead>

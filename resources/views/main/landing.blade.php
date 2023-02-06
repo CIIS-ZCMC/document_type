@@ -87,9 +87,6 @@
                             <a class="nav-link" href="#_contact">Contact</a>
                         </li>
                         <li class="nav-item">
-                            <!-- <a class="nav-link" href="{{ url('') }}">
-                                <span id="btn-span">Login</span>
-                            </a> -->
                             <a class="nav-link" type="button" data-bs-target="#form_application"  data-bs-toggle="modal">
                                 <span id="btn-span">Login</span>
                             </a>
@@ -141,27 +138,7 @@
                         </div>
                     </div>
                 </div>
-
-            <!-- Modal Free -->
-            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-                </div>
-            </div> -->
-
-            
+     
             <!-- Modal form for Register -->
             <div class="modal fade" id="form" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -213,7 +190,7 @@
             </div>
 
             <!-- Modal Form For Track -->
-            <div class="modal fade" id="formtrack" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <!-- <div class="modal fade" id="formtrack" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content py-md-5 px-md-4 p-sm-3 p-4">
 
@@ -231,7 +208,7 @@
                         </form>
                     </div>  
                 </div>
-            </div>
+            </div> -->
 
             <!-- Modal Form For Application Login User -->
             <div class="modal fade" id="form_application"data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">

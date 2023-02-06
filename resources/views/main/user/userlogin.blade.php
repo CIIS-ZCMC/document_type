@@ -24,12 +24,12 @@
 							<div class="form_container">
 							
 								<div class="input_wrap">
-									<label class="required">Citizen ID Number</label>
-									<input type="text" name="email" class="input" id="email" autocomplete="off" placeholder="Enter Citizen ID Number" required>
+									<label class="required">Email</label>
+									<input type="text" name="email" class="input" id="email" autocomplete="false" placeholder="Enter Email" required>
 								</div>
 								<div class="input_wrap">
 									<label class="required">Password</label>
-									<input type="password" name="password" class="input" id="password" autocomplete="off" placeholder="Enter Password" required>
+									<input type="password" name="password" class="input" id="password" autocomplete="false" placeholder="Enter Password" required>
 								</div>						
 							</div>				
 					</div>
