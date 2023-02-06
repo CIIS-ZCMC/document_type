@@ -573,7 +573,7 @@ class SideMenu
     public static function usermenu()
     {
         return [
-            'dashboard' => [
+            'Dashboard' => [
                 'icon' => 'layout-dashboard',
                 'title' => 'Dashboard',
                 'route_name' => 'userdashboard',
@@ -582,7 +582,7 @@ class SideMenu
                 ],
                 'title' => 'Dashboard'              
             ],      
-            'benefits' => [
+            'Benefits' => [
                 'icon' => 'cross',
                 'title' => 'Benefits',
                 'route_name' => 'userbenefits',
@@ -591,7 +591,7 @@ class SideMenu
                 ],
                 'title' => 'Benefits'              
             ],     
-            'applications' => [
+            'Applications' => [
                 'icon' => 'files',
                 'title' => 'Applications',
                 'route_name' => 'userapplications',
