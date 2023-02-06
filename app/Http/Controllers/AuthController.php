@@ -91,14 +91,15 @@ function login(Request $request)
 
 
     
-    $userInfo = User::where('email', '=', $request->email)->first();
+    $userInfo = User::where('email', '=', $request->input('email'))->first();
 
     if (!$userInfo) {
         return back()->with('fail', 'We do not recognize your email address');
     } else {
         $request->session()->put('LoggedUser', $userInfo->id);
         //check password
-        if ($request->password = $userInfo->password) {
+        $password=$request->input('password');
+        if ( $password = $userInfo->password) {
             if ($userInfo->active == 1) {
 
               

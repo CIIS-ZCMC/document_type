@@ -1,77 +1,139 @@
-@extends('../layout/' . $layout)
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Progressive Form | Multi Steps Form</title>
+	<link rel="stylesheet" href="{{ asset('dist/css3/style.css') }}"/>
+	
+	<link rel="stylesheet" href=" https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 
-@section('head')
-    <title>Login | Social Welfare Registration and Benefits System</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-@endsection
+        <!-- zc seal -->
+        <link rel="icon" href="{{asset('dist/images/Seal.png')}}" size="10x10" />
 
-@section('content')
+</head>
+<body>
+	<section>
+		<div class="wrapper">
+			
+			<form class="form" id="form" enctype="multipart/form-data" method="post" action="/userlogin" >
+				@csrf
+				<div class="form_wrap">
+					<div class="form_1 data_info">
+						<h2>User Login Application</h2>
+						<p>  </p>
+							<div class="form_container">
+							
+								<div class="input_wrap">
+									<label class="required">Citizen ID Number</label>
+									<input type="text" name="email" class="input" id="email" autocomplete="off" placeholder="Enter Citizen ID Number" required>
+								</div>
+								<div class="input_wrap">
+									<label class="required">Password</label>
+									<input type="password" name="password" class="input" id="password" autocomplete="off" placeholder="Enter Password" required>
+								</div>						
+							</div>				
+					</div>
+				</div>
 
+				<div class="btns_wrap">
 
-<form class='card mt-5' action="{{ route('login.check') }}" method="post" id="loginForm">
-    @csrf
-    <div class="container sm:px-10">
-        <div class="block xl:grid grid-cols-2 gap-4">
-            <!-- BEGIN: Login Info -->
-            <div class="hidden xl:flex flex-col min-h-screen d-flex justify-content-center text-white ">
-                <a href="{{ url('/main') }}" class="-intro-x flex items-center pt-5">
-                    {{--<img alt="image" class="w-8" src="{{ asset('dist/images/login-bg3.svg') }}">
-                    <span class="text-white text-lg ml-3">--}}
-                        <span class="material-symbols-outlined">
-                            arrow_back
-                        </span>
-                        <h1> H O M E P A G E</h1>
-                    </span>
-                </a>
-                <div class="my-auto">
-                    <img alt="Zamboanga City Seal" class="-intro-x w-1/2 -mt-16" src="{{ asset('dist/images/login-bg.svg') }}">
-                    <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">Social Welfare Registration<br> And Benefits System</div>
-                    <div class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-slate-400">Computer Services Division</div>
-                    <div class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-slate-400">User login</div>
-                </div>
-            </div>
-            <!-- END: Login Info -->
-            <!-- BEGIN: Login Form -->
-            <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
-                <div class="my-auto mx-auto xl:ml-20 bg-white dark:bg-darkmode-600 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
-                    <div style="display:flex; height:180px; justify-content:center;" class="mb-5">
-                        <img src="{{ asset('dist/images/seal.png') }}" alt="">
-                    </div>
-                    <h3 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-center m-5">Sign In</h3>
-                    <div class="intro-x mt-2 text-slate-400 xl:hidden text-center"></div>
-                    <div class="intro-x mt-8">
-                        <form id="login-form">
-                            <input name="email" id="email" type="text" class="intro-x login__input form-control py-3 px-4 block" placeholder="Email" required>
-                            <div id="error-email" class="login__input-error text-danger mt-2"></div>
-                            <input name="password" id="password" type="password" class="intro-x login__input form-control py-3 px-4 block mt-4" placeholder="Password" required>
-                            <div id="error-password" class="login__input-error text-danger mt-2"></div>
-                        </form>
-                    </div>
-                    <div class="intro-x flex text-slate-600 dark:text-slate-500 text-xs sm:text-sm mt-4">
-                        <div class="flex items-center mr-auto">
-                            <input id="remember-me" type="checkbox" class="form-check-input border mr-2">
-                            {{-- <label class="cursor-pointer select-none" for="remember-me">Remember me</label> --}}
-                            <!-- <a href="">Forgot Password?</a> -->
-                        </div>
-                    </div>
-                    <div class="d-flex text-center">
-                        <a href="{{ url('/admin') }}"><img src="{{ asset('dist/images/user.png') }}"  style="width: 25px; height: 25px; display:inline-block;" ></a>
-                        <a href="{{ url('/user') }}"><img src="{{ asset('dist/images/user.png') }}"  style="width: 25px; height: 25px; display:inline-block;"></a>
-                     
-                    </div>
-                    <div class="intro-x mt-5 xl:mt-8 text-center xl:text-center ">
-                            <button id="btn-login" class="btn btn-primary py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login</button>
-                            {{-- <button class="btn btn-outline-secondary py-3 px-4 w-full xl:w-32 mt-3 xl:mt-0 align-top">Register</button> --}}
-                    </div>
-                    <div class="intro-x mt-10 xl:mt-24 text-slate-600 dark:text-slate-500 text-center xl:text-left">
-                        By signin up, you agree to our <a class="text-primary dark:text-slate-200" href="">Terms and Conditions</a> & <a class="text-primary dark:text-slate-200" href="">Privacy Policy</a>
-                    </div>
-                </div>
-            </div>
-            <!-- END: Login Form -->
-        </div>
-    </div>
-</form>
-@endsection
+					<div class="common_btns form_1_btns d-flex flex-direction-row ">
+						<a href="/main" style="text-decoration: none;">						
+							<button type="button" onclick="unsave()" class="btn_back" style="margin-right: 5px;"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>				
+						</a>
+				
+						<div class="common_btns form_1_btns">
+							<button type="submit"  class="">Login</button>
+						</div>
+
+					</div>	
+					
+					
+				</div>
+			</form>
+		</div>
+	</section>
 
 
+	{{-- <div class="modal_wrapper">
+		<div class="shadow"></div>
+		<div class="success_wrap">
+			<span class="modal_icon"><ion-icon name="checkmark-sharp"></ion-icon></span>
+			<p>You have successfully completed the process.</p>
+		</div>
+	</div> --}}
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<script src="http://parsleyjs.org/dist/parsley.js"defer></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<script>
+	
+	</script>
+  <?php
+  session_start();
+		if (isset($_SESSION['success']) == 'success') 
+		{
+			?>
+				<script>
+				swal({
+						
+						title: "SAVED",
+						text: "Successfully registered!",
+						icon: "success",
+						button: "ok",
+					})
+					
+				
+				</script>
+			<?php
+			unset($_SESSION['success']);
+		}
+				
+		if (isset($_SESSION['fail']) == 'fail') 
+		{
+			?>
+			<script>
+				swal({
+					
+						title: "Fail",
+						text: "No Record Found!",
+						icon: "error",
+						button: "ok",
+					})
+				
+				
+				</script>
+			<?php
+			unset($_SESSION['fail']);
+		}
+
+		if (isset($_SESSION['Error']) == 'Error') 
+		{
+			?>
+			<script>
+				swal({
+					
+						title: "Applied",
+						text: "You already applied!",
+						icon: "error",
+						button: "ok",
+					})
+				
+				
+				</script>
+			<?php
+			unset($_SESSION['Error']);
+		}
+   
+   
+?>
+ 
+
+
+
+	
+</body>
+</html>

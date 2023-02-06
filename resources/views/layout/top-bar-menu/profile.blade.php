@@ -26,12 +26,12 @@ box icon
         <div style="position:relative;width:50%;border:solid white 5px;width:100%;padding:50px; margin-top:32px;border-radius:10px;">
             <div class="mb-3">     
                 <label for="exampleInputEmail1" class="form-label">Name</label>
-                <!-- <input type="email"  class="form-control" value="{{ $LoggedUserInfo['name'] }}" readonly> -->
+               <input type="email"  class="form-control" value="{{ $LoggedUserInfo['name'] }}" readonly>
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email</label>
-                <!-- <input type="email" class="form-control" value="{{ $LoggedUserInfo['email'] }}" readonly> -->
+               <input type="email" class="form-control" value="{{ $LoggedUserInfo['email'] }}" readonly>
             </div>
         </div>
     

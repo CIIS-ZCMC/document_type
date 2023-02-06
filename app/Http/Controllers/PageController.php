@@ -870,6 +870,12 @@ class PageController extends Controller
         return view('pages/dashboard-overview-3',$data);
     }
 
+
+    public function userdashboard()
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        return view('main/user/dashboard',$data);
+    }
     /**
      * Show specified view.
      *

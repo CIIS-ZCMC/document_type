@@ -5,6 +5,7 @@ use App\Models\ClientApplicationRequirement;
 use App\Helpers\Helper;
 use App\Models\Barangay;
 use App\Models\Client;
+use App\Models\ClientUser;
 use App\Models\ClientApplication;
 use App\Models\BenefitApplication;
 use App\Models\BenefitApplicationLog;
@@ -49,16 +50,58 @@ class BenefitApplicationController extends Controller
              // 'layout' => 'side-menu'
              ])->with(compact('barangaylist'));
      }
+     public function userloginpage(Request $request)
+     {  
+        // $userInfo = User::where('email', '=', $request->input('email'))->first();
+
+        //     if (!$userInfo) {
+        //         return back()->with('fail', 'We do not recognize your email address');
+        //     } else {
+        //         $request->session()->put('LoggedUser', $userInfo->id);
+        //         $userpassword = ClientUser::where('client_id', '=', $userInfo->id)->first();
+        //         $password=$request->input('password');
+        //         if ( $password = $userpassword->password) {
+        //             $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        //             return view('main/user', $data,[
+        //                 // Specify the base layout.
+        //                 // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+        //                 // The default value is 'side-menu'
+            
+        //                 // 'layout' => 'side-menu'
+        //             ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
+        //     }
+        // }
+
+      $barangaylist = Barangay::select('id', 'name')->get();
+         return view('main/user/userlogin',  [
+            'layout' => 'side-menu'
+        ])->with(compact('barangaylist'));
+     }
+
+     public function userlogin(Request $request)
+     {  
+        $userInfo = Client::where('email_address', '=', $request->input('email'))->first();
+      
+            if (!$userInfo) {
+                return back()->with('fail', 'We do not recognize your email address');
+            } else {
+                $request->session()->put('LoggedUser', $userInfo->id);
+                $userpassword = ClientUser::where('client_id', '=', $userInfo->id)->first();
+                $password=$request->input('password');
+                if ( $password = $userpassword->password) {
+                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                    return view('main/user/dashboard', $data,['layout' => 'side-menu'
+                    ])->with(compact('userpassword'));
+            }
+        }
+
+     }
 
      public function dummyform()
      {
          $barangaylist = Barangay::select('id', 'name')->get();
          return view('main/benefitapplication/dummyform', [
-             // Specify the base layout.
-             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-             // The default value is 'side-menu'
- 
-             // 'layout' => 'side-menu'
+       
              ])->with(compact('barangaylist'));
      }
     
@@ -67,11 +110,7 @@ class BenefitApplicationController extends Controller
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchseniorbenefit/searchseniorcashincentivesform', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+   
             ])->with(compact('barangaylist'));
     }
 
@@ -79,11 +118,7 @@ class BenefitApplicationController extends Controller
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchseniorbenefit/searchsenioroctogenarianform', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+     
             ])->with(compact('barangaylist'));
     }
     public function searchseniornonagenarianform()

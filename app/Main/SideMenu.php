@@ -570,6 +570,39 @@ class SideMenu
             
         ];
     }
+    public static function usermenu()
+    {
+        return [
+            'dashboard' => [
+                'icon' => 'layout-dashboard',
+                'title' => 'Dashboard',
+                'route_name' => 'userdashboard',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Dashboard'              
+            ],      
+            'benefits' => [
+                'icon' => 'cross',
+                'title' => 'Benefits',
+                'route_name' => 'userdashboard',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Benefits'              
+            ],     
+            'applications' => [
+                'icon' => 'file',
+                'title' => 'Applications',
+                'route_name' => 'userdashboard',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Applications'              
+            ],             
+        ];
+    }
+    
 
 
     public static function soloparentmenu()
@@ -781,12 +814,7 @@ class SideMenu
                     ],
                    
                 ]
-            ],
-            
-                  
-           
-                
-            
+            ],       
         ];
     }
     public static function soloparentapprovermenu()

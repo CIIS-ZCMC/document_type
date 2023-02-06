@@ -241,7 +241,7 @@
                             <h5> Please Click to Proceed</h5>
                         </div>
                         <button type="button" class="btn-close" style="color: black;" data-bs-dismiss="modal" aria-label="Close"></button>
-                        <form action="/applybenefit">
+                        <form action="/userloginpage">
                             @csrf
                             <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Login User</button> </div>
                         </form>

@@ -39,6 +39,7 @@ class MenuComposer
             $view->with('soloparentapprover_side_menu', SideMenu::soloparentapprovermenu());
             $view->with('soloparentverifier_side_menu', SideMenu::soloparentverifiermenu());
 
+            $view->with('user_side_menu', SideMenu::usermenu());
 
             $view->with('simple_menu', SimpleMenu::menu());
             $view->with('first_level_active_index', $activeMenu['first_level_active_index']);

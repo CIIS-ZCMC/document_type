@@ -32,7 +32,7 @@ use Psr\Http\Client\ClientInterface;
 */
 
 Route::get('/main', [PageController::class, 'main'])->name('main'); //login route
-Route::get('/userlogin', [PageController::class, 'userlogin'])->name('userlogin'); //login route
+
 
 
 
@@ -96,7 +96,8 @@ Route::post('/updatesoloparentcardapplication', [BenefitApplicationController::c
 Route::post('/updateclientbenefitapplication', [BenefitApplicationController::class, 'updateclientbenefitapplication']); //login route  
 
 
-
+Route::post('/userlogin', [BenefitApplicationController::class, 'userlogin']); //login route
+Route::get('/userloginpage', [BenefitApplicationController::class, 'userloginpage']); //login route
 Route::get('/applybenefit', [BenefitApplicationController::class, 'applybenefitform']); //login route
 
 Route::get('/dummybenefit', [BenefitApplicationController::class, 'dummyform']); //login route
@@ -162,6 +163,7 @@ Route::middleware('isLogged')->group(function() {
     Route::get('logout', [AuthController::class, 'logout'])->name('logout');
     Route::controller(PageController::class)->group(function() {
         // top-bar-menu
+        Route::get('/userdashboard', 'userdashboard')->name('userdashboard');
         Route::get('/user-profile', 'profile')->name('profile');
 
         Route::get('/', 'dashboardOverview1')->name('dashboard-overview-1');
