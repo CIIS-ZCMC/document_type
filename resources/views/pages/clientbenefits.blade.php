@@ -46,7 +46,7 @@
                  
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center" >
-                            <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">Add</button>
+                            <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">Edit</button>
                           
                             <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">View</button>
                         </div>
@@ -144,32 +144,11 @@
                                         @endforeach
                                        
                                     </div>
-                                    {{-- <div class="mt-3">
-                                        <label>Horizontal Checkbox</label>
-                                        <div class="flex flex-col sm:flex-row mt-2">
-                                            <div class="form-check mr-2">
-                                                <input id="checkbox-switch-4" class="form-check-input" type="checkbox" value="">
-                                                <label class="form-check-label" for="checkbox-switch-4">Chris Evans</label>
-                                            </div>
-                                            <div class="form-check mr-2 mt-2 sm:mt-0">
-                                                <input id="checkbox-switch-5" class="form-check-input" type="checkbox" value="">
-                                                <label class="form-check-label" for="checkbox-switch-5">Liam Neeson</label>
-                                            </div>
-                                            <div class="form-check mr-2 mt-2 sm:mt-0">
-                                                <input id="checkbox-switch-6" class="form-check-input" type="checkbox" value="">
-                                                <label class="form-check-label" for="checkbox-switch-6">Daniel Craig</label>
-                                            </div>
-                                        </div>
-                                    </div> --}}
                                    
                                 </div>
                                 
                             </div>
                         </div>
-                          
-                          
-                          
-                           
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
