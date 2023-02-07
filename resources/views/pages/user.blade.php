@@ -6,7 +6,7 @@
 
 @section('subcontent')
 <h2 class="intro-y text-lg font-medium mt-10">
-    Data List Layout
+    Manage User Accounts
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
@@ -59,8 +59,6 @@
                     <th class="whitespace-nowrap">NAME</th>
                     <th class="whitespace-nowrap">ROLE</th>
                     <th id="filename" class="whitespace-nowrap">id</th>
-                  
-                  
                     <th class="text-center whitespace-nowrap">STATUS</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
@@ -81,8 +79,6 @@
                         @endif
                     </td>
                   
-
-                 
                     <td class="table-report__action w-56">
                         @if ($user1->active==1)
                             <div class="flex justify-center items-center" >
@@ -97,11 +93,7 @@
                             </div>
 
                         @endif
-
-
-
-                    </td>
-                    
+                    </td>        
                 </tr>
                 <tr id="dtable" style="display: none;">
                     <td  colspan="5" style="text-align:center;">No Record Found!</td>
@@ -143,12 +135,12 @@
     </div>
     <!-- END: Pagination -->
 </div>
-     <!-- BEGIN: New field office Modal -->
+     <!-- BEGIN: Add user account Modal -->
      <div id="new-fo-modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Add user acoount</h2>
+                    <h2 class="font-medium text-base mr-auto">Add User Account</h2>
                 </div>
                 <form action="/user/add" method="POST" enctype="multipart/form-data" >
                     @csrf
@@ -162,7 +154,7 @@
              
                             <div class="col-span-12">
                                 <label for="pos-form-2" class="form-label">Role</label>
-                                <select data-placeholder="Select Decline Reason" class="tom-select w-full" name="role">
+                                <select data-placeholder="Select User Role" class="tom-select w-full" name="role">
                                     <option value="SENIOR ADMIN">SENIOR ADMIN</option>
                                     <option value="SENIOR EVALUATOR">SENIOR EVALUATOR</option>
                                     <option value="SENIOR APRROVER">SENIOR APRROVER</option>
@@ -186,12 +178,7 @@
                             <div class="col-span-12">
                                 <label for="pos-form-2" class="form-label">Password</label>
                                 <input id="address" name="password" type="password" class="form-control flex-1" placeholder="password">
-                            </div>
-                            
-
-                         
-                           
-                           
+                            </div>               
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
@@ -202,10 +189,10 @@
                 </form>
         </div>
     </div>
-    <!-- END: New Order Modal -->
+    <!-- END: Add User Acoount Modal -->
 
       <!-- BEGIN: New field office Modal -->
-      <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
+      <!-- <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -219,12 +206,11 @@
                             <input id="fieldofficename" name="fieldofficename" type="text" class="form-control flex-1" readonly>
                         </div>
                           
-                            <div class="col-span-12">
-                                <label for="pos-form-1" class="form-label">Barangay Name</label>
-                                <input id="barngayname" name="barangayname" type="text" class="form-control flex-1" placeholder="Customer name">
-                            </div>
-                          
-                           
+                        <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">Barangay Name</label>
+                            <input id="barngayname" name="barangayname" type="text" class="form-control flex-1" placeholder="Customer name">
+                        </div>
+
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
@@ -234,16 +220,14 @@
                     </div>
                 </form>
         </div>
-    </div>
+    </div> -->
     <!-- END: New Order Modal -->
 
 </div>
 <!-- END: Content -->
 </div>
 
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php

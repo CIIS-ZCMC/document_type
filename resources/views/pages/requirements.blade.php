@@ -6,7 +6,7 @@
 
 @section('subcontent')
 <h2 class="intro-y text-lg font-medium mt-10">
-    Data List Layout
+Manage Requirements
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
@@ -19,7 +19,7 @@
        
        
         <div class="hidden md:block mx-auto text-slate-500"></div>
-        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#new-fo-modal" class="btn btn-primary shadow-md mr-2">Add New Requirements</a>
+        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#addmodal" class="btn btn-primary shadow-md mr-2">Add New Requirements</a>
        
     </div>
     <!-- BEGIN: Data List -->
@@ -93,24 +93,22 @@
     </div>
     <!-- END: Pagination -->
 </div>
-     <!-- BEGIN: New field office Modal -->
-     <div id="new-fo-modal" class="modal" tabindex="-1" aria-hidden="true">
+     <!-- BEGIN: Add Requirements Modal -->
+     <div id="addmodal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">New Field Office</h2>
+                    <h2 class="font-medium text-base mr-auto">Add Requirements</h2>
                 </div>
                 <form action="/requirements/add" method="POST" enctype="multipart/form-data" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        
-                        
-                            <div class="col-span-12">
-                                <label for="pos-form-1" class="form-label">Name</label>
-                                <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name">
-                            </div>
-                         
-                           
+                                           
+                        <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">Name</label>
+                            <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name">
+                        </div>
+                                     
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
@@ -121,29 +119,28 @@
                 </form>
         </div>
     </div>
-    <!-- END: New Order Modal -->
+    <!-- END: Add Requirements Modal -->
 
-      <!-- BEGIN: New field office Modal -->
+      <!-- BEGIN: Edit Requirements Modal -->
       <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Add Barangay</h2>
+                    <h2 class="font-medium text-base mr-auto">Edit Requirement</h2>
                 </div>
                 <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                         <div class="col-span-12">
-                            <label for="pos-form-1" class="form-label">Field Office Name</label>
+                            <label for="pos-form-1" class="form-label">Old Requirement Name</label>
                             <input id="fieldofficename" name="fieldofficename" type="text" class="form-control flex-1" readonly>
                         </div>
                           
-                            <div class="col-span-12">
-                                <label for="pos-form-1" class="form-label">Barangay Name</label>
-                                <input id="barngayname" name="barangayname" type="text" class="form-control flex-1" placeholder="Barangay name">
-                            </div>
-                          
-                           
+                        <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">New Requirement Name</label>
+                            <input id="barngayname" name="barangayname" type="text" class="form-control flex-1" placeholder="Enter Requirement Name">
+                        </div>
+                                  
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
@@ -154,7 +151,7 @@
                 </form>
         </div>
     </div>
-    <!-- END: New Order Modal -->
+    <!-- END: Edit Requirements Modal -->
 
 </div>
 <!-- END: Content -->

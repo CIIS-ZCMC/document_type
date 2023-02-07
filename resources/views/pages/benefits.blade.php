@@ -6,7 +6,7 @@
 
 @section('subcontent')
 <h2 class="intro-y text-lg font-medium mt-10">
-    Data List Layout
+    Manage Benefits
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
@@ -19,7 +19,7 @@
        
        
         <div class="hidden md:block mx-auto text-slate-500"></div>
-        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#new-fo-modal" class="btn btn-primary shadow-md mr-2">Add Benefit</a>
+        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-benefits-modal" class="btn btn-primary shadow-md mr-2">Add Benefit</a>
        
     </div>
     <!-- BEGIN: Data List -->
@@ -46,9 +46,9 @@
                  
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center" >
-                          <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">Edit</button>
+                          <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 150px;" data-tw-toggle="modal" data-tw-target="#add-req-modal">Add Requirement</button>
                           
-                          <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">View</button>
+                          <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#viewmodal">View</button>
                             
                         </div>
                     </td>
@@ -92,8 +92,8 @@
     </div>
     <!-- END: Pagination -->
 </div>
-     <!-- BEGIN: New field office Modal -->
-     <div id="new-fo-modal" class="modal" tabindex="-1" aria-hidden="true">
+     <!-- BEGIN: Add Benefits Modal -->
+     <div id="add-benefits-modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -120,40 +120,24 @@
                 </form>
         </div>
     </div>
-    <!-- END: New Order Modal -->
+    <!-- END: Add Benefits Modal -->
 
-      <!-- BEGIN: New field office Modal -->
-      <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
+      <!-- BEGIN: Add requirements to Benefits Modal -->
+      <div id="add-req-modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Add Benefit Requirements</h2>
+                    <h2 class="font-medium text-base mr-auto">Add Requirement</h2>
                 </div>
-                <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
+                <form action="/benefits/add" method="POST" enctype="multipart/form-data" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+    
                         <div class="col-span-12">
-                            <div id="checkbox-switch" class="p-5">
-                                <div class="preview">
-                                    <div>
-                                        <label>Select </label>
-                                        @foreach($requirements as $requirement)
-                                        <div class="form-check mt-2">
-                                            <input id="checkbox-switch-1" name="requirement[]" class="form-check-input" type="checkbox" value="{{$requirement->id}}">
-                                            <label class="form-check-label" for="checkbox-switch-1">{{$requirement->name}}</label>
-                                        </div>
-                                        @endforeach
-                                       
-                                    </div>
-                                   
-                                </div>
-                                
-                            </div>
+                            <label for="pos-form-1" class="form-label">Name</label>
+                            <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name">
                         </div>
-                          
-                          
-                          
-                           
+        
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
@@ -164,7 +148,44 @@
                 </form>
         </div>
     </div>
-    <!-- END: New Order Modal -->
+    <!-- END: Add requirements to Benefits Modal -->
+
+      <!-- BEGIN: View Benefits Modal -->
+      <div id="viewmodal" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="font-medium text-center mr-auto">View Benefit Requirements</h2>
+                </div>
+                <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
+                    @csrf
+                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                        <div class="col-span-12">
+                            <div id="checkbox-switch" class="p-5">
+                                <div class="preview">
+                                    <div>
+                                        @foreach($requirements as $requirement)
+                                        <div class="form-check mt-2">
+                                            <input id="checkbox-switch-1" name="requirement[]" class="form-check-input" type="checkbox" value="{{$requirement->id}}">
+                                            <label class="form-check-label" for="checkbox-switch-1">{{$requirement->name}}</label>
+                                        </div>
+                                        @endforeach
+                                       
+                                    </div>        
+                                </div>
+                            </div>
+                        </div>                   
+                        </div>
+                        <div class="modal-footer text-right">
+                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
+                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
+                        </div>
+                    
+                    </div>
+                </form>
+        </div>
+    </div>
+    <!-- END: View Benefits Modal -->
 
 </div>
 <!-- END: Content -->
