@@ -29,8 +29,7 @@
                 <tr>
                     <th class="whitespace-nowrap">No.</th>
                     <th class="whitespace-nowrap">NAME</th>
-                    <th id="filename" class="whitespace-nowrap">id</th>
-                  
+                    <th id="filename" class="whitespace-nowrap">id</th>       
                   
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>

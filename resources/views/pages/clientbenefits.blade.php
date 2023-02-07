@@ -6,23 +6,17 @@
 
 @section('subcontent')
 <h2 class="intro-y text-lg font-medium mt-10">
-    Manage Client Benefits
+    Manage Client Type Benefits
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
 
-        <select name="">
-            <option value="">Citizen</option>
-            <option value="">Senior</option>
-            <option value="">PWD</option>
-            <option value="">Solo Parent</option>
-        </select>
-        <!-- <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div class="w-56 relative text-slate-500">
                 <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
             </div>
-        </div> -->
+        </div> 
        
        
         <div class="hidden md:block mx-auto text-slate-500"></div>      
@@ -33,12 +27,12 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">NO.</th>
-                    <th class="whitespace-nowrap">CLIENT NAME</th> 
+                    <th class="whitespace-nowrap">CLIENT TYPES</th> 
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- @foreach($fo as $index => $fo1)    
+                @foreach($fo as $index => $fo1)    
                 <tr class="intro-x">
                     <td id="foid">{{$index + 1}}</td>
                     <td id="foname">{{ $fo1->name}}</td>
@@ -47,25 +41,15 @@
                   
                  
                     <td class="table-report__action w-56">
-                        <div class="flex justify-center items-center" >                 
-                            <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">View</button>
+                        <div class="flex justify-center items-center" >        
+                        <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#add-benefits-modal">Add Benefit</button>         
+                            <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#viewmodal">View</button>
                         </div>
                     </td>
                     
                 </tr>
-                @endforeach -->
+                @endforeach
 
-                <tr class="intro-x">
-                    <td>1</td>
-                    <td>Renz Tumz</td>
-                    <td class="table-report__action w-56">
-                        <div class="flex justify-center items-center" >   
-                        <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#addmodal">Add</button>              
-                            <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#addmodal">Edit</button>              
-                            <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#viewmodal">View</button>
-                        </div>
-                    </td>
-                </tr>
                
             </tbody>
         </table>
@@ -105,11 +89,11 @@
 </div>
 
      <!-- BEGIN: Add New Client Benefits Modal -->
-     <div id="addmodal" class="modal" tabindex="-1" aria-hidden="true">
+     <div id="add-benefits-modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Add Client Benefit</h2>
+                    <h2 class="font-medium text-base mr-auto">Add Benefit To Client Type</h2>
                 </div>
                 <form action="/benefits/add" method="POST" enctype="multipart/form-data" >
                     @csrf
@@ -139,7 +123,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">View Client Benefits</h2>
+                    <h2 class="font-medium text-base mr-auto">Client Benefit List</h2>
                 </div>
                 <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
                     @csrf
@@ -148,7 +132,6 @@
                             <div id="checkbox-switch" class="p-5">
                                 <div class="preview">
                                     <div>
-                                        <label>Select </label>
                                         @foreach($benefits as $benefit)
                                         <div class="form-check mt-2">
                                             <input id="checkbox-switch-1" name="benefit[]" class="form-check-input" type="checkbox" value="{{$benefit->id}}">
@@ -164,8 +147,7 @@
                         </div>
                         </div>
                         <div class="modal-footer text-right">
-                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
+                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Close</button>
                         </div>
                     
                     </div>
@@ -175,7 +157,7 @@
     <!-- END: -->
 
       <!-- BEGIN: Edit client Benefits Modal -->
-      <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
+      <!-- <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -211,7 +193,7 @@
                     </div>
                 </form>
         </div>
-    </div>
+    </div> -->
     <!-- END: Edit client Benefits Modal -->
 
 
