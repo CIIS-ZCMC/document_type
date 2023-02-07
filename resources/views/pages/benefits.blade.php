@@ -47,7 +47,7 @@
                         <div class="flex justify-center items-center" >
                           <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 150px;" data-tw-toggle="modal" data-tw-target="#add-req-modal">Add Requirement</button>
                           
-                          <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#viewmodal">View</button>
+                          <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">Edit</button>
                             
                         </div>
                     </td>
@@ -101,14 +101,12 @@
                 <form action="/benefits/add" method="POST" enctype="multipart/form-data" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        
-                        
-                            <div class="col-span-12">
-                                <label for="pos-form-1" class="form-label">Name</label>
-                                <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name">
-                            </div>
-                          
-                           
+                         
+                        <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">Name</label>
+                            <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name">
+                        </div>
+         
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
@@ -126,59 +124,73 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Add Requirement</h2>
+                    <h2 class="font-medium text-base mr-auto">Add Requirement to Benefit</h2>
                 </div>
                 <form action="/benefits/add" method="POST" enctype="multipart/form-data" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
     
                         <div class="col-span-12">
-                            <label for="pos-form-1" class="form-label">Name</label>
-                            <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name">
+                            <label for="pos-form-1" class="form-label">Benefit Name</label>
+                            <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1" readonly>
+                        </div>
+
+                        <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">Requirement List</label>
+                            @foreach($fo as $index => $fo1)
+                                <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1" value="{{ $fo1->name }}" readonly>
+                            @endforeach
+                        </div>
+
+                        <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">New Requirement Name</label>
+                            <select id="add_requirement_name" name="add_requirement_name" class="form-select" placeholder="Select Requirement">
+                                @foreach($fo as $index => $fo1)
+                                    <option value="{{ $fo1->name }}">{{ $fo1->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
         
-                        </div>
-                        <div class="modal-footer text-right">
-                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
-                        </div>
-                    
                     </div>
+
+
+                    <div class="modal-footer text-right">
+                        <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
+                        <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
+                    </div>        
+ 
                 </form>
+            </div>
         </div>
     </div>
     <!-- END: Add requirements to Benefits Modal -->
 
       <!-- BEGIN: View Benefits Modal -->
-      <div id="viewmodal" class="modal" tabindex="-1" aria-hidden="true">
+      <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="font-medium text-center mr-auto">View Benefit Requirements</h2>
+                    <h2 class="font-medium text-center mr-auto">Edit Benefit Requirements</h2>
                 </div>
                 <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                        <div class="col-span-12 ">
+                            <label for="pos-form-1" class="form-label">Old Benefit Name</label>
+                            <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1" readonly>
+                        </div>      
+                        
                         <div class="col-span-12">
-                            <div id="checkbox-switch" class="p-5">
-                                <div class="preview">
-                                    <div>
-                                        @foreach($requirements as $requirement)
-                                        <div class="form-check mt-2">
-                                            <input id="checkbox-switch-1" name="requirement[]" class="form-check-input" type="checkbox" value="{{$requirement->id}}">
-                                            <label class="form-check-label" for="checkbox-switch-1">{{$requirement->name}}</label>
-                                        </div>
-                                        @endforeach
-                                       
-                                    </div>        
-                                </div>
-                            </div>
-                        </div>                   
-                        </div>
-                        <div class="modal-footer text-right">
-                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
-                        </div>
+                            <label for="pos-form-1" class="form-label">New Benefit Name</label>
+                            <input id="new_benefit_name" name="new_benefit_name" type="text" class="form-control flex-1" >
+                        </div>   
+
+                    </div>
+
+                    <div class="modal-footer text-right">
+                        <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
+                        <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Update</button>
+                    </div>
                     
                     </div>
                 </form>
@@ -264,7 +276,9 @@
 
             // $('#fieldofficename').val(data[1]);
 
-            $('#editform').attr('action','/addbenefitrequirements/' + data[2]);
+            $('#benefit_name').val(data[1]);
+
+            $('#editform').attr('action','/benefits/update/' + data[2]);
           
         })
 

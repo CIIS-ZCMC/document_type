@@ -48,7 +48,7 @@ Manage Requirements
                         <div class="flex justify-center items-center" >
                           <button href="javascript:;" class="btn btn-outline-primary w-32 mr-1 edit" data-tw-toggle="modal" data-tw-target="#editmodal">Edit</button>
                           
-                        </a>
+                        
                             
                         </div>
                     </td>
@@ -127,14 +127,9 @@ Manage Requirements
                 <div class="modal-header">
                     <h2 class="font-medium text-base mr-auto">Edit Requirement</h2>
                 </div>
-                <form action="" method="POST" method="POST" enctype="multipart/form-data" id="edit_req_form" >
+                <form action="" method="POST" enctype="multipart/form-data" id="edit_req_form" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        <div class="col-span-12">
-                            <label for="pos-form-1" class="form-label">Requirement ID</label>
-                            <input id="requirement_id" name="requirement_id" type="text" class="form-control flex-1" readonly>
-                        </div>
-
                         <div class="col-span-12">
                             <label for="pos-form-1" class="form-label">Old Requirement Name</label>
                             <input id="requirement_name" name="requirement_name" type="text" class="form-control flex-1" readonly>
@@ -142,13 +137,13 @@ Manage Requirements
                           
                         <div class="col-span-12">
                             <label for="pos-form-1" class="form-label">New Requirement Name</label>
-                            <input id="barngayname" name="barangayname" type="text" class="form-control flex-1" placeholder="Enter Requirement Name">
+                            <input id="new_requirement_name" name="new_requirement_name" type="text" class="form-control flex-1" placeholder="Enter Requirement Name">
                         </div>
                                   
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
-                            <button type="submit" id="edit_req_button" name="edit_req_button" class="btn btn-primary w-32">Save</button>
+                            <button type="submit" id="edit_req_button" name="edit_req_button" class="btn btn-primary w-32">Update</button>
                         </div>
                     
                     </div>
@@ -236,7 +231,7 @@ Manage Requirements
             $('#requirement_id').val(data[0]);
             $('#requirement_name').val(data[1]);
 
-            $('#edit_req_form').attr('action','/requirements/update/' + data[3]);
+            $('#edit_req_form').attr('action','/requirements/update/' + data[0]);
           
         })
 

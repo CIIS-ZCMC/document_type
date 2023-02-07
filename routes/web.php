@@ -289,8 +289,9 @@ Route::middleware('isLogged')->group(function() {
     Route::post('/item/add', [ItemController::class, 'store']);
     Route::post('/fo/add', [FieldOfficeController::class, 'store']);
     Route::post('/requirements/add', [RequirementController::class, 'store']);
-    Route::post('/requirements/update/{id}', [RequirementController::class, 'store']);
+    Route::post('/requirements/update/{id}', [RequirementController::class, 'update']);
     Route::post('/benefits/add', [BenefitController::class, 'store']);
+    Route::post('/benefits/update/{id}', [BenefitController::class, 'update']);
     Route::post('/addbenefitrequirements/{id}', [BenefitRequirementController::class, 'store']);
     Route::post('/addclientbenefits/{id}', [ClientBenefitController::class, 'store']);
     Route::post('/user/add', [UserController::class, 'store']);

@@ -80,8 +80,7 @@ class RequirementController extends Controller
      */
     public function update(Request $request, $requirement_id = null)
     {
-        $requirementsave = Requirement::where('id',$requirement_id)->update(['name'=> $request->input('requirement_name')]);
-        $requirementsave->save();
+        Requirement::where('id',$requirement_id)->update(['name'=> $request->input('new_requirement_name')]);
         session_start();
         $_SESSION['success'] ="success";
         

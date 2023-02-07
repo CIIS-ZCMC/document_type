@@ -78,9 +78,15 @@ class BenefitController extends Controller
      * @param  \App\Models\Benefit  $benefit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Benefit $benefit)
+    public function update(Request $request, $benefit_id = null)
     {
-        //
+        Benefit::where('id',$benefit_id)->update(['name'=> $request->input('new_benefit_name')]);
+        session_start();
+        $_SESSION['success'] ="success";
+        
+        return redirect()->back()->with('success');  
+        exit;
+
     }
 
     /**
