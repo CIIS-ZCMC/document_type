@@ -74,7 +74,6 @@ class BenefitApplicationController extends Controller
 
      }
 
-
     public function searchseniorcashincentivesform()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
@@ -906,12 +905,6 @@ class BenefitApplicationController extends Controller
             }
 
             else{
-            
-        
-
-          
-
-            
                 return view('main/track/trackbenefitapplicationform', [
                     // Specify the base layout.
                     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
@@ -925,12 +918,8 @@ class BenefitApplicationController extends Controller
     }
     public function updatecardapplication(Request $request)
     {
-            $barangaylist = Barangay::select('id', 'name')->get();
-           
+        $barangaylist = Barangay::select('id', 'name')->get();
 
-          
-      
-         
         if($request->input('type') == 'Citizen' )
         {
             $client= Client::with("occupations","barangays","client_applications","client_application_requirements")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
@@ -947,10 +936,7 @@ class BenefitApplicationController extends Controller
             // })->with(["client_application_requirements" => function($subQuery) use ($app){
             //     $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
             // }])->first();;
-
-          
-
-              
+   
             return view('main/track/updatecitizencardapplication', [
              
                 ])->with(compact('barangaylist','client'));
@@ -1151,9 +1137,6 @@ class BenefitApplicationController extends Controller
                     
          ClientApplication::where('id',$request->input('appid'))->update(['application_status'=>'Applied']);
          Occupation::where('client_id',$request->input('clientid'))->update(['employment_status'=> $request->input('employmentstatus'),'employment_type'=> $request->input('employmenttype'),'employment_category'=> $request->input('employmentcategory'),'occupation'=> $request->input('occupation'),'salary'=> $request->input('salary')]);
-           
-            
-
 
             if ($request->hasFile('imagebirth')) {
                 $image_tmp = $request->file('imagebirth');
@@ -1216,12 +1199,6 @@ class BenefitApplicationController extends Controller
 
             }
 
-
-
-
-
-
-              
             session_start();
             $_SESSION['success'] ="success";
            

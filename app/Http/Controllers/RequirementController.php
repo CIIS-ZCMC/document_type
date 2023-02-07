@@ -78,9 +78,15 @@ class RequirementController extends Controller
      * @param  \App\Models\Requirement  $requirement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Requirement $requirement)
+    public function update(Request $request, $requirement_id = null)
     {
-        //
+        $requirementsave = Requirement::where('id',$requirement_id)->update(['name'=> $request->input('requirement_name')]);
+        $requirementsave->save();
+        session_start();
+        $_SESSION['success'] ="success";
+        
+        return redirect()->back()->with('success');  
+        exit;
     }
 
     /**

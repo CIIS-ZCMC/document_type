@@ -1,7 +1,7 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-    <title>Field Office | Social Welfare Registration and Benefits System</title>
+    <title>Requirements | Social Welfare Registration and Benefits System</title>
 @endsection
 
 @section('subcontent')
@@ -31,8 +31,7 @@ Manage Requirements
                     <th class="whitespace-nowrap">NAME</th>
                   
                     <th id="filename" class="whitespace-nowrap">id</th>
-                  
-                  
+                          
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
@@ -128,12 +127,17 @@ Manage Requirements
                 <div class="modal-header">
                     <h2 class="font-medium text-base mr-auto">Edit Requirement</h2>
                 </div>
-                <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
+                <form action="" method="POST" method="POST" enctype="multipart/form-data" id="edit_req_form" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                         <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">Requirement ID</label>
+                            <input id="requirement_id" name="requirement_id" type="text" class="form-control flex-1" readonly>
+                        </div>
+
+                        <div class="col-span-12">
                             <label for="pos-form-1" class="form-label">Old Requirement Name</label>
-                            <input id="fieldofficename" name="fieldofficename" type="text" class="form-control flex-1" readonly>
+                            <input id="requirement_name" name="requirement_name" type="text" class="form-control flex-1" readonly>
                         </div>
                           
                         <div class="col-span-12">
@@ -144,7 +148,7 @@ Manage Requirements
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
+                            <button type="submit" id="edit_req_button" name="edit_req_button" class="btn btn-primary w-32">Save</button>
                         </div>
                     
                     </div>
@@ -214,7 +218,7 @@ Manage Requirements
         var table = $('#datatable').DataTable(
             {
                 "bPaginate": false,
-        "bFilter": false,
+                "bFilter": false,
        
             }
         );
@@ -229,9 +233,10 @@ Manage Requirements
             var data = table.row($tr).data();
             console.log(data);
 
-            $('#fieldofficename').val(data[1]);
+            $('#requirement_id').val(data[0]);
+            $('#requirement_name').val(data[1]);
 
-            $('#editform').attr('action','/barangay/' + data[3]);
+            $('#edit_req_form').attr('action','/requirements/update/' + data[3]);
           
         })
 
