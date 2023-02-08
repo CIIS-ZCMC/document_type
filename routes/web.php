@@ -293,6 +293,8 @@ Route::middleware('isLogged')->group(function() {
     Route::post('/benefits/add', [BenefitController::class, 'store']);
     Route::post('/benefits/update/{id}', [BenefitController::class, 'update']);
     Route::post('/addbenefitrequirements/{id}', [BenefitRequirementController::class, 'store']);
+    Route::post('/benefits/select', [BenefitRequirementController::class, 'select_benefit_requirements']);
+    
     Route::post('/addclientbenefits/{id}', [ClientBenefitController::class, 'store']);
     Route::post('/user/add', [UserController::class, 'store']);
     Route::match(['get', 'post'], '/user/deactivateuser/{id}', [UserController::class, 'deactivateuser']);

@@ -126,23 +126,21 @@
                 <div class="modal-header">
                     <h2 class="font-medium text-base mr-auto">Select Requirement/s to Benefit</h2>
                 </div>
-                <form action="/pages/benefits" method="POST" enctype="multipart/form-data" id="add-benreq-form">
+                <form action="" method="POST" enctype="multipart/form-data" id="select_requirements_to_benefits">
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-    
+                
                         <div class="col-span-12">
-                            <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1 border-none text-center" readonly>
+                            <input id="benefit_id" name="benefit_id" type="number" class="form-control flex-1 border-none text-center" readonly>
                         </div>
 
                         @foreach($requirements as $index => $fo1)
                             <div class="col-span-12">
-                                <input type="checkbox" name="requirements[]" value="{{ $fo1->name }}">
+                                <input type="checkbox" name="requirement_id[]" value="{{$fo1->id}}">
                                 <label>{{ $fo1->name }}</label>
                             </div>
-                        @endforeach
-                
+                        @endforeach            
                     </div>
-
 
                     <div class="modal-footer text-right">
                         <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
@@ -284,9 +282,9 @@
             var data = table.row($tr).data();
             console.log(data);
 
-            $('#benefit_name').val(data[1]);
+            $('#benefit_id').val(data[0]);
 
-            $('#editform').attr('action','/benefits/select/' + data[2]);
+            $('#select_requirements_to_benefits').attr('action','/benefits/select');
           
         })
 

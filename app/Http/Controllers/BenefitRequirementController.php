@@ -100,4 +100,50 @@ class BenefitRequirementController extends Controller
     {
         //
     }
+
+    public function select_benefit_requirements(Request $request)
+    {
+        // $benefit_id = $request->input('benefit_id');
+        // $requirement_id = $request->input('requirement_id');
+        // $sundays = $request->input('requirement_id');
+        // $sundaysArray = array();
+        // foreach($sundays as $sunday){
+        //     $sundaysArray = $sunday;
+        //     $benefit_requirement_save = new BenefitRequirement();
+        //     $benefit_requirement_save->benefit_id =$benefit_id;
+        //     $benefit_requirement_save->requirement_id =json_encode($sundaysArray);
+        //     $benefit_requirement_save->save();
+        //  }
+
+        
+        $benefit_id = $request->input('benefit_id');
+        $requirement_id = $request->input('requirement_id');
+
+        foreach($requirement_id  as $key => $value) {     
+            if($requirement_id!=null) 
+            {
+                $benefitrequirementsave = new BenefitRequirement();
+                $benefitrequirementsave->requirement_id = $requirement_id[$key];
+                $benefitrequirementsave->benefit_id =$benefit_id;
+                $benefitrequirementsave->save();
+                // return $benefitrequirementsave;
+
+            }
+        
+        
+        }
+
+            
+        
+
+     
+      
+     
+
+        session_start();
+        $_SESSION['success'] ="success";
+        
+        return redirect()->back()->with('success');  
+        exit;
+    }
 }
