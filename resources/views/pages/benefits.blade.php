@@ -16,7 +16,7 @@
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
             </div>
         </div>
-       
+
        
         <div class="hidden md:block mx-auto text-slate-500"></div>
         <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-benefits-modal" class="btn btn-primary shadow-md mr-2">Add Benefit</a>
@@ -45,10 +45,10 @@
                  
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center" >
-                          <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 150px;" data-tw-toggle="modal" data-tw-target="#add-req-modal">Add Requirement</button>
+                          <button href="javascript:;" class="btn btn-outline-primary mr-1 select_benreq" style="width: 150px;" data-tw-toggle="modal" data-tw-target="#select-req-modal">Requirements</button>
                           
                           <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">Edit</button>
-                            
+                     
                         </div>
                     </td>
                     
@@ -119,53 +119,43 @@
     </div>
     <!-- END: Add Benefits Modal -->
 
-      <!-- BEGIN: Add requirements to Benefits Modal -->
-      <div id="add-req-modal" class="modal" tabindex="-1" aria-hidden="true">
+      <!-- BEGIN: Select requirements to Benefits Modal -->
+      <div id="select-req-modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Add Requirement to Benefit</h2>
+                    <h2 class="font-medium text-base mr-auto">Select Requirement/s to Benefit</h2>
                 </div>
-                <form action="/benefits/add" method="POST" enctype="multipart/form-data" >
+                <form action="/pages/benefits" method="POST" enctype="multipart/form-data" id="add-benreq-form">
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
     
                         <div class="col-span-12">
-                            <label for="pos-form-1" class="form-label">Benefit Name</label>
-                            <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1" readonly>
+                            <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1 border-none text-center" readonly>
                         </div>
 
-                        <div class="col-span-12">
-                            <label for="pos-form-1" class="form-label">Requirement List</label>
-                            @foreach($fo as $index => $fo1)
-                                <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1" value="{{ $fo1->name }}" readonly>
-                            @endforeach
-                        </div>
-
-                        <div class="col-span-12">
-                            <label for="pos-form-1" class="form-label">New Requirement Name</label>
-                            <select id="add_requirement_name" name="add_requirement_name" class="form-select" placeholder="Select Requirement">
-                                @foreach($fo as $index => $fo1)
-                                    <option value="{{ $fo1->name }}">{{ $fo1->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-        
+                        @foreach($requirements as $index => $fo1)
+                            <div class="col-span-12">
+                                <input type="checkbox" name="requirements[]" value="{{ $fo1->name }}">
+                                <label>{{ $fo1->name }}</label>
+                            </div>
+                        @endforeach
+                
                     </div>
 
 
                     <div class="modal-footer text-right">
                         <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
-                        <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
+                        <button type="submit" id="save_btn" name="save_btn" class="btn btn-primary w-32">Save</button>
                     </div>        
  
                 </form>
             </div>
         </div>
     </div>
-    <!-- END: Add requirements to Benefits Modal -->
+    <!-- END: Select requirements to Benefits Modal -->
 
-      <!-- BEGIN: View Benefits Modal -->
+      <!-- BEGIN: Edit Benefits Modal -->
       <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -177,7 +167,7 @@
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                         <div class="col-span-12 ">
                             <label for="pos-form-1" class="form-label">Old Benefit Name</label>
-                            <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1" readonly>
+                            <input id="old_benefit_name" name="old_benefit_name" type="text" class="form-control flex-1" readonly>
                         </div>      
                         
                         <div class="col-span-12">
@@ -244,8 +234,7 @@
 						icon: "error",
 						button: "ok",
 					})
-				
-				
+					
 				</script>
 			<?php
 			unset($_SESSION['fail']);
@@ -259,10 +248,12 @@
         var table = $('#datatable').DataTable(
             {
                 "bPaginate": false,
-        "bFilter": false,
+            "bFilter": false,
        
             }
         );
+
+        // edit benefits
         table.on('click', '.edit', function()
         {
             $tr=$(this).closest('tr');
@@ -274,15 +265,41 @@
             var data = table.row($tr).data();
             console.log(data);
 
-            // $('#fieldofficename').val(data[1]);
+            $('#old_benefit_name').val(data[1]);
+
+            $('#editform').attr('action','/benefits/update/' + data[2]);
+          
+        })
+
+        
+        // select requirements to benefits
+        table.on('click', '.select_benreq', function()
+        {
+            $tr=$(this).closest('tr');
+            if ($($tr).hasClass('child'))
+            {
+                $tr = $tr.prev('.parent');
+            }
+
+            var data = table.row($tr).data();
+            console.log(data);
 
             $('#benefit_name').val(data[1]);
 
-            $('#editform').attr('action','/benefits/update/' + data[2]);
+            $('#editform').attr('action','/benefits/select/' + data[2]);
           
         })
 
     })
 
 </script>
+
+
+
+
+
+
+
+
+
 @endsection

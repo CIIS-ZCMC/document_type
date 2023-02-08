@@ -23,7 +23,7 @@
     </div>
     <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-        <table id="datatable" class="table table-report -mt-2">
+        <table id="clientben_datatable" class="table table-report -mt-2">
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">NO.</th>
@@ -42,8 +42,8 @@
                  
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center" >        
-                        <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#add-benefits-modal">Add Benefit</button>         
-                            <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#viewmodal">View</button>
+                            <!-- <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#add-benefits-modal">Add Benefit</button>          -->
+                            <button href="javascript:;" class="btn btn-outline-primary mr-1 benefits_btn" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#benefits_modal">Benefits</button>
                         </div>
                     </td>
                     
@@ -89,7 +89,7 @@
 </div>
 
      <!-- BEGIN: Add New Client Benefits Modal -->
-     <div id="add-benefits-modal" class="modal" tabindex="-1" aria-hidden="true">
+     <!-- <div id="add-benefits-modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -115,11 +115,11 @@
                     </div>
                 </form>
         </div>
-    </div>
+    </div> -->
     <!-- END: -->
 
       <!-- BEGIN: View Clint Benefits -->
-      <div id="viewmodal" class="modal" tabindex="-1" aria-hidden="true">
+      <div id="benefits_modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -128,6 +128,11 @@
                 <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+
+                        <div class="col-span-12">
+                            <input id="clienttype_name" name="clienttype_name" type="text" class="form-control flex-1 text-center" readdonly>
+                        </div>
+
                         <div class="col-span-12">
                             <div id="checkbox-switch" class="p-5">
                                 <div class="preview">
@@ -148,6 +153,7 @@
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Close</button>
+                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
                         </div>
                     
                     </div>
@@ -237,7 +243,7 @@
 				swal({
 					
 						title: "Fail",
-						text: "Successfully saved!",
+						text: "Something went wrong please check!",
 						icon: "error",
 						button: "ok",
 					})
@@ -253,14 +259,15 @@
 <script type="text/javascript">
     $(document).ready(function()
     {
-        var table = $('#datatable').DataTable(
+        var table = $('#clientben_datatable').DataTable(
             {
                 "bPaginate": false,
-        "bFilter": false,
+                "bFilter": false,
        
             }
         );
-        table.on('click', '.edit', function()
+       // select benefits to client type
+       table.on('click', '.benefits_btn', function()
         {
             $tr=$(this).closest('tr');
             if ($($tr).hasClass('child'))
@@ -271,13 +278,15 @@
             var data = table.row($tr).data();
             console.log(data);
 
-            // $('#fieldofficename').val(data[1]);
+            $('#clienttype_name').val(data[1]);
 
-            $('#editform').attr('action','/addclientbenefits/' + data[2]);
+            $('#editform').attr('action','/benefits/select/' + data[2]);
           
         })
 
     })
 
 </script>
+
+
 @endsection
