@@ -68,7 +68,6 @@ class ClientController extends Controller
        
        $this->validate($request, [
         'firstname' => 'required'
-
        ]);
        
         $latestreferencenumber = ClientApplication::where('id','DESC')->first();

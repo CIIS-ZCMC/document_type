@@ -31,17 +31,13 @@ use Psr\Http\Client\ClientInterface;
 |
 */
 
+
 Route::get('/main', [PageController::class, 'main'])->name('main'); //login route
-
-
-
 
 Route::get('/registration', [PageController::class, 'registration']); //login route
 Route::get('/seniorregistration', [PageController::class, 'seniorregistration']); //login route
 Route::get('/pwdregistration', [PageController::class, 'pwdregistration']); //login route
 Route::get('/soloparentregistration', [PageController::class, 'soloparentregistration']); //login route
-
-
 
 Route::get('/verify/{cardnumber}/{token}', [ClientCardController::class, 'verifyclient']); //login route
 
@@ -73,14 +69,14 @@ Route::post('/save-capture.php', function()
 });
 
 
-
-
 Route::get('/registeredsenior', [PageController::class, 'registeredsenior']); //login route
 Route::get('/registeredsoloparent', [PageController::class, 'registeredsoloparent']); //login route
 Route::get('/registeredpwd', [PageController::class, 'registeredpwd']); //login route
 
 Route::get('/trackcardform', [PageController::class, 'trackcardform']); //login route
 Route::get('/trackbenefitform', [PageController::class, 'trackbenefitform']); //login route  
+
+Route::get('/set_benefit_requirements', [PageController::class, 'set_benefit_requirements']); //login route  
 
 Route::post('/trackcardapplication', [BenefitApplicationController::class, 'trackcardapplication']); //login route
 Route::post('/trackbenefitapplication', [BenefitApplicationController::class, 'trackbenefitapplication']); //login route  
@@ -294,6 +290,7 @@ Route::middleware('isLogged')->group(function() {
     Route::post('/benefits/update/{id}', [BenefitController::class, 'update']);
     Route::post('/addbenefitrequirements/{id}', [BenefitRequirementController::class, 'store']);
     Route::post('/benefits/select', [BenefitRequirementController::class, 'select_benefit_requirements']);
+
     
     Route::post('/addclientbenefits/{id}', [ClientBenefitController::class, 'store']);
     Route::post('/user/add', [UserController::class, 'store']);

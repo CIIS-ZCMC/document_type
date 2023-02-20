@@ -29,24 +29,25 @@
                 <tr>
                     <th class="whitespace-nowrap">No.</th>
                     <th class="whitespace-nowrap">NAME</th>
+                    <th class="whitespace-nowrap">FORM TYPE</th>
                     <th id="filename" class="whitespace-nowrap">id</th>       
                   
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($fo as $index => $fo1)    
+                @foreach($benefits as $index => $fo1)    
                 <tr class="intro-x">
                     <td id="foid">{{$index + 1}}</td>
                     <td id="foname">{{ $fo1->name}}</td>
-               
+                    <td id="foname">{{ $fo1->name}}</td>
                     <td id="filename">{{$fo1->id}}</td>
                   
                  
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center" >
-                          <button href="javascript:;" class="btn btn-outline-primary mr-1 select_benreq" style="width: 150px;" data-tw-toggle="modal" data-tw-target="#select-req-modal">Requirements</button>
-                          
+                          <!-- <button href="javascript:;" class="btn btn-outline-primary mr-1 select_benreq" style="width: 150px;" data-tw-toggle="modal" data-tw-target="#select-req-modal">Requirements</button> -->
+                          <button data-tw-toggle="modal" data-tw-target="#select-req-modal" class="btn btn-outline-primary mr-1 select_benreq" style="width: 150px;">Requirements</button>                        
                           <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">Edit</button>
                      
                         </div>
@@ -106,6 +107,14 @@
                             <label for="pos-form-1" class="form-label">Name</label>
                             <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name">
                         </div>
+
+                        <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">Form Type</label>
+                            <select id="form_type" name="form_type" type="text" class="form-select flex-1">
+                                <option value="0">Static</option>
+                                <option value="1">Dynamic</option>
+                            </select>
+                        </div>
          
                         </div>
                         <div class="modal-footer text-right">
@@ -122,27 +131,56 @@
       <!-- BEGIN: Select requirements to Benefits Modal -->
       <div id="select-req-modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Select Requirement/s to Benefit</h2>
-                </div>
+            <div class="modal-content text-center">
                 <form action="" method="POST" enctype="multipart/form-data" id="select_requirements_to_benefits">
                     @csrf
+
+                    <div class="modal-header">
+                        <h2 class="font-medium text-center mr-auto">Select Requirement/s to Benefit</h2>
+                    </div>
+
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                 
                         <div class="col-span-12">
-                            <input id="benefit_id" name="benefit_id" type="number" class="form-control flex-1 border-none text-center" readonly>
+                            <input id="benefit_id" name="benefit_id" type="hidden" class="form-control flex-1 border-none text-center" >
+                            <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1 border-none text-center" readonly>
+                        </div>   
+                        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+                            <table id="datatable" class="table table-report">
+                                <thead>
+                                    <tr>
+                                        <th class="whitespace-nowrap">REQUIREMENTS</th>
+                                        <th class="whitespace-nowrap">SELECT</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($requirements as $index => $fo1)
+                                        @foreach($benefit_requirements as $index => $br)              
+                                            <tr class="intro-x">                  
+                                                    <td id="foname">{{ $fo1->name}}</td> 
+                                                    <td>
+                                                    @php
+                                                        $benefit = $fo1->name;
+                                                    @endphp
+                                                    {{ $benefit }}
+                                                    </td>                    
+                                                    <td id="foid">
+                                                        @if($br->benefit_id == $fo1->id && $br->requirement_id == $fo1->id)
+                                                            <input type="checkbox" name="requirement_idbene[]" value="{{$fo1->id}}" checked>
+                                                        @else
+                                                            <input type="checkbox" name="requirement_id[]" value="{{$fo1->id}}">
+                                                        @endif 
+                                                    </td>                 
+                                            </tr>                  
+                                        @endforeach
+                                    @endforeach 
+                                </tbody>
+                            </table>
                         </div>
+                    </div>   
+                       
 
-                        @foreach($requirements as $index => $fo1)
-                            <div class="col-span-12">
-                                <input type="checkbox" name="requirement_id[]" value="{{$fo1->id}}">
-                                <label>{{ $fo1->name }}</label>
-                            </div>
-                        @endforeach            
-                    </div>
-
-                    <div class="modal-footer text-right">
+                    <div class="modal-footer text-right bg-white">
                         <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
                         <button type="submit" id="save_btn" name="save_btn" class="btn btn-primary w-32">Save</button>
                     </div>        
@@ -173,7 +211,16 @@
                             <input id="new_benefit_name" name="new_benefit_name" type="text" class="form-control flex-1" >
                         </div>   
 
+                        <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">Form Type</label>
+                            <select id="form_type" name="form_type" type="text" class="form-select flex-1">
+                                <option value="0">Static</option>
+                                <option value="1">Dynamic</option>
+                            </select>
+                        </div>
+
                     </div>
+
 
                     <div class="modal-footer text-right">
                         <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
@@ -261,7 +308,6 @@
             }
 
             var data = table.row($tr).data();
-            console.log(data);
 
             $('#old_benefit_name').val(data[1]);
 
@@ -283,6 +329,7 @@
             console.log(data);
 
             $('#benefit_id').val(data[0]);
+            $('#benefit_name').val(data[1]);
 
             $('#select_requirements_to_benefits').attr('action','/benefits/select');
           

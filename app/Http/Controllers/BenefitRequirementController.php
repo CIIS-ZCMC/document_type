@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BenefitRequirement;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class BenefitRequirementController extends Controller
 {
@@ -114,7 +115,8 @@ class BenefitRequirementController extends Controller
         //     $benefit_requirement_save->requirement_id =json_encode($sundaysArray);
         //     $benefit_requirement_save->save();
         //  }
-
+        
+        $LoggedInUser = User::where('id', '=', session('LoggedUser'))->first();
         
         $benefit_id = $request->input('benefit_id');
         $requirement_id = $request->input('requirement_id');
@@ -122,24 +124,24 @@ class BenefitRequirementController extends Controller
         foreach($requirement_id  as $key => $value) {     
             if($requirement_id!=null) 
             {
-                $benefitrequirementsave = new BenefitRequirement();
-                $benefitrequirementsave->requirement_id = $requirement_id[$key];
-                $benefitrequirementsave->benefit_id =$benefit_id;
-                $benefitrequirementsave->save();
-                // return $benefitrequirementsave;
-
-            }
-        
-        
+                if (BenefitRequirement::where('benefit_id','=', $benefit_id)
+                ->where('requirement_id','=', $requirement_id[$key])
+                ->exists())
+                {
+                    BenefitRequirement::where('benefit_id','=', $benefit_id)
+                    ->where('requirement_id','=', $requirement_id[$key])
+                    ->update(['removed_status'=>1,'removed_by'=>$LoggedInUser->name,'removed_date'=>Now()]);
+                }
+                else{
+                    $benefitrequirementsave = new BenefitRequirement();
+                    $benefitrequirementsave->requirement_id = $requirement_id[$key];
+                    $benefitrequirementsave->benefit_id =$benefit_id;
+                    $benefitrequirementsave->save();
+                }
+         
+            } 
         }
-
-            
         
-
-     
-      
-     
-
         session_start();
         $_SESSION['success'] ="success";
         

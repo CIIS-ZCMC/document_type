@@ -64,8 +64,8 @@ class AuthController extends Controller
 function loginView()
 {
     return view('login.main', [
-                    'layout' => 'login'
-                ]);
+        'layout' => 'login'
+    ]);
 }
 
 function resetPassword()
@@ -76,8 +76,7 @@ function resetPassword()
 
 function forgotPassword()
 {
-    return view('auth.forgotPasswoampp
-    rd');
+    return view('auth.forgotPasswoampprd');
 }
 
 

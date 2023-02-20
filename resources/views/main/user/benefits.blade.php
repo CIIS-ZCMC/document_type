@@ -106,16 +106,16 @@
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
                         
                         
-                            <div class="col-span-12">
-                                <label for="pos-form-1" class="form-label">Name</label>
-                                <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name" required>
-                            </div>
-                            <div class="col-span-12">
-                                <label for="pos-form-2" class="form-label">Address</label>
-                                <input id="address" name="address" type="text" class="form-control flex-1" placeholder="address" required>
-                            </div>
-                           
+                        <div class="col-span-12">
+                            <label for="pos-form-1" class="form-label">Name</label>
+                            @foreach($requirements as $index => $fo1) 
+                                <input id="name" name="name" type="text" class="form-control flex-1"  value="{{$fo1->name}}">
+                            @endforeach
+                            <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name" required>
                         </div>
+
+                           
+
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
                             <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>

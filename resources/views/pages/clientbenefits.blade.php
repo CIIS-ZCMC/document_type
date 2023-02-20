@@ -23,7 +23,7 @@
     </div>
     <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-        <table id="clientben_datatable" class="table table-report -mt-2">
+        <table id="clientbenefits_datatable" class="table table-report -mt-2">
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">NO.</th>
@@ -127,33 +127,35 @@
                 </div>
                 <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
                     @csrf
-                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
+                        <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
 
-                        <div class="col-span-12">
-                            <input id="clienttype_name" name="clienttype_name" type="text" class="form-control flex-1 text-center" readdonly>
-                        </div>
-
-                        <div class="col-span-12">
-                            <div id="checkbox-switch" class="p-5">
-                                <div class="preview">
-                                    <div>
-                                        @foreach($benefits as $benefit)
-                                        <div class="form-check mt-2">
-                                            <input id="checkbox-switch-1" name="benefit[]" class="form-check-input" type="checkbox" value="{{$benefit->id}}">
-                                            <label class="form-check-label" for="checkbox-switch-1">{{$benefit->name}}</label>
-                                        </div>
-                                        @endforeach
-                                       
-                                    </div>
-                                   
-                                </div>
-                                
+                            <div class="col-span-12">
+                                <input id="clienttype_name" name="clienttype_name" type="text" class="form-control flex-1 text-center" readdonly>
                             </div>
-                        </div>
-                        </div>
+                            <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+                                <table id="datatable" class="table table-report">
+                                    <thead>
+                                        <tr>
+                                            <th class="whitespace-nowrap">BENEFITS</th>
+                                            <th class="whitespace-nowrap">SELECT</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($benefits as $index => $fo1)
+                                        <tr class="intro-x">                  
+                                                <td id="foname">{{ $fo1->name}}</td>    
+                                                <td id="foid">
+                                                    <input type="checkbox" name="requirement_id[]" value="{{$fo1->id}}" checked>
+                                                </td>                
+                                        </tr>
+                                        @endforeach 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>   
                         <div class="modal-footer text-right">
-                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Close</button>
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
+                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1 ">Close</button>
+                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32 select_benefits_clients">Save</button>
                         </div>
                     
                     </div>
@@ -259,7 +261,7 @@
 <script type="text/javascript">
     $(document).ready(function()
     {
-        var table = $('#clientben_datatable').DataTable(
+        var table = $('#clientbenefits_datatable').DataTable(
             {
                 "bPaginate": false,
                 "bFilter": false,
@@ -280,7 +282,7 @@
 
             $('#clienttype_name').val(data[1]);
 
-            $('#editform').attr('action','/benefits/select/' + data[2]);
+            $('#select_benefits_clients').attr('action','/benefits/select/' + data[2]);
           
         })
 

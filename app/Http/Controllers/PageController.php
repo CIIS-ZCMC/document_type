@@ -880,6 +880,12 @@ class PageController extends Controller
     public function userbenefits()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+
+        $benefits = DB::table('benefit_requirement')
+        ->where('id', '=', session('LoggedUser'))
+        ->get();
+
+
         return view('main/user/benefits',$data);
     }
 
@@ -1267,18 +1273,34 @@ class PageController extends Controller
         return view('pages/fieldoffice',$data)->with(compact('fo'));
     }
 
-    public function benefit()
+    public function benefit(Request $request)
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-        $fo = DB::table('benefits')
+        $benefits = DB::table('benefits')
         ->select()
         ->get();
 
         $requirements = DB::table('requirements')
         ->select()
         ->get();
-        return view('pages/benefits',$data)->with(compact('fo','requirements'));
+
+        $benefit_requirements = DB::table('benefit_requirements')
+        ->select()
+        ->get();
+
+        return view('pages/benefits',$data)->with(compact('benefits','requirements','benefit_requirements'));
+
     }
+
+    public function set_benefit_requirements()
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $fo = DB::table('benefit_requirements')
+        ->select()
+        ->get();
+        return view('pages/set_benefit_requirements',$data)->with(compact('fo'));
+    }
+    
     public function requirement()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
@@ -1297,6 +1319,7 @@ class PageController extends Controller
         $benefits = DB::table('benefits')
         ->select()
         ->get();
+
         return view('pages/clientbenefits',$data)->with(compact('fo','benefits'));
     }
     /**

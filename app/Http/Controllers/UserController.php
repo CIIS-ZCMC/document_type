@@ -23,9 +23,6 @@ class UserController extends Controller
         $usersave->password =  Hash::make($request->input('password'));
        
         $usersave->save();
-
-    
-      
         
         return redirect()->back()->with('success');  
         exit;
