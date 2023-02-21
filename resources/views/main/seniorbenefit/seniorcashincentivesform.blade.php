@@ -118,8 +118,8 @@
 				<script>
 				swal({
 						
-						title: "SAVED",
-						text: "Successfully saved!",
+						title: "Registered",
+						text: "Successfully registered!",
 						icon: "success",
 						button: "ok",
 					})

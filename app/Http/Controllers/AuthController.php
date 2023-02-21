@@ -14,6 +14,7 @@ use App\Models\ClientApplication;
 use App\Models\ClientApplicationLog;
 use App\Models\ClientApplicationRequirement;
 use App\Models\ClientCard;
+use App\Models\ClientType;
 
 class AuthController extends Controller
 {
@@ -63,8 +64,8 @@ class AuthController extends Controller
 function loginView()
 {
     return view('login.main', [
-                    'layout' => 'login'
-                ]);
+        'layout' => 'login'
+    ]);
 }
 
 function resetPassword()
@@ -72,11 +73,13 @@ function resetPassword()
     return view('auth.resetPassword');
 }
 
+
 function forgotPassword()
 {
-    return view('auth.forgotPasswoampp
-    rd');
+    return view('auth.forgotPasswoampprd');
 }
+
+
 function login(Request $request)
 {
     //Validate requests
@@ -87,14 +90,15 @@ function login(Request $request)
 
 
     
-    $userInfo = User::where('email', '=', $request->email)->first();
+    $userInfo = User::where('email', '=', $request->input('email'))->first();
 
     if (!$userInfo) {
         return back()->with('fail', 'We do not recognize your email address');
     } else {
         $request->session()->put('LoggedUser', $userInfo->id);
         //check password
-        if ($request->password = $userInfo->password) {
+        $password=$request->input('password');
+        if ( $password = $userInfo->password) {
             if ($userInfo->active == 1) {
 
               

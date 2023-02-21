@@ -14,8 +14,7 @@ class ClientCardController extends Controller
     public function verifyclient($cardnumber,$token)
     {
        $verifclient= ClientCard::where('card_number',$cardnumber)->where('token',$token)->first();
-       $clientid= $verifclient->client_id;
-       $clientdetails= Client::where('id',$clientid)->first();
+    
         if($verifclient == null)
         {
 
@@ -34,7 +33,8 @@ class ClientCardController extends Controller
         else
         {
        
-         
+          $clientid= $verifclient->client_id;
+       $clientdetails= Client::where('id',$clientid)->first();
             return view('pages/verification/verifiedclient', [
                
             ])->with('fail')->with(compact('clientdetails','verifclient'));

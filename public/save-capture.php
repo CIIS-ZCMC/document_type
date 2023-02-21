@@ -24,21 +24,16 @@ if(!empty($image))
 {
     define('UPLOAD_DIR', 'completeid');  
     $img = $_POST['image']; 
-    $img = str_replace('data:image/png;base64,', '', $img);  
-    $img = str_replace(' ', '+', $img);  
-    $data = base64_decode($img);  
+        
     $name=$_POST['name'];
-    $cardtype=$_POST['cardtype'];
-    $file .= UPLOAD_DIR . $cardtype .$name. '.png';  
-   
+    $img = str_replace('data:image/png;base64,', '', $img);  
+    $img = str_replace('', '+', $img);  
+    $data = base64_decode($img);  
 
-    // if(file_exists(public_path($file))){
-       
-    //   }else{
-        file_put_contents($file, $data);  
+    $file .= UPLOAD_DIR . $name . '.png';  
+    file_put_contents($file, $data);  
 
-      
-      // }
+
 
     $link = mysqli_connect("localhost", "root", "","inventorydb");
     if($link === false){

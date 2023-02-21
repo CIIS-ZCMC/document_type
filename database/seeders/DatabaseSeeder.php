@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ClientType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,5 +16,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UserSeeder::class);
         $this->call(SectorSeeder::class);
+        $this->call(ClientTypeSeeder::class);
     }
 }

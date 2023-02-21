@@ -25,6 +25,7 @@ use App\Models\FamilyComposition;
 use App\Models\IdentificationCard;
 use App\Models\Occupation;
 use App\Models\Organization;
+use App\Models\ClientUser;
 use App\Models\Physician;
 use App\Models\SeminarTraining;
 use Illuminate\Http\Request;
@@ -67,7 +68,6 @@ class ClientController extends Controller
        
        $this->validate($request, [
         'firstname' => 'required'
-
        ]);
        
         $latestreferencenumber = ClientApplication::where('id','DESC')->first();
@@ -541,7 +541,7 @@ class ClientController extends Controller
             $applicationsave->application_type = 'PWD';
             $applicationsave->application_Status = 'Applied';
                   
-                        $applicationsave->application_reference_number = $generator;
+            $applicationsave->application_reference_number = $generator;
                     
         
             $applicationsave->application_process = 'Online-Ongoing';
@@ -1746,6 +1746,7 @@ class ClientController extends Controller
             'body' => 'Identification Card'
 
         ];
+
         Mail::to($clientdetails->email_address)->send(new IdMail($details, $clientcarddetails, $clientdetails));
 
        
@@ -1762,7 +1763,7 @@ class ClientController extends Controller
     {
        
        
-        
+        $hashed_random_password = Str::random(8);
         $applicationlogsave = new ClientApplicationLog();
       
         $applicationlogsave->process_name = 'Verification-Approved';
@@ -1791,9 +1792,18 @@ class ClientController extends Controller
         $clientcardsave->card_number = $generator;
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
-
-     
         $clientcardsave->save();
+
+        $clientusersave = new ClientUser();
+        $clientusersave->password=$hashed_random_password;
+        $clientusersave->status="new";
+        $clientusersave->client_id=$clientid;
+
+        $clientusersave->save();
+
+
+        // $clientuser = new ();
+
 
         QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
 
@@ -1809,7 +1819,7 @@ class ClientController extends Controller
             'body' => 'You are scheduled on'
 
         ];
-        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails, $clientusersave));
 
    
         session_start();
@@ -2208,7 +2218,7 @@ class ClientController extends Controller
     public function verifysenior(Request $request,$clientid = null,$applicationid=null)
     {
        
-    
+        $hashed_random_password = Str::random(8);
         $applicationlogsave = new ClientApplicationLog();
      
         $applicationlogsave->process_name = 'Verification-Approved';
@@ -2241,11 +2251,18 @@ class ClientController extends Controller
      
         $clientcardsave->save();
 
+        $clientusersave = new ClientUser();
+        $clientusersave->password=$hashed_random_password;
+        $clientusersave->status="new";
+        $clientusersave->client_id=$clientid;
+
+        $clientusersave->save();
+
         QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
 
 
      
-        $clientcardsave->save();
+        
 
         ClientApplication::where('id',$applicationid)->where('application_type','=','Senior')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
 
@@ -2258,7 +2275,7 @@ class ClientController extends Controller
             'body' => 'You are scheduled on'
 
         ];
-        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails,$clientusersave));
 
 
        
@@ -3168,8 +3185,6 @@ class ClientController extends Controller
                         $disabilitytypesave ->name = $value;
                         $disabilitytypesave->client_id =$clientsave->id;
                         $disabilitytypesave->save();
-                    
-
                     }
               
                 }
@@ -3636,7 +3651,7 @@ class ClientController extends Controller
 
     public function verifypwd(Request $request,$clientid = null,$applicationid=null)
     {
-      
+        $hashed_random_password = Str::random(8);
     
         $applicationlogsave = new ClientApplicationLog();
      
@@ -3670,11 +3685,18 @@ class ClientController extends Controller
      
         $clientcardsave->save();
 
+        $clientusersave = new ClientUser();
+        $clientusersave->password=$hashed_random_password;
+        $clientusersave->status="new";
+        $clientusersave->client_id=$clientid;
+
+        $clientusersave->save();
+
         QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
 
 
      
-        $clientcardsave->save();
+      
 
 
         ClientApplication::where('id',$applicationid)->where('application_type','=','PWD')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
@@ -3688,7 +3710,7 @@ class ClientController extends Controller
             'body' => 'You are scheduled on'
 
         ];
-        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails,$clientusersave));
 
 
        
@@ -4483,23 +4505,11 @@ class ClientController extends Controller
            
 
         
-     }
-       
-
-         
-               
-
-
-    
-    
-        
-       
+     }   
     }
 
     public function evaluatesoloparent($clientid = null,$applicationid=null)
     {
-     
-       
         $applicationlogsave = new ClientApplicationLog();
      
         $applicationlogsave->process_name = 'Evaluation-Approved';
@@ -4514,8 +4524,6 @@ class ClientController extends Controller
         session_start();
         $_SESSION['success'] ="success";
        
-     
-        
         return redirect()->back()->with('success');  
         exit;
     }
@@ -4563,7 +4571,7 @@ class ClientController extends Controller
 
     public function verifysoloparent(Request $request,$clientid = null,$applicationid=null)
     {
-        
+        $hashed_random_password = Str::random(8);
         $applicationlogsave = new ClientApplicationLog();
      
         $applicationlogsave->process_name = 'Verification-Approved';
@@ -4593,34 +4601,31 @@ class ClientController extends Controller
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
 
-     
         $clientcardsave->save();
+
+        $clientusersave = new ClientUser();
+        $clientusersave->password=$hashed_random_password;
+        $clientusersave->status="new";
+        $clientusersave->client_id=$clientid;
+
+        $clientusersave->save();
 
         QrCode::format('png')->size(250)->generate('http://127.0.0.1:8000/verify/'.$clientcardsave->card_number.'/'.$clientcardsave->token, $path.$filename);
 
-
-     
-        $clientcardsave->save();
-
         ClientApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
-
 
         $clientdetails=Client::where('id',$clientid)->first();
 
-        
         $details = [
             'title' => 'Mail from City Social Welfare and Development',
             'body' => 'You are scheduled on'
 
         ];
-        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails));
+        Mail::to($clientdetails->email_address)->send(new CardMail($details, $clientcardsave, $clientdetails,$clientusersave));
 
-       
         session_start();
         $_SESSION['success'] ="success";
        
-     
-        
         return redirect()->back()->with('success');  
         exit;
     }
@@ -4629,8 +4634,6 @@ class ClientController extends Controller
     public function declinesoloparentevaluation(Request $request,$clientid = null,$applicationid=null)
     {
        
-       
-
         if (DB::table('declined_clients')
            
         ->where('client_type','=','Solo Parent')
@@ -4645,7 +4648,6 @@ class ClientController extends Controller
             $declinedclientid=DeclinedClient::where('client_application_id','=', $applicationid)->where('client_type','=','PWD')->first();
             $declinedclientlogsave = new DeclinedClientLog();
      
-        
             $declinedclientlogsave->date= now()->toDateString('Y-m-d');
             $declinedclientlogsave->process_name= 'Solo Parent-Evaluation';
             $declinedclientlogsave->decline_type =  $request->input('declinetype');
@@ -4674,7 +4676,6 @@ class ClientController extends Controller
 
         $declinedclientsave = new DeclinedClient();
      
-        
         $declinedclientsave->date= now()->toDateString('Y-m-d');
         $declinedclientsave->client_type= 'Solo Parent';
         $declinedclientsave->process_name= 'Solo Parent-Evaluation';
@@ -4695,11 +4696,8 @@ class ClientController extends Controller
      
         $declinedclientlogsave->save();
 
-
         ClientApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'EVALUATION-DECLINED']);
 
-
-       
         $clientapplication=ClientApplication::where('id',$applicationid)->first();
         $clientdetails=Client::where('id',$clientid)->first();
 
@@ -4737,7 +4735,6 @@ class ClientController extends Controller
             $declinedclientid=DeclinedClient::where('client_application_id','=', $applicationid)->where('client_type','=','PWD')->first();
             $declinedclientlogsave = new DeclinedClientLog();
      
-        
             $declinedclientlogsave->date= now()->toDateString('Y-m-d');
             $declinedclientlogsave->process_name= 'Solo Parent-Approval';
             $declinedclientlogsave->decline_type =  $request->input('declinetype');
@@ -4812,8 +4809,6 @@ class ClientController extends Controller
     
     public function declinesoloparentverification(Request $request,$clientid = null,$applicationid=null)
     {
-
-       
         if (DB::table('declined_clients')
            
         ->where('client_type','=','Solo Parent')

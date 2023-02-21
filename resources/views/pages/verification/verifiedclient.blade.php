@@ -20,8 +20,8 @@
             margin: 20px 300px;
             padding:50px;
             text-align: center;
-            height: 75vh;
             border-radius: 20px;
+            height: 100vh;
         }
         h1{
             font-size: 35px;
@@ -29,17 +29,16 @@
             padding: 0;
             font-family: 'Montserrat', sans-serif;
         }
-        img{
-            width: auto;
-            height: 60vh;
+        .id-img{
+            height: 90vh;
         }
     </Style>
 </head>
 <body>
     <div class="container">
         <h1>Verified</h1>
-        <img src="{{ url('dist/images2/service/verified.svg') }}" alt="">
-        <img src="{{ asset('/').$verifclient->identification}}" alt="">
+        {{-- <img class="verified-svg" src="{{ url('dist/images2/service/verified.svg') }}" alt=""> --}}
+        <img class="id-img" src="{{ asset('/').$verifclient->identification}}" alt="">
 
         
 </div>

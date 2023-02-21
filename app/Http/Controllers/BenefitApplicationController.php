@@ -5,6 +5,7 @@ use App\Models\ClientApplicationRequirement;
 use App\Helpers\Helper;
 use App\Models\Barangay;
 use App\Models\Client;
+use App\Models\ClientUser;
 use App\Models\ClientApplication;
 use App\Models\BenefitApplication;
 use App\Models\BenefitApplicationLog;
@@ -19,6 +20,7 @@ use App\Models\Occupation;
 use App\Models\Organization;
 use App\Models\Physician;
 use App\Models\SeminarTraining;
+use App\Models\User;
 
 use App\Models\BenefitRequirement;
 use App\Models\ClientSchedule;
@@ -28,6 +30,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Mail;
+
 class BenefitApplicationController extends Controller
 {
     /**
@@ -36,29 +39,54 @@ class BenefitApplicationController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-     
-    
+     public function applybenefitform()
+     {
+         $barangaylist = Barangay::select('id', 'name')->get();
+         return view('main/benefitapplication/loginbenefit', [
+             // Specify the base layout.
+             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
+             // The default value is 'side-menu'
+ 
+             // 'layout' => 'side-menu'
+             ])->with(compact('barangaylist'));
+     }
+     public function userloginpage(Request $request)
+     {  
+        return view('main/user/userlogin',  []);
+     }
+
+     public function userlogin(Request $request)
+     {  
+        $userInfo = Client::where('email_address', '=', $request->input('email'))->first();
+      
+            if (!$userInfo) {
+                return back()->with('fail', 'We do not recognize your email address');
+            } else {
+                $request->session()->put('LoggedUser', $userInfo->id);
+                $userpassword = ClientUser::where('client_id', '=', $userInfo->id)->first();
+                $password=$request->input('password');
+                if ( $password = $userpassword->password) {
+                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                    return view('main/user/dashboard', $data,['layout' => 'side-menu'
+                    ])->with(compact('userpassword'));
+            }
+        }
+
+     }
 
     public function searchseniorcashincentivesform()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchseniorbenefit/searchseniorcashincentivesform', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+   
             ])->with(compact('barangaylist'));
     }
+
     public function searchsenioroctogenarianform()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchseniorbenefit/searchsenioroctogenarianform', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+     
             ])->with(compact('barangaylist'));
     }
     public function searchseniornonagenarianform()
@@ -84,6 +112,7 @@ class BenefitApplicationController extends Controller
             // 'layout' => 'side-menu'
             ])->with(compact('barangaylist'));
     }
+    
     public function seniorcashincentivesform(Request $request)
     {
             $barangaylist = Barangay::select('id', 'name')->get();
@@ -876,12 +905,6 @@ class BenefitApplicationController extends Controller
             }
 
             else{
-            
-        
-
-          
-
-            
                 return view('main/track/trackbenefitapplicationform', [
                     // Specify the base layout.
                     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
@@ -895,12 +918,8 @@ class BenefitApplicationController extends Controller
     }
     public function updatecardapplication(Request $request)
     {
-            $barangaylist = Barangay::select('id', 'name')->get();
-           
+        $barangaylist = Barangay::select('id', 'name')->get();
 
-          
-      
-         
         if($request->input('type') == 'Citizen' )
         {
             $client= Client::with("occupations","barangays","client_applications","client_application_requirements")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
@@ -917,10 +936,7 @@ class BenefitApplicationController extends Controller
             // })->with(["client_application_requirements" => function($subQuery) use ($app){
             //     $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
             // }])->first();;
-
-          
-
-              
+   
             return view('main/track/updatecitizencardapplication', [
              
                 ])->with(compact('barangaylist','client'));
@@ -1121,9 +1137,6 @@ class BenefitApplicationController extends Controller
                     
          ClientApplication::where('id',$request->input('appid'))->update(['application_status'=>'Applied']);
          Occupation::where('client_id',$request->input('clientid'))->update(['employment_status'=> $request->input('employmentstatus'),'employment_type'=> $request->input('employmenttype'),'employment_category'=> $request->input('employmentcategory'),'occupation'=> $request->input('occupation'),'salary'=> $request->input('salary')]);
-           
-            
-
 
             if ($request->hasFile('imagebirth')) {
                 $image_tmp = $request->file('imagebirth');
@@ -1186,12 +1199,6 @@ class BenefitApplicationController extends Controller
 
             }
 
-
-
-
-
-
-              
             session_start();
             $_SESSION['success'] ="success";
            

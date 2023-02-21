@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('printed_on')->nullable();
             $table->string('printed_by')->nullable();
             $table->string('released_by')->nullable();
+            $table->string('identification')->nullable();
             $table->string('token')->nullable();
             $table->string('released_on')->nullable();
             $table->unsignedBigInteger('client_id')->unsigned();

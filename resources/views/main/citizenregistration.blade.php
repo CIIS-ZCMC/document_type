@@ -123,7 +123,7 @@
 									<label class="required"   for="confirm_password">Civil Status</label>
 									<select class="select" id="addCivilStatus" name="civilstatus" required>
 										<option value="0" selected>Select Civil Status</option>
-										<option value="Married">Maried</option>
+										<option value="Married">Married</option>
 										<option value="Widowed">Widowed</option>  
 										<option value="Separated">Separated</option>
 										<option value="Divorced">Divorced</option>  

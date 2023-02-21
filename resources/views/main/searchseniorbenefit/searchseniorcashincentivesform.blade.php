@@ -61,14 +61,18 @@
 				</div>
 
 				<div class="btns_wrap">
-					<a href="/main" style="text-decoration: none;">
-							
-						<button type="button" onclick="unsave()" class="btn_back" style="margin-right: 5px;"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>
+
+					<div class="common_btns form_1_btns d-flex flex-direction-row ">
+						<a href="/main" style="text-decoration: none;">						
+							<button type="button" onclick="unsave()" class="btn_back" style="margin-right: 5px;"><span class="icon"><ion-icon name="arrow-back-sharp"></ion-icon></span>Back</button>				
+						</a>
+				
+						<div class="common_btns form_1_btns">
+							<button type="submit"  class="">Search  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
+						</div>
+
+					</div>	
 					
-					</a>
-					<div class="common_btns form_1_btns">
-						<button type="submit"  class=""> Search  <span class="icon"><ion-icon name="arrow-forward-sharp"></ion-icon></span></button>
-					</div>
 					
 				</div>
 			</form>

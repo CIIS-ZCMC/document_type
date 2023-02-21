@@ -28,7 +28,7 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">No.</th>
-                    <th class="whitespace-nowrap">ITEM NAME</th>
+                    <th class="whitespace-nowrap">NAME</th>
                     <th class="whitespace-nowrap">ADDRESS</th>
                     <th id="filename" class="whitespace-nowrap">id</th>
                   
@@ -107,11 +107,11 @@
                         
                             <div class="col-span-12">
                                 <label for="pos-form-1" class="form-label">Name</label>
-                                <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name">
+                                <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name" required>
                             </div>
                             <div class="col-span-12">
                                 <label for="pos-form-2" class="form-label">Address</label>
-                                <input id="address" name="address" type="text" class="form-control flex-1" placeholder="address">
+                                <input id="address" name="address" type="text" class="form-control flex-1" placeholder="address" required>
                             </div>
                            
                         </div>
