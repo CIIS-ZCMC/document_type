@@ -6,6 +6,13 @@ use App\Helpers\Helper;
 use App\Models\Barangay;
 use App\Models\Client;
 use App\Models\ClientUser;
+use App\Models\ClientCard;
+use App\Models\BenefitApplicationRequirement;
+use Illuminate\Support\Facades\Session;
+use App\Models\ClientType;
+use App\Models\ClientBenefit;
+use App\Models\Benefit;
+
 use App\Models\ClientApplication;
 use App\Models\BenefitApplication;
 use App\Models\BenefitApplicationLog;
@@ -50,9 +57,62 @@ class BenefitApplicationController extends Controller
              // 'layout' => 'side-menu'
              ])->with(compact('barangaylist'));
      }
+     public function storebenefitapplication(Request $request,$userid=null,$clienttype=null,$id=null)
+   
+     {
+        $application_date= now()->toDateString('Ymd');
+        $yearOnly=substr($application_date,0,4);
+        $generator = Helper::IDGenerator(new BenefitApplication,'application_reference_number',9,'BID-'.$yearOnly,$yearOnly);
+        $applicationsave = new BenefitApplication();
+        $applicationsave->application_date= now()->toDateString('Y-m-d');
+        $applicationsave->client_type = $clienttype;
+        $applicationsave->application_Status = 'Applied';   
+        $applicationsave->application_reference_number =$generator;
+        $applicationsave->application_process = 'Online-Ongoing';
+        $applicationsave->client_id =$userid;
+        $applicationsave->benefit_id =$id;
+        $applicationsave->client_card_id =$id;
+        $applicationsave->save();
+
+        $image =  $request->file('benefitrequirement');
+        $reqname =  $request->input('reqname');
+        foreach($image  as $key => $value) {     
+            if($image!=null)
+            {
+                $string = str_replace(' ', '', $reqname[$key]);
+
+                $folder = 'images/' . $string. '/';
+                $filename = $string .  $userid . '.' . $image[$key]->getClientOriginalExtension();
+                if (!File::exists($folder)) {
+                    File::makeDirectory($folder, 0775, true, true);
+                    $location = 'images/' . $string.'/' . $filename;
+                    Image::make($image[$key])->resize(800,400)->save($location); //resizing and saving the image
+                }
+                if (File::exists($folder)) {
+                 
+                    $location = 'images/' . $string.'/' . $filename;
+                    Image::make($image[$key])->resize(800,400)->save($location); //resizing and saving the image
+                }
+                
+                $requirementsave = new BenefitApplicationRequirement();
+                $requirementsave ->client_id = $userid;
+                $requirementsave ->name = $reqname[$key];
+                $requirementsave ->benefit_application_id = $applicationsave->id;
+                $requirementsave ->filename =  $filename;
+            
+                $requirementsave->save();
+
+            }
+         
+        
+        }
+     }
      public function userloginpage(Request $request)
      {  
-        return view('main/user/userlogin',  []);
+       
+
+      $barangaylist = Barangay::select('id', 'name')->get();
+         return view('main/user/userlogin');
      }
 
      public function userlogin(Request $request)
@@ -61,18 +121,56 @@ class BenefitApplicationController extends Controller
       
             if (!$userInfo) {
                 return back()->with('fail', 'We do not recognize your email address');
-            } else {
+            } else 
+            {
+             
                 $request->session()->put('LoggedUser', $userInfo->id);
                 $userpassword = ClientUser::where('client_id', '=', $userInfo->id)->first();
                 $password=$request->input('password');
-                if ( $password = $userpassword->password) {
+              
+                if ($password == $userpassword->password) {
+                    $userInfo = Client::where('email_address', '=', $request->input('email'))->first();
                     $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                    return view('main/user/dashboard', $data,['layout' => 'side-menu'
-                    ])->with(compact('userpassword'));
-            }
+
+                    $clientcard= ClientCard::where('client_id', '=', $userInfo->id)->get();
+                    // $card_type= $clientcard->card_type;
+                    // foreach($card_type  as $key => $value) {     
+                    //     if($card_type!=null) 
+                    //     {
+                    //       $card_id=ClientType::where('name','=',$card_type);
+                    //       $clientbenefits =ClientBenefit::where('client_type_id','=',$card_id->id);
+                    //       foreach($clientbenefits  as $key => $value) {  
+                    //             $benefitid=Benefit::where('id','=',$clientbenefits->benefit_id);
+
+                    //       }
+
+
+                    
+                    //     }
+                    //   }
+                    Session::put('userid', $userInfo->id);
+                    return view('main/user/dashboard', $data,[
+                    ])->with(compact('userInfo'));
+                    
+                 }
+
+                else
+                {
+                    return back()->with('fail', 'We do not recognize your email address');
+
+                }
         }
 
      }
+
+     public function dummyform()
+     {
+         $barangaylist = Barangay::select('id', 'name')->get();
+         return view('main/benefitapplication/dummyform', [
+       
+             ])->with(compact('barangaylist'));
+     }
+    
 
     public function searchseniorcashincentivesform()
     {
@@ -905,6 +1003,12 @@ class BenefitApplicationController extends Controller
             }
 
             else{
+            
+        
+
+          
+
+            
                 return view('main/track/trackbenefitapplicationform', [
                     // Specify the base layout.
                     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
@@ -918,8 +1022,12 @@ class BenefitApplicationController extends Controller
     }
     public function updatecardapplication(Request $request)
     {
-        $barangaylist = Barangay::select('id', 'name')->get();
+            $barangaylist = Barangay::select('id', 'name')->get();
+           
 
+          
+      
+         
         if($request->input('type') == 'Citizen' )
         {
             $client= Client::with("occupations","barangays","client_applications","client_application_requirements")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
@@ -936,7 +1044,10 @@ class BenefitApplicationController extends Controller
             // })->with(["client_application_requirements" => function($subQuery) use ($app){
             //     $subQuery->where("client_application_requirements.client_application_id", "=", $app); 
             // }])->first();;
-   
+
+          
+
+              
             return view('main/track/updatecitizencardapplication', [
              
                 ])->with(compact('barangaylist','client'));
@@ -1137,6 +1248,9 @@ class BenefitApplicationController extends Controller
                     
          ClientApplication::where('id',$request->input('appid'))->update(['application_status'=>'Applied']);
          Occupation::where('client_id',$request->input('clientid'))->update(['employment_status'=> $request->input('employmentstatus'),'employment_type'=> $request->input('employmenttype'),'employment_category'=> $request->input('employmentcategory'),'occupation'=> $request->input('occupation'),'salary'=> $request->input('salary')]);
+           
+            
+
 
             if ($request->hasFile('imagebirth')) {
                 $image_tmp = $request->file('imagebirth');
@@ -1199,6 +1313,12 @@ class BenefitApplicationController extends Controller
 
             }
 
+
+
+
+
+
+              
             session_start();
             $_SESSION['success'] ="success";
            

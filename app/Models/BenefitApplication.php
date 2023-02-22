@@ -9,6 +9,17 @@ class BenefitApplication extends Model
 {
     use HasFactory;
     protected $table = 'benefit_applications';
+
+     
+    public function clients()
+    {
+        return $this->belongsTo(related:Client::class);
+    }
+    public function benefit_application_requirements()
+    {
+        return $this->hasMany(related:BenefitApplicationRequirement::class);
+
+    }
     public function client_cards()
     {
         return $this->belongsTo(related:ClientCard::class);

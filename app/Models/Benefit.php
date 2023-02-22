@@ -8,18 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Benefit extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-=======
-    public function benefit_requirements()
+protected $guarded =[];
+protected $fillable=['benefit_name'];
+    public function client_types()
     {
-        return $this->belongsTo(BenefitRequirement::class);
+        return $this->belongsToMany(ClientType::class, 'client_benefits');
+    }
+    public function requirements()
+    {
+        return $this->belongsToMany(Requirement::class, 'benefit_requirements');
     }
 
-    public function client_benefits()
-    {
-        return $this->belongsTo(ClientBenefit::class);
-    }
-
-    
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
 }
+

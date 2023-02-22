@@ -8,15 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ClientBenefit extends Model
 {
     
+    protected $guarded =[];
     use HasFactory;
-    public function client_types()
-    {
-        return $this->hasMany(related:ClientType::class);
-
-    }
-    public function benefits()
-    {
-        return $this->hasMany(related:Benefit::class);
-
-    }
+  
+   
+   
 }

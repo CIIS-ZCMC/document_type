@@ -29,76 +29,40 @@
         </div>
         <!-- BEGIN: Data List -->
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <table id="datatable" class="table table-report -mt-2">
-                <thead>
-                    <tr>
-                        <th class="whitespace-nowrap">No.</th>
-                        <th class="whitespace-nowrap">NAME</th>
-                        <th class="whitespace-nowrap">DESCRIPTION</th>
-                    
-                    
-                        <th class="text-center whitespace-nowrap">ACTIONS</th>
-                    </tr>
-                </thead>
-                <tbody>
-               
-                  
-                    @foreach($clientbenefit as $benefit)
-               
-                        @foreach($benefit->benefits as $userbenefit)
+            
+            <form action="{{('/user/storeuserbenefitapplication/'. $userid .'/'. $clienttype .'/'. $id )}}" method="POST" enctype="multipart/form-data" >
+           
+                        @foreach($userbenefit1 as $requirements)
                         
-                            <tr class="intro-x">
-                                <td id="foid">{{$userbenefit->benefit_name}}</td>
-                                <td id="foid">{{$benefit->name}}</td>
-                                <td class="table-report__action w-56">
-                                    <div class="flex justify-center items-center" >
-                                        <a  href="{{ url('/user/applybenefit/'.$userbenefit->id.'/'.$userid.'/'.$benefit->id) }}" class="btn btn-outline-success"  id='isActiveToggle'>Apply</a>
-                                    </div>
-                                </td>
-                            </tr>
+
+                            <label class="required"  for="phone"> {{$requirements->name}}</label>
+                            <input type="file" id="benefitrequirement[]" class="select" name="benefitrequirement[]" value="{{ old('c') }}" required>
+                            <input id="reqname[]" name="reqname[]" type="hidden" class="form-control flex-1" value="{{$requirements->name}}" >
+
+                        </div>
+                             
+                              
+                     
+                        
                        
                         
                         @endforeach
+
+                        
+                        <div class="flex justify-center items-center" >
+                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
+                            
+                        </div>
                     
-                    @endforeach
+                   
                  
                    
           
          
-                </tbody>
-            </table>
         </div>
         <!-- END: Data List -->
         <!-- BEGIN: Pagination -->
-        <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-            <nav class="w-full sm:w-auto sm:mr-auto">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevrons-left"></i> </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevron-left"></i> </a>
-                    </li>
-                    <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                    <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-                    <li class="page-item active"> <a class="page-link" href="#">2</a> </li>
-                    <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-                    <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevron-right"></i> </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevrons-right"></i> </a>
-                    </li>
-                </ul>
-            </nav>
-            <select class="w-20 form-select box mt-3 sm:mt-0">
-                <option>10</option>
-                <option>25</option>
-                <option>35</option>
-                <option>50</option>
-            </select>
-        </div>
+   
         <!-- END: Pagination -->
     </div>
     <!-- BEGIN: New field office Modal -->
@@ -115,11 +79,11 @@
                         
                             <div class="col-span-12">
                                 <label for="pos-form-1" class="form-label">Name</label>
-                                <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name" required>
+                                <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name" >
                             </div>
                             <div class="col-span-12">
                                 <label for="pos-form-2" class="form-label">Address</label>
-                                <input id="address" name="address" type="text" class="form-control flex-1" placeholder="address" required>
+                                <input id="address" name="address" type="text" class="form-control flex-1" placeholder="address" >
                             </div>
                            
                         </div>

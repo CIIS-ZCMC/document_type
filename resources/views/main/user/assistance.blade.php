@@ -43,24 +43,45 @@
                 <tbody>
                
                   
-                    @foreach($clientbenefit as $benefit)
-               
-                        @foreach($benefit->benefits as $userbenefit)
+                   
                         
                             <tr class="intro-x">
-                                <td id="foid">{{$userbenefit->benefit_name}}</td>
-                                <td id="foid">{{$benefit->name}}</td>
+                                <td id="foid">Burial Assistance</td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center" >
-                                        <a  href="{{ url('/user/applybenefit/'.$userbenefit->id.'/'.$userid.'/'.$benefit->id) }}" class="btn btn-outline-success"  id='isActiveToggle'>Apply</a>
+                                        <a  href="" class="btn btn-outline-success"  id='isActiveToggle'>Apply</a>
+                                    </div>
+                                </td>
+                            </tr>
+                             
+                            <tr class="intro-x">
+                                <td id="foid">Financial Assistance</td>
+                                <td class="table-report__action w-56">
+                                    <div class="flex justify-center items-center" >
+                                        <a  href="" class="btn btn-outline-success"  id='isActiveToggle'>Apply</a>
+                                    </div>
+                                </td>
+                            </tr>
+                       
+                            <tr class="intro-x">
+                                <td id="foid"> Medical Assistance</td>
+                                <td class="table-report__action w-56">
+                                    <div class="flex justify-center items-center" >
+                                        <a  href="" class="btn btn-outline-success"  id='isActiveToggle'>Apply</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="intro-x">
+                                <td id="foid">Food Assistance</td>
+                                <td class="table-report__action w-56">
+                                    <div class="flex justify-center items-center" >
+                                        <a  href="" class="btn btn-outline-success"  id='isActiveToggle'>Apply</a>
                                     </div>
                                 </td>
                             </tr>
                        
                         
-                        @endforeach
-                    
-                    @endforeach
+                  
                  
                    
           

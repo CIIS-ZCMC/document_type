@@ -4,7 +4,7 @@ namespace App\Mail;
 namespace App\Http\Controllers;
 use App\Mail\ScheduleMail;
 use App\Models\Client;
-
+use Illuminate\Support\Facades\Session;
 use App\Models\Barangay;
 use App\Models\ClientApplication;
 use App\Models\ClientApplicationLog;
@@ -12,6 +12,10 @@ use App\Models\ClientApplicationRequirement;
 use App\Models\ClientCard;
 use App\Models\ClientSchedule;
 use App\Models\ClientType;
+use App\Models\ClientBenefit;
+use App\Models\BenefitRequirement;
+use App\Models\Benefit;
+use App\Models\Requirement;
 use App\Models\CommunityInvolvement;
 use App\Models\DeclinedClient;
 use App\Models\DeclinedClientLog;
@@ -34,12 +38,7 @@ use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
-    /**
-     * Show specified view.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function dashboardOverview1()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
@@ -61,11 +60,7 @@ class PageController extends Controller
         $pendingsoloparent = ClientApplication::where('application_type', '=', 'Solo Parent')->where('application_process', '=', 'Online-Ongoing')->get();
         $pendingsoloparentcount = $pendingsoloparent->count();
         return view('pages/dashboard-overview-1',$data, [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
         ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
     }
 
@@ -87,11 +82,7 @@ class PageController extends Controller
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/citizenregistration',$data, [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
         ])->with(compact('barangaylist'));
     }
 
@@ -101,11 +92,7 @@ class PageController extends Controller
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/seniorregistration', $data, [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
 
@@ -116,22 +103,14 @@ class PageController extends Controller
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/pwdregistration',$data, [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
     public function soloparentregistration()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/soloparentregistration', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
 
@@ -139,33 +118,21 @@ class PageController extends Controller
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchregistered/searchregisteredsenior', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
     public function registeredpwd()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchregistered/searchregisteredpwd', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
     public function registeredsoloparent()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchregistered/searchregisteredsoloparent', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
 
@@ -173,33 +140,21 @@ class PageController extends Controller
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/registeredclientpage/registeredseniorpage', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
     public function registeredpwdpage()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/registeredclientpage/registeredpwdpage', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
     public function registeredsoloparentpage()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/registeredclientpage/registeredsoloparentpage', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
 
@@ -207,22 +162,14 @@ class PageController extends Controller
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/track/trackcardform', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
     public function trackbenefitform()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/track/trackbenefitform', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
 
@@ -555,33 +502,21 @@ class PageController extends Controller
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchongoing/searchongoingsenior', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
     public function ongoingpwd()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchongoing/searchongoingpwd', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
     public function ongoingsoloparent()
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchongoing/searchongoingsoloparent', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+        
             ])->with(compact('barangaylist'));
     }
 
@@ -879,14 +814,90 @@ class PageController extends Controller
 
     public function userbenefits()
     {
+        $userid = Session::get('userid');
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $client=  Client::with("occupations","barangays","client_cards")->where('id','=', $userid)->get();
+        foreach($client as $client)
+        {
+            foreach($client->client_cards as $clientcard)
+            {
+                $clienttype[]=$clientcard->client_type;
+            }
+       
+            
+        }
+       
 
-        $benefits = DB::table('benefit_requirement')
-        ->where('id', '=', session('LoggedUser'))
-        ->get();
+       $clientbenefit= ClientType::with('benefits')->find($clienttype);
+                     
+       foreach($clientbenefit as $benefit)
+        {
+            foreach($benefit->benefits as $userbenefit)
+            {
+               
+                $userbenefit1[] =  $userbenefit;
+            }
+            
+        }
+      
+       
 
+        return view('main/user/benefits',$data)->with(compact('clientbenefit','userbenefit1','userid'));
+    }
 
-        return view('main/user/benefits',$data);
+    public function applybenefit($id=null,$userid=null,$clienttype=null)
+    {
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+   
+     
+       $clientbenefit= Benefit::with('requirements')->find($id);
+      
+       foreach($clientbenefit->requirements as $benefit)
+        {
+            
+               
+                $userbenefit1[] =  $benefit;
+            
+            
+        }
+   
+       
+ 
+        return view('main/user/requirements',$data)->with(compact('clienttype','clientbenefit','userbenefit1','userid','id'));;
+    }
+
+    
+    public function assistance()
+    {
+        $userid = Session::get('userid');
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $client=  Client::with("occupations","barangays","client_cards")->where('id','=', $userid)->get();
+        foreach($client as $client)
+        {
+            foreach($client->client_cards as $clientcard)
+            {
+                $clienttype[]=$clientcard->client_type;
+            }
+       
+            
+        }
+       
+
+       $clientbenefit= ClientType::with('benefits')->find($clienttype);
+                     
+       foreach($clientbenefit as $benefit)
+        {
+            foreach($benefit->benefits as $userbenefit)
+            {
+               
+                $userbenefit1[] =  $userbenefit;
+            }
+            
+        }
+      
+       
+ 
+        return view('main/user/assistance',$data)->with(compact('clientbenefit','userbenefit1','userid'));;
     }
 
     public function userapplications()
@@ -1273,46 +1284,18 @@ class PageController extends Controller
         return view('pages/fieldoffice',$data)->with(compact('fo'));
     }
 
-<<<<<<< HEAD
-    
-    public function benefits()
+    public function benefit()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
         $fo = DB::table('benefits')
-        ->select()
-        ->get();
-        return view('pages/benefits',$data)->with(compact('fo'));
-    }
-
-=======
-    public function benefit(Request $request)
-    {
-        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-        $benefits = DB::table('benefits')
         ->select()
         ->get();
 
         $requirements = DB::table('requirements')
         ->select()
         ->get();
-
-        $benefit_requirements = DB::table('benefit_requirements')
-        ->select()
-        ->get();
-
-        return view('pages/benefits',$data)->with(compact('benefits','requirements','benefit_requirements'));
-
+        return view('pages/benefits',$data)->with(compact('fo','requirements'));
     }
-
-    public function set_benefit_requirements()
-    {
-        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-        $fo = DB::table('benefit_requirements')
-        ->select()
-        ->get();
-        return view('pages/set_benefit_requirements',$data)->with(compact('fo'));
-    }
-    
     public function requirement()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
@@ -1331,10 +1314,8 @@ class PageController extends Controller
         $benefits = DB::table('benefits')
         ->select()
         ->get();
-
         return view('pages/clientbenefits',$data)->with(compact('fo','benefits'));
     }
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
     /**
      * Show specified view.
      *
@@ -2298,23 +2279,13 @@ class PageController extends Controller
         return view('pages/chart');
     }
 
-    /**
-     * Show specified view.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function slider()
     {
         return view('pages/slider');
     }
 
-    /**
-     * Show specified view.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function imageZoom()
     {
         return view('pages/image-zoom');

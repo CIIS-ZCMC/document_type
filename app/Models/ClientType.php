@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ClientType extends Model
 {
     use HasFactory;
-    public function client_benefits()
+    public function benefits()
     {
-        return $this->belongsTo(ClientBenefit::class);
+        return $this->belongsToMany(Benefit::class, 'client_benefits');
     }
 }

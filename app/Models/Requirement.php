@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Requirement extends Model
 {
     use HasFactory;
-<<<<<<< HEAD
-=======
-    public function benefit_requirements()
+    public function benefits()
     {
-        return $this->belongsTo(BenefitRequirement::class);
+        return $this->belongsToMany(Benefit::class, 'benefit_requirements');
     }
     
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
 }
+

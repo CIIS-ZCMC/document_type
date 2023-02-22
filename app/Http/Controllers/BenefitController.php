@@ -38,7 +38,7 @@ class BenefitController extends Controller
           
         $benefitsave = new Benefit();
      
-        $benefitsave->name = $request->input('name');
+        $benefitsave->benefit_name = $request->input('name');
         $benefitsave->save();
 
     
@@ -78,15 +78,9 @@ class BenefitController extends Controller
      * @param  \App\Models\Benefit  $benefit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $benefit_id = null)
+    public function update(Request $request, Benefit $benefit)
     {
-        Benefit::where('id',$benefit_id)->update(['name'=> $request->input('new_benefit_name')]);
-        session_start();
-        $_SESSION['success'] ="success";
-        
-        return redirect()->back()->with('success');  
-        exit;
-
+        //
     }
 
     /**
@@ -99,7 +93,4 @@ class BenefitController extends Controller
     {
         //
     }
-
-
-   
 }

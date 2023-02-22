@@ -24,12 +24,12 @@
 							<div class="form_container">
 							
 								<div class="input_wrap">
-									<label class="required">Email</label>
-									<input type="text" name="email" class="input" id="email" autocomplete="false" placeholder="Enter Email" required>
+									<label class="required">Citizen ID Number</label>
+									<input type="text" name="email" class="input" id="email" autocomplete="off" placeholder="Enter Citizen ID Number" required>
 								</div>
 								<div class="input_wrap">
 									<label class="required">Password</label>
-									<input type="password" name="password" class="input" id="password" autocomplete="false" placeholder="Enter Password" required>
+									<input type="password" name="password" class="input" id="password" autocomplete="off" placeholder="Enter Password" required>
 								</div>						
 							</div>				
 					</div>
@@ -55,14 +55,7 @@
 	</section>
 
 
-	{{-- <div class="modal_wrapper">
-		<div class="shadow"></div>
-		<div class="success_wrap">
-			<span class="modal_icon"><ion-icon name="checkmark-sharp"></ion-icon></span>
-			<p>You have successfully completed the process.</p>
-		</div>
-	</div> --}}
-	
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
