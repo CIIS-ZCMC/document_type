@@ -1287,14 +1287,14 @@ class PageController extends Controller
     public function benefit()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-        $fo = DB::table('benefits')
+        $benefit = DB::table('benefits')
         ->select()
         ->get();
 
         $requirements = DB::table('requirements')
         ->select()
         ->get();
-        return view('pages/benefits',$data)->with(compact('fo','requirements'));
+        return view('pages/benefits',$data)->with(compact('benefit','requirements'));
     }
     public function requirement()
     {

@@ -1,20 +1,12 @@
 @extends('../layout/' . $layout)
 
 @section('subhead')
-<<<<<<< HEAD
-    <title>Benefits | Social Welfare Registration and Benefits System</title>
-=======
     <title>Field Office | Social Welfare Registration and Benefits System</title>
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
 @endsection
 
 @section('subcontent')
 <h2 class="intro-y text-lg font-medium mt-10">
-<<<<<<< HEAD
-    Data List Layout
-=======
     Manage Benefits
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
@@ -24,17 +16,10 @@
                 <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
             </div>
         </div>
-<<<<<<< HEAD
-       
-       
-        <div class="hidden md:block mx-auto text-slate-500"></div>
-        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#new-fo-modal" class="btn btn-primary shadow-md mr-2">Add New Field Office</a>
-=======
 
        
         <div class="hidden md:block mx-auto text-slate-500"></div>
         <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-benefits-modal" class="btn btn-primary shadow-md mr-2">Add Benefit</a>
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
        
     </div>
     <!-- BEGIN: Data List -->
@@ -43,50 +28,29 @@
             <thead>
                 <tr>
                     <th class="whitespace-nowrap">No.</th>
-<<<<<<< HEAD
-                    <th class="whitespace-nowrap">ITEM NAME</th>
-                    <th class="whitespace-nowrap">ADDRESS</th>
-                    <th id="filename" class="whitespace-nowrap">id</th>
-                  
-=======
                     <th class="whitespace-nowrap">NAME</th>
                     <th class="whitespace-nowrap">FORM TYPE</th>
                     <th id="filename" class="whitespace-nowrap">id</th>       
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
                   
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
-<<<<<<< HEAD
-                @foreach($fo as $index => $fo1)    
+                @foreach($benefit as $index => $fo1)    
                 <tr class="intro-x">
                     <td id="foid">{{$index + 1}}</td>
-                    <td id="foname">{{ $fo1->name}}</td>
-                    <td>{{ $fo1->address}}</td>
-=======
-                @foreach($benefits as $index => $fo1)    
-                <tr class="intro-x">
-                    <td id="foid">{{$index + 1}}</td>
-                    <td id="foname">{{ $fo1->name}}</td>
-                    <td id="foname">{{ $fo1->name}}</td>
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
+                    <td id="foname">{{ $fo1->benefit_name}}</td>
+                    <td></td>
+                
                     <td id="filename">{{$fo1->id}}</td>
                   
                  
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center" >
-<<<<<<< HEAD
-                          <button href="javascript:;" class="btn btn-outline-primary w-32 mr-1 edit" data-tw-toggle="modal" data-tw-target="#editmodal">Add Benefits</button>
-                          
-                        </a>
-                            
-=======
                           <!-- <button href="javascript:;" class="btn btn-outline-primary mr-1 select_benreq" style="width: 150px;" data-tw-toggle="modal" data-tw-target="#select-req-modal">Requirements</button> -->
                           <button data-tw-toggle="modal" data-tw-target="#select-req-modal" class="btn btn-outline-primary mr-1 select_benreq" style="width: 150px;">Requirements</button>                        
                           <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">Edit</button>
                      
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
                         </div>
                     </td>
                     
@@ -129,29 +93,6 @@
     </div>
     <!-- END: Pagination -->
 </div>
-<<<<<<< HEAD
-     <!-- BEGIN: New field office Modal -->
-     <div id="new-fo-modal" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">New Field Office</h2>
-                </div>
-                <form action="/fo/add" method="POST" enctype="multipart/form-data" >
-                    @csrf
-                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        
-                        
-                            <div class="col-span-12">
-                                <label for="pos-form-1" class="form-label">Name</label>
-                                <input id="name" name="name" type="text" class="form-control flex-1" placeholder="name">
-                            </div>
-                            <div class="col-span-12">
-                                <label for="pos-form-2" class="form-label">Address</label>
-                                <input id="address" name="address" type="text" class="form-control flex-1" placeholder="address">
-                            </div>
-                           
-=======
      <!-- BEGIN: Add Benefits Modal -->
      <div id="add-benefits-modal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
@@ -176,7 +117,6 @@
                             </select>
                         </div>
          
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
                         </div>
                         <div class="modal-footer text-right">
                             <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
@@ -187,11 +127,6 @@
                 </form>
         </div>
     </div>
-<<<<<<< HEAD
-    <!-- END: New Order Modal -->
-
-      <!-- BEGIN: New field office Modal -->
-=======
     <!-- END: Add Benefits Modal -->
 
       <!-- BEGIN: Select requirements to Benefits Modal -->
@@ -221,24 +156,14 @@
                                 </thead>
                                 <tbody>
                                     @foreach($requirements as $index => $fo1)
-                                        @foreach($benefit_requirements as $index => $br)              
+                                     
                                             <tr class="intro-x">                  
-                                                    <td id="foname">{{ $fo1->name}}</td> 
-                                                    <td>
-                                                    @php
-                                                        $benefit = $fo1->name;
-                                                    @endphp
-                                                    {{ $benefit }}
-                                                    </td>                    
+                                                    <td id="foname">{{ $fo1->name}}</td>           
                                                     <td id="foid">
-                                                        @if($br->benefit_id == $fo1->id && $br->requirement_id == $fo1->id)
-                                                            <input type="checkbox" name="requirement_idbene[]" value="{{$fo1->id}}" checked>
-                                                        @else
                                                             <input type="checkbox" name="requirement_id[]" value="{{$fo1->id}}">
-                                                        @endif 
                                                     </td>                 
                                             </tr>                  
-                                        @endforeach
+                                      
                                     @endforeach 
                                 </tbody>
                             </table>
@@ -258,38 +183,15 @@
     <!-- END: Select requirements to Benefits Modal -->
 
       <!-- BEGIN: Edit Benefits Modal -->
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
       <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-<<<<<<< HEAD
-                    <h2 class="font-medium text-base mr-auto">Add Barangay</h2>
-=======
                     <h2 class="font-medium text-center mr-auto">Edit Benefit Requirements</h2>
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
                 </div>
                 <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
                     @csrf
                     <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-<<<<<<< HEAD
-                        <div class="col-span-12">
-                            <label for="pos-form-1" class="form-label">Field Office Name</label>
-                            <input id="fieldofficename" name="fieldofficename" type="text" class="form-control flex-1" readonly>
-                        </div>
-                          
-                            <div class="col-span-12">
-                                <label for="pos-form-1" class="form-label">Barangay Name</label>
-                                <input id="barngayname" name="barangayname" type="text" class="form-control flex-1" placeholder="Customer name">
-                            </div>
-                          
-                           
-                        </div>
-                        <div class="modal-footer text-right">
-                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
-                        </div>
-=======
                         <div class="col-span-12 ">
                             <label for="pos-form-1" class="form-label">Old Benefit Name</label>
                             <input id="old_benefit_name" name="old_benefit_name" type="text" class="form-control flex-1" readonly>
@@ -315,17 +217,12 @@
                         <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
                         <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Update</button>
                     </div>
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
                     
                     </div>
                 </form>
         </div>
     </div>
-<<<<<<< HEAD
-    <!-- END: New Order Modal -->
-=======
     <!-- END: View Benefits Modal -->
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
 
 </div>
 <!-- END: Content -->
@@ -373,12 +270,7 @@
 						icon: "error",
 						button: "ok",
 					})
-<<<<<<< HEAD
-				
-				
-=======
 					
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
 				</script>
 			<?php
 			unset($_SESSION['fail']);
@@ -392,19 +284,12 @@
         var table = $('#datatable').DataTable(
             {
                 "bPaginate": false,
-<<<<<<< HEAD
-        "bFilter": false,
-       
-            }
-        );
-=======
             "bFilter": false,
        
             }
         );
 
         // edit benefits
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
         table.on('click', '.edit', function()
         {
             $tr=$(this).closest('tr');
@@ -414,13 +299,6 @@
             }
 
             var data = table.row($tr).data();
-<<<<<<< HEAD
-            console.log(data);
-
-            $('#fieldofficename').val(data[1]);
-
-            $('#editform').attr('action','/barangay/' + data[3]);
-=======
 
             $('#old_benefit_name').val(data[1]);
 
@@ -445,15 +323,12 @@
             $('#benefit_name').val(data[1]);
 
             $('#select_requirements_to_benefits').attr('action','/benefits/select');
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
           
         })
 
     })
 
 </script>
-<<<<<<< HEAD
-=======
 
 
 
@@ -463,5 +338,4 @@
 
 
 
->>>>>>> e0ca9b07f2586483b6a5624bdc458726b4264e15
 @endsection

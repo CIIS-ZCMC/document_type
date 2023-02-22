@@ -143,7 +143,7 @@
                                     <tbody>
                                         @foreach($benefits as $index => $fo1)
                                         <tr class="intro-x">                  
-                                                <td id="foname">{{ $fo1->name}}</td>    
+                                                <td id="foname">{{ $fo1->benefit_name}}</td>    
                                                 <td id="foid">
                                                     <input type="checkbox" name="requirement_id[]" value="{{$fo1->id}}" checked>
                                                 </td>                
@@ -162,49 +162,7 @@
                 </form>
         </div>
     </div>
-    <!-- END: -->
-
-      <!-- BEGIN: Edit client Benefits Modal -->
-      <!-- <div id="editmodal" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2 class="font-medium text-base mr-auto">Edit Client Benefits</h2>
-                </div>
-                <form action="/barangay" method="POST" method="POST" enctype="multipart/form-data" id="editform" >
-                    @csrf
-                    <div class="modal-body grid grid-cols-12 gap-4 gap-y-3">
-                        <div class="col-span-12">
-                            <div id="checkbox-switch" class="p-5">
-                                <div class="preview">
-                                    <div>
-                                        <label>Select </label>
-                                        @foreach($benefits as $benefit)
-                                        <div class="form-check mt-2">
-                                            <input id="checkbox-switch-1" name="benefit[]" class="form-check-input" type="checkbox" value="{{$benefit->id}}">
-                                            <label class="form-check-label" for="checkbox-switch-1">{{$benefit->name}}</label>
-                                        </div>
-                                        @endforeach
-                                       
-                                    </div>
-                                   
-                                </div>
-                                
-                            </div>
-                        </div>
-                        </div>
-                        <div class="modal-footer text-right">
-                            <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
-                            <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
-                        </div>
-                    
-                    </div>
-                </form>
-        </div>
-    </div> -->
-    <!-- END: Edit client Benefits Modal -->
-
-
+   
 </div>
 <!-- END: Content -->
 </div>
