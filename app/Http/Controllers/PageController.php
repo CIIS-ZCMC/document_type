@@ -15,6 +15,7 @@ use App\Models\ClientType;
 use App\Models\ClientBenefit;
 use App\Models\BenefitRequirement;
 use App\Models\Benefit;
+use App\Models\BenefitApplication;
 use App\Models\Requirement;
 use App\Models\CommunityInvolvement;
 use App\Models\DeclinedClient;
@@ -902,7 +903,20 @@ class PageController extends Controller
 
     public function userapplications()
     {
+        $userid = Session::get('userid');
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $client= Client::with("benefit_applications")->where('id','=', $userid)->get();
+
+        foreach($client as $clientben)
+        {
+            foreach($clientben->benefit_applications as $ben)
+            {
+                    $clientbenid[]=$ben->benefit_id;
+                    $clienttypeid[]=$ben->client_type_id;
+            }
+        } 
+        return $clienttypeid;
+    
         return view('main/user/applications',$data);
     }
     /**
@@ -1294,7 +1308,15 @@ class PageController extends Controller
         $requirements = DB::table('requirements')
         ->select()
         ->get();
-        return view('pages/benefits',$data)->with(compact('benefit','requirements'));
+
+        $benefitrequirements = BenefitRequirement::get();
+        foreach($benefitrequirements as $client)
+        {
+            $benid[]=$client->benefit_id;
+            $reqid[]=$client->requirement_id;
+            
+        }
+        return view('pages/benefits',$data)->with(compact('benefit','requirements','benid','reqid'));
     }
     public function requirement()
     {

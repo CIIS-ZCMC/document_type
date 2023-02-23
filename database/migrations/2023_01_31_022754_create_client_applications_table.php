@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 return new class extends Migration
 {
@@ -13,17 +14,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('benefit_applications', function (Blueprint $table) {
+        Schema::create('client_applications', function (Blueprint $table) {
             $table->id();
             $table->string('application_date');
             $table->string('application_type');
-            $table->string('benefit_type');
             $table->string('application_reference_number')->nullable();        
             $table->string('application_remarks')->nullable();
             $table->string('application_status')->nullable();
             $table->string('application_process')->Nullable();
-            $table->unsignedBigInteger('client_card_id')->unsigned();
-            $table->foreign('client_card_id')->references('id')->on('client_cards')->onDelete('cascade');
+            $table->unsignedBigInteger('client_id')->unsigned();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->unsignedBigInteger('client_type')->unsigned();
+            $table->foreign('client_type')->references('id')->on('client_types')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -35,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('benefit_applications');
+        Schema::dropIfExists('client_applications');
     }
 };

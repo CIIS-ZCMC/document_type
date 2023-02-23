@@ -19,5 +19,10 @@ protected $fillable=['benefit_name'];
         return $this->belongsToMany(Requirement::class, 'benefit_requirements');
     }
 
+    public function benefits()
+    {
+        return $this->belongsToMany(Benefits::class, 'benefit_applications');
+    }
+
 }
 

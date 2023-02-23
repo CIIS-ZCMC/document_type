@@ -135,7 +135,7 @@
             <div class="modal-content text-center">
                 <form action="" method="POST" enctype="multipart/form-data" id="select_requirements_to_benefits">
                     @csrf
-
+                   
                     <div class="modal-header">
                         <h2 class="font-medium text-center mr-auto">Select Requirement/s to Benefit</h2>
                     </div>
@@ -145,6 +145,10 @@
                         <div class="col-span-12">
                             <input id="benefit_id" name="benefit_id" type="hidden" class="form-control flex-1 border-none text-center" >
                             <input id="benefit_name" name="benefit_name" type="text" class="form-control flex-1 border-none text-center" readonly>
+                            @php 
+                            //    $value = \App\BenefitRequirement::where(['r' => 'benefit_name'])->pluck('avatar')
+                            @endphp
+
                         </div>   
                         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
                             <table id="datatable" class="table table-report">
@@ -155,16 +159,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
                                     @foreach($requirements as $index => $fo1)
-                                     
+                                    @foreach($reqid as $req)
+                                    @php($i = $req)
+                                    @endforeach
                                             <tr class="intro-x">                  
                                                     <td id="foname">{{ $fo1->name}}</td>           
                                                     <td id="foid">
-                                                            <input type="checkbox" name="requirement_id[]" value="{{$fo1->id}}">
+                                                   
+                                                            <input type="checkbox" {{  $fo1->id === $i ? "checked" : "" }} >
+
+                                                          
                                                     </td>                 
                                             </tr>                  
-                                      
+                                          
                                     @endforeach 
+
+
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -321,7 +335,7 @@
 
             $('#benefit_id').val(data[0]);
             $('#benefit_name').val(data[1]);
-
+            
             $('#select_requirements_to_benefits').attr('action','/benefits/select');
           
         })

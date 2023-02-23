@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('benefits', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('benefit_name')->nullable();
             $table->string('validity')->nullable();
             $table->timestamps();
         });

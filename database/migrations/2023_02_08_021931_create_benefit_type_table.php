@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('benefit_application_requirements', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('benefit_type', function (Blueprint $table) {
+            $table->foreignId('benefit_id')->constrained('benefits');
+            $table->foreignId('type_id')->constrained('types');
         });
     }
 
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('benefit_application_requirements');
+        Schema::dropIfExists('benefit_type');
     }
 };

@@ -29,6 +29,8 @@ return new class extends Migration
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->unsignedBigInteger('client_application_id')->unsigned();
             $table->foreign('client_application_id')->references('id')->on('client_applications')->onDelete('cascade');
+            $table->unsignedBigInteger('client_type')->unsigned();
+            $table->foreign('client_type')->references('id')->on('client_types')->onDelete('cascade');
             // $table->unsignedBigInteger('user_id')->unsigned();
             // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

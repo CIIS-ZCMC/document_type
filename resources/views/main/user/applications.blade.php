@@ -35,8 +35,6 @@
                     <th class="whitespace-nowrap">ID</th>
                     <th class="whitespace-nowrap">NAME</th>
                     <th class="whitespace-nowrap">STATUS</th>
-                  
-                  
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>

@@ -36,7 +36,6 @@
                 <tr class="intro-x">
                     <td id="foid">{{$index + 1}}</td>
                     <td id="foname">{{ $fo1->name}}</td>
-               
                     <td id="filename">{{$fo1->id}}</td>
                   
                  

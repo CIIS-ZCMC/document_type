@@ -33,4 +33,12 @@ class BenefitApplication extends Model
     {
         return $this->hasMany(related:DeclineBenefit::class);
     }
+    public function benefits()
+    {
+        return $this->hasMany(related:Benefit::class);
+    }
+    public function client_types()
+    {
+        return $this->hasMany(related:ClientType::class);
+    }
 }
