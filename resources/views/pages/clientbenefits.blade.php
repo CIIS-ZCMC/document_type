@@ -41,8 +41,11 @@
                  
                     <td class="table-report__action w-56">
                         <div class="flex justify-center items-center" >        
-                            <!-- <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#add-benefits-modal">Add Benefit</button>          -->
-                            <button href="javascript:;" class="btn btn-outline-primary mr-1 benefits_btn" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#benefits_modal">Benefits</button>
+                            {{-- <!-- <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#add-benefits-modal">Add Benefit</button>          -->
+                            <button href="javascript:;" class="btn btn-outline-primary mr-1 benefits_btn" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#benefits_modal">Benefits</button> --}}
+                            <div class="flex justify-center items-center" >
+                                <a  href="{{ url('/benefits/clientbenefits/'.$fo1->id) }}" class="btn btn-outline-success"  id='isActiveToggle'>Benefits</a>
+                              </div>
                         </div>
                     </td>
                     

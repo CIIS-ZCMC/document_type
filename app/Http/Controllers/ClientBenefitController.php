@@ -39,11 +39,15 @@ class ClientBenefitController extends Controller
         foreach($benefit  as $key => $value) {     
             if($benefit!=null) 
             {
+                $check=ClientBenefit::where(['client_type_id' => $id])->where(['benefit_id' => $value])->first();
+                if($check==null)
+                {
                 $benefitrequirementsave = new ClientBenefit();
              
                 $benefitrequirementsave->client_type_id =$id;
                 $benefitrequirementsave->benefit_id = $value;
                 $benefitrequirementsave->save();
+                }
 
             }
         

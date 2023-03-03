@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('benefits', function (Blueprint $table) {
+        Schema::create('financial_medical_requirements', function (Blueprint $table) {
             $table->id();
-            $table->string('benefit_name')->nullable();
-            $table->string('benefit_type')->nullable();
-            $table->string('validity')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('benefits');
+        Schema::dropIfExists('financial_medical_requirements');
     }
 };

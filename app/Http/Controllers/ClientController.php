@@ -60,7 +60,7 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $iclientd = null)
@@ -108,14 +108,10 @@ class ClientController extends Controller
                 $clientsave->save();
 
                 $applicationsave = new ClientApplication();
-            
                 $applicationsave->application_date= now()->toDateString('Y-m-d');
                 $applicationsave->application_type = 'Citizen';
                 $applicationsave->application_Status = 'Applied';
-                      
                 $applicationsave->application_reference_number =$generator;
-                      
-            
                 $applicationsave->application_process = 'Online-Ongoing';
                 $applicationsave->client_id =$clientsave->id;
                 $applicationsave->save();

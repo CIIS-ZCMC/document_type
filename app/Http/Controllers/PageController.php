@@ -64,8 +64,6 @@ class PageController extends Controller
         
         ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
     }
-
-    // top-bar-menu
     public function profile() {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
              return view('layout/top-bar-menu/profile',$data,[]);
@@ -96,8 +94,6 @@ class PageController extends Controller
         
             ])->with(compact('barangaylist'));
     }
-
-  
 
     public function pwdregistration()
     {
@@ -196,7 +192,6 @@ class PageController extends Controller
         $applicationsave->application_process = 'Online';
         $applicationsave->client_id =$clientid;
         $applicationsave->save();
-
         session_start();
         $_SESSION['success'] ="success";
        
@@ -292,13 +287,7 @@ class PageController extends Controller
             $_SESSION['success'] ="success";
 
         
-            // return view('main/landing', [
-            //     // Specify the base layout.
-            //     // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            //     // The default value is 'side-menu'
-    
-            //     // 'layout' => 'side-menu'
-            //     ])->with('success');
+          
 
          
     }
@@ -306,9 +295,6 @@ class PageController extends Controller
     public function searchregisteredsenior(Request $request)
     {
             $barangaylist = Barangay::select('id', 'name')->get();
-        
-
-
             $client= Client::where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_cards", function($subQuery) use ($request)  {
                 $subQuery->where("client_cards.card_type", "=", 'Citizen')->where("client_cards.card_number", "=" ,$request->input('number')); 
             })->with(["client_cards" => function($subQuery) use ($request){
@@ -318,8 +304,6 @@ class PageController extends Controller
         if($client == null)
             {
 
-            
-        
                 session_start();
                 $_SESSION['fail'] ="fail";
 
@@ -334,14 +318,9 @@ class PageController extends Controller
 
                 if($clientapplication == null)
                 {
-                 
-            
+
                 return view('main/registeredclientpage/registeredsenior', [
-                    // Specify the base layout.
-                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                    // The default value is 'side-menu'
-        
-                    // 'layout' => 'side-menu'
+                 
                     ])->with(compact('client','barangaylist'));
                 }
                 else
@@ -349,9 +328,6 @@ class PageController extends Controller
     
                     session_start();
                     $_SESSION['Error'] ="Error";
-                   
-                 
-                    
                     return redirect()->back()->with('Error');  
                     exit;
     
@@ -372,19 +348,9 @@ class PageController extends Controller
             })->with(["client_cards" => function($subQuery) use ($request){
                 $subQuery->where("client_cards.card_type", "=", 'Citizen')->where("client_cards.card_number", "=" ,$request->input('number')); 
             }])->first();
-
-    
-    
-            
-    
-    
-    
     
         if($client == null)
             {
-    
-            
-        
                 session_start();
                 $_SESSION['fail'] ="fail";
     
@@ -392,10 +358,6 @@ class PageController extends Controller
                 exit;
                 
             }
-    
-      
-              
-            
             else
             {
     
@@ -406,28 +368,18 @@ class PageController extends Controller
                  
             
                     return view('main/registeredclientpage/registeredpwdpage', [
-                        // Specify the base layout.
-                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                        // The default value is 'side-menu'
-            
-                        // 'layout' => 'side-menu'
+                       
                         ])->with(compact('client','barangaylist'));
                 }
                 else
                 {
     
                     session_start();
-                    $_SESSION['Error'] ="Error";
-                   
-                 
-                    
+                    $_SESSION['Error'] ="Error";  
                     return redirect()->back()->with('Error');  
                     exit;
     
                 }
-    
-              
-    
             }
         
     }
@@ -469,11 +421,7 @@ class PageController extends Controller
                  
             
                     return view('main/registeredclientpage/registeredsoloparent', [
-                        // Specify the base layout.
-                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                        // The default value is 'side-menu'
-            
-                        // 'layout' => 'side-menu'
+                      
                         ])->with(compact('client','barangaylist'));
                 }
                 else
@@ -567,11 +515,7 @@ class PageController extends Controller
                 if($clientsenior == null)
                 {
                     return view('main/ongoingclient/ongoingseniorpage', [
-                        // Specify the base layout.
-                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                        // The default value is 'side-menu'
-            
-                        // 'layout' => 'side-menu'
+                       
                         ])->with(compact('client','barangaylist'));
                
     
@@ -778,12 +722,7 @@ class PageController extends Controller
      
     }
     
-    /**
-     * Show specified view.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function account()
     {
 
@@ -794,12 +733,7 @@ class PageController extends Controller
         return view('pages/user',$data)->with(compact('user'));
     }
 
-    /**
-     * Show specified view.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function dashboardOverview3()
     {
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
@@ -835,7 +769,6 @@ class PageController extends Controller
         {
             foreach($benefit->benefits as $userbenefit)
             {
-               
                 $userbenefit1[] =  $userbenefit;
             }
             
@@ -897,8 +830,7 @@ class PageController extends Controller
         }
       
        
- 
-        return view('main/user/assistance',$data)->with(compact('clientbenefit','userbenefit1','userid'));;
+        return view('main/user/assistance',$data)->with(compact('clientbenefit','userbenefit1','userid'));
     }
 
     public function userapplications()
@@ -915,9 +847,8 @@ class PageController extends Controller
                     $clienttypeid[]=$ben->client_type_id;
             }
         } 
-        return $clienttypeid;
-    
-        return view('main/user/applications',$data);
+
+        return view('main/user/applications',$data)->with(compact('client','clientben'));
     }
     /**
      * Show specified view.
@@ -1312,11 +1243,40 @@ class PageController extends Controller
         $benefitrequirements = BenefitRequirement::get();
         foreach($benefitrequirements as $client)
         {
-            $benid[]=$client->benefit_id;
-            $reqid[]=$client->requirement_id;
+          
             
         }
-        return view('pages/benefits',$data)->with(compact('benefit','requirements','benid','reqid'));
+        return view('pages/benefits',$data)->with(compact('benefit','requirements'));
+    }
+    public function benefitrequirements($id=null)
+    {
+        $userid = Session::get('userid');
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $client=  BenefitRequirement::where('benefit_id','=', $id)->get();
+    
+        foreach($client as $client1)
+        {
+               
+        }
+        $requirements=Requirement::get();
+
+      
+        return view('pages/benefit-requirement',$data)->with(compact('id','requirements','client'));
+    }
+    public function clientbenefits($id=null)
+    {
+        $userid = Session::get('userid');
+        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+        $client=  ClientBenefit::where('client_type_id','=', $id)->get();
+    
+        foreach($client as $client1)
+        {
+              
+        }
+        $benefits=Benefit::get();
+
+      
+        return view('pages/clientbenefit-add',$data)->with(compact('id','benefits','client'));
     }
     public function requirement()
     {
@@ -1422,7 +1382,7 @@ class PageController extends Controller
 
         $clients=Client::with("occupations","barangays","client_cards.benefit_applications")->whereHas('benefit_applications', function($q) {
             $q->where('application_status', '=','Applied')
-            ->where('application_type', '=', 'Citizen');})
+            ->where('client_type_id', '=', '4');})
        
         ->get();
       
@@ -1437,7 +1397,8 @@ class PageController extends Controller
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
          $clients=Client::with("occupations","barangays","client_cards.benefit_applications")->whereHas('benefit_applications', function($q){
              $q->where('application_status', '=','EVALUATED-APPROVED')
-             ->where('application_type', '=', 'Citizen');})
+             ->where('client_type_id', '=', '4');})
+       
         
          ->get();
        
@@ -1453,8 +1414,8 @@ class PageController extends Controller
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
           $clients=Client::with("occupations","barangays","benefit_applications.benefit_schedules")->whereHas('benefit_applications', function($q) {
               $q->where('application_status', '=','APPROVAL-APPROVED')
-              ->where('application_type', '=','Citizen');})
-         
+              ->where('client_type_id', '=', '4');})
+       
           ->get();
         
      
@@ -1470,9 +1431,9 @@ class PageController extends Controller
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
       
         $clients=  Client::with("occupations","barangays")->whereHas("benefit_applications", function($subQuery) {
-            $subQuery->where("benefit_applications.application_type", "=", 'Senior')->where("benefit_applications.application_status", "=", 'Applied'); 
+            $subQuery->where("benefit_applications.client_type_id", "=", '1')->where("benefit_applications.application_status", "=", 'Applied'); 
         })->with(["benefit_applications" => function($subQuery){
-            $subQuery->where("benefit_applications.application_type", "=", 'Senior')->where("benefit_applications.application_status", "=", 'Applied');
+            $subQuery->where("benefit_applications.client_type_id", "=", '1')->where("benefit_applications.application_status", "=", 'Applied');
         }])->get();
             
           
@@ -1487,9 +1448,9 @@ class PageController extends Controller
             $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
 
             $clients=  Client::with("occupations","barangays")->whereHas("benefit_applications", function($subQuery) {
-                $subQuery->where("benefit_applications.application_type", "=", 'Senior')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED'); 
+                $subQuery->where("benefit_applications.client_type_id", "=", '1')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED'); 
             })->with(["benefit_applications" => function($subQuery){
-                $subQuery->where("benefit_applications.application_type", "=", 'Senior')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED');
+                $subQuery->where("benefit_applications.client_type_id", "=", '1')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED');
             }])->get();
                 
            
@@ -1504,9 +1465,9 @@ class PageController extends Controller
          {
             $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
             $clients=  Client::with("occupations","barangays")->whereHas("benefit_applications", function($subQuery) {
-                $subQuery->where("benefit_applications.application_type", "=", 'Senior')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED'); 
+                $subQuery->where("benefit_applications.client_type_id", "=", '1')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED'); 
             })->with(["benefit_applications" => function($subQuery){
-                $subQuery->where("benefit_applications.application_type", "=", 'Senior')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED');
+                $subQuery->where("benefit_applications.client_type_id", "=", '1')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED');
             }])->get();
                 
            
@@ -1530,9 +1491,9 @@ class PageController extends Controller
 
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
         $clients=  Client::with("occupations","barangays")->whereHas("benefit_applications", function($subQuery) {
-            $subQuery->where("benefit_applications.application_type", "=", 'PWD')->where("benefit_applications.application_status", "=", 'Applied'); 
+            $subQuery->where("benefit_applications.client_type_id", "=", '3')->where("benefit_applications.application_status", "=", 'Applied'); 
         })->with(["benefit_applications" => function($subQuery){
-            $subQuery->where("benefit_applications.application_type", "=", 'PWD')->where("benefit_applications.application_status", "=", 'Applied');
+            $subQuery->where("benefit_applications.client_type_id", "=", '3')->where("benefit_applications.application_status", "=", 'Applied');
         }])->get();
             
           
@@ -1550,9 +1511,9 @@ class PageController extends Controller
  
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
         $clients=Client::with("occupations","barangays")->whereHas("benefit_applications", function($subQuery) {
-            $subQuery->where("benefit_applications.application_type", "=", 'PWD')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED'); 
+            $subQuery->where("benefit_applications.client_type_id", "=", '3')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED'); 
         })->with(["benefit_applications" => function($subQuery){
-            $subQuery->where("benefit_applications.application_type", "=", 'PWD')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED');
+            $subQuery->where("benefit_applications.client_type_id", "=", '3')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED');
         }])->get();
             
      
@@ -1569,9 +1530,9 @@ class PageController extends Controller
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
         
         $clients=  Client::with("occupations","barangays")->whereHas("benefit_applications", function($subQuery) {
-            $subQuery->where("benefit_applications.application_type", "=", 'PWD')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED'); 
+            $subQuery->where("benefit_applications.client_type_id", "=", '3')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED'); 
         })->with(["benefit_applications" => function($subQuery){
-            $subQuery->where("benefit_applications.application_type", "=", 'PWD')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED');
+            $subQuery->where("benefit_applications.client_type_id", "=", '3')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED');
         }])->get();
             
      
@@ -1586,9 +1547,9 @@ class PageController extends Controller
         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
    
         $clients=  Client::with("occupations","barangays")->whereHas("benefit_applications", function($subQuery) {
-            $subQuery->where("benefit_applications.application_type", "=", 'Solo Parent')->where("benefit_applications.application_status", "=", 'Applied'); 
+            $subQuery->where("benefit_applications.client_type_id", "=", '2')->where("benefit_applications.application_status", "=", 'Applied'); 
         })->with(["benefit_applications" => function($subQuery){
-            $subQuery->where("benefit_applications.application_type", "=", 'Solo Parent')->where("benefit_applications.application_status", "=", 'Applied');
+            $subQuery->where("benefit_applications.client_type_id", "=", '2')->where("benefit_applications.application_status", "=", 'Applied');
         }])->get();
             
          
@@ -1603,9 +1564,9 @@ class PageController extends Controller
     
             $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
             $clients=  Client::with("occupations","barangays")->whereHas("benefit_applications", function($subQuery) {
-                $subQuery->where("benefit_applications.application_type", "=", 'Solo Parent')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED'); 
+                $subQuery->where("benefit_applications.client_type_id", "=", '2')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED'); 
             })->with(["benefit_applications" => function($subQuery){
-                $subQuery->where("benefit_applications.application_type", "=", 'Solo Parent')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED');
+                $subQuery->where("benefit_applications.client_type_id", "=", '2')->where("benefit_applications.application_status", "=", 'EVALUATED-APPROVED');
             }])->get();
                 
         
@@ -1620,9 +1581,9 @@ class PageController extends Controller
          {
             $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
             $clients=  Client::with("occupations","barangays")->whereHas("benefit_applications", function($subQuery) {
-                $subQuery->where("benefit_applications.application_type", "=", 'Solo Parent')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED'); 
+                $subQuery->where("benefit_applications.client_type_id", "=", '2')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED'); 
             })->with(["benefit_applications" => function($subQuery){
-                $subQuery->where("benefit_applications.application_type", "=", 'Solo Parent')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED');
+                $subQuery->where("benefit_applications.client_type_id", "=", '2')->where("benefit_applications.application_status", "=", 'APPROVAL-APPROVED');
             }])->get();
         
              return view('pages/soloparentbenefitverification',$data)->with(compact('clients'));

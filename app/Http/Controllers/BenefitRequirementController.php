@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Benefit;
 use App\Models\BenefitRequirement;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -40,10 +41,17 @@ class BenefitRequirementController extends Controller
         foreach($requirement  as $key => $value) {     
             if($requirement!=null) 
             {
-                $benefitrequirementsave = new BenefitRequirement();
-                $benefitrequirementsave->requirement_id = $value;
-                $benefitrequirementsave->benefit_id =$id;
-                $benefitrequirementsave->save();
+                $check=BenefitRequirement::where(['benefit_id' => $id])->where(['requirement_id' => $value])->first();
+                if($check==null)
+                {
+                    $benefitrequirementsave = new BenefitRequirement();
+                    $benefitrequirementsave->requirement_id = $value;
+                    $benefitrequirementsave->benefit_id =$id;
+                    $benefitrequirementsave->save();
+                }
+               
+              
+               
 
             }
         

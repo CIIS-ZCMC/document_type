@@ -14,6 +14,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientBenefitController;
+use App\Http\Controllers\MedicalAssistanceRequirementController;
 use App\Models\BenefitRequirement;
 use App\Models\ClientCard;
 use App\Models\DeclineBenefit;
@@ -165,8 +166,11 @@ Route::middleware('isLogged')->group(function() {
         Route::get('/userdashboard', 'userdashboard')->name('userdashboard');
         Route::get('/userbenefits', 'userbenefits')->name('userbenefits');
         Route::get('/assistance', 'assistance')->name('assistance');
+
         Route::match(['get', 'post'], '/user/applybenefit/{id}/{userid}/{clienttype}','applybenefit');
-     
+        Route::match(['get', 'post'], '/benefits/benefitrequirements/{id}','benefitrequirements');
+        Route::match(['get', 'post'], '/benefits/clientbenefits/{id}','clientbenefits');
+      
         Route::get('/userapplications', 'userapplications')->name('userapplications');
 
         Route::get('/user-profile', 'profile')->name('profile');
@@ -292,9 +296,11 @@ Route::middleware('isLogged')->group(function() {
     Route::post('/item/add', [ItemController::class, 'store']);
     Route::post('/fo/add', [FieldOfficeController::class, 'store']);
     Route::post('/requirements/add', [RequirementController::class, 'store']);
-    Route::post('/benefits/add', [BenefitController::class, 'store']);
+    Route::post('/benefits/add', [BenefitController::class, '   store']);
     Route::post('/addbenefitrequirements/{id}', [BenefitRequirementController::class, 'store']);
     Route::post('/addclientbenefits/{id}', [ClientBenefitController::class, 'store']);
+    Route::match(['get', 'post'], '/medical/apply/{userid}', [MedicalAssistanceRequirementController::class, 'applymedical']);
+     
     Route::post('/user/add', [UserController::class, 'store']);
     Route::match(['get', 'post'], '/user/deactivateuser/{id}', [UserController::class, 'deactivateuser']);
     Route::match(['get', 'post'], '/user/activateuser/{id}', [UserController::class, 'activateuser']);

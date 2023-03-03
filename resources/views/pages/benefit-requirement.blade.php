@@ -9,91 +9,63 @@
     Manage Benefits
 </h2>
 <div class="grid grid-cols-12 gap-6 mt-5">
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-        <div class="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <div class="w-56 relative text-slate-500">
-                <input type="text" class="form-control w-56 box pr-10" placeholder="Search...">
-                <i class="w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0" data-lucide="search"></i> 
-            </div>
-        </div>
-
-       
-        <div class="hidden md:block mx-auto text-slate-500"></div>
-        <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-benefits-modal" class="btn btn-primary shadow-md mr-2">Add Benefit</a>
-       
-    </div>
+  
     <!-- BEGIN: Data List -->
     <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-        <table id="datatable" class="table table-report -mt-2">
-            <thead>
-                <tr>
-                    <th class="whitespace-nowrap">No.</th>
-                    <th class="whitespace-nowrap">NAME</th>
-                    <th class="whitespace-nowrap">FORM TYPE</th>
-                    <th id="filename" class="whitespace-nowrap">id</th>       
-                  
-                    <th class="text-center whitespace-nowrap">ACTIONS</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($benefit as $index => $fo1)    
-                <tr class="intro-x">
-                    <td id="foid">{{$index + 1}}</td>
-                    <td id="foname">{{ $fo1->benefit_name}}</td>
-                    <td></td>
-                
-                    <td id="filename">{{$fo1->id}}</td>
-                  
-                 
-                    <td class="table-report__action w-56">
-                        <div class="flex justify-center items-center" >
-                          <!-- <button href="javascript:;" class="btn btn-outline-primary mr-1 select_benreq" style="width: 150px;" data-tw-toggle="modal" data-tw-target="#select-req-modal">Requirements</button> -->
-                          <div class="flex justify-center items-center" >
-                            <a  href="{{ url('/benefits/benefitrequirements/'.$fo1->id) }}" class="btn btn-outline-success"  id='isActiveToggle'>Requirements</a>
-                          </div>
-                          <button href="javascript:;" class="btn btn-outline-primary mr-1 edit" style="width: 100px;" data-tw-toggle="modal" data-tw-target="#editmodal">Edit</button>
+     
+        <div class="col-span-12">
+            <div id="checkbox-switch" class="p-5">
+                <div class="preview">
+                    <div>
+                        <form action="{{('/addbenefitrequirements/'. $id )}}" method="POST" enctype="multipart/form-data" id="select_requirements_to_benefits">
+                            @csrf
+                           
                      
-                        </div>
-                    </td>
+                        @foreach($requirements as $requirement)
+                            @php 
+                            $value = \App\Models\BenefitRequirement::where(['benefit_id' => $id])->where(['requirement_id' => $requirement->id])->first()
+                            @endphp
+                           @if(!empty($value))
+                                    
+                                        <div class="form-check mt-2">
+                                        <tr class="intro-x">                  
+                                            <td id="foname">{{ $requirement->name}}</td>           
+                                            <td id="foid">
+                                                <input id="checkbox-switch-1" name="requirement[]" class="form-check-input" type="checkbox" value="{{$requirement->id}}"  checked>
+                                                
+                                            </td>                 
+                                        </tr>     
+                                    </div>
+                                    
+                             @else
+                             <div class="form-check mt-2">
+                                <tr class="intro-x">                  
+                                    <td id="foname">{{ $requirement->name}}</td>           
+                                    <td id="foid">
+                                        <input id="checkbox-switch-1" name="requirement[]" class="form-check-input" type="checkbox" value="{{$requirement->id}}">
+                                    </td>                 
+                                </tr>     
+                             </div>
+                             @endif
+                           
+                        @endforeach
+                        <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
+                        <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>
+                        </form>
+                    </div>
+                 
                     
-                </tr>
-                @endforeach
-               
-            </tbody>
-        </table>
+                </div>
+
+              
+                
+            </div>
+        </div>
+          
+   
     </div>
     <!-- END: Data List -->
-    <!-- BEGIN: Pagination -->
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">
-        <nav class="w-full sm:w-auto sm:mr-auto">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevrons-left"></i> </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevron-left"></i> </a>
-                </li>
-                <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                <li class="page-item"> <a class="page-link" href="#">1</a> </li>
-                <li class="page-item active"> <a class="page-link" href="#">2</a> </li>
-                <li class="page-item"> <a class="page-link" href="#">3</a> </li>
-                <li class="page-item"> <a class="page-link" href="#">...</a> </li>
-                <li class="page-item">
-                    <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevron-right"></i> </a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#"> <i class="w-4 h-4" data-lucide="chevrons-right"></i> </a>
-                </li>
-            </ul>
-        </nav>
-        <select class="w-20 form-select box mt-3 sm:mt-0">
-            <option>10</option>
-            <option>25</option>
-            <option>35</option>
-            <option>50</option>
-        </select>
-    </div>
-    <!-- END: Pagination -->
+  
 </div>
      <!-- BEGIN: Add Benefits Modal -->
      <div id="add-benefits-modal" class="modal" tabindex="-1" aria-hidden="true">
@@ -172,7 +144,12 @@
                                              <tr class="intro-x">                  
                                                 <td id="foname">{{ $fo1->name}}</td>           
                                                 <td id="foid">
-                                                        <input type="checkbox" {{  $fo1->id === '1' ? "checked" : "" }} >  
+                                            
+                                                
+                                          
+                                                        <input type="checkbox" {{  $fo1->id === '1' ? "checked" : "" }} >
+
+                                                      
                                                 </td>                 
                                             </tr>     
                                     
@@ -358,3 +335,4 @@
 
 
 @endsection
+           

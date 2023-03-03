@@ -34,29 +34,40 @@
                 <tr>
                     <th class="whitespace-nowrap">ID</th>
                     <th class="whitespace-nowrap">NAME</th>
+                    <th class="whitespace-nowrap">TYPE</th>
                     <th class="whitespace-nowrap">STATUS</th>
                     <th class="text-center whitespace-nowrap">ACTIONS</th>
                 </tr>
             </thead>
             <tbody>
-                
-                <tr class="intro-x">
-                    <td id="foid">1</td>
-                    <td id="foname">John Does</td>
-                    <td id="">Sample</td>
-                  
-                 
-                    <td class="table-report__action w-56">
-                        <div class="flex justify-center items-center" >
-                          <button href="javascript:;" class="btn btn-outline-primary w-32 mr-1 edit" data-tw-toggle="modal" data-tw-target="#viewmodal">View</button>
-                          
-                        </a>
-                            
-                        </div>
-                    </td>
+                @foreach($client as $benefit)
+                @foreach($benefit->benefit_applications as $benefitapp)
+                @php 
+                $benefitname = \App\Models\Benefit::where(['id' => $benefitapp->benefit_id])->first()
+               
+                @endphp
+                @php
+                 $clienttype = \App\Models\ClientType::where(['id' => $benefitapp->client_type_id])->first()
+              @endphp
+                    <tr class="intro-x">
+                        <td id="foid">1</td>
+                        <td id="foname">{{$benefitname->benefit_name}}</td>
+                        <td id="">{{$clienttype->name}}</td>
+                        <td id="">{{$benefitapp->application_status}}</td>
                     
-                </tr>
-                
+                    
+                        <td class="table-report__action w-56">
+                            <div class="flex justify-center items-center" >
+                            <button href="javascript:;" class="btn btn-outline-primary w-32 mr-1 edit" data-tw-toggle="modal" data-tw-target="#viewmodal">View</button>
+                            
+                    
+                                
+                            </div>
+                        </td>
+                        
+                    </tr>
+                @endforeach
+                @endforeach
                
             </tbody>
         </table>

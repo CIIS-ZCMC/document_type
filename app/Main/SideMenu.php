@@ -445,6 +445,179 @@ class SideMenu
                 ]
             ],
             
+            'Assistance' => [
+                'icon' => 'cross',
+                'title' => 'Assistance',
+                'sub_menu' => [
+                    'Medical' => [
+                        'icon' => 'user',
+                        'title' => 'Medical',
+                        'sub_menu' => [
+                            'Evaluation' => [
+                                'icon' => '',
+                                'route_name' => 'citizenbenefitevaluation',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Evaluation'
+                            ],
+                             'Approval' => [
+                                'icon' => '',
+                                'route_name' => 'citizenbenefitapproval',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Approval'
+                            ],
+                            'Verify' => [
+                                'icon' => '',
+                                'route_name' => 'citizenbenefitverification',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Verify'
+                            ],
+                          
+                        ]
+                    ],
+                    'Financial' => [
+                        'icon' => 'user',
+                        'title' => 'Financial',
+                        'sub_menu' => [
+                            'Evaluation' => [
+                                'icon' => '',
+                                'route_name' => 'seniorbenefitevaluation',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Evaluation'
+                            ],
+                             'Approval' => [
+                                'icon' => '',
+                                'route_name' => 'seniorbenefitapproval',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Approval'
+                            ],
+                            'Verify' => [
+                                'icon' => '',
+                                'route_name' => 'seniorbenefitverification',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Verify'
+                            ],
+                          
+                        ]
+                    ],
+                    'Burial' => [
+                        'icon' => 'user',
+                        'title' => 'Burial',
+                        'sub_menu' => [
+                            'Evaluation' => [
+                                'icon' => '',
+                                'route_name' => 'soloparentbenefitevaluation',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Evaluation'
+                            ],
+                             'Approval' => [
+                                'icon' => '',
+                                'route_name' => 'soloparentbenefitapproval',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Approval'
+                            ],
+                            'Verify' => [
+                                'icon' => '',
+                                'route_name' => 'soloparentbenefitverification',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Verify'
+                            ],
+                          
+                        ]
+                    ],
+                    'Food' => [
+                        'icon' => 'user',
+                        'title' => 'Food',
+                        'sub_menu' => [
+                            'Evaluation' => [
+                                'icon' => '',
+                                'route_name' => 'pwdbenefitevaluation',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Evaluation'
+                            ],
+                             'Approval' => [
+                                'icon' => '',
+                                'route_name' => 'pwdbenefitapproval',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Approval'
+                            ],
+                            'Verify' => [
+                                'icon' => '',
+                                'route_name' => 'pwdbenefitverification',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Verify'
+                            ],
+                          
+                        ]
+                    ],
+
+                    'Declined' => [
+                        'icon' => 'shield-close',
+                        'title' => 'Declined',
+                        'sub_menu' => [
+                            'Citizen' => [
+                                'icon' => '',
+                                'route_name' => 'declinecitizenbenefit',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Citizen'
+                            ],
+                             'Senior Citizen' => [
+                                'icon' => '',
+                                'route_name' => 'declineseniorbenefit',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Senior Citizen'
+                            ],
+                            'Solo Parent' => [
+                                'icon' => '',
+                                'route_name' => 'declinesoloparentbenefit',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Solo Parent'
+                            ],
+                            'PWD' => [
+                                'icon' => '',
+                                'route_name' => 'declinepwdbenefit',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'PWD'
+                            ],
+                          
+                        ]
+                    ],
+                 
+
+                   
+                ]
+            ],
             
             
             'accounts' => [

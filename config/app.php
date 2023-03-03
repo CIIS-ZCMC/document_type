@@ -205,7 +205,7 @@ return [
        
         'Image' => Intervention\Image\Facades\Image::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
-      
+        'Input' => Illuminate\Support\Facades\Request::class,
     ] 
     
     

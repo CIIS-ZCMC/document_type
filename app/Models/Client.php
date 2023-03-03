@@ -77,6 +77,7 @@ class Client extends Model
     }
 
     protected $fillable = ['name'];
+   
     public function client_applications()
     {
         return $this->hasMany(related:ClientApplication::class);
@@ -105,24 +106,15 @@ class Client extends Model
     }
     public function benefit_applications()
     {
-        return $this->hasMany(related:BenefitApplication::class);
-
+        return $this->hasManyThrough(related:BenefitApplication::class, through:ClientCard::class);
     }
 
     public function benefit_requirements()
     {
         return $this->hasManyThrough(related:BenefitRequirement::class, through:BenefitApplication::class);
     }
-
-    // public function benefits()
-    // {
-    //     return $this->hasManyThrough(related:Benefit::class, through:BenefitApplication::class);
-    // }
    
-    // public function client_types()
-    // {
-    //     return $this->hasManyThrough(related:ClientType::class, through:BenefitApplication::class);
-    // }
+    
 
 
 

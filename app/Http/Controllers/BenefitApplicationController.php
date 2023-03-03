@@ -40,21 +40,11 @@ use Illuminate\Support\Facades\Mail;
 
 class BenefitApplicationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
      public function applybenefitform()
      {
          $barangaylist = Barangay::select('id', 'name')->get();
          return view('main/benefitapplication/loginbenefit', [
-             // Specify the base layout.
-             // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-             // The default value is 'side-menu'
- 
-             // 'layout' => 'side-menu'
+        
              ])->with(compact('barangaylist'));
      }
      public function storebenefitapplication(Request $request,$userid=null,$clienttype=null,$id=null)
@@ -191,11 +181,7 @@ class BenefitApplicationController extends Controller
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchseniorbenefit/searchseniornonagenarianform', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+           
             ])->with(compact('barangaylist'));
     }
     public function searchseniorcentenarianform()
@@ -203,11 +189,7 @@ class BenefitApplicationController extends Controller
 
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchseniorbenefit/searchseniorcentenarianform', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+           
             ])->with(compact('barangaylist'));
     }
     
@@ -816,11 +798,7 @@ class BenefitApplicationController extends Controller
     {
         $barangaylist = Barangay::select('id', 'name')->get();
         return view('main/searchpwdbenefit/searchpwdcashincentivesform', [
-            // Specify the base layout.
-            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-            // The default value is 'side-menu'
-
-            // 'layout' => 'side-menu'
+           
             ])->with(compact('barangaylist'));
     }
 

@@ -46,8 +46,12 @@
                     @foreach($clientbenefit as $benefit)
                
                         @foreach($benefit->benefits as $userbenefit)
-                        
+                        @php 
+                        $value = \App\Models\BenefitApplication::where(['client_type_id' => $benefit->id])->where(['benefit_id' => $userbenefit->id])->first()
+                        @endphp
+                        @if($value==null)
                             <tr class="intro-x">
+                                <td id="foid">1</td>
                                 <td id="foid">{{$userbenefit->benefit_name}}</td>
                                 <td id="foid">{{$benefit->name}}</td>
                                 <td class="table-report__action w-56">
@@ -57,7 +61,7 @@
                                 </td>
                             </tr>
                        
-                        
+                        @endif
                         @endforeach
                     
                     @endforeach

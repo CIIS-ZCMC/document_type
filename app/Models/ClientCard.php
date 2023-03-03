@@ -9,7 +9,8 @@ class ClientCard extends Model
 {
     use HasFactory;
     protected $table = 'client_cards';
-  
+   
+
     public function clients()
     {
         return $this->belongsTo(related:Client::class);
