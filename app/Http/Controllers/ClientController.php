@@ -114,6 +114,7 @@ class ClientController extends Controller
                 $applicationsave->application_reference_number =$generator;
                 $applicationsave->application_process = 'Online-Ongoing';
                 $applicationsave->client_id =$clientsave->id;
+                $applicationsave->client_type ='4';
                 $applicationsave->save();
 
 
@@ -192,6 +193,14 @@ class ClientController extends Controller
 
                 
        
+                $applicationlogsave = new ClientApplicationLog();
+     
+                $applicationlogsave->process_name = 'Evaluation-Approved';
+                $applicationlogsave->date= now()->toDateString('Y-m-d');
+                $applicationlogsave->client_id = $clientsave->id;
+                $applicationlogsave->client_application_id = $applicationsave->id;
+             
+                $applicationlogsave->save();
 
         $clientapplication=ClientApplication::where('id',$applicationsave->id)->first();
         $clientdetails=Client::where('id',$clientsave->id)->first();
@@ -1788,6 +1797,7 @@ class ClientController extends Controller
         $clientcardsave->card_number = $generator;
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
+        $clientcardsave->client_type = "4";
         $clientcardsave->save();
 
         $clientusersave = new ClientUser();
@@ -2243,7 +2253,7 @@ class ClientController extends Controller
         $clientcardsave->card_number = $generator;
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
-
+        $clientcardsave->client_type = "1";
      
         $clientcardsave->save();
 
@@ -2614,6 +2624,7 @@ class ClientController extends Controller
                     
                         $applicationsave->application_process = 'Online-Ongoing';
                         $applicationsave->client_id =$clientsave->id;
+                        $applicationsave->client_type ='1';
                         $applicationsave->save();
 
 
@@ -2705,6 +2716,15 @@ class ClientController extends Controller
                             }
                         }
 
+                        
+                $applicationlogsave = new ClientApplicationLog();
+     
+                $applicationlogsave->process_name = 'Evaluation-Approved';
+                $applicationlogsave->date= now()->toDateString('Y-m-d');
+                $applicationlogsave->client_id = $clientsave->id;
+                $applicationlogsave->client_application_id = $applicationsave->id;
+             
+                $applicationlogsave->save();
                         $clientapplication=ClientApplication::where('id',$applicationsave->id)->first();
                         $clientdetails=Client::where('id',$clientsave->id)->first();
                 
@@ -3108,7 +3128,7 @@ class ClientController extends Controller
                 $applicationsave->application_date= now()->toDateString('Y-m-d');;
                 $applicationsave->application_type = 'PWD';
                 $applicationsave->application_Status = 'Applied';
-                      
+                $applicationsave->client_type ='2';
                             $applicationsave->application_reference_number = $generator1;
                      
             
@@ -3306,6 +3326,14 @@ class ClientController extends Controller
                     }
                 }
 
+                $applicationlogsave = new ClientApplicationLog();
+     
+                $applicationlogsave->process_name = 'Evaluation-Approved';
+                $applicationlogsave->date= now()->toDateString('Y-m-d');
+                $applicationlogsave->client_id = $clientsave->id;
+                $applicationlogsave->client_application_id = $applicationsave->id;
+             
+                $applicationlogsave->save();
                 $clientapplication=ClientApplication::where('id',$applicationsave->id)->first();
                 $clientdetails=Client::where('id',$clientsave->id)->first();
         
@@ -3677,6 +3705,7 @@ class ClientController extends Controller
         $clientcardsave->card_number = $generator;
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
+        $clientcardsave->client_type = "2";
 
      
         $clientcardsave->save();
@@ -4037,6 +4066,7 @@ class ClientController extends Controller
             $applicationsave->application_reference_number = $generator;
                    
             $applicationsave->application_process = 'Online-Ongoing';
+            $applicationsave->client_type ='3';
             $applicationsave->client_id =$clientsave->id;
             $applicationsave->save();
 
@@ -4245,6 +4275,14 @@ class ClientController extends Controller
                                         
                                     }
 
+                                    $applicationlogsave = new ClientApplicationLog();
+     
+                                    $applicationlogsave->process_name = 'Evaluation-Approved';
+                                    $applicationlogsave->date= now()->toDateString('Y-m-d');
+                                    $applicationlogsave->client_id = $clientsave->id;
+                                    $applicationlogsave->client_application_id = $applicationsave->id;
+                                 
+                                    $applicationlogsave->save();
                                     $clientapplication=ClientApplication::where('id',$applicationsave->id)->first();
                                     $clientdetails=Client::where('id',$clientsave->id)->first();
                             
@@ -4596,7 +4634,7 @@ class ClientController extends Controller
         $clientcardsave->card_number = $generator;
         $clientcardsave->client_application_id = $applicationid;
         $clientcardsave->client_id = $clientid;
-
+        $clientcardsave->client_type = "3";
         $clientcardsave->save();
 
         $clientusersave = new ClientUser();

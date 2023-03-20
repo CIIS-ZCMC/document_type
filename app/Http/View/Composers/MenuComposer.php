@@ -24,6 +24,12 @@ class MenuComposer
 
             $view->with('top_menu', TopMenu::menu());
             $view->with('side_menu', SideMenu::menu());
+
+            $view->with('citizen_side_menu', SideMenu::citizenmenu());
+            $view->with('citizenevaluator_side_menu', SideMenu::citizenevaluatormenu());
+            $view->with('citizenapprover_side_menu', SideMenu::citizenapprovermenu());
+            $view->with('citizenverifier_side_menu', SideMenu::citizenverifiermenu());
+
             $view->with('senior_side_menu', SideMenu::seniormenu());
             $view->with('seniorevaluator_side_menu', SideMenu::seniorevaluatormenu());
             $view->with('seniorapprover_side_menu', SideMenu::seniorapprovermenu());

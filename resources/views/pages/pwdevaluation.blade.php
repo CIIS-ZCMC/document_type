@@ -821,8 +821,7 @@
                 }
             ).row($tr).data();
            
-            // document.getElementById('fullname').innerHTML
-            //     = data[1];
+        
                 document.getElementById('type').innerHTML
                     = "Citizen: "+data[3];
                 document.getElementById('date').innerHTML
@@ -948,6 +947,8 @@
                 arraybirthdate = birthdate.split(',');
 
                 for (let i = 0; i < arrayname.length - 1; i++) {
+
+                    
                     var name =  arrayname[i];
                     var lastname =  arraylastname[i];
                     var middlename =  arraymiddlename[i];

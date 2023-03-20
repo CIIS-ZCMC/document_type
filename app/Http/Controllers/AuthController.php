@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -92,17 +93,22 @@ function login(Request $request)
     
     $userInfo = User::where('email', '=', $request->input('email'))->first();
 
+   
     if (!$userInfo) {
         return back()->with('fail', 'We do not recognize your email address');
-    } else {
+    } 
+    else
+    {
         $request->session()->put('LoggedUser', $userInfo->id);
         //check password
         $password=$request->input('password');
-        if ( $password = $userInfo->password) {
-            if ($userInfo->active == 1) {
+   
+        if($password = $userInfo->password) {
+           
+           
+            
 
-              
-                $citizen = ClientCard::where('card_type', '=', 'Citizen')->get();
+                 $citizen = ClientCard::where('card_type', '=', 'Citizen')->get();
                 $citizencount = $citizen->count();
                 $senior = ClientCard::where('card_type', '=', 'Senior')->get();
                 $seniorcount = $senior->count();
@@ -125,25 +131,53 @@ function login(Request $request)
                     $request->session()->put('LoggedUser', $userInfo->id);
                     $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
                    return view('pages/dashboard-overview-1', $data,[
-                    // Specify the base layout.
-                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                    // The default value is 'side-menu'
-        
-                    // 'layout' => 'side-menu'
+                
                 ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                 }
+   
+                if ($userInfo->role == 'CITIZEN ADMIN') {
+                    $request->session()->put('LoggedUser', $userInfo->id);
+                    
+                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                    return view('pages/users/citizen_admin_dashboard', $data,[
+                 
+                    ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
+                    }
+
+                    
+                  if ($userInfo->role == 'CITIZEN EVALUATOR') {
+                    $request->session()->put('LoggedUser', $userInfo->id);
+                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                    return view('pages/users/citizen_evaluator_dashboard', $data,[
+                 
+                    ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
+                    }
+
+                          
+                  if ($userInfo->role == 'CITIZEN APPROVER') {
+                    $request->session()->put('LoggedUser', $userInfo->id);
+                    $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                    return view('pages/users/citizen_approver_dashboard', $data,[
+                 
+                    ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
+                    }
+
+                    if ($userInfo->role == 'CITIZEN VERIFIER') {
+                        $request->session()->put('LoggedUser', $userInfo->id);
+                        $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
+                        return view('pages/users/citizen_verifier_dashboard',$data, [
+                         
+                        ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
+                        }
+
 
                  
                   if ($userInfo->role == 'SENIOR ADMIN') {
                     $request->session()->put('LoggedUser', $userInfo->id);
                     
                     $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                    return view('pages/dashboard-overview-3', $data,[
-                        // Specify the base layout.
-                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                        // The default value is 'side-menu'
-            
-                        // 'layout' => 'side-menu'
+                    return view('pages/users/senior_admin_dashboard', $data,[
+                 
                     ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                     }
 
@@ -151,12 +185,8 @@ function login(Request $request)
                   if ($userInfo->role == 'SENIOR EVALUATOR') {
                     $request->session()->put('LoggedUser', $userInfo->id);
                     $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                    return view('pages/senior-evaluator-dashboard', $data,[
-                        // Specify the base layout.
-                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                        // The default value is 'side-menu'
-            
-                        // 'layout' => 'side-menu'
+                    return view('pages/users/senior_evaluator_dashboard', $data,[
+                 
                     ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                     }
 
@@ -164,60 +194,40 @@ function login(Request $request)
                   if ($userInfo->role == 'SENIOR APPROVER') {
                     $request->session()->put('LoggedUser', $userInfo->id);
                     $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                    return view('pages/senior-approver-dashboard', $data,[
-                        // Specify the base layout.
-                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                        // The default value is 'side-menu'
-            
-                        // 'layout' => 'side-menu'
+                    return view('pages/users/senior_approver_dashboard', $data,[
+                 
                     ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                     }
 
                     if ($userInfo->role == 'SENIOR VERIFIER') {
                         $request->session()->put('LoggedUser', $userInfo->id);
                         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                        return view('pages/senior-verifier-dashboard',$data, [
-                            // Specify the base layout.
-                            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                            // The default value is 'side-menu'
-                
-                            // 'layout' => 'side-menu'
+                        return view('pages/users/senior_verifier_dashboard',$data, [
+                         
                         ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                         }
 
                     if ($userInfo->role == 'PWD ADMIN') {
                         $request->session()->put('LoggedUser', $userInfo->id);
                         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                        return view('pages/dashboard-overview-3',$data, [
-                            // Specify the base layout.
-                            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                            // The default value is 'side-menu'
-                 
-                            // 'layout' => 'side-menu'
+                        return view('pages/users/pwd_admin_dashboard',$data, [
+                       
                         ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                         }
 
                         if ($userInfo->role == 'PWD EVALUATOR') {
                             $request->session()->put('LoggedUser', $userInfo->id);
                             $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                            return view('pages/pwd-evaluator-dashboard',$data, [
-                                // Specify the base layout.
-                                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                                // The default value is 'side-menu'
-                    
-                                // 'layout' => 'side-menu'
+                            return view('pages/users/pwd_evaluator_dashboard',$data, [
+                               
                             ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                             }
 
                             if ($userInfo->role == 'PWD APPROVER') {
                                 $request->session()->put('LoggedUser', $userInfo->id);
                                 $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                                return view('pages/pwd-approver-dashboard',$data, [
-                                    // Specify the base layout.
-                                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                                    // The default value is 'side-menu'
-                        
-                                    // 'layout' => 'side-menu'
+                                return view('pages/users/pwd_approver_dashboard',$data, [
+                                   
                                 ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                                 }
 
@@ -225,70 +235,48 @@ function login(Request $request)
 
                                     $request->session()->put('LoggedUser', $userInfo->id);
                                     $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                                    return view('pages/pwd-verifier-dashboard', $data,[
-                                        // Specify the base layout.
-                                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                                        // The default value is 'side-menu'
-                            
-                                        // 'layout' => 'side-menu'
+                                    return view('pages/users/pwd_verifier_dashboard', $data,[
+                                     
                                     ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                                     }
 
                         if ($userInfo->role == 'SOLO PARENT ADMIN') {
                             $request->session()->put('LoggedUser', $userInfo->id);
                             $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                            return view('pages/dashboard-overview-3', $data, [
-                                // Specify the base layout.
-                                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                                // The default value is 'side-menu'
-                    
-                                // 'layout' => 'side-menu'
+                            return view('pages/users/sp_admin_dashboard', $data, [
+                               
                             ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                             }
 
                             if ($userInfo->role == 'SOLO PARENT EVALUATOR') {
                                 $request->session()->put('LoggedUser', $userInfo->id);
                                 $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                                return view('pages/pwd-verifier-dashboard',$data, [
-                                    // Specify the base layout.
-                                    // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                                    // The default value is 'side-menu'
-                        
-                                    // 'layout' => 'side-menu'
+                                return view('pages/users/sp_evaluator_dashboard',$data, [
+                                   
                                 ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                                 }
 
                                 if ($userInfo->role == 'SOLO PARENT APPROVER') {
                                     $request->session()->put('LoggedUser', $userInfo->id);
                                     $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                                    return view('pages/pwd-approver-dashboard', $data,[
-                                        // Specify the base layout.
-                                        // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                                        // The default value is 'side-menu'
-                            
-                                        // 'layout' => 'side-menu'
+                                    return view('pages/users/sp_approver_dashboard', $data,[
+                                     
                                     ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                                     }
 
                                     if ($userInfo->role == 'SOLO PARENT VERIFIER') {
                                         $request->session()->put('LoggedUser', $userInfo->id);
                                         $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
-                                        return view('pages/pwd-verifier-dashboard', $data,[
-                                            // Specify the base layout.
-                                            // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                                            // The default value is 'side-menu'
-                                
-                                            // 'layout' => 'side-menu'
+                                        return view('pages/users/sp_verifier_dashboard', $data,[
+                                     
                                         ])->with(compact('citizencount','seniorcount','pwdcount','soloparentcount','pendingcitizencount','pendingseniorcount','pendingpwdcount','pendingsoloparentcount'));
                                         }
             
         
 
 
-            } else {
-                return back()->with('fail', 'Your account was deactivated ');
-            }
-        } else {
+        } 
+        else {
             return back()->with('fail', 'Incorrect password');
         }
     }

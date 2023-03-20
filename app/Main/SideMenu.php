@@ -445,179 +445,7 @@ class SideMenu
                 ]
             ],
             
-            'Assistance' => [
-                'icon' => 'cross',
-                'title' => 'Assistance',
-                'sub_menu' => [
-                    'Medical' => [
-                        'icon' => 'user',
-                        'title' => 'Medical',
-                        'sub_menu' => [
-                            'Evaluation' => [
-                                'icon' => '',
-                                'route_name' => 'citizenbenefitevaluation',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Evaluation'
-                            ],
-                             'Approval' => [
-                                'icon' => '',
-                                'route_name' => 'citizenbenefitapproval',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Approval'
-                            ],
-                            'Verify' => [
-                                'icon' => '',
-                                'route_name' => 'citizenbenefitverification',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Verify'
-                            ],
-                          
-                        ]
-                    ],
-                    'Financial' => [
-                        'icon' => 'user',
-                        'title' => 'Financial',
-                        'sub_menu' => [
-                            'Evaluation' => [
-                                'icon' => '',
-                                'route_name' => 'seniorbenefitevaluation',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Evaluation'
-                            ],
-                             'Approval' => [
-                                'icon' => '',
-                                'route_name' => 'seniorbenefitapproval',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Approval'
-                            ],
-                            'Verify' => [
-                                'icon' => '',
-                                'route_name' => 'seniorbenefitverification',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Verify'
-                            ],
-                          
-                        ]
-                    ],
-                    'Burial' => [
-                        'icon' => 'user',
-                        'title' => 'Burial',
-                        'sub_menu' => [
-                            'Evaluation' => [
-                                'icon' => '',
-                                'route_name' => 'soloparentbenefitevaluation',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Evaluation'
-                            ],
-                             'Approval' => [
-                                'icon' => '',
-                                'route_name' => 'soloparentbenefitapproval',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Approval'
-                            ],
-                            'Verify' => [
-                                'icon' => '',
-                                'route_name' => 'soloparentbenefitverification',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Verify'
-                            ],
-                          
-                        ]
-                    ],
-                    'Food' => [
-                        'icon' => 'user',
-                        'title' => 'Food',
-                        'sub_menu' => [
-                            'Evaluation' => [
-                                'icon' => '',
-                                'route_name' => 'pwdbenefitevaluation',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Evaluation'
-                            ],
-                             'Approval' => [
-                                'icon' => '',
-                                'route_name' => 'pwdbenefitapproval',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Approval'
-                            ],
-                            'Verify' => [
-                                'icon' => '',
-                                'route_name' => 'pwdbenefitverification',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Verify'
-                            ],
-                          
-                        ]
-                    ],
-
-                    'Declined' => [
-                        'icon' => 'shield-close',
-                        'title' => 'Declined',
-                        'sub_menu' => [
-                            'Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declinecitizenbenefit',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Citizen'
-                            ],
-                             'Senior Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declineseniorbenefit',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Senior Citizen'
-                            ],
-                            'Solo Parent' => [
-                                'icon' => '',
-                                'route_name' => 'declinesoloparentbenefit',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Solo Parent'
-                            ],
-                            'PWD' => [
-                                'icon' => '',
-                                'route_name' => 'declinepwdbenefit',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'PWD'
-                            ],
-                          
-                        ]
-                    ],
-                 
-
-                   
-                ]
-            ],
+         
             
             
             'accounts' => [
@@ -764,15 +592,15 @@ class SideMenu
                 ],
                 'title' => 'Benefits'              
             ],     
-            'assistance' => [
-                'icon' => 'cross',
-                'title' => 'Assistance',
-                'route_name' => 'assistance',
-                'params' => [
-                    'layout' => 'side-menu'
-                ],
-                'title' => 'Assistance'              
-            ], 
+            // 'assistance' => [
+            //     'icon' => 'cross',
+            //     'title' => 'Assistance',
+            //     'route_name' => 'assistance',
+            //     'params' => [
+            //         'layout' => 'side-menu'
+            //     ],
+            //     'title' => 'Assistance'              
+            // ], 
             'applications' => [
                 'icon' => 'files',
                 'title' => 'Applications',
@@ -786,7 +614,684 @@ class SideMenu
     }
     
 
+    public static function staffmenu()
+    {
+        return [
+            'dashboard' => [
+                'icon' => 'layout-dashboard',
+                'title' => 'Dashboard',
+                'route_name' => 'userdashboard',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Dashboard'              
+            ],      
+            'benefits' => [
+                'icon' => 'cross',
+                'title' => 'Benefits',
+                'route_name' => 'userbenefits',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Benefits'              
+            ],     
+      
+            'applications' => [
+                'icon' => 'files',
+                'title' => 'Applications',
+                'route_name' => 'userapplications',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Applications'              
+            ],             
+        ];
+    }
 
+
+    public static function citizenmenu()
+    {
+        return [
+            'dashboard' => [
+                'icon' => 'home',
+                'title' => 'Dashboard',
+                'route_name' => 'dashboard-overview-1',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Dashboard'
+               
+            ],
+            
+            'Applicants' => [
+                'icon' => 'inbox',
+                'title' => 'Applicants',
+                'sub_menu' => [
+                
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                            'Evaluation' => [
+                                'icon' => '',
+                                'route_name' => 'citizenevaluation',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Evaluation'
+                            ],
+                             'Approval' => [
+                                'icon' => '',
+                                'route_name' => 'citizenapproval',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Approval'
+                            ],
+                            'Verify' => [
+                                'icon' => '',
+                                'route_name' => 'citizenverification',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Verify'
+                            ],
+                          
+                        ]
+                    ],
+                   
+
+                    'Declined' => [
+                        'icon' => '',
+                        'title' => 'Declined',
+                        'sub_menu' => [
+                         
+                            'Solo Parent' => [
+                                'icon' => '',
+                                'route_name' => 'declinecitizen',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Solo Parent'
+                            ],
+                         
+                          
+                        ]
+                    ],
+                 
+
+                   
+                ]
+            ],
+
+            'Members' => [
+                'icon' => 'inbox',
+                'title' => 'Members',
+                'sub_menu' => [
+                 
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                            'Card' => [
+                                'icon' => '',
+                                'route_name' => 'cardcitizen',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Card'
+                            ],
+                           
+                          
+                        ]
+                    ],
+                
+
+                  
+                ]
+            ],
+
+            'Benefits' => [
+                'icon' => 'inbox',
+                'title' => 'Benefits',
+                'sub_menu' => [
+                 
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                            'Evaluation' => [
+                                'icon' => '',
+                                'route_name' => 'citizenbenefitevaluation',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Evaluation'
+                            ],
+                             'Approval' => [
+                                'icon' => '',
+                                'route_name' => 'citizenbenefitapproval',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Approval'
+                            ],
+                            'Verify' => [
+                                'icon' => '',
+                                'route_name' => 'citizenbenefitverification',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Verify'
+                            ],
+                          
+                        ]
+                    ],
+                 
+
+                    'Declined' => [
+                        'icon' => '',
+                        'title' => 'Declined',
+                        'sub_menu' => [
+                        
+                            'Citizen' => [
+                                'icon' => '',
+                                'route_name' => 'declinecitizenbenefit',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Citizen'
+                            ],
+                         
+                          
+                        ]
+                    ],
+                 
+
+                   
+                ]
+            ],
+            
+            
+            
+            'accounts' => [
+                'icon' => 'home',
+                
+                'route_name' => 'account',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Accounts'
+               
+            ],
+            
+          
+            // 'pages' => [
+            //     'icon' => 'layout',
+            //     'title' => 'Item',
+            //     'sub_menu' => [
+            //         'wizards' => [
+            //             'icon' => '',
+            //             'route_name' => 'tabulator',
+            //             'params' => [
+            //                 'layout' => 'side-menu'
+            //             ],
+            //             'title' => 'Profiling'
+                       
+                        
+            //         ],
+            //     ]
+            // ],
+            
+            'devider',
+            'components' => [
+                'icon' => 'inbox',
+                'title' => 'Settings',
+                'sub_menu' => [
+                    'Field Office' => [
+                        'icon' => '',
+                        'route_name' => 'fieldoffice',
+                        'params' => [
+                            'layout' => 'side-menu'
+                        ],
+                        'title' => 'Field Office'
+                    ],
+                   
+                ]
+            ],       
+        ];
+    }
+    public static function citizenapprovermenu()
+    {
+        return [
+            'dashboard' => [
+                'icon' => 'home',
+                'title' => 'Dashboard',
+                'route_name' => 'dashboard-overview-1',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Dashboard'
+               
+            ],
+            
+            'Applicants' => [
+                'icon' => 'inbox',
+                'title' => 'Applicants',
+                'sub_menu' => [
+                
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                             'Approval' => [
+                                'icon' => '',
+                                'route_name' => 'citizenapproval',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Approval'
+                            ],
+                          
+                          
+                        ]
+                    ],
+                   
+
+                    'Declined' => [
+                        'icon' => '',
+                        'title' => 'Declined',
+                        'sub_menu' => [
+                         
+                            'Citizen' => [
+                                'icon' => '',
+                                'route_name' => 'declinecitizen',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Citizen'
+                            ],
+                         
+                          
+                        ]
+                    ],
+                 
+
+                   
+                ]
+            ],
+
+            'Members' => [
+                'icon' => 'inbox',
+                'title' => 'Members',
+                'sub_menu' => [
+                 
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                            'Card' => [
+                                'icon' => '',
+                                'route_name' => 'cardcitizen',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Card'
+                            ],
+                           
+                          
+                        ]
+                    ],
+                
+
+                  
+                ]
+            ],
+
+            'Benefits' => [
+                'icon' => 'inbox',
+                'title' => 'Benefits',
+                'sub_menu' => [
+                 
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                            'Evaluation' => [
+                                'icon' => '',
+                                'route_name' => 'citizenbenefitevaluation',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Evaluation'
+                            ],
+                          
+                          
+                        ]
+                    ],
+                 
+
+                    'Declined' => [
+                        'icon' => '',
+                        'title' => 'Declined',
+                        'sub_menu' => [
+                        
+                            'Citizen' => [
+                                'icon' => '',
+                                'route_name' => 'declinecitizenbenefit',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Citizen'
+                            ],
+                         
+                          
+                        ]
+                    ],
+                 
+
+                   
+                ]
+            ],
+            
+            
+        
+    
+            
+                  
+           
+                
+            
+        ];
+    }
+
+    public static function citizenevaluatormenu()
+    {
+        return [
+            'dashboard' => [
+                'icon' => 'home',
+                'title' => 'Dashboard',
+                'route_name' => 'dashboard-overview-1',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Dashboard'
+               
+            ],
+            
+            'Applicants' => [
+                'icon' => 'inbox',
+                'title' => 'Applicants',
+                'sub_menu' => [
+                
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                            'Evaluation' => [
+                                'icon' => '',
+                                'route_name' => 'citizenevaluation',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Evaluation'
+                            ],
+                          
+                          
+                        ]
+                    ],
+                   
+
+                    'Declined' => [
+                        'icon' => '',
+                        'title' => 'Declined',
+                        'sub_menu' => [
+                         
+                            'Citizen' => [
+                                'icon' => '',
+                                'route_name' => 'declinecitizen',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Citizen'
+                            ],
+                         
+                          
+                        ]
+                    ],
+                 
+
+                   
+                ]
+            ],
+
+            'Members' => [
+                'icon' => 'inbox',
+                'title' => 'Members',
+                'sub_menu' => [
+                 
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                            'Card' => [
+                                'icon' => '',
+                                'route_name' => 'cardcitizen',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Card'
+                            ],
+                           
+                          
+                        ]
+                    ],
+                
+
+                  
+                ]
+            ],
+
+            'Benefits' => [
+                'icon' => 'inbox',
+                'title' => 'Benefits',
+                'sub_menu' => [
+                 
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                            'Evaluation' => [
+                                'icon' => '',
+                                'route_name' => 'citizenbenefitevaluation',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Evaluation'
+                            ],
+                            
+                         
+                        ]
+                    ],
+                 
+
+                    'Declined' => [
+                        'icon' => '',
+                        'title' => 'Declined',
+                        'sub_menu' => [
+                        
+                            'Citizen' => [
+                                'icon' => '',
+                                'route_name' => 'declinecitizenbenefit',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Citizen'
+                            ],
+                         
+                          
+                        ]
+                    ],
+                 
+
+                   
+                ]
+            ],
+            
+            
+            
+         
+            
+          
+       
+            
+        ];
+    }
+
+    public static function citizenverifiermenu()
+    {
+        return [
+            'dashboard' => [
+                'icon' => 'home',
+                'title' => 'Dashboard',
+                'route_name' => 'dashboard-overview-1',
+                'params' => [
+                    'layout' => 'side-menu'
+                ],
+                'title' => 'Dashboard'
+               
+            ],
+            
+            'Applicants' => [
+                'icon' => 'inbox',
+                'title' => 'Applicants',
+                'sub_menu' => [
+                
+                    'Citizent' => [
+                        'icon' => '',
+                        'title' => 'Citizent',
+                        'sub_menu' => [
+                         
+                            'Verify' => [
+                                'icon' => '',
+                                'route_name' => 'citizenverification',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Verify'
+                            ],
+                          
+                        ]
+                    ],
+                   
+
+                    'Declined' => [
+                        'icon' => '',
+                        'title' => 'Declined',
+                        'sub_menu' => [
+                         
+                            'Citizent' => [
+                                'icon' => '',
+                                'route_name' => 'declinecitizen',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Citizent'
+                            ],
+                         
+                          
+                        ]
+                    ],
+                 
+
+                   
+                ]
+            ],
+
+            'Members' => [
+                'icon' => 'inbox',
+                'title' => 'Members',
+                'sub_menu' => [
+                 
+                    'Solo Parent' => [
+                        'icon' => '',
+                        'title' => 'Solo Parent',
+                        'sub_menu' => [
+                            'Card' => [
+                                'icon' => '',
+                                'route_name' => 'cardcitizen',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Card'
+                            ],
+                           
+                          
+                        ]
+                    ],
+                
+
+                  
+                ]
+            ],
+
+            'Benefits' => [
+                'icon' => 'inbox',
+                'title' => 'Benefits',
+                'sub_menu' => [
+                 
+                    'Citizen' => [
+                        'icon' => '',
+                        'title' => 'Citizen',
+                        'sub_menu' => [
+                            'Verify' => [
+                                'icon' => '',
+                                'route_name' => 'citizenbenefitverification',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Verify'
+                            ],
+                          
+                        ]
+                    ],
+                 
+
+                    'Declined' => [
+                        'icon' => '',
+                        'title' => 'Declined',
+                        'sub_menu' => [
+                        
+                            'Citizen' => [
+                                'icon' => '',
+                                'route_name' => 'declinecitizenbenefit',
+                                'params' => [
+                                    'layout' => 'side-menu'
+                                ],
+                                'title' => 'Citizen'
+                            ],
+                         
+                          
+                        ]
+                    ],
+                 
+
+                   
+                ]
+            ],
+            
+            
+            
+        
+           
+                
+            
+        ];
+    }
+
+    
+
+    
     public static function soloparentmenu()
     {
         return [
@@ -2061,37 +2566,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Applicants',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                            'Evaluation' => [
-                                'icon' => '',
-                                'route_name' => 'citizenevaluation',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Evaluation'
-                            ],
-                             'Approval' => [
-                                'icon' => '',
-                                'route_name' => 'citizenapproval',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Approval'
-                            ],
-                            'Verify' => [
-                                'icon' => '',
-                                'route_name' => 'citizenverification',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Verify'
-                            ],
-                          
-                        ]
-                    ],
+                    
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2129,14 +2604,7 @@ class SideMenu
                         'icon' => '',
                         'title' => 'Declined',
                         'sub_menu' => [
-                            'Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declinecitizen',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Citizen'
-                            ],
+                          
                              'Senior Citizen' => [
                                 'icon' => '',
                                 'route_name' => 'declinesenior',
@@ -2159,22 +2627,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Members',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                            'Card' => [
-                                'icon' => '',
-                                'route_name' => 'cardcitizen',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Card'
-                            ],
-                            
-                          
-                        ]
-                    ],
+                 
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2200,37 +2653,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Benefits',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                            'Evaluation' => [
-                                'icon' => '',
-                                'route_name' => 'citizenbenefitevaluation',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Evaluation'
-                            ],
-                             'Approval' => [
-                                'icon' => '',
-                                'route_name' => 'citizenbenefitapproval',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Approval'
-                            ],
-                            'Verify' => [
-                                'icon' => '',
-                                'route_name' => 'citizenbenefitverification',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Verify'
-                            ],
-                          
-                        ]
-                    ],
+                
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2268,14 +2691,7 @@ class SideMenu
                         'icon' => '',
                         'title' => 'Declined',
                         'sub_menu' => [
-                            'Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declinecitizenbenefit',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Citizen'
-                            ],
+                          
                              'Senior Citizen' => [
                                 'icon' => '',
                                 'route_name' => 'declineseniorbenefit',
@@ -2342,23 +2758,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Applicants',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                           
-                             'Approval' => [
-                                'icon' => '',
-                                'route_name' => 'citizenapproval',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Approval'
-                            ],
-                          
-                          
-                        ]
-                    ],
+                   
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2382,14 +2782,7 @@ class SideMenu
                         'icon' => '',
                         'title' => 'Declined',
                         'sub_menu' => [
-                            'Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declinecitizen',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Citizen'
-                            ],
+                         
                              'Senior Citizen' => [
                                 'icon' => '',
                                 'route_name' => 'declinesenior',
@@ -2412,22 +2805,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Members',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                            'Card' => [
-                                'icon' => '',
-                                'route_name' => 'cardcitizen',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Card'
-                            ],
-                            
-                          
-                        ]
-                    ],
+                   
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2453,23 +2831,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Benefits',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                          
-                             'Approval' => [
-                                'icon' => '',
-                                'route_name' => 'citizenbenefitapproval',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Approval'
-                            ],
-                          
-                          
-                        ]
-                    ],
+                 
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2492,14 +2854,7 @@ class SideMenu
                         'icon' => '',
                         'title' => 'Declined',
                         'sub_menu' => [
-                            'Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declinecitizenbenefit',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Citizen'
-                            ],
+                         
                              'Senior Citizen' => [
                                 'icon' => '',
                                 'route_name' => 'declineseniorbenefit',
@@ -2549,21 +2904,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Applicants',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                            'Evaluation' => [
-                                'icon' => '',
-                                'route_name' => 'citizenevaluation',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Evaluation'
-                            ],
-                        
-                        ]
-                    ],
+                    
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2586,14 +2927,7 @@ class SideMenu
                         'icon' => '',
                         'title' => 'Declined',
                         'sub_menu' => [
-                            'Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declinecitizen',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Citizen'
-                            ],
+                            
                              'Senior Citizen' => [
                                 'icon' => '',
                                 'route_name' => 'declinesenior',
@@ -2616,22 +2950,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Members',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                            'Card' => [
-                                'icon' => '',
-                                'route_name' => 'cardcitizen',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Card'
-                            ],
-                            
-                          
-                        ]
-                    ],
+                 
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2657,22 +2976,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Benefits',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                            'Evaluation' => [
-                                'icon' => '',
-                                'route_name' => 'citizenbenefitevaluation',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Evaluation'
-                            ],
-                           
-                          
-                        ]
-                    ],
+                  
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2695,14 +2999,7 @@ class SideMenu
                         'icon' => '',
                         'title' => 'Declined',
                         'sub_menu' => [
-                            'Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declinecitizenbenefit',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Citizen'
-                            ],
+                           
                              'Senior Citizen' => [
                                 'icon' => '',
                                 'route_name' => 'declineseniorbenefit',
@@ -2751,22 +3048,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Applicants',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                          
-                            'Verify' => [
-                                'icon' => '',
-                                'route_name' => 'citizenverification',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Verify'
-                            ],
-                          
-                        ]
-                    ],
+                   
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2789,14 +3071,7 @@ class SideMenu
                         'icon' => '',
                         'title' => 'Declined',
                         'sub_menu' => [
-                            'Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declinecitizen',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Citizen'
-                            ],
+                           
                              'Senior Citizen' => [
                                 'icon' => '',
                                 'route_name' => 'declinesenior',
@@ -2819,22 +3094,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Members',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                            'Card' => [
-                                'icon' => '',
-                                'route_name' => 'cardcitizen',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Card'
-                            ],
-                            
-                          
-                        ]
-                    ],
+                   
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2860,22 +3120,7 @@ class SideMenu
                 'icon' => 'inbox',
                 'title' => 'Benefits',
                 'sub_menu' => [
-                    'Citizen' => [
-                        'icon' => '',
-                        'title' => 'Citizen',
-                        'sub_menu' => [
-                          
-                            'Verify' => [
-                                'icon' => '',
-                                'route_name' => 'citizenbenefitverification',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Verify'
-                            ],
-                          
-                        ]
-                    ],
+                  
                     'Senior' => [
                         'icon' => '',
                         'title' => 'Senior',
@@ -2898,14 +3143,7 @@ class SideMenu
                         'icon' => '',
                         'title' => 'Declined',
                         'sub_menu' => [
-                            'Citizen' => [
-                                'icon' => '',
-                                'route_name' => 'declinecitizenbenefit',
-                                'params' => [
-                                    'layout' => 'side-menu'
-                                ],
-                                'title' => 'Citizen'
-                            ],
+                          
                              'Senior Citizen' => [
                                 'icon' => '',
                                 'route_name' => 'declineseniorbenefit',

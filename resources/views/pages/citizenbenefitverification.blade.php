@@ -66,14 +66,14 @@
                                     <td id="clientid">{{$index + 1}}</td>
                                     <td>{{ $client->last_name}}, {{ $client->first_name}} {{ $client->middle_name}} {{ $client->extension_name}}</td>
                                     <td>{{$client->barangays->name}}
-                                    <td> @foreach($client->client_applications as  $clientapp)
+                                    <td> @foreach($client->benefit_applications as  $clientapp)
                                         {{$clientapp->application_reference_number}}
                                       @endforeach</td>
-                                      <td> @foreach($client->client_applications as  $clientapp)
+                                      <td> @foreach($client->benefit_applications as  $clientapp)
                                         {{$clientapp->application_date}}
                                       @endforeach</td>    
                                       <td id="filename"> 
-                                        {{$client->client_application_requirements[0]->filename}}
+                                        {{$client->benefit_application_requirements[0]->filename}}
                                       </td>
                                       <td id="filename">{{ $client->first_name}}</td>    
                                       <td id="filename">{{ $client->last_name}}</td>    
@@ -97,7 +97,7 @@
                                         <td id="filename">{{$client->occupations->occupation}}
                                         <td id="filename">{{$client->occupations->salary}}
                                         <td id="filename">{{$client->id}}
-                                        <td  id="filename"> @foreach($client->client_applications as  $clientapp)
+                                        <td  id="filename"> @foreach($client->benefit_applications as  $clientapp)
                                                         {{$clientapp->id}}
                                                       @endforeach</td>
                                         <td  id="filename">{{$client->client_schedules[0]->date}}</td>
@@ -609,12 +609,31 @@ session_start();
                 =  data[29];
                 
                 
+                $("#requirements").empty();
+               
+
+               var arrayfilename = new Array();
+               var filename  = data[29];
+            
+               arrayfilename = filename.split(',');
+              
+               for (let i = 0; i < arrayfilename.length-1; i++) {
+                   var file =  arrayfilename[i];
+                   var path =   file.substring(0,file.length - 5);
+           
+                   console.log(path);
+             
+                       $("#requirements").append($('<img id="picture" class="rounded-md">').attr("src","/images/"+path+"/"+file))
+                     
+                       
+                   }
+                       
                
             $('#editform').attr('action','/verifycitizenbenefit/' + data[27]+'/'+data[28]);
-            $('#userphoto').attr("src","/images/picture/"+data[5]);
-            $('#picture').attr("src","/images/picture/"+data[5]);
-            $('#birth').attr("src","/images/birth/"+data[5]);
-            $('#barangaycert').attr("src","/images/barangay/"+data[5]);
+            // $('#userphoto').attr("src","/images/picture/"+data[5]);
+            // $('#picture').attr("src","/images/picture/"+data[5]);
+            // $('#birth').attr("src","/images/birth/"+data[5]);
+            // $('#barangaycert').attr("src","/images/barangay/"+data[5]);
             $('#declineform').attr('action','/declinecitizenverificationbenefit/' + data[27]+'/'+data[28]);
            
         })

@@ -112,10 +112,10 @@
                         </div>
 
                         <div class="col-span-12">
-                            <label for="pos-form-1" class="form-label">Form Type</label>
+                            <label for="pos-form-1" class="form-label">Form Name</label>
                             <select id="form_type" name="form_type" type="text" class="form-select flex-1">
-                                <option value="0">Static</option>
-                                <option value="1">Dynamic</option>
+                                <option>Requirements</option>
+                                <option>Medicine</option>
                             </select>
                         </div>
          

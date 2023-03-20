@@ -109,9 +109,9 @@ class Client extends Model
         return $this->hasManyThrough(related:BenefitApplication::class, through:ClientCard::class);
     }
 
-    public function benefit_requirements()
+    public function benefit_application_requirements()
     {
-        return $this->hasManyThrough(related:BenefitRequirement::class, through:BenefitApplication::class);
+        return $this->hasManyThrough(related:BenefitApplicationRequirement::class, through:BenefitApplication::class);
     }
    
     

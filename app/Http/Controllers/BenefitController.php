@@ -39,6 +39,7 @@ class BenefitController extends Controller
         $benefitsave = new Benefit();
      
         $benefitsave->benefit_name = $request->input('name');
+        $benefitsave->form_name = $request->input('form_type');
         $benefitsave->save();
 
     

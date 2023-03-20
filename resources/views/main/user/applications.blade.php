@@ -58,10 +58,7 @@
                     
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center" >
-                            <button href="javascript:;" class="btn btn-outline-primary w-32 mr-1 edit" data-tw-toggle="modal" data-tw-target="#viewmodal">View</button>
-                            
-                    
-                                
+                                <a  href="{{ url('/user/viewapplication/'.$benefitapp->id.'/'.$benefitname->id) }}" class="btn btn-outline-success"  id='isActiveToggle'>View </a>
                             </div>
                         </td>
                         

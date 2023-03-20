@@ -22,7 +22,8 @@ class DeclineBenefitController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new rn0.
+     * esource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -99,7 +100,7 @@ class DeclineBenefitController extends Controller
         {
 
             DeclineBenefit::where('id',$applicationid)->where('client_type','=','Senior')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'Senior-Evaluation']);
-            BenefitApplication::where('id',$applicationid)->where('application_type','=','Senior')->update(['application_status'=>'EVALUATION-DECLINED']);
+            BenefitApplication::where('id',$applicationid)->where('client_type_id','=','1')->update(['application_status'=>'EVALUATION-DECLINED']);
             $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','Senior')->first();
       
             $declinedclientlogsave = new DeclinedBenefitLogs();
@@ -109,7 +110,7 @@ class DeclineBenefitController extends Controller
             $declinedclientlogsave->process_name= 'Senior-Evaluation';
             $declinedclientlogsave->decline_type =  $request->input('declinetype');
             $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-            $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+            $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
          
             $declinedclientlogsave->save();
 
@@ -129,7 +130,7 @@ class DeclineBenefitController extends Controller
         $declinedclientsave->process_name= 'Senior-Evaluation';
         $declinedclientsave->decline_type =  $request->input('declinetype');
         $declinedclientsave->decline_reason =  $request->input('declinereason');
-        $declinedclientsave->client_application_id = $applicationid;
+        $declinedclientsave->benefit_application_id = $applicationid;
      
         $declinedclientsave->save();
 
@@ -140,12 +141,12 @@ class DeclineBenefitController extends Controller
         $declinedclientlogsave->process_name= 'Senior-Evaluation';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
      
         $declinedclientlogsave->save();
 
 
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','Senior')->update(['application_status'=>'EVALUATION-DECLINED']);
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','1')->update(['application_status'=>'EVALUATION-DECLINED']);
 
 
        
@@ -174,8 +175,8 @@ class DeclineBenefitController extends Controller
         {
 
             DeclineBenefit::where('id',$applicationid)->where('client_type','=','Senior')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'Senior-Approval']);
-            BenefitApplication::where('id',$applicationid)->where('application_type','=','Senior')->update(['application_status'=>'APPROVAL-DECLINED']);
-            $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','Senior')->first();
+            BenefitApplication::where('id',$applicationid)->where('client_type_id','=','1')->update(['application_status'=>'APPROVAL-DECLINED']);
+            $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','Senior')->first();
       
             $declinedclientlogsave = new DeclinedBenefitLogs();
      
@@ -184,7 +185,7 @@ class DeclineBenefitController extends Controller
             $declinedclientlogsave->process_name= 'Senior-Evaluation';
             $declinedclientlogsave->decline_type =  $request->input('declinetype');
             $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-            $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+            $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
          
             $declinedclientlogsave->save();
 
@@ -204,7 +205,7 @@ class DeclineBenefitController extends Controller
         $declinedclientsave->process_name= 'Senior-Approval';
         $declinedclientsave->decline_type =  $request->input('declinetype');
         $declinedclientsave->decline_reason =  $request->input('declinereason');
-        $declinedclientsave->client_application_id = $applicationid;
+        $declinedclientsave->benefit_application_id = $applicationid;
      
         $declinedclientsave->save();
 
@@ -215,12 +216,12 @@ class DeclineBenefitController extends Controller
         $declinedclientlogsave->process_name= 'Senior-Approval';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
      
         $declinedclientlogsave->save();
 
 
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','Senior')->update(['application_status'=>'APPROVAL-DECLINED']);
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','1')->update(['application_status'=>'APPROVAL-DECLINED']);
 
 
        
@@ -248,8 +249,8 @@ class DeclineBenefitController extends Controller
         {
 
             DeclineBenefit::where('id',$applicationid)->where('client_type','=','Senior')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'Senior-Verification']);
-            BenefitApplication::where('id',$applicationid)->where('application_type','=','Senior')->update(['application_status'=>'VERIFICATION-DECLINED']);
-            $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','Senior')->first();
+            BenefitApplication::where('id',$applicationid)->where('client_type_id','=','1')->update(['application_status'=>'VERIFICATION-DECLINED']);
+            $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','Senior')->first();
       
             $declinedclientlogsave = new DeclinedBenefitLogs();
      
@@ -258,7 +259,7 @@ class DeclineBenefitController extends Controller
             $declinedclientlogsave->process_name= 'Senior-Evaluation';
             $declinedclientlogsave->decline_type =  $request->input('declinetype');
             $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-            $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+            $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
          
             $declinedclientlogsave->save();
 
@@ -276,7 +277,7 @@ class DeclineBenefitController extends Controller
         $declinedclientsave->process_name= 'Senior-Verification';
         $declinedclientsave->decline_type =  $request->input('declinetype');
         $declinedclientsave->decline_reason =  $request->input('declinereason');
-        $declinedclientsave->client_application_id = $applicationid;
+        $declinedclientsave->benefit_application_id = $applicationid;
      
         $declinedclientsave->save();
 
@@ -287,12 +288,12 @@ class DeclineBenefitController extends Controller
         $declinedclientlogsave->process_name= 'Senior-Verification';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
      
         $declinedclientlogsave->save();
 
 
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','Senior')->update(['application_status'=>'VERIFICATION-DECLINED']);
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','1')->update(['application_status'=>'VERIFICATION-DECLINED']);
 
 
        
@@ -308,7 +309,7 @@ class DeclineBenefitController extends Controller
 
 
  
-public function declinecitizenevaluation(Request $request,$clientid = null,$applicationid=null)
+public function declinecitizenevaluationbenefit(Request $request,$clientid = null,$applicationid=null)
 {
    
    
@@ -322,8 +323,8 @@ public function declinecitizenevaluation(Request $request,$clientid = null,$appl
     {
 
         DeclineBenefit::where('id',$applicationid)->where('client_type','=','Citizen')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'Citizen-Evaluation']);
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','Citizen')->update(['application_status'=>'EVALUATION-DECLINED']);
-        $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','Citizen')->first();
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'EVALUATION-DECLINED']);
+        $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','Citizen')->first();
       
         $declinedclientlogsave = new DeclinedBenefitLogs();
  
@@ -332,7 +333,7 @@ public function declinecitizenevaluation(Request $request,$clientid = null,$appl
         $declinedclientlogsave->process_name= 'Citizen-Evaluation';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
      
         $declinedclientlogsave->save();
 
@@ -351,7 +352,7 @@ public function declinecitizenevaluation(Request $request,$clientid = null,$appl
     $declinedclientsave->process_name= 'Citizen-Evaluation';
     $declinedclientsave->decline_type =  $request->input('declinetype');
     $declinedclientsave->decline_reason =  $request->input('declinereason');
-    $declinedclientsave->client_application_id = $applicationid;
+    $declinedclientsave->benefit_application_id = $applicationid;
  
     $declinedclientsave->save();
 
@@ -362,12 +363,12 @@ public function declinecitizenevaluation(Request $request,$clientid = null,$appl
     $declinedclientlogsave->process_name= 'Citizen-Evaluation';
     $declinedclientlogsave->decline_type =  $request->input('declinetype');
     $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-    $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+    $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
  
     $declinedclientlogsave->save();
 
 
-    BenefitApplication::where('id',$applicationid)->where('application_type','=','Citizen')->update(['application_status'=>'EVALUATION-DECLINED']);
+    BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'EVALUATION-DECLINED']);
 
 
    
@@ -396,8 +397,8 @@ public function declinecitizenapprovalbenefit(Request $request,$clientid = null,
 
         
         DeclineBenefit::where('id',$applicationid)->where('client_type','=','Citizen')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'Citizen-Approval']);
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','Citizen')->update(['application_status'=>'APPROVAL-DECLINED']);
-        $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','Citizen')->first();
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'APPROVAL-DECLINED']);
+        $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','Citizen')->first();
       
         $declinedclientlogsave = new DeclinedBenefitLogs();
  
@@ -406,7 +407,7 @@ public function declinecitizenapprovalbenefit(Request $request,$clientid = null,
         $declinedclientlogsave->process_name= 'Citizen-Approval';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
      
         $declinedclientlogsave->save();
 
@@ -425,7 +426,7 @@ public function declinecitizenapprovalbenefit(Request $request,$clientid = null,
     $declinedclientsave->process_name= 'Citizen-Approval';
     $declinedclientsave->decline_type =  $request->input('declinetype');
     $declinedclientsave->decline_reason =  $request->input('declinereason');
-    $declinedclientsave->client_application_id = $applicationid;
+    $declinedclientsave->benefit_application_id = $applicationid;
  
     $declinedclientsave->save();
 
@@ -436,12 +437,12 @@ public function declinecitizenapprovalbenefit(Request $request,$clientid = null,
     $declinedclientlogsave->process_name= 'Citizen-Approval';
     $declinedclientlogsave->decline_type =  $request->input('declinetype');
     $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-    $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+    $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
  
     $declinedclientlogsave->save();
 
 
-    BenefitApplication::where('id',$applicationid)->where('application_type','=','Citizen')->update(['application_status'=>'APPROVAL-DECLINED']);
+    BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'APPROVAL-DECLINED']);
 
 
    
@@ -469,8 +470,8 @@ public function declinecitizenverificationbenefit(Request $request,$clientid = n
     {
 
         DeclineBenefit::where('id',$applicationid)->where('client_type','=','Citizen')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'Citizen-Verification']);
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','Citizen')->update(['application_status'=>'VERIFICATION-DECLINED']);
-        $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','Citizen')->first();
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'VERIFICATION-DECLINED']);
+        $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','Citizen')->first();
       
         $declinedclientlogsave = new DeclinedBenefitLogs();
  
@@ -479,7 +480,7 @@ public function declinecitizenverificationbenefit(Request $request,$clientid = n
         $declinedclientlogsave->process_name= 'Citizen-Evaluation';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
      
         $declinedclientlogsave->save();
 
@@ -498,7 +499,7 @@ public function declinecitizenverificationbenefit(Request $request,$clientid = n
     $declinedclientsave->process_name= 'Citizen-Verification';
     $declinedclientsave->decline_type =  $request->input('declinetype');
     $declinedclientsave->decline_reason =  $request->input('declinereason');
-    $declinedclientsave->client_application_id = $applicationid;
+    $declinedclientsave->benefit_application_id = $applicationid;
  
     $declinedclientsave->save();
 
@@ -509,12 +510,12 @@ public function declinecitizenverificationbenefit(Request $request,$clientid = n
     $declinedclientlogsave->process_name= 'Citizen-Verification';
     $declinedclientlogsave->decline_type =  $request->input('declinetype');
     $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-    $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+    $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
  
     $declinedclientlogsave->save();
 
 
-    DeclineBenefit::where('id',$applicationid)->where('application_type','=','Citizen')->update(['application_status'=>'VERIFICATION-DECLINED']);
+    BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'VERIFICATION-DECLINED']);
 
 
    
@@ -542,8 +543,8 @@ public function declinepwdevaluationbenefit(Request $request,$clientid = null,$a
     {
 
         DeclineBenefit::where('id',$applicationid)->where('client_type','=','PWD')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'PWD-Evaluation']);
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','PWD')->update(['application_status'=>'EVALUATION-DECLINED']);
-        $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','PWD')->first();
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','2')->update(['application_status'=>'EVALUATION-DECLINED']);
+        $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','PWD')->first();
       
         $declinedclientlogsave = new DeclinedBenefitLogs();
  
@@ -552,7 +553,7 @@ public function declinepwdevaluationbenefit(Request $request,$clientid = null,$a
         $declinedclientlogsave->process_name= 'PWD-Evaluation';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
      
         $declinedclientlogsave->save();
 
@@ -571,7 +572,7 @@ public function declinepwdevaluationbenefit(Request $request,$clientid = null,$a
     $declinedclientsave->process_name= 'PWD-Evaluation';
     $declinedclientsave->decline_type =  $request->input('declinetype');
     $declinedclientsave->decline_reason =  $request->input('declinereason');
-    $declinedclientsave->client_application_id = $applicationid;
+    $declinedclientsave->benefit_application_id = $applicationid;
  
     $declinedclientsave->save();
 
@@ -582,12 +583,12 @@ public function declinepwdevaluationbenefit(Request $request,$clientid = null,$a
     $declinedclientlogsave->process_name= 'PWD-Evaluation';
     $declinedclientlogsave->decline_type =  $request->input('declinetype');
     $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-    $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+    $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
  
     $declinedclientlogsave->save();
 
 
-    BenefitApplication::where('id',$applicationid)->where('application_type','=','PWD')->update(['application_status'=>'EVALUATION-DECLINED']);
+    BenefitApplication::where('id',$applicationid)->where('client_type_id','=','2')->update(['application_status'=>'EVALUATION-DECLINED']);
 
 
    
@@ -613,8 +614,8 @@ public function declinepwdapprovalbenefit(Request $request,$clientid = null,$app
     {
 
         DeclineBenefit::where('id',$applicationid)->where('client_type','=','PWD')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'PWD-Approval']);
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','PWD')->update(['application_status'=>'APPROVAL-DECLINED']);
-        $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','PWD')->first();
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','2')->update(['application_status'=>'APPROVAL-DECLINED']);
+        $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','PWD')->first();
         $declinedclientlogsave = new DeclinedBenefitLogs();
  
     
@@ -622,7 +623,7 @@ public function declinepwdapprovalbenefit(Request $request,$clientid = null,$app
         $declinedclientlogsave->process_name= 'PWD-Evaluation';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
      
         $declinedclientlogsave->save();
 
@@ -642,7 +643,7 @@ public function declinepwdapprovalbenefit(Request $request,$clientid = null,$app
     $declinedclientsave->process_name= 'PWD-Evaluation';
     $declinedclientsave->decline_type =  $request->input('declinetype');
     $declinedclientsave->decline_reason =  $request->input('declinereason');
-    $declinedclientsave->client_application_id = $applicationid;
+    $declinedclientsave->benefit_application_id = $applicationid;
  
     $declinedclientsave->save();
 
@@ -653,12 +654,12 @@ public function declinepwdapprovalbenefit(Request $request,$clientid = null,$app
     $declinedclientlogsave->process_name= 'PWD-Evaluation';
     $declinedclientlogsave->decline_type =  $request->input('declinetype');
     $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-    $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+    $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
  
     $declinedclientlogsave->save();
 
 
-    BenefitApplication::where('id',$applicationid)->where('application_type','=','PWD')->update(['application_status'=>'APPROVAL-DECLINED']);
+    BenefitApplication::where('id',$applicationid)->where('client_type_id','=','2')->update(['application_status'=>'APPROVAL-DECLINED']);
 
 
    
@@ -684,8 +685,8 @@ public function declinepwdverificationbenefit(Request $request,$clientid = null,
     {
 
         DeclineBenefit::where('id',$applicationid)->where('client_type','=','PWD')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'PWD-Verification']);
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','PWD')->update(['application_status'=>'VERIFICATION-DECLINED']);
-        $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','PWD')->first();
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','2')->update(['application_status'=>'VERIFICATION-DECLINED']);
+        $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','PWD')->first();
         $declinedclientlogsave = new DeclinedBenefitLogs();
  
     
@@ -693,7 +694,7 @@ public function declinepwdverificationbenefit(Request $request,$clientid = null,
         $declinedclientlogsave->process_name= 'PWD-Evaluation';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
      
         $declinedclientlogsave->save();
 
@@ -713,7 +714,7 @@ public function declinepwdverificationbenefit(Request $request,$clientid = null,
     $declinedclientsave->process_name= 'PWD-Evaluation';
     $declinedclientsave->decline_type =  $request->input('declinetype');
     $declinedclientsave->decline_reason =  $request->input('declinereason');
-    $declinedclientsave->client_application_id = $applicationid;
+    $declinedclientsave->benefit_application_id = $applicationid;
  
     $declinedclientsave->save();
 
@@ -724,12 +725,12 @@ public function declinepwdverificationbenefit(Request $request,$clientid = null,
     $declinedclientlogsave->process_name= 'PWD-Evaluation';
     $declinedclientlogsave->decline_type =  $request->input('declinetype');
     $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-    $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+    $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
  
     $declinedclientlogsave->save();
 
 
-    BenefitApplication::where('id',$applicationid)->where('application_type','=','PWD')->update(['application_status'=>'VERIFICATION-DECLINED']);
+    BenefitApplication::where('id',$applicationid)->where('client_type_id','=','2')->update(['application_status'=>'VERIFICATION-DECLINED']);
 
 
    
@@ -759,8 +760,8 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
         {
 
             DeclineBenefit::where('id',$applicationid)->where('client_type','=','Solo Parent')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'Solo Parent-Evaluation']);
-            BenefitApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'EVALUATION-DECLINED']);
-            $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','Solo Parent')->first();
+            BenefitApplication::where('id',$applicationid)->where('client_type_id','=','3')->update(['application_status'=>'EVALUATION-DECLINED']);
+            $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','Solo Parent')->first();
             $declinedclientlogsave = new DeclinedBenefitLogs();
      
         
@@ -768,7 +769,7 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
             $declinedclientlogsave->process_name= 'Solo Parent-Evaluation';
             $declinedclientlogsave->decline_type =  $request->input('declinetype');
             $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-            $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+            $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
          
             $declinedclientlogsave->save();
 
@@ -787,7 +788,7 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
         $declinedclientsave->process_name= 'Solo Parent-Evaluation';
         $declinedclientsave->decline_type =  $request->input('declinetype');
         $declinedclientsave->decline_reason =  $request->input('declinereason');
-        $declinedclientsave->client_application_id = $applicationid;
+        $declinedclientsave->benefit_application_id = $applicationid;
      
         $declinedclientsave->save();
 
@@ -798,12 +799,12 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
         $declinedclientlogsave->process_name= 'Solo Parent-Evaluation';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
      
         $declinedclientlogsave->save();
 
 
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'EVALUATION-DECLINED']);
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','3')->update(['application_status'=>'EVALUATION-DECLINED']);
 
 
        
@@ -832,8 +833,8 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
         {
 
             DeclineBenefit::where('id',$applicationid)->where('client_type','=','Solo Parent')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'Solo Parent-Approval']);
-            BenefitApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'APPROVAL-DECLINED']);
-            $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','Solo Parent')->first();
+            BenefitApplication::where('id',$applicationid)->where('client_type_id','=','3')->update(['application_status'=>'APPROVAL-DECLINED']);
+            $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','Solo Parent')->first();
             $declinedclientlogsave = new DeclinedBenefitLogs();
      
         
@@ -841,7 +842,7 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
             $declinedclientlogsave->process_name= 'Solo Parent-Evaluation';
             $declinedclientlogsave->decline_type =  $request->input('declinetype');
             $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-            $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+            $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
          
             $declinedclientlogsave->save();
 
@@ -861,7 +862,7 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
         $declinedclientsave->process_name= 'Solo Parent-Evaluation';
         $declinedclientsave->decline_type =  $request->input('declinetype');
         $declinedclientsave->decline_reason =  $request->input('declinereason');
-        $declinedclientsave->client_application_id = $applicationid;
+        $declinedclientsave->benefit_application_id = $applicationid;
      
         $declinedclientsave->save();
 
@@ -872,12 +873,12 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
         $declinedclientlogsave->process_name= 'Solo Parent-Evaluation';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
      
         $declinedclientlogsave->save();
 
 
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'APPROVAL-DECLINED']);
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'APPROVAL-DECLINED']);
 
 
        
@@ -905,8 +906,8 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
         {
 
             DeclineBenefit::where('id',$applicationid)->where('client_type','=','Solo Parent')->update(['decline_type' => $request->input('declinetype'),'decline_reason' => $request->input('declinereason'),'process_name' => 'Solo Parent-Verification']);
-            BenefitApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'VERIFICATION-DECLINED']);
-            $declinedclientid=DeclineBenefit::where('client_application_id',$applicationid)->where('client_type','=','Solo Parent')->first();
+            BenefitApplication::where('id',$applicationid)->where('client_type_id','=','3')->update(['application_status'=>'VERIFICATION-DECLINED']);
+            $declinedclientid=DeclineBenefit::where('benefit_application_id',$applicationid)->where('client_type','=','Solo Parent')->first();
             $declinedclientlogsave = new DeclinedBenefitLogs();
      
         
@@ -914,7 +915,7 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
             $declinedclientlogsave->process_name= 'Solo Parent-Evaluation';
             $declinedclientlogsave->decline_type =  $request->input('declinetype');
             $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-            $declinedclientlogsave->declined_client_id = $declinedclientid->id;
+            $declinedclientlogsave->declined_benefit_id = $declinedclientid->id;
          
             $declinedclientlogsave->save();
 
@@ -934,7 +935,7 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
         $declinedclientsave->process_name= 'Solo Parent-Evaluation';
         $declinedclientsave->decline_type =  $request->input('declinetype');
         $declinedclientsave->decline_reason =  $request->input('declinereason');
-        $declinedclientsave->client_application_id = $applicationid;
+        $declinedclientsave->benefit_application_id = $applicationid;
      
         $declinedclientsave->save();
 
@@ -945,12 +946,12 @@ public function declinesoloparentevaluationbenefit(Request $request,$clientid = 
         $declinedclientlogsave->process_name= 'Solo Parent-Evaluation';
         $declinedclientlogsave->decline_type =  $request->input('declinetype');
         $declinedclientlogsave->decline_reason =  $request->input('declinereason');
-        $declinedclientlogsave->declined_client_id = $declinedclientsave->id;
+        $declinedclientlogsave->declined_benefit_id = $declinedclientsave->id;
      
         $declinedclientlogsave->save();
 
 
-        BenefitApplication::where('id',$applicationid)->where('application_type','=','Solo Parent')->update(['application_status'=>'VERIFICATION-DECLINED']);
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','3')->update(['application_status'=>'VERIFICATION-DECLINED']);
 
 
        

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->foreign('client_card_id')->references('id')->on('client_cards')->onDelete('cascade');
             $table->unsignedBigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            $table->unsignedBigInteger('client_type')->unsigned();
+            $table->unsignedBigInteger('client_type_id')->unsigned();
             $table->foreign('client_type')->references('id')->on('client_types')->onDelete('cascade');
             $table->unsignedBigInteger('benefit_id')->unsigned();
             $table->foreign('benefit_id')->references('id')->on('benefits')->onDelete('cascade');

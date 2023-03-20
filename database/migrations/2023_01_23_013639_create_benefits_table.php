@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('benefit_name')->nullable();
             $table->string('benefit_type')->nullable();
             $table->string('validity')->nullable();
+            $table->string('form_name')->nullable();
             $table->timestamps();
         });
     }

@@ -104,14 +104,14 @@
                                     <td id="clientid">{{$index + 1}}</td>
                                     <td>{{ $client->last_name}}, {{ $client->first_name}} {{ $client->middle_name}} {{ $client->extension_name}}</td>
                                     <td>{{$client->barangays->name}}
-                                    <td> @foreach($client->client_applications as  $clientapp)
+                                    <td> @foreach($client->benefit_applications as  $clientapp)
                                         {{$clientapp->application_reference_number}}
                                       @endforeach</td>
-                                      <td> @foreach($client->client_applications as  $clientapp)
+                                      <td> @foreach($client->benefit_applications as  $clientapp)
                                         {{$clientapp->application_date}}
                                       @endforeach</td>    
                                       <td id="filename"> 
-                                        {{$client->client_application_requirements[0]->filename}}
+                                        {{$client->benefit_application_requirements[0]->filename}}
                                       </td>
                                       <td id="filename">{{ $client->first_name}}</td>    
                                       <td id="filename">{{ $client->last_name}}</td>    
@@ -136,7 +136,7 @@
                                       <td id="filename">{{$client->occupations->salary}}
                                       <td id="filename">{{$client->id}}
                                              
-                                        <td  id="filename"> @foreach($client->client_applications as  $clientapp)
+                                        <td  id="filename"> @foreach($client->benefit_applications as  $clientapp)
                                         {{$clientapp->id}}
                                         @endforeach</td>
                                         <td id="filename"> @foreach($client->family_compositions as  $family){{$family->first_name}},@endforeach</td>

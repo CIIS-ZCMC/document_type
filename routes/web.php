@@ -13,6 +13,7 @@ use App\Http\Controllers\FieldOfficeController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DeclineBenefitController;
 use App\Http\Controllers\ClientBenefitController;
 use App\Http\Controllers\MedicalAssistanceRequirementController;
 use App\Models\BenefitRequirement;
@@ -147,7 +148,7 @@ Route::post('/createongoingsoloparent', [ClientController::class, 'createongoing
 Route::match(['get', 'post'], 'admin/setschedule/{id}', [ClientController::class, 'storeregisteredsenior']);
 
 
-Route::match(['get', 'post'], '/user/storeuserbenefitapplication/{userid}/{clienttype}/{benefitid}',[BenefitApplicationController::class, 'storebenefitapplication']);
+Route::match(['get', 'post'], '/user/storeuserbenefitapplication/{userid}/{clienttype}/{benefitid}/{cardid}',[BenefitApplicationController::class, 'storebenefitapplication']);
 
 
 Route::controller(AuthController::class)->middleware('loggedin')->group(function() {
@@ -166,12 +167,17 @@ Route::middleware('isLogged')->group(function() {
         Route::get('/userdashboard', 'userdashboard')->name('userdashboard');
         Route::get('/userbenefits', 'userbenefits')->name('userbenefits');
         Route::get('/assistance', 'assistance')->name('assistance');
+        Route::get('/userapplications', 'userapplications')->name('userapplications');
+        Route::get('/user/viewapplication/{benappid}/{benid}', 'viewapplication')->name('viewapplication');
 
-        Route::match(['get', 'post'], '/user/applybenefit/{id}/{userid}/{clienttype}','applybenefit');
+        Route::get('/staffdashboard', 'staffdashboard')->name('staffdashboard');
+        Route::get('/userbenefits', 'userbenefits')->name('userbenefits');
+        Route::get('/assistance', 'assistance')->name('assistance');
+
+        Route::match(['get', 'post'], '/user/applybenefit/{id}/{userid}/{clienttype}/{cardid}','applybenefit');
         Route::match(['get', 'post'], '/benefits/benefitrequirements/{id}','benefitrequirements');
         Route::match(['get', 'post'], '/benefits/clientbenefits/{id}','clientbenefits');
       
-        Route::get('/userapplications', 'userapplications')->name('userapplications');
 
         Route::get('/user-profile', 'profile')->name('profile');
 
@@ -296,7 +302,7 @@ Route::middleware('isLogged')->group(function() {
     Route::post('/item/add', [ItemController::class, 'store']);
     Route::post('/fo/add', [FieldOfficeController::class, 'store']);
     Route::post('/requirements/add', [RequirementController::class, 'store']);
-    Route::post('/benefits/add', [BenefitController::class, '   store']);
+    Route::post('/benefits/add', [BenefitController::class, 'store']);
     Route::post('/addbenefitrequirements/{id}', [BenefitRequirementController::class, 'store']);
     Route::post('/addclientbenefits/{id}', [ClientBenefitController::class, 'store']);
     Route::match(['get', 'post'], '/medical/apply/{userid}', [MedicalAssistanceRequirementController::class, 'applymedical']);
@@ -363,19 +369,20 @@ Route::middleware('isLogged')->group(function() {
     Route::post('/verifypwdbenefit/{clientid}/{applicationid}', [BenefitApplicationController::class, 'verifypwdbenefit']);
 
     Route::post('/declineseniorevaluationbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declineseniorevaluationbenefit']);
-    Route::post('/declineseniorapprovalbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declineseniorapprovalbenefit']);
+    Route::post('/declineseniorapprovalbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 
+    'declineseniorapprovalbenefit']);
     Route::post('/declineseniorverificationbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declineseniorverificationbenefit']);
 
-    Route::post('/declinecitizenevaluationbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declinecitizenevaluationbenefit']);
-    Route::post('/declinecitizenapprovalbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declinecitizenapprovalbenefit']);
-    Route::post('/declinecitizenverificationbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declinecitizenverificationbenefit']);
+    Route::post('/declinecitizenevaluationbenefit/{clientid}/{applicationid}', [DeclineBenefitController::class, 'declinecitizenevaluationbenefit']);
+    Route::post('/declinecitizenapprovalbenefit/{clientid}/{applicationid}', [DeclineBenefitController::class, 'declinecitizenapprovalbenefit']);
+    Route::post('/declinecitizenverificationbenefit/{clientid}/{applicationid}', [DeclineBenefitController::class, 'declinecitizenverificationbenefit']);
     
-    Route::post('/declinepwdevaluationbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declinepwdevaluationbenefit']);
-    Route::post('/declinepwdapprovalbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declinepwdapprovalbenefit']);
-    Route::post('/declinepwdverificationbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declinepwdverificationbenefit']);
+    Route::post('/declinepwdevaluationbenefit/{clientid}/{applicationid}', [DeclineBenefitController::class, 'declinepwdevaluationbenefit']);
+    Route::post('/declinepwdapprovalbenefit/{clientid}/{applicationid}', [DeclineBenefitController::class, 'declinepwdapprovalbenefit']);
+    Route::post('/declinepwdverificationbenefit/{clientid}/{applicationid}', [DeclineBenefitController::class, 'declinepwdverificationbenefit']);
     
-    Route::post('/declinesoloparentevaluationbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declinesoloparentevaluationbenefit']);
-    Route::post('/declinesoloparentapprovalbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declinesoloparentapprovalbenefit']);
-    Route::post('/declinesoloparentverificationbenefit/{clientid}/{applicationid}', [DeclineBenefit::class, 'declinesoloparentverificationbenefit']);
+    Route::post('/declinesoloparentevaluationbenefit/{clientid}/{applicationid}', [DeclineBenefitController::class, 'declinesoloparentevaluationbenefit']);
+    Route::post('/declinesoloparentapprovalbenefit/{clientid}/{applicationid}', [DeclineBenefitController::class, 'declinesoloparentapprovalbenefit']);
+    Route::post('/declinesoloparentverificationbenefit/{clientid}/{applicationid}', [DeclineBenefitController::class, 'declinesoloparentverificationbenefit']);
     Route::post('/testemail/{id}/{name}', [ClientController::class, 'testemail']);
 });

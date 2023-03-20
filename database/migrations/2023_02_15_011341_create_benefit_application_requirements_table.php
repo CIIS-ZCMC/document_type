@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('filename');
             $table->unsignedBigInteger('client_id')->unsigned();
+            $table->string('folder');
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->unsignedBigInteger('benefit_application_id')->unsigned();
             $table->foreign('benefit_application_id')->references('id')->on('benefit_applications')->onDelete('cascade');

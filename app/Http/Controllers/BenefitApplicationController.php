@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Session;
 use App\Models\ClientType;
 use App\Models\ClientBenefit;
 use App\Models\Benefit;
-
+use App\Models\BenefitSchedule;
 use App\Models\ClientApplication;
 use App\Models\BenefitApplication;
 use App\Models\BenefitApplicationLog;
-
+use App\Mail\CardMail;
 use App\Models\CommunityInvolvement;
 use App\Models\DisabilityCause;
 use App\Models\DisabilityType;
@@ -28,7 +28,7 @@ use App\Models\Organization;
 use App\Models\Physician;
 use App\Models\SeminarTraining;
 use App\Models\User;
-
+use Illuminate\Support\Str;
 use App\Models\BenefitRequirement;
 use App\Models\ClientSchedule;
 use Illuminate\Http\Request;
@@ -37,7 +37,8 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Mail;
-
+use App\Mail\ScheduleMail;
+use Illuminate\Support\Facades\Hash;
 class BenefitApplicationController extends Controller
 {
      public function applybenefitform()
@@ -47,7 +48,7 @@ class BenefitApplicationController extends Controller
         
              ])->with(compact('barangaylist'));
      }
-     public function storebenefitapplication(Request $request,$userid=null,$clienttype=null,$id=null)
+     public function storebenefitapplication(Request $request,$userid=null,$clienttype=null,$id=null,$cardid=null)
    
      {
         $application_date= now()->toDateString('Ymd');
@@ -55,14 +56,24 @@ class BenefitApplicationController extends Controller
         $generator = Helper::IDGenerator(new BenefitApplication,'application_reference_number',9,'BID-'.$yearOnly,$yearOnly);
         $applicationsave = new BenefitApplication();
         $applicationsave->application_date= now()->toDateString('Y-m-d');
-        $applicationsave->client_type = $clienttype;
+        $applicationsave->client_type_id = $clienttype;
         $applicationsave->application_Status = 'Applied';   
         $applicationsave->application_reference_number =$generator;
         $applicationsave->application_process = 'Online-Ongoing';
         $applicationsave->client_id =$userid;
         $applicationsave->benefit_id =$id;
-        $applicationsave->client_card_id =$id;
+        $applicationsave->client_card_id =$cardid;
         $applicationsave->save();
+
+        $applicationlogsave = new BenefitApplicationLog();
+     
+        $applicationlogsave->process_name = 'Evaluation-Approved';
+        $applicationlogsave->date= now()->toDateString('Y-m-d');
+        $applicationlogsave->user_id = $userid;
+        $applicationlogsave->benefit_application_id = $applicationsave->id;
+     
+        $applicationlogsave->save();
+
 
         $image =  $request->file('benefitrequirement');
         $reqname =  $request->input('reqname');
@@ -96,7 +107,137 @@ class BenefitApplicationController extends Controller
          
         
         }
+     
+        
+        session_start();
+        $_SESSION['success'] ="success";
+       
+     
+        return redirect()->back()->with('success');  
+     
+ 
+        exit;
      }
+
+     public function evaluatecitizenbenefit($clientid = null,$applicationid=null)
+    {
+       
+       
+        $applicationlogsave = new BenefitApplicationLog();
+     
+        $applicationlogsave->process_name = 'Evaluation-Approved';
+        $applicationlogsave->date= now()->toDateString('Y-m-d');
+        $applicationlogsave->user_id = $clientid;
+        $applicationlogsave->benefit_application_id = $applicationid;
+     
+        $applicationlogsave->save();
+
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'EVALUATED-APPROVED']);
+
+
+     
+        session_start();
+        $_SESSION['success'] ="success";
+      
+     
+        
+        return redirect()->back()->with('success');  
+        exit;
+    }
+    
+
+    public function approvecitizenbenefit  (Request $request,$clientid = null,$applicationid=null)
+    {
+       
+        $schedule = Carbon::parse($request->input('schedule'))->format('Y-m-d');
+        $applicationlogsave = new BenefitApplicationLog();
+     
+        $applicationlogsave->process_name = 'Approval-Approved';
+        $applicationlogsave->date= now()->toDateString('Y-m-d');
+        $applicationlogsave->user_id = $clientid;
+        $applicationlogsave->benefit_application_id = $applicationid;
+     
+        $applicationlogsave->save();
+
+        $clientschedulesave = new BenefitSchedule();
+     
+        $clientschedulesave->date = $schedule;
+        $clientschedulesave->date_created= now()->toDateString('Y-m-d');;
+        $clientschedulesave->benefit_application_id = $applicationid;
+     
+        $clientschedulesave->save();
+
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'APPROVAL-APPROVED']);
+
+        $clientdetails=Client::where('id',$clientid)->first();
+
+        
+        $details = [
+            'title' => 'Mail from City Social Welfare and Development',
+            'body' => 'You are scheduled on'
+
+        ];
+        Mail::to($clientdetails->email_address)->send(new ScheduleMail($details, $clientschedulesave, $clientdetails));
+      
+       
+        session_start();
+        $_SESSION['success'] ="success";
+      
+     
+        
+        return redirect()->back()->with('success');  
+        exit;
+    }
+
+
+    public function verifycitizenbenefit(Request $request,$clientid = null,$applicationid=null)
+    {
+       
+       
+        $hashed_random_password = Str::random(8);
+        $applicationlogsave = new BenefitApplicationLog();
+      
+        $applicationlogsave->process_name = 'Verification-Approved';
+        $applicationlogsave->date= now()->toDateString('Y-m-d');
+        $applicationlogsave->user_id = $clientid;
+        $applicationlogsave->benefit_application_id = $applicationid;
+     
+        $applicationlogsave->save();
+
+        $application_date= now()->toDateString('Ymd');
+        $yearOnly=substr($application_date,0,4);
+        $generator = Helper::IDGenerator(new ClientCard,'card_number',9,'RCID-'.$yearOnly,$yearOnly);
+      
+
+   
+
+        // $clientuser = new ();
+
+
+  
+
+
+        BenefitApplication::where('id',$applicationid)->where('client_type_id','=','4')->update(['application_status'=>'VERIFY-RELEASED','application_process'=>'Online-Registered']);
+
+        $clientdetails=Client::where('id',$clientid)->first();
+
+        
+        $details = [
+            'title' => 'Mail from City Social Welfare and Development',
+            'body' => 'You are scheduled on'
+
+        ];
+      
+   
+        session_start();
+        $_SESSION['success'] ="success";
+      
+     
+        
+        return redirect()->back()->with('success');  
+        exit;
+    }
+
      public function userloginpage(Request $request)
      {  
        
@@ -123,21 +264,7 @@ class BenefitApplicationController extends Controller
                     $data = ['LoggedUserInfo' => User::where('id', '=', session('LoggedUser'))->first()];
 
                     $clientcard= ClientCard::where('client_id', '=', $userInfo->id)->get();
-                    // $card_type= $clientcard->card_type;
-                    // foreach($card_type  as $key => $value) {     
-                    //     if($card_type!=null) 
-                    //     {
-                    //       $card_id=ClientType::where('name','=',$card_type);
-                    //       $clientbenefits =ClientBenefit::where('client_type_id','=',$card_id->id);
-                    //       foreach($clientbenefits  as $key => $value) {  
-                    //             $benefitid=Benefit::where('id','=',$clientbenefits->benefit_id);
-
-                    //       }
-
-
-                    
-                    //     }
-                    //   }
+                 
                     Session::put('userid', $userInfo->id);
                     return view('main/user/dashboard', $data,[
                     ])->with(compact('userInfo'));
@@ -1302,19 +1429,12 @@ class BenefitApplicationController extends Controller
            
          
             return view('main/landing', [
-                // Specify the base layout.
-                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                // The default value is 'side-menu'
-    
-                // 'layout' => 'side-menu'
+             
             ])->with('success');
          
             
             exit;
-            // return view('main/landing', [
-             
-            //     ])->with(compact('barangaylist'));
-   
+     
     }
 
     
@@ -1420,21 +1540,13 @@ class BenefitApplicationController extends Controller
            
          
             return view('main/landing', [
-                // Specify the base layout.
-                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                // The default value is 'side-menu'
-    
-                // 'layout' => 'side-menu'
+           
             ])->with('success');
          
             
             exit;
 
-              
-            // return view('main/landing', [
-             
-            //     ])->with(compact('barangaylist'));
-   
+       
     }
 
 
@@ -1612,20 +1724,13 @@ class BenefitApplicationController extends Controller
            
          
             return view('main/landing', [
-                // Specify the base layout.
-                // Eg: 'side-menu', 'simple-menu', 'top-menu', 'login'
-                // The default value is 'side-menu'
-    
-                // 'layout' => 'side-menu'
+           
             ])->with('success');
          
             
             exit;
               
-            // return view('main/landing', [
-             
-            //     ])->with(compact('barangaylist'));
-   
+          
     }
 
 
@@ -1635,13 +1740,6 @@ class BenefitApplicationController extends Controller
            
             $dob = Carbon::parse($request->input('birthdate'))->format('Y-m-d');
 
-            // $client= Client::with("occupations","barangays")->where('first_name','=',$request->input('firstname'))->where('last_name','=',$request->input('lastname'))->where('middle_name','=',$request->input('middlename'))->whereHas("client_applications", function($subQuery) use ($request)  {
-            //     $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
-            // })->with(["client_applications" => function($subQuery) use ($request){
-            //     $subQuery->where("client_applications.application_reference_number", "=", $request->input('number')); 
-            // }])
-            // ->first();
-              
             Client::where('id',$request->input('clientid'))->update(['first_name'=> $request->input('firstname'),'last_name' => $request->input('lastname'),'middle_name' => $request->input('middlename')
             ,'extension_name' =>  $request->input('extensionname'),'sex' =>  $request->input('gender'),'blood_type' =>  $request->input('bloodtype'),'civil_status' =>  $request->input('civilstatus')
             ,'nationality' =>  $request->input('nationality'),'religion' =>  $request->input('religion'),'birth_date' =>  $dob,'birth_place' =>   $request->input('birthplace')

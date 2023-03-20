@@ -48,6 +48,8 @@
                         <th id="filename" class="whitespace-nowrap">salary</th>
                         <th id="filename" class="whitespace-nowrap">id</th>
                         <th id="filename" class="whitespace-nowrap">appid</th>
+                        <th class="whitespace-nowrap">requirements</th>
+                       
                        
                        
                        
@@ -57,23 +59,20 @@
                 </thead>
                 <tbody>
                     @foreach($clients as $index => $client) 
-                    
-                            {{-- @php
-                                dd($clients)
-                            @endphp --}}
                           
                                 <tr class="intro-x">
                                     <td id="clientid">{{$index + 1}}</td>
                                     <td>{{ $client->last_name}}, {{ $client->first_name}} {{ $client->middle_name}} {{ $client->extension_name}}</td>
                                     <td>{{$client->barangays->name}}
-                                    <td> @foreach($client->client_applications as  $clientapp)
+                                    <td> @foreach($client->benefit_applications as  $clientapp)
                                         {{$clientapp->application_reference_number}}
                                       @endforeach</td>
-                                      <td> @foreach($client->client_applications as  $clientapp)
+                                      <td> @foreach($client->benefit_applications as  $clientapp)
                                         {{$clientapp->application_date}}
                                       @endforeach</td>    
                                       <td id="filename"> 
-                                        {{$client->client_application_requirements[0]->filename}}
+                                       
+                                        {{$client->benefit_application_requirements[0]->filename}}
                                       </td>
                                       <td id="filename">{{ $client->first_name}}</td>    
                                       <td id="filename">{{ $client->last_name}}</td>    
@@ -92,19 +91,18 @@
                                       <td id="filename">{{ $client->skills_talents}}</td>    
                                       <td id="filename">{{ $client->hobbies}}</td>  
                                       <td id="filename">{{$client->occupations->employment_status}}
-                                        <td id="filename">{{$client->occupations->employment_type}}
+                                      <td id="filename">{{$client->occupations->employment_type}}
                                         <td id="filename">{{$client->occupations->employment_category}}
                                         <td id="filename">{{$client->occupations->occupation}}
                                          <td id="filename">{{$client->occupations->salary}}
                                             <td id="filename">{{$client->id}}
                                              
-                                   <td  id="filename"> @foreach($client->client_applications as  $clientapp)
+                                   <td  id="filename"> @foreach($client->benefit_applications as  $clientapp)
                                                         {{$clientapp->id}}
                                                       @endforeach</td>
-                                                     
-                                
-                                
-                                
+
+                                                      <td>@foreach($client->benefit_application_requirements as  $clientapp){{$clientapp->filename}},@endforeach</td>  
+ 
                                     <td class="table-report__action w-56">
                                         <div class="flex justify-center items-center" >
                                         <button href="javascript:;" class="btn btn-outline-primary w-32 mr-1 edit" data-tw-toggle="modal" data-tw-target="#evaluateclient">Approve</button>
@@ -329,39 +327,16 @@
                                 <h2 class="font-medium text-base mr-auto">
                                     Requirements
                                 </h2>
+                         
+                                          
+                                <div id="requirements" class="grid grid-cols-12 gap-5 mt-5 pt-5 border-t">
+                                   
+                                       
+                                 
+                                    <div class="block font-medium text-center truncate mt-3">1x1 Picture</div>
+                                   
+                                </div>
                                
-                            </div>
-                            <div class="grid grid-cols-12 gap-5 mt-5 pt-5 border-t">
-                                <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-item-modal" class="intro-y block col-span-12 sm:col-span-4 2xl:col-span-3">
-                                    <div class="box rounded-md p-3 relative zoom-in">
-                                        <div class="flex-none relative block before:block before:w-full before:pt-[100%]">
-                                            <div class="absolute top-0 left-0 w-full h-full image-fit">
-                                                <img id="picture"  class="rounded-md" src="dist/images/food-beverage-16.jpg">
-                                            </div>
-                                        </div>
-                                        <div class="block font-medium text-center truncate mt-3">2x2 Picture</div>
-                                    </div>
-                                </a>
-                                <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-item-modal" class="intro-y block col-span-12 sm:col-span-4 2xl:col-span-3">
-                                    <div class="box rounded-md p-3 relative zoom-in">
-                                        <div class="flex-none relative block before:block before:w-full before:pt-[100%]">
-                                            <div class="absolute top-0 left-0 w-full h-full image-fit">
-                                                <img id="birth"  class="rounded-md" src="dist/images/food-beverage-16.jpg">
-                                            </div>
-                                        </div>
-                                        <div class="block font-medium text-center truncate mt-3">Birth Certificate</div>
-                                    </div>
-                                </a>
-                                <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-item-modal" class="intro-y block col-span-12 sm:col-span-4 2xl:col-span-3">
-                                    <div class="box rounded-md p-3 relative zoom-in">
-                                        <div class="flex-none relative block before:block before:w-full before:pt-[100%]">
-                                            <div class="absolute top-0 left-0 w-full h-full image-fit">
-                                                <img id="barangaycert" class="rounded-md" src="dist/images/food-beverage-14.jpg">
-                                            </div>
-                                        </div>
-                                        <div class="block font-medium text-center truncate mt-3">Barangay Certificate</div>
-                                    </div>
-                                </a>
                                
                             </div>
                         </div>
@@ -602,13 +577,34 @@ session_start();
                     =  data[25];
                     document.getElementById('salary').value
                     =  data[26];
+                  
+
                     
+                $("#requirements").empty();
+               
+
+                var arrayfilename = new Array();
+                var filename  = data[29];
+             
+                arrayfilename = filename.split(',');
+               
+                for (let i = 0; i < arrayfilename.length-1; i++) {
+                    var file =  arrayfilename[i];
+                    var path =   file.substring(0,file.length - 5);
+            
+                    console.log(path);
+              
+                        $("#requirements").append($('<img id="picture" class="rounded-md">').attr("src","/images/"+path+"/"+file))
+                      
+                        
+                    }
+                        
                    
                 $('#editform').attr('action','/approvecitizenbenefit/' + data[27]+'/'+data[28]);
-                $('#userphoto').attr("src","/images/picture/"+data[5]);
-                $('#picture').attr("src","/images/picture/"+data[5]);
-                $('#birth').attr("src","/images/birth/"+data[5]);
-                $('#barangaycert').attr("src","/images/barangay/"+data[5]);
+                // $('#userphoto').attr("src","/images/picture/"+data[5]);
+                // $('#picture').attr("src","/images/picture/"+data[5]);
+                // $('#birth').attr("src","/images/birth/"+data[5]);
+                // $('#barangaycert').attr("src","/images/barangay/"+data[5]);
                 $('#declineform').attr('action','/declinecitizenapprovalbenefit/' + data[27]+'/'+data[28]);
                
             })

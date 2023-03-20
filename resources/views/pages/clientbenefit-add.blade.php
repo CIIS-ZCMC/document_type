@@ -23,8 +23,11 @@
                      
                         @foreach($benefits as $benefit)
                             @php 
-                            $value = \App\Models\ClientBenefit::where(['client_type_id' => $id])->where(['benefit_id' => $benefit->id])->first()
+                             $check = \App\Models\BenefitRequirement::where(['benefit_id' => $benefit->id])->first();
+                            $value = \App\Models\ClientBenefit::where(['client_type_id' => $id])->where(['benefit_id' => $benefit->id])->first();
                             @endphp
+
+                    @if(!empty($check))
                            @if(!empty($value))
                                     
                                         <div class="form-check mt-2">
@@ -47,7 +50,7 @@
                                 </tr>     
                              </div>
                              @endif
-                           
+                    @endif
                         @endforeach
                         <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-32 mr-1">Cancel</button>
                         <button type="submit" id="addfo" name="additem" class="btn btn-primary w-32">Save</button>

@@ -47,16 +47,19 @@
                
                         @foreach($benefit->benefits as $userbenefit)
                         @php 
-                        $value = \App\Models\BenefitApplication::where(['client_type_id' => $benefit->id])->where(['benefit_id' => $userbenefit->id])->first()
+                        $value = \App\Models\BenefitApplication::where(['client_type_id' => $benefit->id])->where(['benefit_id' => $userbenefit->id])->first();
+                        $clientcard = \App\Models\ClientCard::where(['client_type' => $benefit->id])->where(['client_id' => $userid])->first();
                         @endphp
                         @if($value==null)
+
+                        
                             <tr class="intro-x">
                                 <td id="foid">1</td>
                                 <td id="foid">{{$userbenefit->benefit_name}}</td>
                                 <td id="foid">{{$benefit->name}}</td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center" >
-                                        <a  href="{{ url('/user/applybenefit/'.$userbenefit->id.'/'.$userid.'/'.$benefit->id) }}" class="btn btn-outline-success"  id='isActiveToggle'>Apply</a>
+                                        <a  href="{{ url('/user/applybenefit/'.$userbenefit->id.'/'.$userid.'/'.$benefit->id.'/'.$clientcard->id) }}" class="btn btn-outline-success"  id='isActiveToggle'>Apply</a>
                                     </div>
                                 </td>
                             </tr>

@@ -77,7 +77,7 @@
 
                                   
                                       <td id="filename"> 
-                                        {{$client->client_application_requirements[0]->filename}}
+                                        {{$client->benefit_application_requirements[0]->filename}}
                                       </td>
                                       <td id="filename">{{ $client->first_name}}</td>    
                                       <td id="filename">{{ $client->last_name}}</td>    

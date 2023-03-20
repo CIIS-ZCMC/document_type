@@ -63,14 +63,14 @@
                                     <td id="clientid">{{$index + 1}}</td>
                                     <td>{{ $client->last_name}}, {{ $client->first_name}} {{ $client->middle_name}} {{ $client->extension_name}}</td>
                                     <td>{{$client->barangays->name}}
-                                    <td> @foreach($client->client_applications as  $clientapp)
+                                    <td> @foreach($client->benefit_applications as  $clientapp)
                                         {{$clientapp->application_reference_number}}
                                       @endforeach</td>
-                                      <td> @foreach($client->client_applications as  $clientapp)
+                                      <td> @foreach($client->benefit_applications as  $clientapp)
                                         {{$clientapp->application_date}}
                                       @endforeach</td>    
                                       <td id="filename"> 
-                                        {{$client->client_application_requirements[0]->filename}}
+                                        {{$client->benefit_application_requirements[0]->filename}}
                                       </td>
                                       <td id="filename">{{ $client->first_name}}</td>    
                                       <td id="filename">{{ $client->last_name}}</td>    
@@ -95,7 +95,7 @@
                                         <td id="filename">{{$client->occupations->salary}}
                                             <td id="filename">{{$client->id}}
                                              
-                                                    <td  id="filename"> @foreach($client->client_applications as  $clientapp)
+                                                    <td  id="filename"> @foreach($client->benefit_applications as  $clientapp)
                                                         {{$clientapp->id}}
                                                       @endforeach</td>
                                                         
@@ -330,11 +330,13 @@
                                 </h2>
                                
                             </div>
+
+    
                             <div class="grid grid-cols-12 gap-5 mt-5 pt-5 border-t">
                                 <a href="javascript:;" data-tw-toggle="modal" data-tw-target="#add-item-modal" class="intro-y block col-span-12 sm:col-span-4 2xl:col-span-3">
                                     <div class="box rounded-md p-3 relative zoom-in">
                                         <div class="flex-none relative block before:block before:w-full before:pt-[100%]">
-                                            <div class="absolute top-0 left-0 w-full h-full image-fit">
+                                            <div id="family" class="absolute top-0 left-0 w-full h-full image-fit">
                                                 <img id="picture"  class="rounded-md" src="dist/images/food-beverage-16.jpg">
                                             </div>
                                         </div>
@@ -494,19 +496,12 @@
         $(document).ready(function()
         {
     
-            // $('#datatable tr > *:nth-child(6)').hide();
-            // $('#datatable tr > *:nth-child(7)').hide();
-            // $('#datatable tr > *:nth-child(8)').hide();
-            // $('#datatable tr > *:nth-child(9)').hide();
-            // $('#datatable tr > *:nth-child(10)').hide();
-            // $('#datatable tr > *:nth-child(11)').hide();
-            // $('#datatable tr > *:nth-child(12)').hide();
-            // $('#datatable tr > *:nth-child(13)').hide();
-            // $('#datatable tr > *:nth-child(14)').hide();
+         
            
             
-            $("#datatable").on('click', '.edit', function()
+        $("#datatable").on('click', '.edit', function()
             {
+                
                 $tr=$(this).closest('tr');
                 if ($($tr).hasClass('child'))
                 {
@@ -578,12 +573,31 @@
                     document.getElementById('salary').value
                     =  data[26];
                     
-                   
+                    $("#requirements").empty();
+               
+
+               var arrayfilename = new Array();
+               var filename  = data[29];
+            
+               arrayfilename = filename.split(',');
+              
+               for (let i = 0; i < arrayfilename.length-1; i++) {
+                   var file =  arrayfilename[i];
+                   var path =   file.substring(0,file.length - 5);
+           
+                   console.log(path);
+             
+                       $("#requirements").append($('<img id="picture" class="rounded-md">').attr("src","/images/"+path+"/"+file))
+                     
+                       
+                   }
+                       
+
                 $('#editform').attr('action','/evaluatecitizenbenefit/' + data[27]+'/'+data[28]);
-                $('#userphoto').attr("src","/images/picture/"+data[5]);
-                $('#picture').attr("src","/images/picture/"+data[5]);
-                $('#birth').attr("src","/images/birth/"+data[5]);
-                $('#barangaycert').attr("src","/images/barangay/"+data[5]);
+                // $('#userphoto').attr("src","/images/picture/"+data[5]);
+                // $('#picture').attr("src","/images/picture/"+data[5]);
+                // $('#birth').attr("src","/images/birth/"+data[5]);
+                // $('#barangaycert').attr("src","/images/barangay/"+data[5]);
                 $('#declineform').attr('action','/declinecitizenevaluationbenefit/' + data[27]+'/'+data[28]);
             })
     
