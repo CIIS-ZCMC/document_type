@@ -41,8 +41,6 @@ class DocumentTypeDetailController extends Controller
         $document_type_details_store->document_type_id = $document_type_id;
         $document_type_details_store->save();
 
-      
-
         $name =  $request->name;
         $details =  $request->detail;
         

@@ -30,7 +30,7 @@
                     <th class="whitespace-nowrap">No.</th>
                     <th class="whitespace-nowrap">NAME</th>
                     <th class="whitespace-nowrap">ROLE</th>
-                    <th id="filename" class="whitespace-nowrap">id</th>
+                    <th id="filename" class="whitespace-nowrap">id</th>git intl_is_failure
                   
                   
                     <th class="text-center whitespace-nowrap">STATUS</th>

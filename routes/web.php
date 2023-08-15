@@ -8,7 +8,9 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PersonnelController;
 use App\Http\Controllers\PositionController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Requests\DocumentTypeDetailRequest;
 use App\Http\Resources\DocumentTypeDetail;
+use App\Models\DocumentTypeDetail as ModelsDocumentTypeDetail;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +65,6 @@ Route::middleware('isLogged')->group(function() {
       
     });
     Route::post('/print/template', [PageController::class, 'print']);
-   
+    Route::post('/store/documentdetail/{document_type_id}', [DocumentTypeDetailController::class, 'store']);
     
 });
