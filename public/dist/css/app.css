@@ -2304,10 +2304,18 @@ select {
           width: 900px;
          
         }
+        .modal .modal-dialog.modal-xxl {
+          width: 1000px;
+         
+        }
       }
 @media (min-width: 1024px) {
         .modal .modal-dialog.modal-xl {
           width: 900px;
+        }
+        .modal .modal-dialog.modal-xxl {
+          width: 1000px;
+         
         }
       }
 .modal .modal-dialog .modal-content {

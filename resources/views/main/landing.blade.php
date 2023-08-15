@@ -222,6 +222,10 @@
                             @csrf
                             <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Login User</button> </div>
                         </form>
+                        <form action="/pharmacyloginpage">
+                            @csrf
+                            <div class="text-center mb-3"> <button type="submit" class="btn btn-dark w-50 rounded-pill b1">Login Pharmacy</button> </div>
+                        </form>
                         <form>
                             @csrf
                             <div class="text-center mb-3"> <a href="/" type="button" class="btn btn-dark w-50 rounded-pill b1">Login Admin</a> </div>

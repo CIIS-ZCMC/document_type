@@ -25,28 +25,7 @@ class MenuComposer
             $view->with('top_menu', TopMenu::menu());
             $view->with('side_menu', SideMenu::menu());
 
-            $view->with('citizen_side_menu', SideMenu::citizenmenu());
-            $view->with('citizenevaluator_side_menu', SideMenu::citizenevaluatormenu());
-            $view->with('citizenapprover_side_menu', SideMenu::citizenapprovermenu());
-            $view->with('citizenverifier_side_menu', SideMenu::citizenverifiermenu());
-
-            $view->with('senior_side_menu', SideMenu::seniormenu());
-            $view->with('seniorevaluator_side_menu', SideMenu::seniorevaluatormenu());
-            $view->with('seniorapprover_side_menu', SideMenu::seniorapprovermenu());
-            $view->with('seniorverifier_side_menu', SideMenu::seniorverifiermenu());
-
-            $view->with('pwd_side_menu', SideMenu::pwdmenu());
-            $view->with('pwdevaluator_side_menu', SideMenu::pwdevaluatormenu());
-            $view->with('pwdapprover_side_menu', SideMenu::pwdapprovermenu());
-            $view->with('pwdverifier_side_menu', SideMenu::pwdverifiermenu());
-
-            $view->with('soloparent_side_menu', SideMenu::soloparentmenu());
-            $view->with('soloparentevaluator_side_menu', SideMenu::soloparentevaluatormenu());
-            $view->with('soloparentapprover_side_menu', SideMenu::soloparentapprovermenu());
-            $view->with('soloparentverifier_side_menu', SideMenu::soloparentverifiermenu());
-
-            $view->with('user_side_menu', SideMenu::usermenu());
-
+           
             $view->with('simple_menu', SimpleMenu::menu());
             $view->with('first_level_active_index', $activeMenu['first_level_active_index']);
             $view->with('second_level_active_index', $activeMenu['second_level_active_index']);

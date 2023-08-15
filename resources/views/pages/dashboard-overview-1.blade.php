@@ -22,10 +22,10 @@
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$citizencount}}-Citizen">  <i data-lucide="" class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="-Citizen">  <i data-lucide="" class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$citizencount}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6"></div>
                                 <div class="text-base text-slate-500 mt-1">Citizen</div>
                             </div>
                         </div>
@@ -36,10 +36,10 @@
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$seniorcount}}-Senior Citizen"> <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="-Senior Citizen"> <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$seniorcount}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6"></div>
                                 <div class="text-base text-slate-500 mt-1">Senior Citizen</div>
                             </div>
                         </div>
@@ -50,10 +50,10 @@
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pwdcount}}-PWD"> <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="-PWD"> <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$pwdcount}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6"></div>
                                 <div class="text-base text-slate-500 mt-1">PWD</div>
                             </div>
                         </div>
@@ -64,10 +64,10 @@
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$soloparentcount}}-Solo Parent">  <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="-Solo Parent">  <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$soloparentcount}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6"></div>
                                 <div class="text-base text-slate-500 mt-1">Solo Parent </div>
                             </div>
                         </div>
@@ -90,10 +90,10 @@
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pendingcitizencount}}-Citizen (Pending)">  <i data-lucide="" class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="-Citizen (Pending)">  <i data-lucide="" class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$pendingcitizencount}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6"></div>
                                 <div class="text-base text-slate-500 mt-1">Citizen</div>
                             </div>
                         </div>
@@ -104,10 +104,10 @@
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pendingseniorcount}}-Senior Citizen (Pending)"> <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="-Senior Citizen (Pending)"> <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$pendingseniorcount}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6"></div>
                                 <div class="text-base text-slate-500 mt-1">Senior Citizen</div>
                             </div>
                         </div>
@@ -118,10 +118,10 @@
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pendingpwdcount}}-PWD (Pending)"> <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="-PWD (Pending)"> <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$pendingpwdcount}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6"></div>
                                 <div class="text-base text-slate-500 mt-1">PWD</div>
                             </div>
                         </div>
@@ -132,10 +132,10 @@
                                 <div class="flex">
                                     <i data-lucide="user" class="report-box__icon text-primary"></i> 
                                     <div class="ml-auto">
-                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="{{$pendingsoloparentcount}}-Solo Parent (Pending)">  <i  class="w-4 h-4 ml-0.5"></i> </div>
+                                        <div class="report-box__indicator btn-primary tooltip cursor-pointer" title="-Solo Parent (Pending)">  <i  class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
-                                <div class="text-3xl font-medium leading-8 mt-6">{{$pendingsoloparentcount}}</div>
+                                <div class="text-3xl font-medium leading-8 mt-6"></div>
                                 <div class="text-base text-slate-500 mt-1">Solo Parent</div>
                             </div>
                         </div>
